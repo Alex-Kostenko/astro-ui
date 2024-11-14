@@ -1,0 +1,20 @@
+---
+import { smallLogo } from "src/assets";
+import HeaderLinks from "./HeaderLinks.astro";
+import { ButtonAstro } from "@components/Button";
+---
+
+<header>
+  <section
+    class:list={[
+      "flex ",
+      "container py-5 px-8 box-border bg-coal bg-opacity-[48%] shadow-inner backdrop-blur-xl",
+    ]}
+  >
+    <img src={smallLogo.src} alt="logo" />
+    <nav class="ml-auto flex items-center gap-x-10">
+      <HeaderLinks />
+      <ButtonAstro color="biscuit" variant="outlined">contact us</ButtonAstro>
+    </nav>
+  </section>
+</header>
