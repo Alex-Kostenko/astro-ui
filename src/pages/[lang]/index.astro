@@ -1,0 +1,20 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+import "@style/home.css";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title="Welcome to Astro.">
+  <main>
+    <section class="bg-black select-none text-white">
+      {lang}
+      <p>{t("home")}</p>
+      <p>{t("nav.home")}</p>
+      <a href="/home">Home</a>
+    </section>
+  </main>
+</Layout>
