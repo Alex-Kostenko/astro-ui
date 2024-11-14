@@ -1,0 +1,30 @@
+---
+interface Props {
+  variant: "contained" | "outlined";
+  color: "black" | "biscuit";
+}
+
+const { color, variant } = Astro.props;
+---
+
+<button
+  class:list={[
+    "min-h-11 min-w-11 p-4 rounded box-border",
+    "uppercase text-center font-bold text-base",
+    "duration-200",
+    {
+      "bg-biscuit text-green-200":
+        variant === "contained" && color === "biscuit",
+      "text-green-200 border-2 border-green-200 hover:border-greenLight-200 focus:border-green-500 ":
+        variant === "outlined" && color === "biscuit",
+      "hover:bg-greenLight-200  focus:bg-green-300 focus:text-biscuit":
+        color === "biscuit",
+    },
+    {
+      "bg-coal text-biscuit hover:bg-green-100 focus:bg-green-500":
+        variant === "contained" && color === "black",
+    },
+  ]}
+>
+  <slot />
+</button>
