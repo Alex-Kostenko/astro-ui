@@ -10,7 +10,6 @@ export default defineConfig({
   ],
   output: "server",
   build: { inlineStylesheets: "never" },
-  // trailingSlash: "never",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ua"],

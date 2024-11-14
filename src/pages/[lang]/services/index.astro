@@ -1,16 +1,17 @@
 ---
+import { getLangFromUrl, useTranslations, getFromLocale } from "@i18n/index";
 import Layout from "@layouts/Layout.astro";
 import "@style/services.css";
+import { formatLink } from "src/utils";
+
+const lang = getFromLocale(Astro.currentLocale);
+const t = useTranslations(lang);
 ---
 
 <Layout title="Services">
-  <main class="mt-1 mb-2 mr-3 ml-4 text-white">
+  <main class="mt-1 mb-2 mr-3 ml-4 text-white bg-black">
+    {lang}
     <p>Test</p>
-    <a href="/" class="link-test">Home</a>
+    <a href={formatLink(Astro.url, "/")} class="link-test">Home</a>
   </main>
 </Layout>
-
-<style>
-  .a {
-  }
-</style>

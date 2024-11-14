@@ -1,10 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getFromLocale, useTranslations } from "@i18n/index";
 
 import "@style/home.css";
+import { formatLink } from "src/utils";
 
-const lang = getLangFromUrl(Astro.url);
+const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang);
 ---
 
@@ -14,7 +15,8 @@ const t = useTranslations(lang);
       {lang}
       <p>{t("home")}</p>
       <p>{t("nav.home")}</p>
-      <a href="/home">Home</a>
+
+      <a href={formatLink(Astro.url, "/services")}>Services</a>
     </section>
   </main>
 </Layout>
