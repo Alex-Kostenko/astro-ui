@@ -1,3 +1,20 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@layouts/*": ["src/layouts/*"],
+      "@style/*": ["src/style/*"],
+      "@i18n/*": ["src/i18n/*"],
+      "@icons/*": ["src/icons/*"],
+      "@utils/*": ["src/utils/*"],
+      "@components/*": ["src/components/*"],
+      "@service/*": ["src/service/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@constant/*": ["src/constant/*"],
+      "@interfaces/*": ["src/interfaces/*"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
 }

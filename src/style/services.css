@@ -1,0 +1,4 @@
+@config "../../tailwind.services.config.mjs";
+
+@tailwind components;
+@tailwind utilities;

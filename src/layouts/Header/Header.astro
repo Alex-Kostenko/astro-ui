@@ -1,0 +1,26 @@
+---
+import { smallLogo } from "src/assets";
+import HeaderLinks from "./HeaderLinks.astro";
+import { ButtonAstro } from "@components/Button";
+import { getFromLocale, useTranslations } from "@i18n/index";
+
+const lang = getFromLocale(Astro.currentLocale);
+const t = useTranslations(lang, "header");
+---
+
+<header class="fixed right-0 left-0 top-8 z-50">
+  <section
+    class:list={[
+      "flex",
+      "container py-5 px-8 box-border bg-coal bg-opacity-[48%] shadow-inner backdrop-blur-xl",
+    ]}
+  >
+    <img src={smallLogo.src} alt="logo" />
+    <nav class="ml-auto flex items-center gap-x-10">
+      <HeaderLinks />
+      <ButtonAstro color="biscuit" variant="contained"
+        >{t("contactUs")}</ButtonAstro
+      >
+    </nav>
+  </section>
+</header>
