@@ -1,3 +1,4 @@
 import smallLogo from "./smallLogo.svg";
+import logo from "./logo.svg";
 
-export { smallLogo };
+export { smallLogo, logo };

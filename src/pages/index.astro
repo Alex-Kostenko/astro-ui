@@ -1,22 +1,17 @@
 ---
+import "@style/home.css";
 import Layout from "@layouts/Layout.astro";
 import { getFromLocale, useTranslations } from "@i18n/index";
-
-import "@style/home.css";
-import { formatLink } from "src/utils";
+import { AboutSection, HeroSection } from "@components/Sections/intex";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Welcome to Astro.">
-  <main>
-    <section class="bg-black select-none text-white">
-      {lang}
-      <p>{t("home")}</p>
-      <p>{t("nav.home")}</p>
-
-      <a href={formatLink(Astro.url, "/services")}>Services</a>
-    </section>
+  <main class="h-[300vh]">
+    <HeroSection />
+    <AboutSection />
+    <section class="bg-black select-none text-white container"></section>
   </main>
 </Layout>

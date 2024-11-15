@@ -4,6 +4,7 @@ export default {
   content: [
     "./src/pages/index.astro",
     "./src/pages/[lang]/index.astro",
+    "./src/components/Sections/*.{astro,html,js,jsx}",
     ...customConfig.content,
   ],
   theme: {

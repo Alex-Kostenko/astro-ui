@@ -13,9 +13,8 @@ const { color, variant } = Astro.props;
     "uppercase text-center font-bold text-base",
     "duration-200",
     {
-      "bg-biscuit text-green-200":
-        variant === "contained" && color === "biscuit",
-      "text-green-200 border-2 border-green-200 hover:border-greenLight-200 focus:border-green-500 ":
+      "bg-biscuit text-green": variant === "contained" && color === "biscuit",
+      "text-green border-2 border-green hover:border-greenLight-200 focus:border-green-500 ":
         variant === "outlined" && color === "biscuit",
       "hover:bg-greenLight-200  focus:bg-green-300 focus:text-biscuit":
         color === "biscuit",
