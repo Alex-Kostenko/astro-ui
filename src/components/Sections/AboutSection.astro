@@ -1,0 +1,72 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import { TypographyAstro } from "@components/Typography";
+import { Human } from "src/assets";
+---
+
+<Container class="mt-14">
+  <h2>
+    <TypographyAstro tag="span" type="heading-6" class="text-green-200">
+      have you
+    </TypographyAstro>
+    <TypographyAstro
+      tag="span"
+      type="heading-6"
+      class="text-transparent text-stroken-green"
+    >
+      ever
+    </TypographyAstro>
+  </h2>
+  <h2>
+    <TypographyAstro
+      tag="span"
+      type="heading-6"
+      class="text-transparent text-stroken-green"
+    >
+      counted
+    </TypographyAstro>
+    <TypographyAstro tag="span" type="heading-6" class="text-green-200">
+      of a single
+    </TypographyAstro>
+  </h2>
+
+  <section class="flex">
+    <TypographyAstro
+      tag="span"
+      type="heading-6"
+      class="text-green-200 ml-[100px]"
+    >
+      mis
+    </TypographyAstro>
+    <div class="flex-grow h-1 bg-green-200 my-auto mx-2"></div>
+    <TypographyAstro tag="span" type="heading-6" class="text-green-200">
+      hire?
+    </TypographyAstro>
+  </section>
+
+  <section
+    class="flex flex-col md1:flex-row gap-x-14 justify-between gap-y-4 mt-10"
+  >
+    <div>
+      <TypographyAstro type="body-4" class="md1:w-[480px]">
+        We are firm believers that: no matter the size or budgets of a company,
+        they should have access to the very best technical expertise to overcome
+        any challenge. We also know that talented professionals crave dynamic
+        and engaging environments to truly shine. Our mission is to unite these
+        two values and empower businesses and professionals alike to achieve
+        greatness.
+      </TypographyAstro>
+
+      <ButtonAstro color="black" class="mt-5">more about us</ButtonAstro>
+    </div>
+
+    <div class="md1:max-w-[704px] object-cover w-full">
+      <img
+        class="min-h-full object-cover min-w-full"
+        src={Human.src}
+        alt="human face of number"
+      />
+    </div>
+  </section>
+</Container>

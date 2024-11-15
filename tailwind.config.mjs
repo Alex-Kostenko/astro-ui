@@ -3,6 +3,7 @@ export default {
   content: [
     "./src/layouts/**/*.{astro,html,js,jsx}",
     "./src/components/Button/**/*.{astro,html,js,jsx}",
+    "./src/components/Container/**/*.{astro,html,js,jsx}",
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
   ],
   theme: {
@@ -64,15 +65,15 @@ export default {
         greenLight: { 200: "#CCD9D3" },
       },
       fontSize: {
-        h6: "6rem", // 96px = 6rem
-        title9: "2.875rem", // 46px = 2.875rem
-        title6: "2.5rem", // 40px = 2.5rem
-        title2: "2rem", // 32px = 2rem
-        subTitle1: "1.5rem", // 24px = 1.5rem
-        body4: "1.25rem", // 20px = 1.25rem
-        body3: "1.125rem", // 18px = 1.125rem
-        body1: "0.875rem", // 14px = 0.875rem
-        label4: "0.75rem", // 12px = 0.75rem
+        h6: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
+        title9: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
+        title6: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
+        title2: ["2rem", { lineHeight: "1.4" }], // 32px = 2rem
+        subTitle1: ["1.5rem", { lineHeight: "1.5" }], // 24px = 1.5rem
+        body4: ["1.25rem", { lineHeight: "1.6" }], // 20px = 1.25rem
+        body3: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
+        body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
+        label4: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
       },
     },
   },

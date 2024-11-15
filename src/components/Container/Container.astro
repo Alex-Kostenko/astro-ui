@@ -1,15 +1,19 @@
 ---
+interface Props {
+  class?: string;
+}
 
+const { class: className } = Astro.props;
 ---
 
-<section class="container-content">
+<section class:list={["container-content", className]}>
   <slot />
 </section>
 
-<style>
+<style is:global>
   .container-content {
-    max-width: auto;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     width: "100%";
   }
 
