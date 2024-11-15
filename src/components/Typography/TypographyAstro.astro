@@ -11,7 +11,7 @@ export interface Props {
     | "body-3"
     | "body-4"
     | "body-5";
-  color?: "black" | "white";
+  color?: "black" | "white" | "green";
   class?: string;
 }
 
@@ -29,6 +29,7 @@ const {
     {
       "text-coal": color == "black",
       "text-biscuit": color == "white",
+      "text-green-200": color == "green",
       "font-normal text-body4 tracking-[1px]": type == "body-4",
       "font-normal text-base": type == "body-2",
       "font-extrabold uppercase text-title6": type == "title-6",

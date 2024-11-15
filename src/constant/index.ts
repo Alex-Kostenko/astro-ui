@@ -1,0 +1,1 @@
+export { serviceList } from "./services";

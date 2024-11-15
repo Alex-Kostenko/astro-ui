@@ -5,6 +5,7 @@ export default {
     "./src/components/Button/**/*.{astro,html,js,jsx}",
     "./src/components/Container/**/*.{astro,html,js,jsx}",
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
+    "./src/components/Accordion/**/*.{astro,html,js,jsx}",
   ],
   theme: {
     extend: {
@@ -63,6 +64,9 @@ export default {
           500: "#022213",
         },
         greenLight: { 200: "#CCD9D3" },
+        wooden: {
+          DEFAULT: "#AE896E",
+        },
       },
       fontSize: {
         h6: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
