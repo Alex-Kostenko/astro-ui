@@ -1,0 +1,51 @@
+---
+
+---
+
+<section class="container-content">
+  <slot />
+</section>
+
+<style>
+  .container-content {
+    max-width: auto;
+    margin: 0 auto;
+    width: "100%";
+  }
+
+  @media (min-width: 414px) {
+    .container-content {
+      max-width: 382px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container-content {
+      max-width: 612px;
+    }
+  }
+
+  @media (min-width: 800px) {
+    .container-content {
+      max-width: 736px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-content {
+      max-width: 852px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-content {
+      max-width: 1092px;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .container-content {
+      max-width: 1280px;
+    }
+  }
+</style>
