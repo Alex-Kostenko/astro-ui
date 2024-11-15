@@ -1,0 +1,40 @@
+---
+export interface Props {
+  tag?: keyof HTMLElementTagNameMap;
+  type?:
+    | "heading-6"
+    | "title-2"
+    | "title-6"
+    | "subTitle-1"
+    | "body-1"
+    | "body-2"
+    | "body-3"
+    | "body-4"
+    | "body-5";
+  color?: "black" | "white";
+  class?: string;
+}
+
+const {
+  tag: Tag = "p",
+  type = "body-2",
+  color = "black",
+  class: className,
+} = Astro.props;
+---
+
+<Tag
+  class:list={[
+    className,
+    {
+      "text-coal": color == "black",
+      "text-biscuit": color == "white",
+      "font-normal text-body4 tracking-[1px]": type == "body-4",
+      "font-normal text-base": type == "body-2",
+      "font-extrabold uppercase text-title6": type == "title-6",
+      "font-extrabold uppercase text-title2": type == "title-2",
+      "font-bold uppercase text-subTitle1": type == "subTitle-1",
+      "font-extrabold uppercase text-h6 tracking-[2px]": type == "heading-6",
+    },
+  ]}><slot /></Tag
+>
