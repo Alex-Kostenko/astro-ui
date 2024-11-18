@@ -74,25 +74,7 @@ export default {
   },
   plugins: [
     function ({ addComponents, theme }) {
-      addComponents({
-        ".body-2": {
-          fontFamily: "Century Gothic",
-          fontSize: "16px",
-          fontWeight: theme("fontWeight.normal"),
-          lineHeight: theme("lineHeight.normal"),
-          color: theme("colors.coal"),
-        },
-        ".body-4": {
-          fontFamily: "Century Gothic",
-          fontSize: "20px",
-          fontWeight: theme("fontWeight.normal"),
-          lineHeight: theme("lineHeight.normal"),
-          color: theme("colors.coal"),
-        },
-        ".text-stroken-green": {
-          "-webkit-text-stroke": "4px #003300",
-        },
-      });
+      addComponents({});
     },
   ],
 };
