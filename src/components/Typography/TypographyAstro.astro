@@ -6,12 +6,14 @@ export interface Props {
     | "title-2"
     | "title-6"
     | "subTitle-1"
+    | "subTitle-sm-1"
+    | "subTitle-sm-4"
     | "body-1"
     | "body-2"
     | "body-3"
     | "body-4"
     | "body-5";
-  color?: "black" | "white" | "green";
+  color?: "black" | "white" | "green" | "gray";
   class?: string;
 }
 
@@ -28,6 +30,7 @@ const {
     className,
     {
       "text-coal": color == "black",
+      "text-coal text-opacity-45": color == "gray",
       "text-biscuit": color == "white",
       "text-green-200": color == "green",
       "font-normal text-body4 tracking-[1px]": type == "body-4",
@@ -35,6 +38,8 @@ const {
       "font-extrabold uppercase text-title6": type == "title-6",
       "font-extrabold uppercase text-title2": type == "title-2",
       "font-bold uppercase text-subTitle1": type == "subTitle-1",
+      "font-bold uppercase text-body4": type == "subTitle-sm-1",
+      "font-bold uppercase text-body1": type == "subTitle-sm-4",
       "font-extrabold uppercase text-h6 tracking-[2px] leading-[6rem]":
         type == "heading-6",
     },

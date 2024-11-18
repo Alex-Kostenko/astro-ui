@@ -11,9 +11,7 @@ export default {
     extend: {
       screens: {
         // xs
-        xs1: "360px",
-        xs2: "375px",
-        xs3: "414px",
+        xs: "0px",
         //sm
         sm1: "768px",
         sm2: "800px",
@@ -32,22 +30,15 @@ export default {
         center: true,
         screens: {
           // xs
-          xs1: "328px",
-          xs2: "343px",
-          xs3: "382px",
-          //sm
-          sm1: "704px",
-          sm2: "736px",
+          xs: "414px",
+          sm1: "612px",
+          sm2: "700px",
           //md
-          md1: "960px",
+          md1: "852px",
           //lg
-          lg2: "1216px",
-          // xl
-          xl1: "1376px",
+          lg2: "1092px",
           // 2xl
-          xl2: "1536px",
-          // 3xl
-          xl3: "1680px",
+          xl2: "1284px",
         },
       },
       colors: {
@@ -73,7 +64,7 @@ export default {
         title9: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
         title6: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
         title2: ["2rem", { lineHeight: "1.4" }], // 32px = 2rem
-        subTitle1: ["1.5rem", { lineHeight: "1.5" }], // 24px = 1.5rem
+        subTitle1: ["1.5rxem", { lineHeight: "1.5" }], // 24px = 1.5rem
         body4: ["1.25rem", { lineHeight: "1.6" }], // 20px = 1.25rem
         body3: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
         body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem

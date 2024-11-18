@@ -6,7 +6,7 @@ interface Props {
 const { class: className } = Astro.props;
 ---
 
-<section class:list={["container-content", className]}>
+<section class:list={["container", className]}>
   <slot />
 </section>
 
