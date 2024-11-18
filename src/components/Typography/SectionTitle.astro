@@ -1,0 +1,33 @@
+---
+import TypographyAstro from "./TypographyAstro.astro";
+
+interface Props {
+  type: string;
+  classType?: string;
+  title: string;
+  classTitle?: string;
+}
+
+const {
+  title,
+  type,
+  classTitle: titleClass,
+  classType: typeClass,
+} = Astro.props;
+---
+
+<article class="flex flex-col md1:flex-row gap-y-4 justify-between mb-10">
+  <TypographyAstro
+    class:list={["flex-[1_1_30%] upp text-wooden ", typeClass]}
+    type="body-2"
+  >
+    [ {type} ]
+  </TypographyAstro>
+  <TypographyAstro
+    color="green"
+    type="title-2"
+    class:list={["flex-[1_1_70%]", titleClass]}
+  >
+    {title}
+  </TypographyAstro>
+</article>
