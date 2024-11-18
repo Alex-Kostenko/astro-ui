@@ -5,28 +5,23 @@ interface Props {
   type: string;
   classType?: string;
   title: string;
-  classTitle?: string;
+  colorTitle?: string;
 }
 
-const {
-  title,
-  type,
-  classTitle: titleClass,
-  classType: typeClass,
-} = Astro.props;
+const { title, type, colorTitle, classType } = Astro.props;
 ---
 
 <article class="flex flex-col md1:flex-row gap-y-4 justify-between mb-10">
   <TypographyAstro
-    class:list={["flex-[1_1_30%] upp text-wooden ", typeClass]}
+    class:list={["flex-[1_1_30%] upp text-wooden ", classType]}
     type="body-2"
   >
     [ {type} ]
   </TypographyAstro>
   <TypographyAstro
-    color="green"
+    color={colorTitle ? "other" : "green"}
     type="title-2"
-    class:list={["flex-[1_1_70%]", titleClass]}
+    class:list={["flex-[1_1_70%]", colorTitle]}
   >
     {title}
   </TypographyAstro>

@@ -13,7 +13,7 @@ export interface Props {
     | "body-3"
     | "body-4"
     | "body-5";
-  color?: "black" | "white" | "green" | "gray";
+  color?: "black" | "white" | "green" | "gray" | "other";
   class?: string;
 }
 
@@ -27,7 +27,6 @@ const {
 
 <Tag
   class:list={[
-    className,
     {
       "text-coal": color == "black",
       "text-coal text-opacity-45": color == "gray",
@@ -43,5 +42,6 @@ const {
       "font-extrabold uppercase text-h6 tracking-[2px] leading-[6rem]":
         type == "heading-6",
     },
+    className,
   ]}><slot /></Tag
 >
