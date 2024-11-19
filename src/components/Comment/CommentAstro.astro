@@ -1,0 +1,31 @@
+---
+import { TypographyAstro } from "@components/Typography";
+import type { IComment } from "@interfaces/index";
+
+interface Props {
+  comment: IComment;
+  class?: string;
+}
+
+const { comment, class: className } = Astro.props;
+---
+
+<section
+  class:list={["flex flex-row", "h-[260px] p-6 bg-green-300 ", className]}
+>
+  <div class="flex-[1_1_40%] flex px-4">
+    <article class="text-biscuit">
+      <TypographyAstro color="other" type="subTitle-1" class="text-biscuit">
+        {comment.name}
+      </TypographyAstro>
+      <TypographyAstro color="other" class="text-biscuit">
+        {comment.position}
+      </TypographyAstro>
+    </article>
+  </div>
+
+  <article class="p-6 bg-biscuit flex-[1_1_60%]">
+    <TypographyAstro>{comment.title}</TypographyAstro>
+    <TypographyAstro>{comment.description}</TypographyAstro>
+  </article>
+</section>
