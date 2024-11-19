@@ -1,0 +1,45 @@
+---
+import { CommentAstro } from "@components/Comment";
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import commentService from "@service/comment.service";
+
+const comments = await commentService.get();
+---
+
+<Container class="overflow-hidden">
+  <SectionTitle
+    type="TESTIMONIALS"
+    title="Our clients talk about testing the results that we can achieve together."
+  />
+
+  <section class="swiper comment-swiper">
+    <div class="swiper-wrapper">
+      {
+        comments.data.map((v) => (
+          <div class="swiper-slide">
+            <CommentAstro comment={v} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Container>
+
+<script>
+  import Swiper from "swiper";
+
+  const swiper = new Swiper(".comment-swiper", {
+    slidesPerView: "auto",
+    centeredSlides: true,
+    loop: true,
+    speed: 400,
+    spaceBetween: 20,
+  });
+</script>
+
+<style>
+  .swiper-slide {
+    width: 80%;
+  }
+</style>

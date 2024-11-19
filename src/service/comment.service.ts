@@ -9,7 +9,7 @@ import type {
 
 class CommentService {
   async get(pagination?: IPaginationQuery) {
-    return apiService.get<IResponseApi<IComment, MetaPagination>>(
+    return apiService.get<IResponseApi<IComment[], MetaPagination>>(
       ApiPath.comment,
       {
         query: {
