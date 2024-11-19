@@ -7,6 +7,7 @@ import ServicesSection from "@components/Sections/ServicesSection.astro";
 import PartnersSections from "@components/Sections/PartnersSections.astro";
 import ProjectsSection from "@components/Sections/ProjectsSection.astro";
 import AdvantagesSection from "@components/Sections/AdvantagesSection.astro";
+import { Footer } from "@components/Footer";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang);
@@ -23,5 +24,6 @@ const t = useTranslations(lang);
       <AdvantagesSection />
       <section class="bg-black select-none text-white container"></section>
     </div>
+    <Footer />
   </main>
 </Layout>

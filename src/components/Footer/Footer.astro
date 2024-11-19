@@ -1,0 +1,99 @@
+---
+import { TypographyAstro } from "@components/Typography";
+import { clutch, linkedin } from "src/assets";
+
+interface Props {
+  variant?: "contained" | "outlined";
+  color?: "black" | "biscuit";
+  class?: string;
+}
+
+const blockFooter = [
+  {
+    mainName: "SERVICES",
+    list: [
+      "Project Management Consulting",
+      "Top-Tier Expert Engagement",
+      "Application Engineering",
+      "Managed Team",
+    ],
+  },
+  {
+    mainName: "EXPERTISE",
+    list: ["Mobile Development", "Web Development", "UI/UX Design"],
+  },
+  {
+    mainName: "ABOUT US",
+    list: [
+      "Sustainable Technologies",
+      "Our story and values",
+      "How we work",
+      "Testimonials",
+    ],
+  },
+  {
+    mainName: "CLIENTS",
+    list: ["Scale-Up", "Start-Up"],
+  },
+  {
+    mainName: "INSIGHTS",
+    list: ["All articles"],
+  },
+  {
+    mainName: "CAREERS",
+    list: ["Start your way with Us"],
+  },
+];
+---
+
+<footer class="group1">
+  <div class="flex justify-between mb-[3.75rem]">
+    {
+      blockFooter.map((textBlock) => {
+        return (
+          <div>
+            <TypographyAstro
+              type="body-2"
+              color="white"
+              class="font-gothic mb-5 tracking-[0.8px]"
+            >
+              {textBlock.mainName}
+            </TypographyAstro>
+            <div class="flex flex-col gap-y-2">
+              {textBlock.list.map((item) => (
+                <TypographyAstro class="text-steamGray font-gothic text-xs">
+                  {item}
+                </TypographyAstro>
+              ))}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+  <div class="flex justify-between">
+    <div class="flex gap-x-3">
+      <img src={clutch.src} alt="logo" />
+      <img src={linkedin.src} alt="logo" />
+      <img src={linkedin.src} alt="logo" />
+    </div>
+    <div class="flex gap-x-6">
+      <TypographyAstro class="text-steamGray font-gothic text-[10px] leading-3">
+        Copyright © 2023 Implex. All rights reserved.
+      </TypographyAstro>
+      <TypographyAstro class="text-steamGray font-gothic text-[10px] leading-3"
+        >Privacy Policy.</TypographyAstro
+      >
+      <TypographyAstro class="text-steamGray font-gothic text-[10px] leading-3"
+        >Terms of Service.</TypographyAstro
+      >
+    </div>
+  </div>
+</footer>
+
+<style is:global>
+  .group1 {
+    background: #171a1f;
+    padding: 40px 112px 64px 112px;
+  }
+</style>
