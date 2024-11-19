@@ -60,6 +60,8 @@ export default {
         },
       },
       fontSize: {
+        h1: ["3rem", { lineHeight: "1.3" }], // 48px = 3rem
+        h3: ["4.5rem", { lineHeight: "1.3" }], // 72px
         h6: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
         title9: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
         title6: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
@@ -69,12 +71,17 @@ export default {
         body3: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
         body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
         label4: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
+        label3: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
       },
     },
   },
   plugins: [
     function ({ addComponents, theme }) {
-      addComponents({});
+      addComponents({
+        ".text-stroken-green": {
+          "-webkit-text-stroke": "4px #003300",
+        },
+      });
     },
   ],
 };
