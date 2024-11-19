@@ -6,6 +6,7 @@ export default {
     "./src/components/Container/**/*.{astro,html,js,jsx}",
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
+    "./src/components/Footer/**/*.{astro,html,js,jsx}",
   ],
   theme: {
     extend: {
@@ -42,6 +43,7 @@ export default {
         },
       },
       colors: {
+        steamGray: "#939290",
         coal: "#171A1F",
         biscuit: "#F3F3EF",
         brown: {
@@ -72,6 +74,14 @@ export default {
         body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
         label4: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
         label3: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
+      },
+      fontFamily: {
+        gothic: "Gothic400",
+        gothic700: "Gothic700",
+        asket800Condensed: "Asket800Condensed",
+        asket300Extended: "Asket300Extended",
+        asket800: "Asket800",
+        asket300: "Asket300",
       },
     },
   },

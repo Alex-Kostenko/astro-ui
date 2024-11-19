@@ -1,5 +1,51 @@
 @tailwind base;
 
-/* * {
-  border: 2px solid black !important;
-} */
+@font-face {
+  font-family: "Gothic400";
+  src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gothic700";
+  src: url("/fonts/centuryGothic/centurygothic_bold.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Asket800Condensed";
+  src: url("/fonts/asket/asketCondensedExtrabold.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-stretch: condensed;
+}
+@font-face {
+  font-family: "Asket300Extended";
+  src: url("/fonts/asket/asketExtendedLight.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-stretch: expanded;
+}
+@font-face {
+  font-family: "Asket800";
+  src: url("/fonts/asket/asketExtrabold.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-stretch: expanded;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: "Asket300";
+  src: url("/fonts/asket/asketNarrowLight.ttf") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  font-stretch: expanded;
+  font-stretch: ultra-condensed;
+}
