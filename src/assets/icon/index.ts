@@ -1,4 +1,7 @@
 import smallLogo from "./smallLogo.svg";
 import logo from "./logo.svg";
+import clutch from "./Clutch.svg";
+import linkedin from "./Linkedin.svg";
+import * as company from "./company";
 
-export { smallLogo, logo };
+export { smallLogo, logo, company, clutch, linkedin };

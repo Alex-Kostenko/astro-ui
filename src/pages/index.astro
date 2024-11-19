@@ -3,6 +3,11 @@ import "@style/home.css";
 import Layout from "@layouts/Layout.astro";
 import { getFromLocale, useTranslations } from "@i18n/index";
 import { AboutSection, HeroSection } from "@components/Sections/intex";
+import ServicesSection from "@components/Sections/ServicesSection.astro";
+import PartnersSections from "@components/Sections/PartnersSections.astro";
+import ProjectsSection from "@components/Sections/ProjectsSection.astro";
+import AdvantagesSection from "@components/Sections/AdvantagesSection.astro";
+import { Footer } from "@components/Footer";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang);
@@ -11,7 +16,14 @@ const t = useTranslations(lang);
 <Layout title="Welcome to Astro.">
   <main class="h-[300vh]">
     <HeroSection />
-    <AboutSection />
-    <section class="bg-black select-none text-white container"></section>
+    <div class="flex flex-col gap-y-[120px]">
+      <AboutSection />
+      <ServicesSection />
+      <PartnersSections />
+      <ProjectsSection />
+      <AdvantagesSection />
+      <section class="bg-black select-none text-white container"></section>
+    </div>
+    <Footer />
   </main>
 </Layout>

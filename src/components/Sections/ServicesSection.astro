@@ -1,0 +1,52 @@
+---
+import { AccordionAstro } from "@components/Accordion";
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { serviceList } from "@constant/index";
+---
+
+<Container>
+  <SectionTitle
+    title="Our services will help you to accomplish your purpose easier and better."
+    type="SERVICES"
+  />
+  <section>
+    {
+      serviceList.map((v, i) => (
+        <AccordionAstro>
+          <section slot="title" class="flex flex-row gap-y-4 items-center">
+            <TypographyAstro type="body-2" class="flex-[1_1_30%] text-wooden">
+              [ {(i + 1).toString().padStart(2, "0")} ]
+            </TypographyAstro>
+            <TypographyAstro
+              color="green"
+              type="subTitle-1"
+              class="flex-[1_1_70%] "
+            >
+              {v.title}
+            </TypographyAstro>
+          </section>
+
+          <section class="flex flex-row gap-y-4">
+            <div class="md1:flex-[0_1_70%] ml-auto flex justify-between">
+              <div class="max-w-[480px] w-full">
+                <TypographyAstro type="body-4" class="mb-6">
+                  {v.description}
+                </TypographyAstro>
+                <ButtonAstro>explore</ButtonAstro>
+              </div>
+              <div class="h-full max-h-[240px]">
+                <img
+                  class="h-full max-h-full aspect-square"
+                  src={v.imgSrc}
+                  alt={v.title}
+                />
+              </div>
+            </div>
+          </section>
+        </AccordionAstro>
+      ))
+    }
+  </section>
+</Container>

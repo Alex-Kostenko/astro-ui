@@ -1,0 +1,55 @@
+---
+import { nanoid } from "nanoid";
+
+interface Props {
+  open?: boolean;
+}
+
+const { open = false } = Astro.props;
+---
+
+<accordion-block open={open + ""}>
+  <div class="border-b-2 border-black">
+    <button class="w-full py-6 text-slate-800 text-start">
+      <slot name="title" />
+    </button>
+    <div
+      id="content"
+      class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+    >
+      <div class="py-6 w-full"><slot /></div>
+    </div>
+  </div>
+</accordion-block>
+
+<script>
+  class Accordion extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector("button");
+      const content = this.querySelector("#content") as HTMLDivElement;
+
+      const open = this.getAttribute("open");
+      if (open === "true") {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+
+      button?.addEventListener("click", () => {
+        const content = this.querySelector("#content") as HTMLDivElement;
+        if (!content || !content.style) return;
+
+        const open = this.getAttribute("open");
+        console.log(open);
+
+        if (open === "true") {
+          content.style.maxHeight = 0 + "px";
+          this.setAttribute("open", "false");
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.setAttribute("open", "true");
+        }
+      });
+    }
+  }
+
+  customElements.define("accordion-block", Accordion);
+</script>

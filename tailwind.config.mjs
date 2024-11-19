@@ -3,15 +3,16 @@ export default {
   content: [
     "./src/layouts/**/*.{astro,html,js,jsx}",
     "./src/components/Button/**/*.{astro,html,js,jsx}",
+    "./src/components/Container/**/*.{astro,html,js,jsx}",
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
+    "./src/components/Accordion/**/*.{astro,html,js,jsx}",
+    "./src/components/Footer/**/*.{astro,html,js,jsx}",
   ],
   theme: {
     extend: {
       screens: {
         // xs
-        xs1: "360px",
-        xs2: "375px",
-        xs3: "414px",
+        xs: "0px",
         //sm
         sm1: "768px",
         sm2: "800px",
@@ -30,25 +31,19 @@ export default {
         center: true,
         screens: {
           // xs
-          xs1: "328px",
-          xs2: "343px",
-          xs3: "382px",
-          //sm
-          sm1: "704px",
-          sm2: "736px",
+          xs: "414px",
+          sm1: "612px",
+          sm2: "700px",
           //md
-          md1: "960px",
+          md1: "852px",
           //lg
-          lg2: "1216px",
-          // xl
-          xl1: "1376px",
+          lg2: "1092px",
           // 2xl
-          xl2: "1536px",
-          // 3xl
-          xl3: "1680px",
+          xl2: "1284px",
         },
       },
       colors: {
+        steamGray: "#939290",
         coal: "#171A1F",
         biscuit: "#F3F3EF",
         brown: {
@@ -62,37 +57,37 @@ export default {
           500: "#022213",
         },
         greenLight: { 200: "#CCD9D3" },
+        wooden: {
+          DEFAULT: "#AE896E",
+        },
       },
       fontSize: {
-        h6: "6rem", // 96px = 6rem
-        title9: "2.875rem", // 46px = 2.875rem
-        title6: "2.5rem", // 40px = 2.5rem
-        title2: "2rem", // 32px = 2rem
-        subTitle1: "1.5rem", // 24px = 1.5rem
-        body4: "1.25rem", // 20px = 1.25rem
-        body3: "1.125rem", // 18px = 1.125rem
-        body1: "0.875rem", // 14px = 0.875rem
-        label4: "0.75rem", // 12px = 0.75rem
+        h1: ["3rem", { lineHeight: "1.3" }], // 48px = 3rem
+        h3: ["4.5rem", { lineHeight: "1.3" }], // 72px
+        h6: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
+        title9: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
+        title6: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
+        title2: ["2rem", { lineHeight: "1.4" }], // 32px = 2rem
+        subTitle1: ["1.5rxem", { lineHeight: "1.5" }], // 24px = 1.5rem
+        body4: ["1.25rem", { lineHeight: "1.6" }], // 20px = 1.25rem
+        body3: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
+        body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
+        label4: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
+        label3: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
+      },
+      fontFamily: {
+        gothic: "Gothic400",
+        gothic700: "Gothic700",
+        asket800Condensed: "Asket800Condensed",
+        asket300Extended: "Asket300Extended",
+        asket800: "Asket800",
+        asket300: "Asket300",
       },
     },
   },
   plugins: [
     function ({ addComponents, theme }) {
       addComponents({
-        ".body-2": {
-          fontFamily: "Century Gothic",
-          fontSize: "16px",
-          fontWeight: theme("fontWeight.normal"),
-          lineHeight: theme("lineHeight.normal"),
-          color: theme("colors.coal"),
-        },
-        ".body-4": {
-          fontFamily: "Century Gothic",
-          fontSize: "20px",
-          fontWeight: theme("fontWeight.normal"),
-          lineHeight: theme("lineHeight.normal"),
-          color: theme("colors.coal"),
-        },
         ".text-stroken-green": {
           "-webkit-text-stroke": "4px #003300",
         },
