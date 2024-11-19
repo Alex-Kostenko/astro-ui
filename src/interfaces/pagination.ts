@@ -4,3 +4,9 @@ export interface IPagination {
   pageCount: number;
   total: number;
 }
+
+export interface IPaginationQuery {
+  page: number;
+  pageSize: number;
+  limit?: number;
+}

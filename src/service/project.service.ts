@@ -1,4 +1,5 @@
 import type {
+  IPaginationQuery,
   IProject,
   IResponseApi,
   MetaPagination,
@@ -9,9 +10,17 @@ import { ApiPath } from "@constant/api.path";
 
 class ProjectService {
   async get(
-    query: QueryApi,
+    pagination?: IPaginationQuery,
   ): Promise<IResponseApi<IProject[], MetaPagination>> {
-    return apiService.get(ApiPath.project, { query });
+    return apiService.get(ApiPath.project, {
+      query: {
+        populate: [
+          { field: "image", insideFields: ["id", "formats", "url"] },
+          "technologies",
+        ],
+        pagination,
+      },
+    });
   }
 }
 

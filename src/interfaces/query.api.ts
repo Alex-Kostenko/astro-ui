@@ -1,10 +1,8 @@
+import type { IPaginationQuery } from "./pagination";
+
 export interface QueryApi {
   populate?: (Popylate | string)[];
-  pagination?: {
-    page: number;
-    pageSize: number;
-    limit?: number;
-  };
+  pagination?: IPaginationQuery;
 }
 
 export interface Popylate {

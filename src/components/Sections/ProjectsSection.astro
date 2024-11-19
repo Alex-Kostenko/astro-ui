@@ -5,12 +5,7 @@ import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
 import { SectionTitle } from "@components/Typography";
 import projectService from "@service/project.service";
 
-const response = await projectService.get({
-  populate: [
-    { field: "image", insideFields: ["id", "formats", "url"] },
-    "technologies",
-  ],
-});
+const response = await projectService.get();
 ---
 
 <Container>
