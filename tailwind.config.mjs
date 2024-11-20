@@ -11,58 +11,62 @@ export default {
   theme: {
     extend: {
       screens: {
-        // xs
         xs: "0px",
-        //sm
         sm1: "768px",
         sm2: "800px",
-        //md
         md1: "1024px",
-        //lg
         lg2: "1280px",
-        // xl
         xl1: "1440px",
-        // 2xl
         xl2: "1600px",
-        // 3xl
         xl3: "1920px",
       },
       container: {
         center: true,
         screens: {
-          // xs
           xs: "414px",
           sm1: "612px",
           sm2: "700px",
-          //md
           md1: "852px",
-          //lg
           lg2: "1092px",
-          // 2xl
           xl2: "1284px",
         },
       },
       colors: {
-        steamGray: "#939290",
-        coal: "#171A1F",
-        biscuit: "#F3F3EF",
-        brown: {
-          DEFAULT: "#CBB4A2",
+        brand: {
+          beige: "#AE896E",
+          beigeLight: "#CBB4A2",
+          white: "#F3F3EF",
+          black: "#171A1F",
+          green: "#0A2B21",
+          gray: "#939290",
         },
         green: {
           DEFAULT: "#034425",
           100: "#033D21",
           200: "#02361E",
           300: "#02301A",
+          400: "#022916",
           500: "#022213",
         },
-        greenLight: { 200: "#CCD9D3" },
-        wooden: {
-          DEFAULT: "#AE896E",
+        gray: {
+          DEFAULT: "#939290",
+          100: "#D9D9D9",
+          200: "#C2C2BF",
+          300: "#AAAAA7",
+          400: "#92928F",
+          500: "#7A7A78",
+          600: "#616160",
+        },
+        greenLight: {
+          100: "#E6ECE9",
+          200: "#CCD9D3",
+          300: "#B3C6BD",
+          400: "#99B3A7",
+          500: "#80A091",
+          600: "#669C7A",
         },
         white: {
           DEFAULT: "#fff",
-          100: "#D9D9D9",
         },
       },
       fontSize: {
@@ -78,6 +82,7 @@ export default {
         body1: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
         label4: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
         label3: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
+        title96: ["6rem"],
       },
       fontFamily: {
         gothic: "Gothic400",

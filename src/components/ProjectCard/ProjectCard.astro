@@ -13,7 +13,7 @@ const { class: className, project } = Astro.props;
 
 <section
   class:list={[
-    "flex justify-between gap-y-3 border-t border-coal border-opacity-45 pt-5",
+    "flex justify-between gap-y-3 border-t border-brand-black border-opacity-45 pt-5",
     className,
   ]}
 >
@@ -34,7 +34,7 @@ const { class: className, project } = Astro.props;
         <div class="flex flex-wrap gap-2">
           {
             project.technologies.map((v) => (
-              <span class="py-1 px-3 bg-brown rounded-3xl text-coal text-label4">
+              <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-label4">
                 {v.name}
               </span>
             ))

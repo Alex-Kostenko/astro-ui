@@ -16,7 +16,10 @@ import { serviceList } from "@constant/index";
       serviceList.map((v, i) => (
         <AccordionAstro>
           <section slot="title" class="flex flex-row gap-y-4 items-center">
-            <TypographyAstro type="body-2" class="flex-[1_1_30%] text-wooden">
+            <TypographyAstro
+              type="body-2"
+              class="flex-[1_1_30%] text-brand-beige"
+            >
               [ {(i + 1).toString().padStart(2, "0")} ]
             </TypographyAstro>
             <TypographyAstro

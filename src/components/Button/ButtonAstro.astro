@@ -18,14 +18,15 @@ const {
     "uppercase text-center font-bold text-base",
     "duration-200",
     {
-      "bg-biscuit text-green": variant === "contained" && color === "biscuit",
+      "bg-brand-white text-green":
+        variant === "contained" && color === "biscuit",
       "text-green border-2 border-green hover:border-greenLight-200 focus:border-green-500 ":
         variant === "outlined" && color === "biscuit",
-      "hover:bg-greenLight-200  focus:bg-green-300 focus:text-biscuit":
+      "hover:bg-greenLight-200  focus:bg-green-300 focus:text-brand-white":
         color === "biscuit",
     },
     {
-      "bg-coal text-biscuit hover:bg-green-100 focus:bg-green-500":
+      "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500":
         variant === "contained" && color === "black",
     },
     className,
