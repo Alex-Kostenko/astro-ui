@@ -60,6 +60,10 @@ export default {
         wooden: {
           DEFAULT: "#AE896E",
         },
+        white: {
+          DEFAULT: "#fff",
+          100: "#D9D9D9",
+        },
       },
       fontSize: {
         h1: ["3rem", { lineHeight: "1.3" }], // 48px = 3rem
