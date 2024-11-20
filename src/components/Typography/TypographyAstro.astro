@@ -13,14 +13,14 @@ export interface Props {
     | "body-3"
     | "body-4"
     | "body-5";
-  color?: "black" | "white" | "green" | "gray" | "other";
+  color?: "black" | "white" | "green" | "gray" | "inherit";
   class?: string;
 }
 
 const {
   tag: Tag = "p",
   type = "body-2",
-  color = "black",
+  color = "inherit",
   class: className,
 } = Astro.props;
 ---
@@ -32,14 +32,14 @@ const {
       "text-brand-black text-opacity-45": color == "gray",
       "text-brand-white": color == "white",
       "text-green-200": color == "green",
-      "font-normal text-body4 tracking-[1px]": type == "body-4",
-      "font-normal text-base": type == "body-2",
-      "font-extrabold uppercase text-title6": type == "title-6",
-      "font-extrabold uppercase text-title2": type == "title-2",
-      "font-bold uppercase text-subTitle1": type == "subTitle-1",
-      "font-bold uppercase text-body4": type == "subTitle-sm-1",
-      "font-bold uppercase text-body1": type == "subTitle-sm-4",
-      "font-extrabold uppercase text-h6 tracking-[2px] leading-[6rem]":
+      "font-normal font-gothic text-body4 tracking-[1px]": type == "body-4",
+      "font-normal font-gothic text-base": type == "body-2",
+      "font-extrabold uppercase text-title6 font-asket800": type == "title-6",
+      "font-extrabold uppercase text-title2 font-asket800": type == "title-2",
+      "font-bold uppercase text-subTitle1 font-gothic700": type == "subTitle-1",
+      "font-bold uppercase text-body4 font-gothic700": type == "subTitle-sm-1",
+      "font-bold uppercase text-body1 font-gothic700": type == "subTitle-sm-4",
+      "font-extrabold uppercase text-h6 tracking-[2px] leading-[6rem] font-asket800":
         type == "heading-6",
     },
     className,

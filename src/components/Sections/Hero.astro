@@ -7,7 +7,7 @@ const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "hero");
 ---
 
-<section class="relative min-h-[788px] pt-[136px] flex">
+<section class="relative sm1:min-h-[788px] min-h-dvh pt-[136px] flex">
   <video
     autoplay
     muted
@@ -17,19 +17,29 @@ const t = useTranslations(lang, "hero");
     <source src={cubeNear} type="video/mp4" />
   </video>
   <div
-    class="flex flex-col sm2:flex-row justify-between h-full my-auto container"
+    class="flex flex-col md1:flex-row md1:justify-between gap-y-20 gap-x-6 h-full w-full max-w-[1616px] my-auto mx-auto px-8"
   >
-    <img class="flex-[0_1_50%] max-w-[100%] w-full" src={logo.src} alt="logo" />
+    <img
+      class="flex-[0_1_50%] max-w-[660px] w-full mx-auto"
+      src={logo.src}
+      alt="logo"
+    />
     <article
-      class="max-w-[520px] w-full flex flex-col justify-between flex-[1_1_40%]"
+      class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-between flex-[1_1_40%]"
     >
-      <div class="text-5xl font-extrabold">
+      <div
+        class="text-5xl sm1:text-title2 font-extrabold text-center md1:text-start"
+      >
         <h5 class="text-brand-white mb-3">{t("title")}</h5>
         <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>
       </div>
-      <TypographyAstro color="white" type="body-4"
-        >{t("descripton")}</TypographyAstro
+      <TypographyAstro
+        color="white"
+        type="body-4"
+        class="text-center md1:text-start"
       >
+        {t("descripton")}
+      </TypographyAstro>
     </article>
   </div>
 </section>
