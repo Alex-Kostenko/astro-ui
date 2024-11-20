@@ -24,20 +24,28 @@ const response = await projectService.get();
   .project-item {
   }
 
-  .project-item:nth-child(3n + 1) {
+  .project-item:nth-child(6n + 1),
+  .project-item:nth-child(6n + 4) {
     flex-direction: column;
   }
 
   @media (min-width: 800px) {
-    .project-item:nth-child(3n + 1) {
+    .project-item:nth-child(6n + 1),
+    .project-item:nth-child(6n + 4) {
       grid-column: span 2;
       gap: 0 20px;
       flex-direction: row;
     }
+
+    .project-item:nth-child(6n + 4) {
+      flex-direction: row-reverse;
+    }
   }
 
-  .project-item:nth-child(3n + 2),
-  .project-item:nth-child(3n + 3) {
+  .project-item:nth-child(6n + 2),
+  .project-item:nth-child(6n + 3),
+  .project-item:nth-child(6n + 5),
+  .project-item:nth-child(6n + 6) {
     flex-direction: column;
   }
 </style>
