@@ -17,8 +17,8 @@ const comments = await commentService.get();
     <div class="swiper-wrapper">
       {
         comments.data.map((v) => (
-          <div class="swiper-slide">
-            <CommentAstro comment={v} />
+          <div class="swiper-slide sm1:!w-2/3 md1:max-w-[680px] duration-300">
+            <CommentAstro comment={v} class="flex-col xl:flex-row" />
           </div>
         ))
       }
@@ -29,7 +29,7 @@ const comments = await commentService.get();
 <script>
   import Swiper from "swiper";
 
-  const swiper = new Swiper(".comment-swiper", {
+  new Swiper(".comment-swiper", {
     slidesPerView: "auto",
     centeredSlides: true,
     loop: true,
@@ -40,6 +40,12 @@ const comments = await commentService.get();
 
 <style>
   .swiper-slide {
-    width: 80%;
+    transform: scale(0.8);
+    filter: blur(2px);
+  }
+
+  .swiper-slide-active {
+    transform: scale(1);
+    filter: blur(0px);
   }
 </style>
