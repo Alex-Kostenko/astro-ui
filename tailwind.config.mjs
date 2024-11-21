@@ -7,6 +7,7 @@ export default {
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
     "./src/components/Footer/**/*.{astro,html,js,jsx}",
+    "./src/components/Sections/Hero.astro",
   ],
   theme: {
     extend: {

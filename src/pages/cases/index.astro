@@ -1,0 +1,27 @@
+---
+import "@style/cases.css";
+import Layout from "@layouts/Layout.astro";
+import { useTranslations, type Languages } from "@i18n/index";
+import { cubeNear } from "src/assets";
+import { IntroSection } from "@components/Sections";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages);
+---
+
+<Layout title="UniCode Cases">
+  <main class="flex flex-col gap-y-[120px]">
+    <div class="h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <source src={cubeNear} type="video/mp4" />
+      </video>
+    </div>
+
+    <IntroSection />
+  </main>
+</Layout>

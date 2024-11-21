@@ -1,5 +1,22 @@
 ---
-const links = ["Services", "Cases", "Expertise", "About Us", "Insights"];
+import { formatLink } from "@utils/index";
+import { routes } from "src/routes";
+
+const links = [
+  { name: "Services", href: "#" },
+  { name: "Cases", href: routes.cases },
+  { name: "Expertise", href: "#" },
+  { name: "About Us", href: "#" },
+  { name: "Insights", href: "#" },
+];
+
+const url = Astro.url;
 ---
 
-{links.map((link) => <p class="text-white">{link}</p>)}
+{
+  links.map((link) => (
+    <a href={formatLink(url, link.href)} class="text-white">
+      {link.name}
+    </a>
+  ))
+}

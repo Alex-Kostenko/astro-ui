@@ -1,0 +1,4 @@
+@config "../../tailwind.cases.config.mjs";
+
+@tailwind components;
+@tailwind utilities;
