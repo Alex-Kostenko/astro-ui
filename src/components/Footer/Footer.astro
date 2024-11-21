@@ -47,7 +47,7 @@ const blockFooter = [
   },
 ];
 ---
-  
+
 <footer>
   <HeroSection reverse />
   <div class="group1">
@@ -65,12 +65,11 @@ const blockFooter = [
               </TypographyAstro>
               <div class="flex flex-col gap-y-2">
                 {textBlock.list.map((item) => (
-                  <TypographyAstro class="text-steamGray font-gothic text-xs">
+                  <TypographyAstro class="text-brand-white font-gothic text-xs">
                     {item}
                   </TypographyAstro>
                 ))}
               </div>
-
             </div>
           );
         })
@@ -81,13 +80,15 @@ const blockFooter = [
         blockFooter.map((textBlock) => {
           return (
             <AccordionAstro arrowStyle>
-              <p slot="title">{textBlock.mainName}</p>
+              <p class="text-brand-white" slot="title">
+                {textBlock.mainName}
+              </p>
               <ul>
                 {textBlock.list.map((itemList) => {
                   return (
                     <li>
                       <section class="flex flex-row gap-y-4 items-center">
-                        <TypographyAstro class="text-white20 font-gothic tracking-[0.8px]">
+                        <TypographyAstro class="text-gray font-gothic tracking-[0.8px]">
                           {itemList}
                         </TypographyAstro>
                       </section>
@@ -107,17 +108,13 @@ const blockFooter = [
         <img src={linkedin.src} alt="linkedin" />
       </div>
       <div class="flex xs:gap-y-2 sm2:gap-x-6 xs:flex-col sm2:flex-row">
-        <TypographyAstro
-          class="text-steamGray font-gothic !text-[10px] leading-3"
-        >
+        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3">
           Copyright © 2023 Implex. All rights reserved.
         </TypographyAstro>
-        <TypographyAstro
-          class="text-steamGray font-gothic !text-[10px] leading-3"
+        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
           >Privacy Policy.</TypographyAstro
         >
-        <TypographyAstro
-          class="text-steamGray font-gothic !text-[10px] leading-3"
+        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
           >Terms of Service.</TypographyAstro
         >
       </div>
