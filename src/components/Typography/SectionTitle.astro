@@ -13,7 +13,10 @@ const { title, type, colorTitle, classType } = Astro.props;
 
 <article class="flex flex-col md1:flex-row gap-y-4 justify-between mb-10">
   <TypographyAstro
-    class:list={["flex-[1_1_30%] upp text-brand-beige ", classType]}
+    class:list={[
+      "flex-[1_1_25%] upp text-brand-beige tracking-[0.8px]",
+      classType,
+    ]}
     type="body-2"
   >
     [ {type} ]
@@ -21,7 +24,7 @@ const { title, type, colorTitle, classType } = Astro.props;
   <TypographyAstro
     color={colorTitle ? "inherit" : "green"}
     type="title-2"
-    class:list={["flex-[1_1_70%]", colorTitle]}
+    class:list={["flex-[1_1_75%]", colorTitle]}
   >
     {title}
   </TypographyAstro>

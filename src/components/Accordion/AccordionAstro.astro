@@ -6,15 +6,15 @@ import { downArrow, upArrow } from "src/assets";
 {
   !arrowStyle && (
     <accordion-block open={open + ""}>
-      <div class="border-b-2 border-black">
-        <button class="w-full py-6 text-slate-800 text-start">
+      <div class="border-b-2 border-black box-border">
+        <button class="w-full pb-6 pt-4 text-slate-800 text-start">
           <slot name="title" />
         </button>
         <div
           id="content"
           class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
         >
-          <div class="py-6 w-full">
+          <div class="pb-6 w-full">
             <slot />
           </div>
         </div>

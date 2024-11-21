@@ -11,35 +11,35 @@ import { serviceList } from "@constant/index";
     title="Our services will help you to accomplish your purpose easier and better."
     type="SERVICES"
   />
-  <section>
+  <section class="flex flex-col gap-y-5">
     {
       serviceList.map((v, i) => (
         <AccordionAstro>
           <section slot="title" class="flex flex-row gap-y-4 items-center">
             <TypographyAstro
               type="body-2"
-              class="flex-[1_1_30%] text-brand-beige"
+              class="flex-[1_1_25%] text-brand-beige tracking-[0.8px]"
             >
               [ {(i + 1).toString().padStart(2, "0")} ]
             </TypographyAstro>
             <TypographyAstro
               color="green"
               type="subTitle-1"
-              class="flex-[1_1_70%]"
+              class="flex-[1_1_75%]"
             >
               {v.title}
             </TypographyAstro>
           </section>
 
           <section class="flex flex-row gap-y-4">
-            <div class="md1:flex-[0_1_70%] ml-auto flex justify-between">
+            <div class="md1:flex-[0_1_75%] ml-auto flex items-start">
               <div class="max-w-[480px] w-full">
-                <TypographyAstro type="body-4" class="mb-6">
+                <TypographyAstro type="body-4" class="my-6">
                   {v.description}
                 </TypographyAstro>
                 <ButtonAstro>explore</ButtonAstro>
               </div>
-              <div class="h-full max-h-[240px]">
+              <div class="h-full max-h-[240px] ml-[130px]">
                 <img
                   class="h-full max-h-[240px] aspect-square"
                   src={v.imgSrc}
