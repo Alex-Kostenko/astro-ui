@@ -1,9 +1,14 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { useTranslations, type Languages } from "@i18n/index";
+import { languages, useTranslations, type Languages } from "@i18n/index";
 import { cubeNear } from "src/assets";
 import { IntroSection } from "@components/Sections";
+import type { GetStaticPaths } from "astro";
+
+// export const getStaticPaths = (() => {
+//   return Object.keys(languages).map((v) => ({ params: { lang: v } }));
+// }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages);
