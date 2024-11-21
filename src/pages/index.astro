@@ -2,16 +2,35 @@
 import "@style/home.css";
 import Layout from "@layouts/Layout.astro";
 import { getFromLocale, useTranslations } from "@i18n/index";
-import { AboutSection, HeroSection } from "@components/Sections/intex";
+import {
+  AboutSection,
+  HeroSection,
+  AdvantagesSection,
+  PartnersSections,
+  ProjectsSection,
+  ServicesSection,
+  TestimonialsSection,
+} from "@components/Sections";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang);
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="h-[300vh]">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main>
     <HeroSection />
-    <AboutSection />
-    <section class="bg-black select-none text-white container"></section>
+    <div class="flex flex-col gap-y-[120px]">
+      <AboutSection />
+      <ServicesSection />
+      <PartnersSections />
+      <ProjectsSection />
+      <AdvantagesSection />
+      <TestimonialsSection />
+    </div>
   </main>
 </Layout>

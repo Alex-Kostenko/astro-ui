@@ -1,22 +1,41 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getFromLocale, useTranslations } from "@i18n/index";
-
+import type { GetStaticPaths } from "astro";
 import "@style/home.css";
-import { formatLink } from "src/utils";
+import Layout from "@layouts/Layout.astro";
+import { languages, useTranslations, type Languages } from "@i18n/index";
+import {
+  AboutSection,
+  HeroSection,
+  AdvantagesSection,
+  PartnersSections,
+  ProjectsSection,
+  ServicesSection,
+  TestimonialsSection,
+} from "@components/Sections";
 
-const lang = getFromLocale(Astro.currentLocale);
-const t = useTranslations(lang);
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({ params: { lang: v } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages);
 ---
 
 <Layout title="Welcome to Astro.">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
   <main>
-    <section class="bg-black select-none text-white">
-      {lang}
-      <p>{t("home")}</p>
-      <p>{t("nav.home")}</p>
-
-      <a href={formatLink(Astro.url, "/services")}>Services</a>
-    </section>
+    <HeroSection />
+    <div class="flex flex-col gap-y-[120px]">
+      <AboutSection />
+      <ServicesSection />
+      <PartnersSections />
+      <ProjectsSection />
+      <AdvantagesSection />
+      <TestimonialsSection />
+    </div>
   </main>
 </Layout>

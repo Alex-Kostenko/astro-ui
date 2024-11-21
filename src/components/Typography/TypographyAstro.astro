@@ -6,35 +6,42 @@ export interface Props {
     | "title-2"
     | "title-6"
     | "subTitle-1"
+    | "subTitle-sm-1"
+    | "subTitle-sm-4"
     | "body-1"
     | "body-2"
     | "body-3"
     | "body-4"
     | "body-5";
-  color?: "black" | "white";
+  color?: "black" | "white" | "green" | "gray" | "inherit";
   class?: string;
 }
 
 const {
   tag: Tag = "p",
-  type = "body-2",
-  color = "black",
+  type = "",
+  color = "inherit",
   class: className,
 } = Astro.props;
 ---
 
 <Tag
   class:list={[
-    className,
     {
-      "text-coal": color == "black",
-      "text-biscuit": color == "white",
-      "font-normal text-body4 tracking-[1px]": type == "body-4",
-      "font-normal text-base": type == "body-2",
-      "font-extrabold uppercase text-title6": type == "title-6",
-      "font-extrabold uppercase text-title2": type == "title-2",
-      "font-bold uppercase text-subTitle1": type == "subTitle-1",
-      "font-extrabold uppercase text-h6 tracking-[2px]": type == "heading-6",
+      "text-brand-black": color == "black",
+      "text-brand-black text-opacity-45": color == "gray",
+      "text-brand-white": color == "white",
+      "text-green-200": color == "green",
+      "font-normal font-gothic text-20 tracking-[1px]": type == "body-4",
+      "font-normal font-gothic text-base": type == "body-2",
+      "font-extrabold uppercase text-40 font-asket800": type == "title-6",
+      "font-extrabold uppercase text-32 font-asket800": type == "title-2",
+      "font-bold uppercase text-24 font-gothic700": type == "subTitle-1",
+      "font-bold uppercase text-20 font-gothic700": type == "subTitle-sm-1",
+      "font-bold uppercase text-14 font-gothic700": type == "subTitle-sm-4",
+      "font-extrabold uppercase text-96 tracking-[2px] leading-[6rem] font-asket800":
+        type == "heading-6",
     },
+    className,
   ]}><slot /></Tag
 >

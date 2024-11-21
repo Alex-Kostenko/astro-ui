@@ -1,0 +1,56 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/index";
+import projectService from "@service/project.service";
+
+const { lang } = Astro.params;
+const response = await projectService.get(
+  { page: 1, pageSize: 6 },
+  lang as Languages,
+);
+---
+
+<Container>
+  <SectionTitle
+    type="PROJECTS"
+    title="We take great pride in the work we do and the values we uphold."
+  />
+
+  <section class="grid sm1:grid-cols-2 gap-y-5 gap-x-5 mb-5">
+    {response.data.map((v) => <ProjectCard project={v} class="project-item" />)}
+  </section>
+  <ButtonAstro class="w-full">explore more projects</ButtonAstro>
+</Container>
+
+<style is:global>
+  .project-item {
+  }
+
+  .project-item:nth-child(6n + 1),
+  .project-item:nth-child(6n + 4) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 800px) {
+    .project-item:nth-child(6n + 1),
+    .project-item:nth-child(6n + 4) {
+      grid-column: span 2;
+      gap: 0 20px;
+      flex-direction: row;
+    }
+
+    .project-item:nth-child(6n + 4) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .project-item:nth-child(6n + 2),
+  .project-item:nth-child(6n + 3),
+  .project-item:nth-child(6n + 5),
+  .project-item:nth-child(6n + 6) {
+    flex-direction: column;
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+const { open = false, arrowStyle = false } = Astro.props;
+import { downArrow, upArrow } from "src/assets";
+---
+
+{
+  !arrowStyle && (
+    <accordion-block open={open + ""}>
+      <div class="border-b-2 border-black">
+        <button class="w-full py-6 text-slate-800 text-start">
+          <slot name="title" />
+        </button>
+        <div
+          id="content"
+          class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        >
+          <div class="py-6 w-full">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </accordion-block>
+  )
+}
+{
+  arrowStyle && (
+    <accordion-block open={open + ""}>
+      <div>
+        <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
+          <div class="flex justify-between">
+            <slot name="title" />
+            <img class="down-arrow" src={downArrow.src} alt="downArrow" />
+            <img class="up-arrow hidden" src={upArrow.src} alt="upArrow" />
+          </div>
+        </button>
+        <div
+          id="content"
+          class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        >
+          <div class="pt-1 w-full">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </accordion-block>
+  )
+}
+
+<script>
+  class Accordion extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector("button");
+      const content = this.querySelector("#content") as HTMLDivElement;
+      const downArrow = this.querySelector(".down-arrow") as HTMLImageElement;
+      const upArrow = this.querySelector(".up-arrow") as HTMLImageElement;
+
+      const open = this.getAttribute("open");
+      if (open === "true") {
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+
+      button?.addEventListener("click", () => {
+        const content = this.querySelector("#content") as HTMLDivElement;
+        if (!content || !content.style) return;
+
+        const open = this.getAttribute("open");
+        console.log(open);
+
+        if (open === "true") {
+          content.style.maxHeight = 0 + "px";
+          this.setAttribute("open", "false");
+          downArrow.classList.remove("hidden");
+          upArrow.classList.add("hidden");
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
+          this.setAttribute("open", "true");
+          downArrow.classList.add("hidden");
+          upArrow.classList.remove("hidden");
+        }
+      });
+    }
+  }
+
+  customElements.define("accordion-block", Accordion);
+</script>

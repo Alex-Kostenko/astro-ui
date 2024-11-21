@@ -1,0 +1,49 @@
+---
+import { TypographyAstro } from "@components/Typography";
+import type { IComment } from "@interfaces/index";
+import { star } from "src/assets";
+
+interface Props {
+  comment: IComment;
+  class?: string;
+}
+
+const { comment, class: className } = Astro.props;
+---
+
+<section
+  class:list={["flex gap-y-6", "min-h-[260px] p-6 bg-green-300 ", className]}
+>
+  <div class="flex-[1_1_40%] flex xl:flex-col justify-between px-4">
+    <article class="text-brand-white">
+      <TypographyAstro
+        color="inherit"
+        type="subTitle-1"
+        class="text-brand-white mb-3"
+      >
+        {comment.name}
+      </TypographyAstro>
+      <TypographyAstro color="inherit" class="text-brand-white">
+        <p>Founder</p>
+        {comment.position}
+      </TypographyAstro>
+    </article>
+
+    <div class="flex gap-1">
+      {
+        Array.from({ length: comment.rating }).map(() => (
+          <div class="max-h-6">
+            <img class="aspect-square" src={star.src} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <article class="p-6 bg-brand-white flex-[1_1_60%]">
+    <TypographyAstro type="subTitle-sm-1" color="green" class="mb-4 xl:mb-6">
+      {comment.title}
+    </TypographyAstro>
+    <TypographyAstro>{comment.description}</TypographyAstro>
+  </article>
+</section>

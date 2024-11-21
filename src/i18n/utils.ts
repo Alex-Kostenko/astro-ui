@@ -17,9 +17,12 @@ export function useTranslations(lang: keyof typeof languages, ns?: string) {
 
   if (ns) {
     return function t(key: string) {
+      const namespaceObj =
+        getNestedTranslation(ui[lang], ns) ||
+        getNestedTranslation(ui[defaultLang], ns);
       const translation =
-        getNestedTranslation(ui[lang]?.[ns], key) ||
-        getNestedTranslation(ui[defaultLang]?.[ns], key);
+        getNestedTranslation(namespaceObj, key) ||
+        getNestedTranslation(namespaceObj, key);
 
       if (!translation) {
         throw new Error(
