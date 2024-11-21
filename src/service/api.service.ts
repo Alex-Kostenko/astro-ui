@@ -1,5 +1,5 @@
 import type { ApiPath } from "@constant/index";
-import type { Popylate, QueryApi } from "@interfaces/index";
+import type { IPaginationQuery, Popylate, QueryApi } from "@interfaces/index";
 
 class ApiService {
   apiUrl = import.meta.env.PUBLIC_API_URL;
@@ -66,9 +66,9 @@ function convertToQueryString(params?: QueryApi): string {
   if (!params) return "";
 
   const popylate = convertPopylate(params.populate);
-  console.log("popylate: ", popylate);
+  const pagination = convertPagination(params.pagination);
 
-  const query = popylate;
+  const query = [popylate, pagination].join("&");
   return query ? `?${query}` : "";
 }
 
@@ -81,6 +81,14 @@ function convertPopylate(popylate?: (Popylate | string)[]) {
       if (typeof v === "object")
         return `populate[${v.field}][fields]=${v.insideFields.join(",")}`;
     })
+    .join("&");
+}
+
+function convertPagination(pagination?: IPaginationQuery) {
+  if (!pagination) return "";
+
+  return Object.keys(pagination)
+    .map((v) => `pagination[${v}]=${pagination[v]}`)
     .join("&");
 }
 

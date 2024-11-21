@@ -5,7 +5,7 @@ import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
 import { SectionTitle } from "@components/Typography";
 import projectService from "@service/project.service";
 
-const response = await projectService.get();
+const response = await projectService.get({ page: 1, pageSize: 6 });
 ---
 
 <Container>
