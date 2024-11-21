@@ -19,7 +19,7 @@ export interface Props {
 
 const {
   tag: Tag = "p",
-  type = "body-2",
+  type = "",
   color = "inherit",
   class: className,
 } = Astro.props;
@@ -32,14 +32,14 @@ const {
       "text-brand-black text-opacity-45": color == "gray",
       "text-brand-white": color == "white",
       "text-green-200": color == "green",
-      "font-normal font-gothic text-body4 tracking-[1px]": type == "body-4",
+      "font-normal font-gothic text-20 tracking-[1px]": type == "body-4",
       "font-normal font-gothic text-base": type == "body-2",
-      "font-extrabold uppercase text-title6 font-asket800": type == "title-6",
-      "font-extrabold uppercase text-title2 font-asket800": type == "title-2",
-      "font-bold uppercase text-subTitle1 font-gothic700": type == "subTitle-1",
-      "font-bold uppercase text-body4 font-gothic700": type == "subTitle-sm-1",
-      "font-bold uppercase text-body1 font-gothic700": type == "subTitle-sm-4",
-      "font-extrabold uppercase text-h6 tracking-[2px] leading-[6rem] font-asket800":
+      "font-extrabold uppercase text-40 font-asket800": type == "title-6",
+      "font-extrabold uppercase text-32 font-asket800": type == "title-2",
+      "font-bold uppercase text-24 font-gothic700": type == "subTitle-1",
+      "font-bold uppercase text-20 font-gothic700": type == "subTitle-sm-1",
+      "font-bold uppercase text-14 font-gothic700": type == "subTitle-sm-4",
+      "font-extrabold uppercase text-96 tracking-[2px] leading-[6rem] font-asket800":
         type == "heading-6",
     },
     className,
