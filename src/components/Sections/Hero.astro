@@ -1,15 +1,10 @@
 ---
-import { getFromLocale, useTranslations } from "@i18n/index";
+import { useTranslations, type Languages } from "@i18n/index";
 import { cubeNear, logo } from "src/assets";
 import { TypographyAstro } from "@components/Typography";
 
-interface Props {
-  reverse?: boolean;
-}
-
-const { reverse = false } = Astro.props;
-const lang = getFromLocale(Astro.currentLocale);
-const t = useTranslations(lang, "hero");
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "hero");
 ---
 
 <section class="relative sm1:min-h-[788px] min-h-dvh pt-[136px] flex">
@@ -33,7 +28,7 @@ const t = useTranslations(lang, "hero");
       class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-between flex-[1_1_40%]"
     >
       <div
-        class="text-5xl sm1:text-title2 font-extrabold text-center md1:text-start"
+        class="text-5xl sm1:text-32 font-extrabold text-center md1:text-start"
       >
         <h5 class="text-brand-white mb-3">{t("title")}</h5>
         <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>

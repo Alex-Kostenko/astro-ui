@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     tailwind({ applyBaseStyles: false, configFile: "./tailwind.config.mjs" }),
   ],
-  output: "server",
+  output: "static",
   build: { inlineStylesheets: "never" },
   i18n: {
     defaultLocale: "en",

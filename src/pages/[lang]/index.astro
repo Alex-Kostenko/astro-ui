@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import "@style/home.css";
+import Layout from "@layouts/Layout.astro";
+import { languages, useTranslations, type Languages } from "@i18n/index";
+import {
+  AboutSection,
+  HeroSection,
+  AdvantagesSection,
+  PartnersSections,
+  ProjectsSection,
+  ServicesSection,
+  TestimonialsSection,
+} from "@components/Sections";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({ params: { lang: v } }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages);
+---
+
+<Layout title="Welcome to Astro.">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main>
+    <HeroSection />
+    <div class="flex flex-col gap-y-[120px]">
+      <AboutSection />
+      <ServicesSection />
+      <PartnersSections />
+      <ProjectsSection />
+      <AdvantagesSection />
+      <TestimonialsSection />
+    </div>
+  </main>
+</Layout>

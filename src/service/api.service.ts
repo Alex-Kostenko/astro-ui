@@ -67,8 +67,9 @@ function convertToQueryString(params?: QueryApi): string {
 
   const popylate = convertPopylate(params.populate);
   const pagination = convertPagination(params.pagination);
+  const locale = params.locale ? `locale=${params.locale}` : "";
 
-  const query = [popylate, pagination].join("&");
+  const query = [popylate, pagination, locale].join("&");
   return query ? `?${query}` : "";
 }
 
