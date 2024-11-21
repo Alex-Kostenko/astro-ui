@@ -1,0 +1,44 @@
+---
+import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
+import type { IProject } from "@interfaces/project";
+
+interface Props {
+  projects: IProject[];
+}
+
+const { projects } = Astro.props;
+---
+
+<section class="grid sm1:grid-cols-2 gap-y-5 gap-x-5 mb-5">
+  {projects.map((v) => <ProjectCard project={v} class="project-item" />)}
+</section>
+
+<style is:global>
+  .project-item {
+  }
+
+  .project-item:nth-child(6n + 1),
+  .project-item:nth-child(6n + 4) {
+    flex-direction: column;
+  }
+
+  @media (min-width: 800px) {
+    .project-item:nth-child(6n + 1),
+    .project-item:nth-child(6n + 4) {
+      grid-column: span 2;
+      gap: 0 20px;
+      flex-direction: row;
+    }
+
+    .project-item:nth-child(6n + 4) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .project-item:nth-child(6n + 2),
+  .project-item:nth-child(6n + 3),
+  .project-item:nth-child(6n + 5),
+  .project-item:nth-child(6n + 6) {
+    flex-direction: column;
+  }
+</style>

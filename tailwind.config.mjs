@@ -95,7 +95,7 @@ export default {
     },
   },
   plugins: [
-    function ({ addComponents, theme }) {
+    function ({ addComponents }) {
       addComponents({
         ".text-stroken-green": {
           "-webkit-text-stroke": "4px #003300",

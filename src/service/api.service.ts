@@ -89,7 +89,7 @@ function convertPagination(pagination?: IPaginationQuery) {
   if (!pagination) return "";
 
   return Object.keys(pagination)
-    .map((v) => `pagination[${v}]=${pagination[v]}`)
+    .map((v) => `pagination[${v}]=${pagination[v as keyof IPaginationQuery]}`)
     .join("&");
 }
 

@@ -1,17 +1,35 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { languages, useTranslations, type Languages } from "@i18n/index";
+import { type Languages } from "@i18n/index";
 import { cubeNear } from "src/assets";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
+import projectService from "@service/project.service";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import { Container } from "@components/Container";
+import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 
-// export const getStaticPaths = (() => {
-//   return Object.keys(languages).map((v) => ({ params: { lang: v } }));
-// }) satisfies GetStaticPaths;
+export const getStaticPaths = (async ({ paginate }) => {
+  const requestProjects = Object.keys({ en: "" }).map((v) => {
+    return projectService
+      .get({ limit: "max" }, v as Languages)
+      .then((response) => ({ lang: v, response }));
+  });
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as Languages);
+  const responses = await Promise.all(requestProjects);
+  console.log(responses);
+
+  return responses.flatMap((v) => {
+    return paginate(v.response.data, {
+      params: { lang: v.lang, case: "all" },
+      props: { meta: v.response.meta },
+      pageSize: 6,
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { page, meta } = Astro.props;
 ---
 
 <Layout title="UniCode Cases">
@@ -26,7 +44,12 @@ const t = useTranslations(lang as Languages);
         <source src={cubeNear} type="video/mp4" />
       </video>
     </div>
-
     <IntroSection />
+
+    <TabsSection />
+
+    <Container>
+      <ProjectList projects={page.data} />
+    </Container>
   </main>
 </Layout>

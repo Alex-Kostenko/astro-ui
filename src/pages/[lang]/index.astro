@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import "@style/home.css";
 import Layout from "@layouts/Layout.astro";
-import { languages, useTranslations, type Languages } from "@i18n/index";
+import { languages } from "@i18n/index";
 import {
   AboutSection,
   HeroSection,
@@ -16,9 +16,6 @@ import {
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((v) => ({ params: { lang: v } }));
 }) satisfies GetStaticPaths;
-
-const { lang } = Astro.params;
-const t = useTranslations(lang as Languages);
 ---
 
 <Layout title="UniCode">
