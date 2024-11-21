@@ -70,6 +70,19 @@ export default {
         },
       },
       fontSize: {
+        96: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
+        72: ["4.5rem", { lineHeight: "1.3" }], // 72px
+        48: ["3rem", { lineHeight: "1.3" }], // 48px
+        46: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
+        40: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
+        32: ["2rem", { lineHeight: "1.4" }], // 32px = 2rem
+        24: ["1.5rem", { lineHeight: "1.5" }], // 24px = 1.5rem
+        20: ["1.25rem", { lineHeight: "1.6" }], // 20px = 1.25rem
+        18: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
+        14: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
+        12: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
+        10: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
+
         h1: ["3rem", { lineHeight: "1.3" }], // 48px = 3rem
         h3: ["4.5rem", { lineHeight: "1.3" }], // 72px
         h6: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
