@@ -17,7 +17,7 @@
 }
 @font-face {
   font-family: "Asket800Condensed";
-  src: url("/fonts/asket/asketCondensedExtrabold.ttf") format("woff");
+  src: url("/fonts/asket/asketCondensedExtrabold.otf") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -25,7 +25,7 @@
 }
 @font-face {
   font-family: "Asket300Extended";
-  src: url("/fonts/asket/asketExtendedLight.ttf") format("woff");
+  src: url("/fonts/asket/asketExtendedLight.otf") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -33,7 +33,7 @@
 }
 @font-face {
   font-family: "Asket800";
-  src: url("/fonts/asket/asketExtrabold.ttf") format("woff");
+  src: url("/fonts/asket/asketExtrabold.otf") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -42,7 +42,7 @@
 }
 @font-face {
   font-family: "Asket300";
-  src: url("/fonts/asket/asketNarrowLight.ttf") format("woff");
+  src: url("/fonts/asket/asketNarrowLight.otf") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
