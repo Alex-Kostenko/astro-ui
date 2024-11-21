@@ -44,6 +44,7 @@ export default {
       },
       colors: {
         steamGray: "#939290",
+        white20: "#C2C2BF",
         coal: "#171A1F",
         biscuit: "#F3F3EF",
         brown: {
