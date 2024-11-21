@@ -3,6 +3,11 @@ import { getFromLocale, useTranslations } from "@i18n/index";
 import { cubeNear, logo } from "src/assets";
 import { TypographyAstro } from "@components/Typography";
 
+interface Props {
+  reverse?: boolean;
+}
+
+const { reverse = false } = Astro.props;
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "hero");
 ---
