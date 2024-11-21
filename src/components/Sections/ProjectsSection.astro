@@ -3,9 +3,14 @@ import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
 import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/index";
 import projectService from "@service/project.service";
 
-const response = await projectService.get({ page: 1, pageSize: 6 });
+const { lang } = Astro.params;
+const response = await projectService.get(
+  { page: 1, pageSize: 6 },
+  lang as Languages,
+);
 ---
 
 <Container>

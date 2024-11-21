@@ -6,10 +6,12 @@ import type {
 } from "@interfaces/index";
 import apiService from "./api.service";
 import { ApiPath } from "@constant/api.path";
+import type { Languages } from "@i18n/index";
 
 class ProjectService {
   async get(
     pagination?: IPaginationQuery,
+    locale?: Languages,
   ): Promise<IResponseApi<IProject[], MetaPagination>> {
     return apiService.get(ApiPath.project, {
       query: {
@@ -18,6 +20,7 @@ class ProjectService {
           "technologies",
         ],
         pagination,
+        locale,
       },
     });
   }

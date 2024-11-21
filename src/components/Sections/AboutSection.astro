@@ -2,7 +2,11 @@
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
 import { Human } from "src/assets";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.about");
 ---
 
 <Container class="mt-14">
@@ -58,12 +62,7 @@ import { Human } from "src/assets";
   >
     <div>
       <TypographyAstro type="body-4" class="md1:w-[480px]">
-        We are firm believers that: no matter the size or budgets of a company,
-        they should have access to the very best technical expertise to overcome
-        any challenge. We also know that talented professionals crave dynamic
-        and engaging environments to truly shine. Our mission is to unite these
-        two values and empower businesses and professionals alike to achieve
-        greatness.
+        {t("description")}
       </TypographyAstro>
 
       <ButtonAstro color="black" class="mt-5">more about us</ButtonAstro>
