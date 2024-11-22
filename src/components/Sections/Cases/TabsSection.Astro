@@ -1,7 +1,10 @@
 ---
-import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { Link } from "@components/Link";
+import projectService from "@service/project.service";
+import { formatLink } from "@utils/index";
+
+const domains = await projectService.getDomains();
 ---
 
 <Container>
@@ -12,7 +15,14 @@ import { Link } from "@components/Link";
         " carousel-block",
       ]}
     >
-      <Link active>All cases</Link>
+      <Link href={formatLink(Astro.url, `cases/all/1`)}>All cases</Link>
+      {
+        domains.data.map((v) => (
+          <Link href={formatLink(Astro.url, `cases/${v.slug}/1`)}>
+            {v.name}
+          </Link>
+        ))
+      }
     </section>
   </div>
 </Container>

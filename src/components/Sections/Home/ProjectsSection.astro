@@ -7,10 +7,10 @@ import type { Languages } from "@i18n/index";
 import projectService from "@service/project.service";
 
 const { lang } = Astro.params;
-const response = await projectService.get(
-  { page: 1, pageSize: 6 },
-  lang as Languages,
-);
+const response = await projectService.get({
+  pagination: { page: 1, pageSize: 6 },
+  locale: lang as Languages,
+});
 ---
 
 <Container>

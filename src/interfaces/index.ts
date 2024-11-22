@@ -5,5 +5,6 @@ export type { IResponseApi } from "./response.api";
 export type { IComment } from "./comment";
 export type { IImage, FormatImage, Formats } from "./image";
 export type { IProject } from "./project";
-export type { QueryApi, Popylate } from "./query.api";
+export type { IProjectDomain } from "./project.domain";
+export type { QueryApi, Popylate, IFilter } from "./query.api";
 export type { IServices } from "./i.services";
