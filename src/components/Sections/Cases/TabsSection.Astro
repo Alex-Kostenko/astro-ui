@@ -1,10 +1,29 @@
 ---
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
+import { Link } from "@components/Link";
 ---
 
 <Container>
-  <section class:list={["flex bg-brand-green px-2 py-2", "rounded-lg"]}>
-    <ButtonAstro color="biscuit">All cases</ButtonAstro>
-  </section>
+  <div class="bg-brand-green px-2 py-2 rounded-lg">
+    <section
+      class:list={[
+        "flex gap-x-24 scroll-smooth scroll-m-3 overflow-x-scroll",
+        " carousel-block",
+      ]}
+    >
+      <Link active>All cases</Link>
+    </section>
+  </div>
 </Container>
+
+<style>
+  .carousel-block {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    > * {
+      flex-shrink: 0;
+    }
+  }
+</style>
