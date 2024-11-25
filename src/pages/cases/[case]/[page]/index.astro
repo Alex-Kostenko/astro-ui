@@ -10,6 +10,7 @@ import ProjectList from "@components/ProjectCard/ProjectList.astro";
 import { Container } from "@components/Container";
 import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 import type { IProjectDomain } from "@interfaces/project.domain";
+import { Pagination } from "@components/Pagination";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projectDomain: IProjectDomain[] = [
@@ -51,16 +52,21 @@ export const getStaticPaths = (async ({ paginate }) => {
   return responses.flatMap((v) => {
     return paginate(v.response.data, {
       params: { lang: v.lang, case: v.case.slug },
-      props: { meta: v.response.meta },
+      props: { meta: v.response.meta, slug: v.case.slug },
       pageSize: 6,
     });
   });
 }) satisfies GetStaticPaths;
 
-const { page, meta } = Astro.props;
+const { page, meta, slug } = Astro.props;
 ---
 
 <Layout title="UniCode Cases">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
   <main class="flex flex-col gap-y-[120px]">
     <div class="h-[168px] bg-black bg-opacity-45">
       <video
@@ -74,10 +80,11 @@ const { page, meta } = Astro.props;
     </div>
     <IntroSection />
 
-    <TabsSection />
+    <TabsSection domain={slug} />
 
-    <Container>
+    <Container id="projects">
       <ProjectList projects={page.data} />
+      <Pagination paginate={page} href={`/cases/${slug}/`} toBlock="projects" />
     </Container>
   </main>
 </Layout>

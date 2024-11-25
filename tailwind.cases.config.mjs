@@ -7,6 +7,7 @@ export default {
     "./src/components/Sections/Cases/*.{astro,html,js,jsx}",
     "./src/components/ProjectCard/*.{astro,html,js,jsx}",
     "./src/components/Link/*.{astro,html,js,jsx}",
+    "./src/components/Pagination/*.{astro,html,js,jsx}",
     ...customConfig.content,
   ],
   theme: {

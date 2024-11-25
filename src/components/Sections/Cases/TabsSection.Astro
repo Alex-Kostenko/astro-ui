@@ -4,36 +4,58 @@ import { Link } from "@components/Link";
 import projectService from "@service/project.service";
 import { formatLink } from "@utils/index";
 
+interface Props {
+  domain: string;
+}
+
 const domains = await projectService.getDomains();
+const { domain } = Astro.props;
 ---
 
-<Container>
+<Container id="cases">
   <div class="bg-brand-green px-2 py-2 rounded-lg">
-    <section
-      class:list={[
-        "flex gap-x-24 scroll-smooth scroll-m-3 overflow-x-scroll",
-        " carousel-block",
-      ]}
-    >
-      <Link href={formatLink(Astro.url, `cases/all/1`)}>All cases</Link>
-      {
-        domains.data.map((v) => (
-          <Link href={formatLink(Astro.url, `cases/${v.slug}/1`)}>
-            {v.name}
-          </Link>
-        ))
-      }
-    </section>
+    <div class="mySwiper swiper">
+      <section class:list={["swiper-wrapper justify-between"]}>
+        <Link
+          class="swiper-slide"
+          variant="none"
+          color="biscuit"
+          active={domain === "all"}
+          href={formatLink(Astro.url, `cases/all/1#cases`)}>All cases</Link
+        >
+
+        {
+          domains.data.map((v) => (
+            <Link
+              class="swiper-slide"
+              variant="none"
+              color="biscuit"
+              active={domain === v.slug}
+              href={formatLink(Astro.url, `cases/${v.slug}/1#cases`)}
+            >
+              {v.name}
+            </Link>
+          ))
+        }
+      </section>
+    </div>
   </div>
 </Container>
 
-<style>
-  .carousel-block {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+<script>
+  import Swiper from "swiper";
 
-    > * {
-      flex-shrink: 0;
-    }
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+    // centeredSlides: true,
+  });
+</script>
+
+<style is:global>
+  .swiper-slide {
+    /* flex-shrink: 0;
+    flex-grow: 0; */
+    width: auto;
   }
 </style>
