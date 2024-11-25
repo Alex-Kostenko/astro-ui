@@ -1,0 +1,41 @@
+---
+import { useTranslations, type Languages } from "@i18n/index";
+import { cubeNear, logo } from "src/assets";
+import { TypographyAstro } from "@components/Typography";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "hero");
+---
+
+<section class="relative xl2:min-h-[680px] xl:min-h-[680px] min-h-[560px] flex">
+  <video
+    autoplay
+    muted
+    loop
+    class="absolute -z-10 top-0 right-0 left-0 bg-black bg-opacity-45 h-full w-full object-cover"
+  >
+    <source src={cubeNear} type="video/mp4" />
+  </video>
+  <div class="max-w-[1616px] h-full w-full mx-auto my-auto px-8">
+    <div
+      class="flex flex-col md1:flex-row-reverse md1:justify-between gap-x-6 h-full w-full sm1:px-16"
+      class:list={["gap-y-16 sm1:gap-y-12"]}
+    >
+      <img
+        class="flex-[0_1_50%] max-w-[660px] w-full mx-auto md1:mx-0 xl1:min-h-[240px]"
+        src={logo.src}
+        alt="logo"
+      />
+      <article
+        class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-center flex-[1_1_40%]"
+      >
+        <div
+          class="text-32 xl1:text-40 font-extrabold text-center md1:text-start"
+        >
+          <h5 class="text-brand-white mb-3">{t("title")}</h5>
+          <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

@@ -1,8 +1,8 @@
 ---
 import { AccordionAstro } from "@components/Accordion";
-import { HeroSection } from "@components/Sections";
 import { TypographyAstro } from "@components/Typography";
 import { clutch, linkedin } from "src/assets";
+import FooterHero from "./FooterHero.astro";
 
 interface Props {
   variant?: "contained" | "outlined";
@@ -48,75 +48,77 @@ const blockFooter = [
 ];
 ---
 
-<footer>
-  <HeroSection reverse />
+<footer class="pt-[120px]">
+  <FooterHero />
   <div class="group1">
-    <div class="xs:hidden sm2:flex justify-between mb-[3.75rem] gap-3">
-      {
-        blockFooter.map((textBlock) => {
-          return (
-            <div class="flex-[1_1_16%]">
-              <TypographyAstro
-                type="body-2"
-                color="white"
-                class="font-gothic mb-5 tracking-[0.8px]"
-              >
-                {textBlock.mainName}
-              </TypographyAstro>
-              <div class="flex flex-col gap-y-2">
-                {textBlock.list.map((item) => (
-                  <TypographyAstro class="text-brand-white font-gothic text-xs">
-                    {item}
-                  </TypographyAstro>
-                ))}
+    <div class="max-w-[1696px] mx-auto">
+      <div class="xs:hidden sm2:flex justify-between mb-[3.75rem] gap-3">
+        {
+          blockFooter.map((textBlock) => {
+            return (
+              <div class="flex-[1_1_16%]">
+                <TypographyAstro
+                  type="body-2"
+                  color="white"
+                  class="font-gothic mb-5 tracking-[0.8px]"
+                >
+                  {textBlock.mainName}
+                </TypographyAstro>
+                <div class="flex flex-col gap-y-2">
+                  {textBlock.list.map((item) => (
+                    <TypographyAstro class="text-brand-white font-gothic text-xs">
+                      {item}
+                    </TypographyAstro>
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })
-      }
-    </div>
-    <div class="sm2:hidden mb-6">
-      {
-        blockFooter.map((textBlock) => {
-          return (
-            <AccordionAstro arrowStyle>
-              <p class="text-brand-white" slot="title">
-                {textBlock.mainName}
-              </p>
-              <ul>
-                {textBlock.list.map((itemList) => {
-                  return (
-                    <li>
-                      <section class="flex flex-row gap-y-4 items-center">
-                        <TypographyAstro class="text-gray font-gothic tracking-[0.8px]">
-                          {itemList}
-                        </TypographyAstro>
-                      </section>
-                    </li>
-                  );
-                })}
-              </ul>
-            </AccordionAstro>
-          );
-        })
-      }
-    </div>
-    <div class="flex justify-between xs:flex-col sm2:flex-row">
-      <div class="flex xs:mb-4 sm2:mb-0 xs:gap-x-4 sm2:gap-x-3">
-        <img src={clutch.src} alt="clutch" />
-        <img src={linkedin.src} alt="linkedin" />
-        <img src={linkedin.src} alt="linkedin" />
+            );
+          })
+        }
       </div>
-      <div class="flex xs:gap-y-2 sm2:gap-x-6 xs:flex-col sm2:flex-row">
-        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3">
-          Copyright © 2023 Implex. All rights reserved.
-        </TypographyAstro>
-        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
-          >Privacy Policy.</TypographyAstro
-        >
-        <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
-          >Terms of Service.</TypographyAstro
-        >
+      <div class="sm2:hidden mb-6">
+        {
+          blockFooter.map((textBlock) => {
+            return (
+              <AccordionAstro arrowStyle>
+                <p class="text-brand-white" slot="title">
+                  {textBlock.mainName}
+                </p>
+                <ul>
+                  {textBlock.list.map((itemList) => {
+                    return (
+                      <li>
+                        <section class="flex flex-row gap-y-4 items-center">
+                          <TypographyAstro class="text-gray font-gothic tracking-[0.8px]">
+                            {itemList}
+                          </TypographyAstro>
+                        </section>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </AccordionAstro>
+            );
+          })
+        }
+      </div>
+      <div class="flex justify-between xs:flex-col sm2:flex-row">
+        <div class="flex xs:mb-4 sm2:mb-0 xs:gap-x-4 sm2:gap-x-3">
+          <img src={clutch.src} alt="clutch" />
+          <img src={linkedin.src} alt="linkedin" />
+          <img src={linkedin.src} alt="linkedin" />
+        </div>
+        <div class="flex xs:gap-y-2 sm2:gap-x-6 xs:flex-col sm2:flex-row">
+          <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3">
+            Copyright © 2023 Implex. All rights reserved.
+          </TypographyAstro>
+          <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
+            >Privacy Policy.</TypographyAstro
+          >
+          <TypographyAstro class="text-gray font-gothic !text-[10px] leading-3"
+            >Terms of Service.</TypographyAstro
+          >
+        </div>
       </div>
     </div>
   </div>
