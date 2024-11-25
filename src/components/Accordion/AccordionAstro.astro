@@ -1,6 +1,6 @@
 ---
 const { open = false, arrowStyle = false } = Astro.props;
-import { downArrow, upArrow } from "src/assets";
+import { DownArrow, UpArrow } from "src/assets";
 ---
 
 {
@@ -27,10 +27,10 @@ import { downArrow, upArrow } from "src/assets";
     <accordion-block open={open + ""}>
       <div>
         <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
-          <div class="flex justify-between">
+          <div class="flex justify-between ">
             <slot name="title" />
-            <img class="down-arrow" src={downArrow.src} alt="downArrow" />
-            <img class="up-arrow hidden" src={upArrow.src} alt="upArrow" />
+            <DownArrow class="down-arrow text-brand-white" />
+            <UpArrow class="up-arrow hidden text-brand-white text-opacity-50" />
           </div>
         </button>
         <div
@@ -64,7 +64,6 @@ import { downArrow, upArrow } from "src/assets";
         if (!content || !content.style) return;
 
         const open = this.getAttribute("open");
-        console.log(open);
 
         if (open === "true") {
           content.style.maxHeight = 0 + "px";

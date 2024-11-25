@@ -1,5 +1,6 @@
 ---
 import { formatLink } from "@utils/index";
+import { DownArrow, UpArrow } from "src/assets";
 import { routes } from "src/routes";
 
 const links = [
@@ -11,12 +12,43 @@ const links = [
 ];
 
 const url = Astro.url;
+const { lang } = Astro.params;
+
+function IsCurrentPage(page: string): boolean {
+  return url.pathname
+    .split("/")
+    .filter((v) => v !== lang)
+    .includes(page.split("/")[1]);
+}
 ---
 
 {
   links.map((link) => (
-    <a href={formatLink(url, link.href)} class="text-white">
+    <a
+      href={formatLink(url, link.href)}
+      class:list={[
+        "flex gap-x-1 items-center",
+        {
+          "text-brand-white": !IsCurrentPage(link.href),
+          "text-brand-beigeLight": IsCurrentPage(link.href),
+        },
+      ]}
+    >
       {link.name}
+      <DownArrow
+        class:list={[
+          {
+            hidden: IsCurrentPage(link.href),
+          },
+        ]}
+      />
+      <UpArrow
+        class:list={[
+          {
+            hidden: !IsCurrentPage(link.href),
+          },
+        ]}
+      />
     </a>
   ))
 }
