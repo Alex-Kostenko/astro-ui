@@ -17,29 +17,33 @@ const t = useTranslations(lang as Languages, "hero");
     <source src={cubeNear} type="video/mp4" />
   </video>
   <div
-    class="flex flex-col md1:flex-row md1:justify-between gap-y-20 gap-x-6 h-full w-full max-w-[1616px] my-auto mx-auto px-8"
+    class="max-w-[1616px] h-full w-full my-[128px] sm:my-[188px] md1:my-[240px] xl1:my-[170px] mx-auto px-8"
   >
-    <img
-      class="flex-[0_1_50%] max-w-[660px] w-full mx-auto"
-      src={logo.src}
-      alt="logo"
-    />
-    <article
-      class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-between flex-[1_1_40%]"
+    <div
+      class="flex flex-col md1:flex-row md1:justify-between gap-y-20 gap-x-6 h-full w-full px-16"
     >
-      <div
-        class="text-5xl sm1:text-32 font-extrabold text-center md1:text-start"
+      <img
+        class="flex-[0_1_50%] max-w-[660px] w-full mx-auto md1:mx-0"
+        src={logo.src}
+        alt="logo"
+      />
+      <article
+        class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-between flex-[1_1_40%]"
       >
-        <h5 class="text-brand-white mb-3">{t("title")}</h5>
-        <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>
-      </div>
-      <TypographyAstro
-        color="white"
-        type="body-4"
-        class="text-center md1:text-start"
-      >
-        {t("descripton")}
-      </TypographyAstro>
-    </article>
+        <div
+          class="text-5xl sm1:text-32 xl1:text-40 font-extrabold text-center md1:text-start"
+        >
+          <h5 class="text-brand-white mb-3">{t("title")}</h5>
+          <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>
+        </div>
+        <TypographyAstro
+          color="white"
+          type="body-4"
+          class="text-center md1:text-start"
+        >
+          {t("descripton")}
+        </TypographyAstro>
+      </article>
+    </div>
   </div>
 </section>

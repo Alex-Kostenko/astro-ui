@@ -7,7 +7,7 @@ export default {
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
     "./src/components/Footer/**/*.{astro,html,js,jsx}",
-    "./src/components/Sections/Hero.astro",
+    "./src/components/Sections/Home/Hero.astro",
   ],
   theme: {
     extend: {
@@ -71,18 +71,18 @@ export default {
         },
       },
       fontSize: {
-        96: ["6rem", { lineHeight: "1.2" }], // 96px = 6rem, lineHeight = 1.2
-        72: ["4.5rem", { lineHeight: "1.3" }], // 72px
-        48: ["3rem", { lineHeight: "1.3" }], // 48px
-        46: ["2.875rem", { lineHeight: "1.2" }], // 46px = 2.875rem
-        40: ["2.5rem", { lineHeight: "1.3" }], // 40px = 2.5rem
-        32: ["2rem", { lineHeight: "1.4" }], // 32px = 2rem
-        24: ["1.5rem", { lineHeight: "1.5" }], // 24px = 1.5rem
-        20: ["1.25rem", { lineHeight: "1.6" }], // 20px = 1.25rem
-        18: ["1.125rem", { lineHeight: "1.6" }], // 18px = 1.125rem
-        14: ["0.875rem", { lineHeight: "1.6" }], // 14px = 0.875rem
-        12: ["0.75rem", { lineHeight: "1.7" }], // 12px = 0.75rem
-        10: ["0.625rem", { lineHeight: "1.7" }], // 10px = 0.625rem
+        96: ["6rem", { lineHeight: "97px", letterSpacing: "2px" }], // 96px = 6rem, lineHeight = 1.2
+        72: ["4.5rem", { lineHeight: "auto" }], // 72px
+        48: ["3rem", { lineHeight: "auto" }], // 48px
+        46: ["2.875rem", { lineHeight: "auto" }], // 46px = 2.875rem
+        40: ["2.5rem", { lineHeight: "44px" }], // 40px = 2.5rem
+        32: ["2rem", { lineHeight: "40px" }], // 32px = 2rem
+        24: ["1.5rem", { lineHeight: "32px" }], // 24px = 1.5rem
+        20: ["1.25rem", { lineHeight: "24px" }], // 20px = 1.25rem
+        18: ["1.125rem", { lineHeight: "auto" }], // 18px = 1.125rem
+        14: ["0.875rem", { lineHeight: "18px" }], // 14px = 0.875rem
+        12: ["0.75rem", { lineHeight: "auto" }], // 12px = 0.75rem
+        10: ["0.625rem", { lineHeight: "auto" }], // 10px = 0.625rem
       },
       fontFamily: {
         gothic: "Gothic400",
@@ -95,7 +95,7 @@ export default {
     },
   },
   plugins: [
-    function ({ addComponents, theme }) {
+    function ({ addComponents }) {
       addComponents({
         ".text-stroken-green": {
           "-webkit-text-stroke": "4px #003300",

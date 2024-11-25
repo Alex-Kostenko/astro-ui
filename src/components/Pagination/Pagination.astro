@@ -1,0 +1,43 @@
+---
+import { Link } from "@components/Link";
+import { formatLink } from "@utils/format.link";
+import type { Page } from "astro";
+
+interface Props {
+  href: string;
+  toBlock?: string;
+  paginate: Page;
+}
+
+const { paginate, href, toBlock } = Astro.props;
+const { page } = Astro.params;
+---
+
+<section class="py-2 flex justify-between">
+  <Link href={paginate?.url?.prev}>{"<"}</Link>
+
+  <section class="flex gap-x-6">
+    {
+      Array.from({ length: Math.ceil(paginate.total / paginate.size) }).map(
+        (v, i) => {
+          const current = i + 1;
+          return (
+            <Link
+              color="green"
+              href={
+                formatLink(Astro.url, href) +
+                current +
+                (toBlock ? `#${toBlock}` : "")
+              }
+              active={page === current.toString()}
+            >
+              {current}
+            </Link>
+          );
+        },
+      )
+    }
+  </section>
+
+  <Link href={paginate?.url?.next}>{">"}</Link>
+</section>

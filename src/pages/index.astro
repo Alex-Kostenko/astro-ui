@@ -1,7 +1,6 @@
 ---
 import "@style/home.css";
 import Layout from "@layouts/Layout.astro";
-import { getFromLocale, useTranslations } from "@i18n/index";
 import {
   AboutSection,
   HeroSection,
@@ -11,9 +10,6 @@ import {
   ServicesSection,
   TestimonialsSection,
 } from "@components/Sections";
-
-const lang = getFromLocale(Astro.currentLocale);
-const t = useTranslations(lang);
 ---
 
 <Layout title="UniCode">

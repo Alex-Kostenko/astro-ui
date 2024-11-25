@@ -1,20 +1,72 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { languages, useTranslations, type Languages } from "@i18n/index";
+import { type Languages } from "@i18n/index";
 import { cubeNear } from "src/assets";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
+import projectService from "@service/project.service";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import { Container } from "@components/Container";
+import TabsSection from "@components/Sections/Cases/TabsSection.astro";
+import type { IProjectDomain } from "@interfaces/project.domain";
+import { Pagination } from "@components/Pagination";
 
-// export const getStaticPaths = (() => {
-//   return Object.keys(languages).map((v) => ({ params: { lang: v } }));
-// }) satisfies GetStaticPaths;
+export const getStaticPaths = (async ({ paginate }) => {
+  const projectDomain: IProjectDomain[] = [
+    ...(await projectService.getDomains()).data,
+    {
+      slug: "all",
+      documentId: "",
+      createdAt: "",
+      id: 0,
+      locale: "en",
+      name: "all",
+      publishedAt: "",
+      updatedAt: "",
+    },
+  ];
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as Languages);
+  const requestProjects = Object.keys({ en: "" }).flatMap((v) =>
+    projectDomain.map((domain) =>
+      projectService
+        .get({
+          pagination: { limit: "max" },
+          locale: v as Languages,
+          filter:
+            domain.id !== 0
+              ? [
+                  {
+                    fields: ["project_domains", "documentId"],
+                    value: domain.documentId,
+                  },
+                ]
+              : [],
+        })
+        .then((response) => ({ lang: v, case: domain, response })),
+    ),
+  );
+
+  const responses = await Promise.all(requestProjects);
+
+  return responses.flatMap((v) => {
+    return paginate(v.response.data, {
+      params: { lang: v.lang, case: v.case.slug },
+      props: { meta: v.response.meta, slug: v.case.slug },
+      pageSize: 6,
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { page, meta, slug } = Astro.props;
 ---
 
 <Layout title="UniCode Cases">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
   <main class="flex flex-col gap-y-[120px]">
     <div class="h-[168px] bg-black bg-opacity-45">
       <video
@@ -26,7 +78,13 @@ const t = useTranslations(lang as Languages);
         <source src={cubeNear} type="video/mp4" />
       </video>
     </div>
-
     <IntroSection />
+
+    <TabsSection domain={slug} />
+
+    <Container id="projects">
+      <ProjectList projects={page.data} />
+      <Pagination paginate={page} href={`/cases/${slug}/`} toBlock="projects" />
+    </Container>
   </main>
 </Layout>
