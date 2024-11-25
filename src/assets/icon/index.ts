@@ -1,9 +1,9 @@
 import smallLogo from "./smallLogo.svg";
 import logo from "./logo.svg";
-import clutch from "./Clutch.svg";
+import clutch from "./clutch.svg";
 import linkedin from "./Linkedin.svg";
-import upArrow from "./upArrow.svg";
-import downArrow from "./downArrow.svg";
+import UpArrow from "./upArrow.astro";
+import DownArrow from "./downArrow.astro";
 import * as company from "./company";
 import star from "./Star.svg";
 import ArrowRight from "./arrowRight.astro";
@@ -18,5 +18,6 @@ export {
   star,
   ArrowRight,
   ArrowLeft,
-  upArrow, downArrow 
+  UpArrow,
+  DownArrow,
 };
