@@ -1,0 +1,84 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { TextField } from "@components/TextField";
+import FilePicker from "./FilePicker.astro";
+import CheckBox from "./CheckBox.astro";
+---
+
+<section
+  class:list={[
+    "bg-brand-black bg-opacity-85 px-4 sm1:px-[60px] xl:px-[120px] py-8",
+    "flex flex-col gap-x-8 gap-y-8 md1:flex-row clip after:hidden sm1:after:block",
+  ]}
+>
+  <div class="flex-grow md1:w-1/2 mt-auto sm1:px-16 md1:px-0">
+    <h3 class="text-brand-beigeLight font-gothic text-20">
+      Leave your contact details, and we will reach you within 24 hours
+    </h3>
+  </div>
+
+  <form
+    id="form-contac-us"
+    class:list={["flex-grow w-full md1:max-w-[480px]", "flex flex-col gap-y-5"]}
+  >
+    <div class="flex flex-col gap-y-4">
+      <TextField placeholder="Your name" name="name" />
+      <TextField placeholder="Your email address" type="email" name="email" />
+      <TextField placeholder="Your message" name="message" />
+    </div>
+
+    <div class="flex items-center gap-x-2">
+      <FilePicker name="file" />
+      <p class="text-brand-white font-gothic text-14">File size up to 10Mb</p>
+    </div>
+
+    <CheckBox name="consent">
+      <p class="text-14 font-gothic text-brand-white">
+        I have read and accepted the
+        <a href="#" class="underline" target="_blank"> Terms & Conditions </a>
+        and
+        <a href="#" class="underline" target="_blank"> Privacy Policy </a>
+      </p>
+    </CheckBox>
+
+    <ButtonAstro color="biscuit" class="w-full">get in touch</ButtonAstro>
+  </form>
+</section>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const form = document.querySelector("#form-contac-us") as HTMLFormElement;
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const consent = formData.get("consent");
+    if (!consent) {
+      return;
+    }
+
+    const { error, data } = await actions.contactUs(formData);
+    console.log("error", error);
+    if (data?.success) {
+      form.reset();
+    }
+  });
+</script>
+
+<style>
+  .clip {
+    position: relative;
+    /* clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%, 0 9%); */
+  }
+  .clip::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 0;
+    height: 0;
+    border-right: 80px solid transparent;
+    border-top: 60px solid #f3f3ef;
+  }
+</style>

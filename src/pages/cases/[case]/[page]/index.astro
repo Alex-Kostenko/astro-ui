@@ -11,6 +11,7 @@ import { Container } from "@components/Container";
 import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 import type { IProjectDomain } from "@interfaces/project.domain";
 import { Pagination } from "@components/Pagination";
+import { ContactUsForm } from "@components/Form";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projectDomain: IProjectDomain[] = [
@@ -84,7 +85,11 @@ const { page, meta, slug } = Astro.props;
 
     <Container id="projects">
       <ProjectList projects={page.data} />
-      <Pagination paginate={page} href={`/cases/${slug}/`} toBlock="projects" />
+      <Pagination paginate={page} href={`/cases/${slug}/`} toBlock="cases" />
+    </Container>
+
+    <Container>
+      <ContactUsForm />
     </Container>
   </main>
 </Layout>

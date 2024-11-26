@@ -45,17 +45,18 @@ const { domain } = Astro.props;
 <script>
   import Swiper from "swiper";
 
-  var swiper = new Swiper(".mySwiper", {
+  new Swiper(".mySwiper", {
     slidesPerView: "auto",
     spaceBetween: 30,
-    // centeredSlides: true,
   });
 </script>
 
 <style is:global>
   .swiper-slide {
-    /* flex-shrink: 0;
-    flex-grow: 0; */
     width: auto;
+  }
+
+  #cases {
+    scroll-margin-top: 200px; /* Зміщення в 100px вище */
   }
 </style>
