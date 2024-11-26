@@ -7,6 +7,8 @@ export default {
     "./src/components/Typography/**/*.{astro,html,js,jsx}",
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
     "./src/components/Footer/**/*.{astro,html,js,jsx}",
+    "./src/components/Form/**/*.{astro,html,js,jsx}",
+    "./src/components/TextField/**/*.{astro,html,js,jsx}",
     "./src/components/Sections/Home/Hero.astro",
   ],
   theme: {
@@ -30,6 +32,12 @@ export default {
           md1: "852px",
           lg2: "1092px",
           xl2: "1284px",
+        },
+        padding: {
+          DEFAULT: "16px",
+          sm: "2rem",
+          lg: "4rem",
+          xl: "5rem",
         },
       },
       colors: {

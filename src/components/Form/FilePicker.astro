@@ -1,0 +1,38 @@
+---
+interface Props {
+  name?: string;
+  accept?: string;
+}
+
+const { name, accept = "*" } = Astro.props;
+---
+
+<file-pick>
+  <input name={name} type="file" accept={accept} class="hidden" />
+
+  <button
+    type="button"
+    class:list={[
+      "border-2 border-brand-white rounded ",
+      "px-3 py-1",
+      "text-12 text-brand-white",
+    ]}
+  >
+    Add File
+  </button>
+</file-pick>
+
+<script>
+  class FilePicker extends HTMLElement {
+    connectedCallback() {
+      const button = this.querySelector("button") as HTMLButtonElement;
+      const input = this.querySelector("input") as HTMLInputElement;
+
+      button.onclick = function () {
+        input.click();
+      };
+    }
+  }
+
+  customElements.define("file-pick", FilePicker);
+</script>

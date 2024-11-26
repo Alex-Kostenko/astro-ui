@@ -1,4 +1,12 @@
+@config "../../tailwind.config.mjs";
+
+@tailwind components;
+@tailwind utilities;
 @tailwind base;
+
+html {
+  scroll-behavior: smooth;
+}
 
 @font-face {
   font-family: "Gothic400";
