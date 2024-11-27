@@ -8,7 +8,7 @@ import type {
 
 class ApiService {
   apiUrl = import.meta.env.PUBLIC_API_URL;
-  apiKey = import.meta.env.PUBLIC_CMS_KEY;
+  apiKey = import.meta.env.PIRIVATE_CMS_KEY || import.meta.env.PUBLIC_CMS_KEY;
 
   async requst(
     path: string,
@@ -19,7 +19,6 @@ class ApiService {
     },
   ): Promise<Response> {
     const headers = {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${this.apiKey}`,
       ...init.headers,
     };
@@ -47,7 +46,29 @@ class ApiService {
   ): Promise<T> {
     const res = await this.requst(path, "POST", {
       ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...init.headers,
+      },
       body: JSON.stringify(init.body),
+    });
+
+    return await res.json();
+  }
+
+  async postData<T>(
+    path: string | ApiPath,
+    init: {
+      body: FormData;
+      headers?: any;
+    },
+  ): Promise<T> {
+    const res = await this.requst(path, "POST", {
+      ...init,
+      headers: {
+        // "Content-Type": "multipart/form-data",
+      },
+      body: init.body,
     });
 
     return await res.json();
@@ -62,6 +83,19 @@ class ApiService {
   ): Promise<T> {
     const query = convertToQueryString(init.query);
     const res = await this.requst(path + query, "GET", init);
+
+    return await res.json();
+  }
+
+  async delete<T>(
+    path: string | ApiPath,
+    init: {
+      headers?: any;
+    } = {},
+  ): Promise<T> {
+    const res = await this.requst(path, "DELETE", {
+      ...init,
+    });
 
     return await res.json();
   }

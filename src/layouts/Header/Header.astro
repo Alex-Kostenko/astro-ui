@@ -13,11 +13,11 @@ const t = useTranslations(lang, "header");
   <header
     class:list={[
       "flex items-center justify-between box-border ",
-      "max-w-[1680px] mx-auto py-5 px-8 bg-brand-black bg-opacity-[48%] shadow-inner backdrop-blur-xl",
+      "max-w-[1680px] mx-auto py-4 md1:py-5 px-8 bg-brand-black bg-opacity-[48%] shadow-inner backdrop-blur-xl",
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>
-      <img src={smallLogo.src} alt="logo" />
+      <img src={smallLogo.src} class="max-h-12 md1:max-h-none" alt="logo" />
     </a>
     <nav class="ml-auto hidden md1:flex items-center gap-x-10">
       <HeaderLinks />

@@ -7,4 +7,6 @@ export type { IImage, FormatImage, Formats } from "./image";
 export type { IProject } from "./project";
 export type { IProjectDomain } from "./project.domain";
 export type { QueryApi, Popylate, IFilter } from "./query.api";
+export { type IUploadBody, UploadPath } from "./upload";
+export type { IContactUsBody } from "./contactUs";
 export type { IServices } from "./i.services";
