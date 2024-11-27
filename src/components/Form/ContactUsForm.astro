@@ -54,7 +54,10 @@ import CheckBox from "./CheckBox.astro";
 
     const formData = new FormData(form);
     const consent = formData.get("consent");
-    if (!consent) {
+    const file = formData.get("file") as File;
+    const entries = Array.from(formData.entries());
+
+    if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
       return;
     }
 
