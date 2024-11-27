@@ -7,37 +7,89 @@ interface Props {
   href: string;
   toBlock?: string;
   paginate: Page;
+  size?: number;
 }
 
-const { paginate, href, toBlock } = Astro.props;
+const { paginate, href, toBlock, size = 3 } = Astro.props;
 const { page } = Astro.params;
+
+const currentPage = paginate.currentPage;
+const lastPage = paginate.lastPage;
+
+const pages = [];
+let rangeStart = Math.max(1, currentPage - 1);
+let rangeEnd = Math.min(lastPage, currentPage + 1);
+
+if (currentPage === 1 || currentPage === 2) {
+  rangeEnd = Math.min(lastPage, 3);
+}
+
+if (currentPage === lastPage || currentPage === lastPage - 1) {
+  rangeStart = Math.max(1, lastPage - 2);
+}
+
+if (rangeStart > 1) {
+  pages.push(1);
+  if (rangeStart > 2) {
+    const target = currentPage - size;
+    pages.push({ label: "...", target: target <= 0 ? 1 : target });
+  }
+}
+
+for (let i = rangeStart; i <= rangeEnd; i++) {
+  pages.push(i);
+}
+
+if (rangeEnd < lastPage) {
+  if (rangeEnd < lastPage - 1) {
+    pages.push({ label: "...", target: currentPage + size });
+  }
+  pages.push(lastPage);
+}
+
+const formatPageLink = (target: number) => {
+  return formatLink(Astro.url, href) + target + (toBlock ? `#${toBlock}` : "");
+};
 ---
 
-<section class="py-2 flex justify-between">
-  <Link href={paginate?.url?.prev}>{"<"}</Link>
+<section class="py-2 flex gap-y-3 flex-wrap justify-between items-center">
+  <Link
+    href={paginate?.url?.prev &&
+      paginate?.url?.prev + (toBlock ? `#${toBlock}` : "")}
+    disabled={!paginate?.url?.prev}
+    class="order-1">{"<"}</Link
+  >
 
-  <section class="flex gap-x-6">
+  <section
+    class="sm:order-2 flex gap-x-4 sm:gap-x-6 w-full sm:w-auto justify-center"
+  >
     {
-      Array.from({ length: Math.ceil(paginate.total / paginate.size) }).map(
-        (v, i) => {
-          const current = i + 1;
+      pages.map((v) => {
+        if (typeof v === "object") {
           return (
-            <Link
-              color="green"
-              href={
-                formatLink(Astro.url, href) +
-                current +
-                (toBlock ? `#${toBlock}` : "")
-              }
-              active={page === current.toString()}
-            >
-              {current}
+            <Link href={formatPageLink(v.target)} class="hidden sm:block px-0">
+              {v.label}
             </Link>
-          );
-        },
-      )
+          ); // Пропуск
+        }
+        return (
+          <Link
+            color="green"
+            href={formatPageLink(v)}
+            active={page === v.toString()}
+            class="min-w-10 px-0"
+          >
+            {v}
+          </Link>
+        );
+      })
     }
   </section>
 
-  <Link href={paginate?.url?.next}>{">"}</Link>
+  <Link
+    href={paginate?.url?.next &&
+      paginate?.url?.next + (toBlock ? `#${toBlock}` : "")}
+    disabled={!paginate?.url?.next}
+    class="order-3">{">"}</Link
+  >
 </section>
