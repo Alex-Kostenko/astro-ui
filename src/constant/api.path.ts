@@ -4,5 +4,6 @@ export enum ApiPath {
   projectDomain = "/project-domains",
   technology = "/technologies",
   comment = "/comments",
-  ContactUs = "/contact-uses",
+  contactUs = "/contact-uses",
+  upload = "/upload",
 }
