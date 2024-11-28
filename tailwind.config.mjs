@@ -87,7 +87,7 @@ export default {
         24: ["1.5rem", { lineHeight: "32px" }], // 24px = 1.5rem
         20: ["1.25rem", { lineHeight: "24px" }], // 20px = 1.25rem
         18: ["1.125rem", { lineHeight: "auto" }], // 18px = 1.125rem
-        16: ["1rem", { lineHeight: "auto" }], // 16px = 1rem
+        16: ["1rem", { lineHeight: "20px" }], // 16px = 1rem
         14: ["0.875rem", { lineHeight: "18px" }], // 14px = 0.875rem
         12: ["0.75rem", { lineHeight: "auto" }], // 12px = 0.75rem
         10: ["0.625rem", { lineHeight: "auto" }], // 10px = 0.625rem

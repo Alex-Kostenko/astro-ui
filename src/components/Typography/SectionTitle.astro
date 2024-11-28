@@ -1,31 +1,36 @@
 ---
-import TypographyAstro from "./TypographyAstro.astro";
-
 interface Props {
   type: string;
   classType?: string;
   title: string;
   colorTitle?: string;
+  classContainer?: string;
 }
 
-const { title, type, colorTitle, classType } = Astro.props;
+const { title, type, colorTitle, classType, classContainer } = Astro.props;
 ---
 
-<article class="flex flex-col md1:flex-row gap-y-4 justify-between mb-10">
-  <TypographyAstro
+<article
+  class="flex flex-col 2xl:flex-row gap-y-4 justify-between"
+  class:list={["mb-5 md:mb-6 2xl:mb-10", classContainer]}
+>
+  <h2
     class:list={[
-      "flex-[1_1_25%] upp text-brand-beige tracking-[0.8px]",
+      "flex-[1_1_25%] text-brand-beige tracking-0.8 font-gothic uppercase",
+      "text-16",
       classType,
     ]}
-    type="body-2"
   >
     [ {type} ]
-  </TypographyAstro>
-  <TypographyAstro
-    color={colorTitle ? "inherit" : "green"}
-    type="title-2"
-    class:list={["flex-[1_1_75%]", colorTitle]}
+  </h2>
+  <h3
+    class:list={[
+      "flex-[1_1_75%] font-asket800 uppercase",
+      "text-24 2xl:text-32",
+      ,
+      colorTitle || "text-green-200",
+    ]}
   >
     {title}
-  </TypographyAstro>
+  </h3>
 </article>

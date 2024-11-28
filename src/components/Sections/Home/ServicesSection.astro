@@ -22,26 +22,28 @@ import { serviceList } from "@constant/index";
             >
               [ {(i + 1).toString().padStart(2, "0")} ]
             </TypographyAstro>
-            <TypographyAstro
-              color="green"
-              type="subTitle-1"
+            <p
               class="flex-[1_1_75%]"
+              class:list={[
+                "text-brand-black font-gothic700 uppercase font-bold",
+                "text-20 2xl:text-24",
+              ]}
             >
               {v.title}
-            </TypographyAstro>
+            </p>
           </section>
 
-          <section class="flex flex-row gap-y-4">
-            <div class="md1:flex-[0_1_75%] ml-auto flex items-start">
+          <section class="flex flex-row gap-y-4 overflow-auto">
+            <div class="2xl:flex-[0_1_75%] w-full 2xl:ml-auto flex justify-between">
               <div class="max-w-[480px] w-full">
                 <TypographyAstro type="body-4" class="my-6">
                   {v.description}
                 </TypographyAstro>
                 <ButtonAstro>explore</ButtonAstro>
               </div>
-              <div class="h-full max-h-[240px] ml-[130px]">
+              <div class="h-full max-h-[240px] aspect-square">
                 <img
-                  class="h-full max-h-[240px] aspect-square"
+                  class="h-full max-h-[240px] "
                   src={v.imgSrc}
                   alt={v.title}
                 />
