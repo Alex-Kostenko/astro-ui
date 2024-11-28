@@ -1,0 +1,51 @@
+---
+import { Container } from "@components/Container";
+import ContactUsForm from "./ContactUsForm.astro";
+import { logoOutline } from "src/assets";
+
+interface Props {
+  text: {
+    text: string;
+    alight: "none" | "left" | "right";
+    variant: "contained" | "outlined";
+    className?: string;
+  }[];
+}
+
+const { text } = Astro.props;
+---
+
+<div class="relative">
+  <figure
+    class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40"
+  >
+    <img src={logoOutline.src} alt="logo outline" />
+  </figure>
+  <Container>
+    <article
+      class="flex flex-col xl1:gap-y-4 xl:gap-y-3 gap-y-2 mb-16 sm:mb-12"
+    >
+      {
+        text.map((v) => (
+          <h2
+            class:list={[
+              "text-48 xl1:text-96 font-asket800 uppercase relative",
+              {
+                "flex items-center gap-x-2 text-left after:content-[''] after:h-[5px] after:grow after:bg-green-200":
+                  v.alight === "left",
+                "flex items-center gap-x-2 text-right before:content-[''] before:h-[5px] before:grow before:bg-green-200":
+                  v.alight === "right",
+                "text-green-200": v.variant === "contained",
+                "text-stroken-green text-transparent": v.variant === "outlined",
+              },
+            ]}
+          >
+            {v.text}
+          </h2>
+        ))
+      }
+    </article>
+
+    <ContactUsForm />
+  </Container>
+</div>
