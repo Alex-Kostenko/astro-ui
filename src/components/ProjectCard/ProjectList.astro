@@ -17,16 +17,18 @@ const { projects } = Astro.props;
   .project-item {
   }
 
-  .project-item:nth-child(6n + 1),
-  .project-item:nth-child(6n + 4) {
-    flex-direction: column;
-  }
-
-  @media (min-width: 800px) {
+  @media (min-width: 768px) {
     .project-item:nth-child(6n + 1),
     .project-item:nth-child(6n + 4) {
       grid-column: span 2;
       gap: 0 20px;
+      flex-direction: column-reverse;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .project-item:nth-child(6n + 1),
+    .project-item:nth-child(6n + 4) {
       flex-direction: row;
     }
 
