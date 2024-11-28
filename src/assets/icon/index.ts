@@ -8,6 +8,7 @@ import * as company from "./company";
 import star from "./Star.svg";
 import ArrowRight from "./arrowRight.astro";
 import ArrowLeft from "./arrowLeft.astro";
+import logoOutline from "./logoOutline.png";
 
 export {
   smallLogo,
@@ -20,4 +21,5 @@ export {
   ArrowLeft,
   UpArrow,
   DownArrow,
+  logoOutline,
 };
