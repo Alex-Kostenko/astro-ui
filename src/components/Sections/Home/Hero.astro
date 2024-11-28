@@ -7,7 +7,9 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "hero");
 ---
 
-<section class="relative sm1:min-h-[788px] min-h-dvh pt-[136px] flex">
+<section
+  class="relative min-h-dvh 3xl:min-h-[920px] 2xl:min-h-[780px] lg:min-h-[620px] pt-[136px] flex"
+>
   <video
     autoplay
     muted
@@ -16,34 +18,104 @@ const t = useTranslations(lang as Languages, "hero");
   >
     <source src={cubeNear} type="video/mp4" />
   </video>
-  <div
-    class="max-w-[1616px] h-full w-full my-[128px] sm:my-[188px] md1:my-[240px] xl1:my-[170px] mx-auto px-4 sm1:px-8"
-  >
+  <div class="max-w-[1616px] h-full w-full my-auto mx-auto px-4 sm1:px-8">
     <div
-      class="flex flex-col md1:flex-row md1:justify-between gap-y-20 gap-x-6 h-full w-full md1:px-16"
+      class="flex flex-col lg:flex-row lg:justify-between gap-y-20 gap-x-6 lg:px-6"
+      class:list={[""]}
     >
       <img
-        class="flex-[0_1_50%] max-w-[660px] w-full mx-auto md1:mx-0"
+        class:list={[
+          "h-[112px] md:h-[220px] lg:h-[140px] xl:h-[200px] 2xl:h-[240px] my-auto",
+        ]}
         src={logo.src}
         alt="logo"
       />
       <article
-        class="md1:max-w-[520px] w-full flex flex-col md1:gap-y-3 gap-y-10 justify-between flex-[1_1_40%]"
+        class="xl:max-w-[520px] lg:max-w-[380px] w-full flex flex-col gap-y-10 justify-between"
       >
         <div
-          class="text-5xl sm1:text-32 xl1:text-40 font-extrabold text-center md1:text-start"
+          class="font-extrabold text-center lg:text-start font-asket800"
+          class:list={["text-24 md:text-32 lg:text-24 xl:text-32 2xl:text-40"]}
         >
-          <h5 class="text-brand-white mb-3">{t("title")}</h5>
-          <h5 class="text-brand-beigeLight">{t("subTitle")}</h5>
+          <h5 class="text-brand-white mb-3 uppercase">{t("title")}</h5>
+          <h5>
+            <span id="hero-change-text" class="empty uppercase">
+              {t("subTitle")}
+            </span>
+          </h5>
         </div>
-        <TypographyAstro
-          color="white"
-          type="body-4"
-          class="text-center md1:text-start"
+        <p
+          class:list={[
+            "font-gothic tracking-0.8 text-brand-white",
+            "md:text-20 md:tracking-1 lg:text-base xl:text-20",
+          ]}
+          class="text-center lg:text-start"
         >
           {t("descripton")}
-        </TypographyAstro>
+        </p>
       </article>
     </div>
   </div>
 </section>
+
+<script>
+  const words = ["DREAMS", "DREAMS2", "DREAMS3"],
+    colors = ["text-brand-beigeLight", "text-brand-beige", "text-brand-gray"],
+    text = document.querySelector("#hero-change-text") as HTMLSpanElement;
+
+  // Generator (iterate from 0-3)
+  function* generator(): Generator<number> {
+    var index = 0;
+    while (true) {
+      yield index++;
+
+      if (index > words.length - 1) {
+        index = 0;
+      }
+    }
+  }
+
+  // Printing effect
+  function printChar(word: string) {
+    let i = 0;
+    text.innerHTML = "";
+    text.classList.add(colors[words.indexOf(word)]);
+    let id = setInterval(() => {
+      if (i >= word?.length) {
+        deleteChar();
+        clearInterval(id);
+      } else {
+        text.innerHTML += word[i];
+        i++;
+      }
+    }, 200);
+  }
+
+  // Deleting effect
+  function deleteChar() {
+    let word = text.innerHTML;
+    let i = word.length - 1;
+    let id = setInterval(() => {
+      if (i >= 0) {
+        text.innerHTML = text.innerHTML.substring(0, text.innerHTML.length - 1);
+        i--;
+      } else {
+        text.classList.remove(colors[words.indexOf(word)]);
+        printChar(words[gen.next().value]);
+        clearInterval(id);
+      }
+    }, 100);
+  }
+
+  // Initializing generator
+  let gen = generator();
+
+  printChar(words[gen.next().value]);
+</script>
+
+<style>
+  .empty::after {
+    content: "\00a0";
+    visibility: hidden;
+  }
+</style>
