@@ -11,57 +11,45 @@ const t = useTranslations(lang as Languages, "home.about");
 
 <Container class="mt-14">
   <h2
-    class:list={["text-48 sm1:text-72 xl1:text-96 font-bold font-asket800"]}
-    class="text-green-200 md1:inline block uppercase"
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+    ]}
   >
-    have you
+    <span> have you</span>
+    <span
+      class="text-stroken-green-2 md:text-stroken-green-4 md:flex-[1_1_30%]"
+    >
+      ever
+    </span>
+    <span class="text-stroken-green-2 md:text-stroken-green-4">counted</span>
+    <span> of a single</span>
+    <section class="flex flex-wrap uppercase w-full">
+      <span> mis </span>
+      <div class="flex-grow h-1 bg-green-200 my-auto mx-2"></div>
+      <span> hire? </span>
+    </section>
   </h2>
-  <h2
-    class:list={["text-48 sm1:text-72 xl1:text-96 font-bold font-asket800"]}
-    class="text-transparent text-stroken-green inline uppercase"
-  >
-    ever
-  </h2>
-
-  <h2 class="uppercase font-asket800 mt-4">
-    <span
-      class:list={["text-48 sm1:text-72 xl1:text-96 font-bold"]}
-      class="text-transparent text-stroken-green"
-    >
-      counted
-    </span>
-    <span
-      class:list={["text-48 sm1:text-72 xl1:text-96 font-bold"]}
-      class="text-green-200"
-    >
-      of a single
-    </span>
-  </h2>
-
-  <section class="flex flex-wrap uppercase font-asket800 mt-4">
-    <span
-      class="text-green-200 flex-[1_1_100%] font-bold"
-      class:list={[
-        "sm:ml-[100px] sm:flex-none",
-        "text-48 sm1:text-72 xl1:text-96",
-      ]}
-    >
-      mis
-    </span>
-    <div class="flex-grow h-1 bg-green-200 my-auto mx-2"></div>
-    <span
-      class:list={["text-48 sm1:text-72 xl1:text-96"]}
-      class="text-green-200 font-bold"
-    >
-      hire?
-    </span>
-  </section>
 
   <section
-    class="flex flex-col md1:flex-row gap-x-14 justify-between gap-y-4 mt-10 font-gothic"
+    class="gap-y-4 mt-10 font-gothic"
+    class:list={[
+      "flex flex-col 2xl:flex-row-reverse justify-between",
+      "gap-y-3 md:gap-y-6",
+    ]}
   >
+    <div class="2xl:max-w-[604px] object-cover w-full">
+      <img
+        class="min-h-full object-cover min-w-full"
+        src={Human.src}
+        alt="human face of number"
+      />
+    </div>
+
     <div>
-      <TypographyAstro type="body-4" class="md1:w-[480px] leading-6">
+      <TypographyAstro type="body-4" class="2xl:w-[480px] leading-1">
         {t("description")}
       </TypographyAstro>
 
@@ -70,14 +58,6 @@ const t = useTranslations(lang as Languages, "home.about");
 
         <ArrowRight size={20} />
       </ButtonAstro>
-    </div>
-
-    <div class="md1:max-w-[704px] object-cover w-full">
-      <img
-        class="min-h-full object-cover min-w-full"
-        src={Human.src}
-        alt="human face of number"
-      />
     </div>
   </section>
 </Container>

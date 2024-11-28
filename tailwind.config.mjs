@@ -78,9 +78,11 @@ export default {
       fontSize: {
         96: ["6rem", { lineHeight: "97px", letterSpacing: "2px" }], // 96px = 6rem, lineHeight = 1.2
         72: ["4.5rem", { lineHeight: "auto" }], // 72px
+        64: ["4rem", { lineHeight: "65px" }], // 64px
         48: ["3rem", { lineHeight: "auto" }], // 48px
         46: ["2.875rem", { lineHeight: "auto" }], // 46px = 2.875rem
         40: ["2.5rem", { lineHeight: "44px" }], // 40px = 2.5rem
+        36: ["2.25rem", { lineHeight: "37px" }], // 36px = 2.25rem
         32: ["2rem", { lineHeight: "40px" }], // 32px = 2rem
         24: ["1.5rem", { lineHeight: "32px" }], // 24px = 1.5rem
         20: ["1.25rem", { lineHeight: "24px" }], // 20px = 1.25rem
@@ -101,14 +103,20 @@ export default {
       letterSpacing: {
         0.8: "0.8px",
         1: "1px",
+        2: "2px",
       },
     },
   },
   plugins: [
     function ({ addComponents }) {
       addComponents({
-        ".text-stroken-green": {
+        ".text-stroken-green-2": {
+          "-webkit-text-stroke": "2px #003300",
+          color: "transparent",
+        },
+        ".text-stroken-green-4": {
           "-webkit-text-stroke": "4px #003300",
+          color: "transparent",
         },
       });
     },
