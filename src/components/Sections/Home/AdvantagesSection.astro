@@ -11,95 +11,141 @@ import { cubeSide, Eye } from "src/assets";
       title="Nothing kills business faster than a entry-level developers"
       colorTitle="text-brand-white"
     />
-    <section
-      class="grid grid-cols-2 grid-rows-5 sm1:grid-cols-4 sm1:grid-rows-4 container-aspect"
-    >
+    <section class="grid grid-cols-2 grid-rows-5 md:grid-cols-4 md:grid-rows-4">
       <video
         autoplay
         muted
         loop
-        class="sm1:col-span-2 sm1:row-span-2 h-full w-full object-cover"
+        class="md:col-span-2 md:row-span-2 h-full w-full object-cover"
       >
         <source src={cubeSide} type="video/mp4" /></video
       >
 
-      <div
-        class="row-start-1 col-start-2 sm1:row-start-auto sm1:col-start-auto"
-      >
+      <div class="row-start-1 col-start-2 md:row-start-auto md:col-start-auto">
       </div>
 
       <article
-        class="xl:p-4 p-2 border-r sm1:border border-brand-white row-start-1 sm1:row-start-auto"
+        class="xl:p-4 p-2 border-r md:border border-brand-white row-start-1 md:row-start-auto"
       >
         <h6
-          class="mb-3 text-brand-white text-20 sm2:font-bold sm:text-14 xl:text-18 xl2:text-20"
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
         >
           EXPERT TEAM
         </h6>
-        <TypographyAstro color="white" class="text-10 xl:text-base xl1:text-20">
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
           Stellar team, you would otherwise not have access to. Our community
           consists of more than 90% of senior developers and project managers
           with a T-shaped skill set.
-        </TypographyAstro>
+        </p>
       </article>
 
       <article class="xl:p-4 p-2 border-t border-brand-white">
         <h6
-          class="mb-3 text-brand-white text-20 sm2:font-bold sm:text-14 xl:text-18 xl2:text-20"
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
         >
           Remote Convenience
         </h6>
-        <TypographyAstro color="white" class="text-10 xl:text-base xl1:text-20">
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
           100% remote and always just a click away. We ensure seamless
           communication and collaboration, no matter where you are.
-        </TypographyAstro>
+        </p>
       </article>
 
-      <div class="hidden sm1:block"></div>
-      <div class="hidden sm1:block"></div>
+      <div class="hidden md:block"></div>
+      <div class="hidden md:block"></div>
 
       <article
-        class="xl:p-4 p-2 border-r border-b sm1:border-l sm1:border-t border-brand-white"
+        class="xl:p-4 p-2 border-r border-b md:border-l md:border-t border-brand-white"
       >
         <h6
-          class="mb-3 text-brand-white text-20 sm2:font-bold sm:text-14 xl:text-18 xl2:text-20"
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
         >
           Empathetic Approach
         </h6>
-        <TypographyAstro color="white" class="text-10 xl:text-base xl1:text-20">
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
           We approach every project with empathy and understanding that every
           client has unique pains and needs.
-        </TypographyAstro>
+        </p>
       </article>
 
       <div class="text-white"></div>
-      <div class="sm1:hidden"></div>
+      <div class="md:hidden"></div>
 
       <article class="xl:p-4 p-2 sm1:border border-brand-white">
         <h6
-          class="mb-3 text-brand-white text-20 sm2:font-bold sm:text-14 xl:text-18 xl2:text-20"
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
         >
           Efficient Execution
         </h6>
-        <TypographyAstro color="white" class="text-10 xl:text-base xl1:text-20">
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
           We excel in project management ensuring that your project is executed
           efficiently and effectively.
-        </TypographyAstro>
+        </p>
       </article>
 
-      <article class="xl:p-4 p-2 sm1:border-l sm1:border-b border-brand-white">
+      <article class="xl:p-4 p-2 md:border-l md:border-b border-brand-white">
         <h6
-          class="mb-3 text-brand-white text-20 sm2:font-bold sm:text-14 xl:text-18 xl2:text-20"
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
         >
           Values-Driven
         </h6>
-        <TypographyAstro color="white" class="text-10 xl:text-base xl1:text-20">
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
           We are deeply committed to our values of decency, meaningful
           engagement, standards, and synergy, which reflect in everything we do.
-        </TypographyAstro>
+        </p>
       </article>
 
-      <div class="hidden sm1:block"></div>
+      <div class="hidden md:block"></div>
 
       <figure class="border border-brand-white">
         <img src={Eye.src} alt="Eye image" class="h-full w-full object-cover" />
