@@ -10,6 +10,7 @@ import {
   ServicesSection,
   TestimonialsSection,
 } from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
 ---
 
 <Layout title="UniCode">
@@ -27,6 +28,13 @@ import {
       <ProjectsSection />
       <AdvantagesSection />
       <TestimonialsSection />
+      <ContactUsSection
+        text={[
+          { text: "Every journey", alight: "right", variant: "contained" },
+          { text: "starts from the", alight: "none", variant: "contained" },
+          { text: "first step", alight: "left", variant: "outlined" },
+        ]}
+      />
     </div>
   </main>
 </Layout>
