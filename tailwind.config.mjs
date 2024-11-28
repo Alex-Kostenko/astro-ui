@@ -14,30 +14,27 @@ export default {
   theme: {
     extend: {
       screens: {
-        xs: "0px",
-        sm1: "768px",
-        sm2: "800px",
-        md1: "1024px",
-        lg2: "1280px",
-        xl1: "1440px",
-        xl2: "1600px",
-        xl3: "1920px",
+        // xs: "0px",
+        // sm1: "768px",
+        // sm2: "800px",
+        // md1: "1024px",
+        // lg2: "1280px",
+        // xl1: "1440px",
+        // xl2: "1600px",
+        // xl3: "1920px",
+        xs: "360px",
+        sm: "480px",
+        lg: "960px",
+        "2xl": "1440px",
+        "3xl": "1920px",
       },
       container: {
         center: true,
-        screens: {
-          xs: "414px",
-          sm1: "612px",
-          sm2: "700px",
-          md1: "852px",
-          lg2: "1092px",
-          xl2: "1284px",
-        },
         padding: {
           DEFAULT: "16px",
-          sm: "2rem",
-          lg: "4rem",
-          xl: "5rem",
+          md: "78px",
+          lg: "78px",
+          "2xl": "130px",
         },
       },
       colors: {
@@ -88,6 +85,7 @@ export default {
         24: ["1.5rem", { lineHeight: "32px" }], // 24px = 1.5rem
         20: ["1.25rem", { lineHeight: "24px" }], // 20px = 1.25rem
         18: ["1.125rem", { lineHeight: "auto" }], // 18px = 1.125rem
+        16: ["1rem", { lineHeight: "auto" }], // 16px = 1rem
         14: ["0.875rem", { lineHeight: "18px" }], // 14px = 0.875rem
         12: ["0.75rem", { lineHeight: "auto" }], // 12px = 0.75rem
         10: ["0.625rem", { lineHeight: "auto" }], // 10px = 0.625rem
@@ -99,6 +97,10 @@ export default {
         asket300Extended: "Asket300Extended",
         asket800: "Asket800",
         asket300: "Asket300",
+      },
+      letterSpacing: {
+        0.8: "0.8px",
+        1: "1px",
       },
     },
   },
