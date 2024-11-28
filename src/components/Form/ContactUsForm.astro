@@ -7,19 +7,19 @@ import CheckBox from "./CheckBox.astro";
 
 <section
   class:list={[
-    "bg-brand-black bg-opacity-85 px-4 sm1:px-[60px] xl:px-[120px] py-8",
-    "flex flex-col gap-x-8 gap-y-8 md1:flex-row clip after:hidden sm1:after:block",
+    "bg-brand-black bg-opacity-85 px-4 md:px-[60px] 2xl:px-[120px] py-10 xl:py-8",
+    "flex flex-col gap-x-8 gap-y-8 xl:flex-row clip after:hidden md:after:block",
   ]}
 >
-  <div class="flex-grow md1:w-1/2 mt-auto sm1:px-16 md1:px-0">
-    <h3 class="text-brand-beigeLight font-gothic text-20">
+  <div class="flex-grow xl:w-1/2 mt-auto sm1:px-16 lg:px-0">
+    <h3 class="text-brand-beigeLight font-gothic uppercase text-20">
       Leave your contact details, and we will reach you within 24 hours
     </h3>
   </div>
 
   <form
     id="form-contac-us"
-    class:list={["flex-grow w-full md1:max-w-[480px]", "flex flex-col gap-y-5"]}
+    class:list={["flex-grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
   >
     <div class="flex flex-col gap-y-4">
       <TextField placeholder="Your name" name="name" />

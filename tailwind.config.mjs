@@ -77,7 +77,7 @@ export default {
       },
       fontSize: {
         96: ["6rem", { lineHeight: "97px", letterSpacing: "2px" }], // 96px = 6rem, lineHeight = 1.2
-        72: ["4.5rem", { lineHeight: "auto" }], // 72px
+        72: ["4.5rem", { lineHeight: "73px" }], // 72px
         64: ["4rem", { lineHeight: "65px" }], // 64px
         48: ["3rem", { lineHeight: "auto" }], // 48px
         46: ["2.875rem", { lineHeight: "auto" }], // 46px = 2.875rem
@@ -112,6 +112,10 @@ export default {
       addComponents({
         ".text-stroken-green-2": {
           "-webkit-text-stroke": "2px #003300",
+          color: "transparent",
+        },
+        ".text-stroken-green-3": {
+          "-webkit-text-stroke": "3px #003300",
           color: "transparent",
         },
         ".text-stroken-green-4": {

@@ -17,7 +17,7 @@ const { text } = Astro.props;
 
 <div class="relative">
   <figure
-    class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40"
+    class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40 pointer-events-none"
   >
     <img src={logoOutline.src} alt="logo outline" />
   </figure>
@@ -29,14 +29,11 @@ const { text } = Astro.props;
         text.map((v) => (
           <h2
             class:list={[
-              "text-48 xl1:text-96 font-asket800 uppercase relative",
+              "font-asket800 tracking-2 uppercase",
+              "text-48 md:text-64 lg:text-72 2xl:text-96",
               {
-                "flex items-center gap-x-2 text-left after:content-[''] after:h-[5px] after:grow after:bg-green-200":
-                  v.alight === "left",
-                "flex items-center gap-x-2 text-right before:content-[''] before:h-[5px] before:grow before:bg-green-200":
-                  v.alight === "right",
                 "text-green-200": v.variant === "contained",
-                "text-stroken-green-2 text-transparent":
+                "text-stroken-green-3 md:text-stroken-green-3":
                   v.variant === "outlined",
               },
             ]}
