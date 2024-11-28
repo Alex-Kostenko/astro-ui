@@ -4,11 +4,11 @@ import { DownArrow, UpArrow } from "src/assets";
 import { routes } from "src/routes";
 
 const links = [
-  { name: "Services", href: "#" },
-  { name: "Cases", href: routes.cases },
-  { name: "Expertise", href: "#" },
-  { name: "About Us", href: "#" },
-  { name: "Insights", href: "#" },
+  { name: "Services", href: "#", drop: true },
+  { name: "Cases", href: routes.cases, drop: true },
+  { name: "Expertise", href: "#", drop: true },
+  { name: "About Us", href: "#", drop: true },
+  { name: "Insights", href: "#", drop: false },
 ];
 
 const url = Astro.url;
@@ -27,7 +27,7 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center",
+        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px]",
         {
           "text-brand-white": !IsCurrentPage(link.href),
           "text-brand-beigeLight": IsCurrentPage(link.href),
@@ -35,20 +35,24 @@ function IsCurrentPage(page: string): boolean {
       ]}
     >
       {link.name}
-      <DownArrow
-        class:list={[
-          {
-            hidden: IsCurrentPage(link.href),
-          },
-        ]}
-      />
-      <UpArrow
-        class:list={[
-          {
-            hidden: !IsCurrentPage(link.href),
-          },
-        ]}
-      />
+      {link.drop && (
+        <span class="flex items-center justify-center min-w-4">
+          <DownArrow
+            class:list={[
+              {
+                hidden: IsCurrentPage(link.href),
+              },
+            ]}
+          />
+          <UpArrow
+            class:list={[
+              {
+                hidden: !IsCurrentPage(link.href),
+              },
+            ]}
+          />
+        </span>
+      )}
     </a>
   ))
 }

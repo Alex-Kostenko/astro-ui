@@ -13,7 +13,9 @@ const t = useTranslations(lang, "header");
   <header
     class:list={[
       "flex items-center justify-between box-border ",
-      "max-w-[1680px] mx-auto py-4 md1:py-5 px-8 bg-brand-black bg-opacity-[48%] shadow-inner backdrop-blur-xl",
+      // bg-brand-black bg-opacity-[48%] shadow-inner backdrop-blur-xl
+      "max-w-[1680px] mx-auto py-4 md1:py-5 px-8 ",
+      "relative before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>

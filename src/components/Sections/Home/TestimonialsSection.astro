@@ -18,7 +18,7 @@ const comments = await commentService.get();
     <div class="swiper-wrapper">
       {
         comments.data.map((v) => (
-          <div class="swiper-slide sm1:!w-2/3 md1:max-w-[680px] duration-300">
+          <div class="swiper-slide sm1:!w-2/3 md1:max-w-[680px] xl1:max-w-[792px] duration-300">
             <CommentAstro comment={v} class="flex-col xl:flex-row" />
           </div>
         ))

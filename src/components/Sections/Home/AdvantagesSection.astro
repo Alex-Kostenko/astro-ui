@@ -12,7 +12,7 @@ import { cubeSide, Eye } from "src/assets";
       colorTitle="text-brand-white"
     />
     <section
-      class="grid grid-cols-2 grid-rows-5 sm1:grid-cols-4 sm1:grid-rows-4"
+      class="grid grid-cols-2 grid-rows-5 sm1:grid-cols-4 sm1:grid-rows-4 container-aspect"
     >
       <video
         autoplay
@@ -102,8 +102,14 @@ import { cubeSide, Eye } from "src/assets";
       <div class="hidden sm1:block"></div>
 
       <figure class="border border-brand-white">
-        <img src={Eye.src} alt="Eye image" />
+        <img src={Eye.src} alt="Eye image" class="h-full w-full object-cover" />
       </figure>
     </section>
   </Container>
 </div>
+
+<style>
+  .container-aspect > * {
+    aspect-ratio: 1/1;
+  }
+</style>
