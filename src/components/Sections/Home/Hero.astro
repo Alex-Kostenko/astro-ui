@@ -1,7 +1,6 @@
 ---
 import { useTranslations, type Languages } from "@i18n/index";
 import { cubeNear, logo } from "src/assets";
-import { TypographyAstro } from "@components/Typography";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "hero");
@@ -14,7 +13,7 @@ const t = useTranslations(lang as Languages, "hero");
     autoplay
     muted
     loop
-    class="absolute -z-10 top-0 right-0 left-0 bg-black bg-opacity-45 h-full w-full object-cover"
+    class="absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover"
   >
     <source src={cubeNear} type="video/mp4" />
   </video>
@@ -23,13 +22,14 @@ const t = useTranslations(lang as Languages, "hero");
       class="flex flex-col lg:flex-row lg:justify-between gap-y-20 gap-x-6 lg:px-6"
       class:list={[""]}
     >
-      <img
+      <figure
         class:list={[
           "h-[112px] md:h-[220px] lg:h-[140px] xl:h-[200px] 2xl:h-[240px] my-auto",
         ]}
-        src={logo.src}
-        alt="logo"
-      />
+      >
+        <img class="h-full" src={logo.src} alt="logo" />
+      </figure>
+
       <article
         class="xl:max-w-[520px] lg:max-w-[380px] w-full flex flex-col gap-y-10 justify-between"
       >
