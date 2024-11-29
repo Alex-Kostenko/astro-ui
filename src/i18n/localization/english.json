@@ -25,6 +25,31 @@
   "services": {
     "tag": "SERVICES",
     "title": "Our services will help you to accomplish your purpose easier and better.",
-    "explore": "explore"
+    "listOfOffer": [
+      {
+        "title": "Project portfolio management",
+        "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+        "img": "/assets/img/Circly.png"
+      },
+      {
+        "title": "managed team",
+        "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+        "img": "/assets/img/Circly.png"
+      },
+      {
+        "title": "top-tier expert engagement",
+        "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+        "img": "/assets/img/Circly.png"
+      },
+      {
+        "title": "application engineering",
+        "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+        "img": "/assets/img/Circly.png"
+      }
+    ]
+  },
+  "parthners": {
+    "tag": "PARTNERS",
+    "title": "OUR EXPERTISE ES DIVIDED FROM OUR community experts."
   }
 }

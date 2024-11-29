@@ -7,6 +7,7 @@ import { ArrowRight, Human } from "src/assets";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.about");
+// have you ever counted of a single mis  hire?
 ---
 
 <Container class="mt-14">
@@ -22,7 +23,7 @@ const t = useTranslations(lang as Languages, "home.about");
     <span
       class="text-stroken-green-2 md:text-stroken-green-4 md:flex-[1_1_30%]"
     >
-      {t("title.line-1-contained")}
+      {t("title.line-1-outlined")}
     </span>
     <span class="text-stroken-green-2 md:text-stroken-green-4">counted</span>
     <span> of a single</span>

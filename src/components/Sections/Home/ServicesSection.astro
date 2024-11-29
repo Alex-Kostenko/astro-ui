@@ -3,17 +3,22 @@ import { AccordionAstro } from "@components/Accordion";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
-import { serviceList } from "@constant/index";
+import { useTranslations, type Languages } from "@i18n/index";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.services");
+const list = t("listOfOffer") as {
+  title: string;
+  description: string;
+  img: string;
+}[];
 ---
 
 <Container>
-  <SectionTitle
-    title="Our services will help you to accomplish your purpose easier and better."
-    type="SERVICES"
-  />
+  <SectionTitle title={t("title")} type={t("tag")} />
   <section class="flex flex-col gap-y-5">
     {
-      serviceList.map((v, i) => (
+      list.map((v, i) => (
         <AccordionAstro>
           <section slot="title" class="flex flex-row gap-y-4 items-center">
             <TypographyAstro
@@ -44,7 +49,7 @@ import { serviceList } from "@constant/index";
               <div class="h-full max-h-[240px] aspect-square">
                 <img
                   class="h-full max-h-[240px] mx-auto"
-                  src={v.imgSrc}
+                  src={v.img}
                   alt={v.title}
                 />
               </div>
