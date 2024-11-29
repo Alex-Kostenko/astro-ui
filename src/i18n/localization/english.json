@@ -51,5 +51,10 @@
   "parthners": {
     "tag": "PARTNERS",
     "title": "OUR EXPERTISE ES DIVIDED FROM OUR community experts."
+  },
+  "project": {
+    "tag": "PROJECTS",
+    "title": "We take great pride in the work we do and the values we uphold.",
+    "btnExplorerMore": "explore more projects"
   }
 }
