@@ -1,0 +1,21 @@
+{
+  "header": {
+    "contactUs": "contact us"
+  },
+  "hero": {
+    "title": "ENGINEERING YOUR",
+    "subTitle": "DREAMS",
+    "descripton": "Transform your vision into reality with our expert team of engineers, committed to delivering innovative solutions tailored to your unique goals/aspirations."
+  },
+  "home": {
+    "about": {
+      "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness.",
+      "aboutUs": "more about us"
+    }
+  },
+  "services": {
+    "tag": "SERVICES",
+    "title": "Our services will help you to accomplish your purpose easier and better.",
+    "explore": "explore"
+  }
+}
