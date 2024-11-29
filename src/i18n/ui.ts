@@ -1,9 +1,20 @@
-export const languages = {
-  en: "English",
-  ua: "Ukrain",
+export const languages: LanguageSet = {
+  default: { label: "English", slug: undefined, lang: "en" },
+  en: { label: "English", slug: "en", lang: "en" },
+  ua: { label: "Ukrain", slug: "ua", lang: "ua" },
 };
 
-export type Languages = keyof typeof languages;
+export interface Language {
+  label: string;
+  lang: Languages;
+  slug: string | undefined;
+}
+
+export interface LanguageSet {
+  [key: string]: Language;
+}
+
+export type Languages = "en" | "ua";
 
 export const defaultLang = "en";
 

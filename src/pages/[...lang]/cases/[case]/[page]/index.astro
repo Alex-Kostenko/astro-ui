@@ -1,8 +1,8 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { type Languages, languages } from "@i18n/index";
-import { cubeNear } from "src/assets";
+import { type Language, languages } from "@i18n/index";
+import { cubeNear } from "@assets/index";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
 import projectService from "@service/project.service";
@@ -28,12 +28,12 @@ export const getStaticPaths = (async ({ paginate }) => {
     },
   ];
 
-  const requestProjects = [...Object.keys(languages), ""].flatMap((lang) =>
+  const requestProjects = Object.keys(languages).flatMap((lang) =>
     projectDomain.map((domain) =>
       projectService
         .get({
           pagination: { limit: "max" },
-          locale: lang as Languages,
+          locale: languages[lang].lang,
           filter:
             domain.id !== 0
               ? [
@@ -44,7 +44,13 @@ export const getStaticPaths = (async ({ paginate }) => {
                 ]
               : [],
         })
-        .then((response) => ({ lang, case: domain, response })),
+        .then((response) => {
+          return {
+            lang: languages[lang] as Language,
+            case: domain,
+            response,
+          };
+        }),
     ),
   );
 
@@ -52,7 +58,7 @@ export const getStaticPaths = (async ({ paginate }) => {
 
   return responses.flatMap((v) => {
     return paginate(v.response.data, {
-      params: { lang: v.lang, case: v.case.slug },
+      params: { lang: v.lang.slug, case: v.case.slug },
       props: { meta: v.response.meta, slug: v.case.slug },
       pageSize: 6,
     });
