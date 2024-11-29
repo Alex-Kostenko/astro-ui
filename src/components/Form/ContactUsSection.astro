@@ -16,12 +16,13 @@ const { text } = Astro.props;
 ---
 
 <div class="relative">
-  <figure
-    class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40 pointer-events-none"
-  >
-    <img src={logoOutline.src} alt="logo outline" />
-  </figure>
-  <Container>
+  <Container class="relative">
+    <figure
+      class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40 pointer-events-none"
+    >
+      <img src={logoOutline.src} alt="logo outline" />
+    </figure>
+
     <article
       class="flex flex-col xl1:gap-y-4 xl:gap-y-3 gap-y-2 mb-16 sm:mb-12"
     >
