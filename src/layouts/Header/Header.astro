@@ -9,19 +9,18 @@ const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
 ---
 
-<div class="fixed right-0 left-0 top-8 z-50 box-border mx-4 md:mx-8">
+<div class="fixed inset-x-0 top-8 z-50 box-border mx-4 md:mx-8">
   <header
     class:list={[
       "flex items-center justify-between box-border ",
-      // bg-brand-black bg-opacity-[48%] shadow-inner backdrop-blur-xl
-      "max-w-[1680px] mx-auto py-4 md1:py-5 px-8 ",
+      "max-w-[1680px] mx-auto py-4 2xl:py-5 px-8",
       "relative before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>
-      <img src={smallLogo.src} class="max-h-12 md1:max-h-none" alt="logo" />
+      <img src={smallLogo.src} class="max-h-12 2xl:max-h-none" alt="logo" />
     </a>
-    <nav class="ml-auto hidden md1:flex items-center gap-x-10">
+    <nav class="ml-auto hidden 2xl:flex items-center gap-x-10">
       <HeaderLinks />
     </nav>
 
