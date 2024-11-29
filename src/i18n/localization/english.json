@@ -56,5 +56,35 @@
     "tag": "PROJECTS",
     "title": "We take great pride in the work we do and the values we uphold.",
     "btnExplorerMore": "explore more projects"
+  },
+  "advantagesSection": {
+    "tag": "ADVANTAGES",
+    "title": "Nothing kills business faster than a entry-level developers",
+    "advantages": {
+      "block1": {
+        "title": "EXPERT TEAM",
+        "text": "Stellar team, you would otherwise not have access to. Our community consists of more than 90% of senior developers and project managers with a T-shaped skill set."
+      },
+      "block2": {
+        "title": "Remote Convenience",
+        "text": "100% remote and always just a click away. We ensure seamless communication and collaboration, no matter where you are."
+      },
+      "block3": {
+        "title": "Empathetic Approach",
+        "text": "We approach every project with empathy and understanding that every client has unique pains and needs."
+      },
+      "block4": {
+        "title": "Efficient Execution",
+        "text": "We excel in project management ensuring that your project is executed efficiently and effectively."
+      },
+      "block5": {
+        "title": "Values-Driven",
+        "text": "We are deeply committed to our values of decency, meaningful engagement, standards, and synergy, which reflect in everything we do."
+      }
+    }
+  },
+  "testimonials": {
+    "tag": "TESTIMONIALS",
+    "title": "Our clients talk about testing the results that we can achieve together."
   }
 }
