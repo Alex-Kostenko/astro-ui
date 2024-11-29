@@ -1,5 +1,58 @@
 ---
-const links = ["Services", "Cases", "Expertise", "About Us", "Insights"];
+import { formatLink } from "@utils/index";
+import { DownArrow, UpArrow } from "src/assets";
+import { routes } from "src/routes";
+
+const links = [
+  { name: "Services", href: "#", drop: true },
+  { name: "Cases", href: routes.cases, drop: true },
+  { name: "Expertise", href: "#", drop: true },
+  { name: "About Us", href: "#", drop: true },
+  { name: "Insights", href: "#", drop: false },
+];
+
+const url = Astro.url;
+const { lang } = Astro.params;
+
+function IsCurrentPage(page: string): boolean {
+  return url.pathname
+    .split("/")
+    .filter((v) => v !== lang)
+    .includes(page.split("/")[1]);
+}
 ---
 
-{links.map((link) => <p class="text-white">{link}</p>)}
+{
+  links.map((link) => (
+    <a
+      href={formatLink(url, link.href)}
+      class:list={[
+        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px]",
+        {
+          "text-brand-white": !IsCurrentPage(link.href),
+          "text-brand-beigeLight": IsCurrentPage(link.href),
+        },
+      ]}
+    >
+      {link.name}
+      {link.drop && (
+        <span class="flex items-center justify-center min-w-4">
+          <DownArrow
+            class:list={[
+              {
+                hidden: IsCurrentPage(link.href),
+              },
+            ]}
+          />
+          <UpArrow
+            class:list={[
+              {
+                hidden: !IsCurrentPage(link.href),
+              },
+            ]}
+          />
+        </span>
+      )}
+    </a>
+  ))
+}

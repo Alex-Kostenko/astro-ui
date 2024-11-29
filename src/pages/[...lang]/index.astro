@@ -1,7 +1,7 @@
 ---
 import "@style/home.css";
+import type { GetStaticPaths } from "astro";
 import Layout from "@layouts/Layout.astro";
-import { getFromLocale, useTranslations } from "@i18n/index";
 import {
   AboutSection,
   HeroSection,
@@ -11,12 +11,17 @@ import {
   ServicesSection,
   TestimonialsSection,
 } from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { languages } from "@i18n/index";
 
-const lang = getFromLocale(Astro.currentLocale);
-const t = useTranslations(lang);
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({
+    params: { lang: languages[v].slug },
+  }));
+}) satisfies GetStaticPaths;
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="UniCode">
   <link
     slot="head"
     rel="stylesheet"
@@ -31,6 +36,13 @@ const t = useTranslations(lang);
       <ProjectsSection />
       <AdvantagesSection />
       <TestimonialsSection />
+      <ContactUsSection
+        text={[
+          { text: "Every journey", alight: "right", variant: "contained" },
+          { text: "starts from the", alight: "none", variant: "contained" },
+          { text: "first step", alight: "left", variant: "outlined" },
+        ]}
+      />
     </div>
   </main>
 </Layout>

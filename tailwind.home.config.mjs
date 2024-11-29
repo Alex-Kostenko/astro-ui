@@ -3,8 +3,8 @@ const customConfig = require("./tailwind.config");
 export default {
   content: [
     "./src/pages/index.astro",
-    "./src/pages/[lang]/index.astro",
-    "./src/components/Sections/*.{astro,html,js,jsx}",
+    "./src/pages/**/index.astro",
+    "./src/components/Sections/Home/*.{astro,html,js,jsx}",
     "./src/components/ProjectCard/*.{astro,html,js,jsx}",
     "./src/components/Comment/*.{astro,html,js,jsx}",
     ...customConfig.content,

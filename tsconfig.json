@@ -6,7 +6,7 @@
       "@layouts/*": ["src/layouts/*"],
       "@style/*": ["src/style/*"],
       "@i18n/*": ["src/i18n/*"],
-      "@icons/*": ["src/icons/*"],
+      "@assets/*": ["src/assets/*"],
       "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@service/*": ["src/service/*"],

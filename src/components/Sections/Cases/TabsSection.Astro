@@ -1,0 +1,68 @@
+---
+import { Container } from "@components/Container";
+import { Link } from "@components/Link";
+import projectService from "@service/project.service";
+import { formatLink } from "@utils/index";
+
+interface Props {
+  domain: string;
+}
+
+const domains = await projectService.getDomains();
+const { domain } = Astro.props;
+---
+
+<Container id="cases">
+  <div class="bg-brand-green px-2 py-2 rounded-lg">
+    <div class="mySwiper swiper">
+      <section class:list={["swiper-wrapper justify-between"]}>
+        <Link
+          class="swiper-slide"
+          variant="none"
+          color="biscuit"
+          active={domain === "all"}
+          href={formatLink(Astro.url, `cases/all/1#cases`)}>All cases</Link
+        >
+
+        {
+          domains.data.map((v) => (
+            <Link
+              class="swiper-slide"
+              variant="none"
+              color="biscuit"
+              active={domain === v.slug}
+              href={formatLink(Astro.url, `cases/${v.slug}/1#cases`)}
+            >
+              {v.name}
+            </Link>
+          ))
+        }
+      </section>
+    </div>
+  </div>
+</Container>
+
+<script>
+  import Swiper from "swiper";
+
+  new Swiper(".mySwiper", {
+    slidesPerView: "auto",
+    spaceBetween: 30,
+  });
+</script>
+
+<style is:global>
+  .swiper-slide {
+    width: auto;
+  }
+
+  @media (max-width: 1024px) {
+    .swiper-slide {
+      font-size: 14px;
+    }
+  }
+
+  #cases {
+    scroll-margin-top: 200px; /* Зміщення в 100px вище */
+  }
+</style>

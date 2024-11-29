@@ -5,6 +5,5 @@ export function formatLink(url: URL, href: string) {
 
   const [, lang] = url.pathname.split("/");
   if (lang in languages) return `/${lang}${link}`;
-  console.log(link, href);
   return `${link}`;
 }

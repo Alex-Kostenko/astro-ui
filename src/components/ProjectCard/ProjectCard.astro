@@ -13,13 +13,13 @@ const { class: className, project } = Astro.props;
 
 <section
   class:list={[
-    "flex justify-between gap-y-3 border-t border-brand-black border-opacity-45 pt-5",
+    "flex justify-between gap-y-3 pt-6 relative border-project",
     className,
   ]}
 >
   <section class="flex flex-col justify-between flex-1">
     <article class="mb-5">
-      <TypographyAstro type="subTitle-1" class="text-green">
+      <TypographyAstro type="subTitle-1" class="text-green mb-2">
         {project.title}
       </TypographyAstro>
       <TypographyAstro type="subTitle-sm-1" color="gray">
@@ -31,7 +31,7 @@ const { class: className, project } = Astro.props;
         <TypographyAstro type="subTitle-sm-4" color="gray">
           TECHNOLOGIES:
         </TypographyAstro>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mt-1">
           {
             project.technologies.map((v) => (
               <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
@@ -73,3 +73,16 @@ const { class: className, project } = Astro.props;
     />
   </div>
 </section>
+
+<style>
+  .border-project::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    min-width: 20px;
+    background: #171a1f7a;
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/index";
+import projectService from "@service/project.service";
+import { ArrowRight } from "src/assets";
+
+const { lang } = Astro.params;
+const response = await projectService.get({
+  pagination: { page: 1, pageSize: 4 },
+  locale: lang as Languages,
+});
+---
+
+<Container>
+  <SectionTitle
+    type="PROJECTS"
+    title="We take great pride in the work we do and the values we uphold."
+  />
+
+  <ProjectList projects={response.data} />
+  <ButtonAstro class="w-full"
+    >explore more projects <ArrowRight size={20} /></ButtonAstro
+  >
+</Container>

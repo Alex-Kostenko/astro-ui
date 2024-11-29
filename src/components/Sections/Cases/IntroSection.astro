@@ -1,0 +1,68 @@
+---
+import { Container } from "@components/Container";
+import { TypographyAstro } from "@components/Typography";
+// import { useTranslations, type Languages } from "@i18n/index";
+import { Human } from "src/assets";
+
+// const { lang } = Astro.params;
+// const t = useTranslations(lang as Languages, "home.about");
+---
+
+<Container>
+  <h2
+    class:list={["text-48 md:text-72 2xl:text-96 font-bold font-asket800"]}
+    class="text-green-200 lg:inline block uppercase"
+  >
+    we do
+  </h2>
+  <h2
+    class:list={["text-48 md:text-72 2xl:text-96 font-bold font-asket800"]}
+    class="text-transparent text-stroken-green-2 inline uppercase"
+  >
+    great
+  </h2>
+
+  <section class="flex flex-wrap uppercase font-asket800">
+    <span
+      class="text-green-200 font-bold"
+      class:list={[
+        "text-48 md:text-72 2xl:text-96",
+        "text-transparent text-stroken-green-2",
+      ]}
+    >
+      things
+    </span>
+    <div class="flex-grow h-1 bg-green-200 my-auto mx-2"></div>
+  </section>
+
+  <h2 class="uppercase font-asket800">
+    <span
+      class:list={["text-48 md:text-72 2xl:text-96 font-bold"]}
+      class="text-green-200"
+    >
+      for our clients
+    </span>
+  </h2>
+
+  <section
+    class="flex flex-col lg:flex-row gap-x-14 justify-between gap-y-4 mt-10 font-gothic"
+  >
+    <div>
+      <TypographyAstro type="body-4" class="lg:w-[480px]">
+        Discover our expertise and accomplishments in software development!
+        Explore a collection of successful solutions that empower businesses to
+        streamline operations, enhance user experiences, and reach their
+        objectives. Dive into our case studies to see how we transform ideas
+        into impactful, high-performing products.
+      </TypographyAstro>
+    </div>
+
+    <div class="lg:max-w-[704px] object-cover w-full">
+      <img
+        class="min-h-full object-cover min-w-full"
+        src={Human.src}
+        alt="human face of number"
+      />
+    </div>
+  </section>
+</Container>

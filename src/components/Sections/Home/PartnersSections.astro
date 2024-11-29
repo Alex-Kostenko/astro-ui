@@ -2,10 +2,9 @@
 import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { listCompany } from "src/assets/icon/company";
-import "swiper/css";
 ---
 
-<section>
+<section class="py-8">
   <Container>
     <SectionTitle
       title="OUR EXPERTISE ES DIVIDED FROM OUR community experts."
@@ -17,7 +16,7 @@ import "swiper/css";
     <div class="group">
       {
         listCompany.map((v) => (
-          <div class="card bg-green">
+          <div class="card bg-green rounded">
             <img src={v.src} alt={v.src} />
           </div>
         ))

@@ -8,5 +8,5 @@ export interface IPagination {
 export interface IPaginationQuery {
   page?: number;
   pageSize?: number;
-  limit?: number;
+  limit?: number | "max";
 }

@@ -1,5 +1,9 @@
 @tailwind base;
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "Gothic400";
   src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
