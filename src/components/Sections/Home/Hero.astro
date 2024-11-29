@@ -19,19 +19,28 @@ const t = useTranslations(lang as Languages, "hero");
   </video>
   <div class="max-w-[1616px] h-full w-full my-auto mx-auto px-4 md:px-8">
     <div
-      class="flex flex-col lg:flex-row lg:justify-between gap-y-20 gap-x-6 lg:px-6"
-      class:list={[""]}
+      class:list={[
+        "flex flex-col lg:flex-row lg:justify-between",
+        "gap-y-16 md:gap-y-20 gap-x-6",
+        "lg:px-6",
+      ]}
     >
       <figure
         class:list={[
           "h-[112px] md:h-[220px] lg:h-[140px] xl:h-[200px] 2xl:h-[240px] my-auto",
+          "mx-auto lg:mx-0",
         ]}
       >
         <img class="h-full" src={logo.src} alt="logo" />
       </figure>
 
       <article
-        class="xl:max-w-[520px] lg:max-w-[380px] w-full flex flex-col gap-y-10 justify-between"
+        class=""
+        class:list={[
+          "xl:max-w-[520px] lg:max-w-[380px] w-full",
+          "flex flex-col justify-between",
+          "gap-y-6 md:gap-y-10 lg:gap-y-4",
+        ]}
       >
         <div
           class="font-extrabold text-center lg:text-start font-asket800"
