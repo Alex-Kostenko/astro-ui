@@ -19,6 +19,8 @@ export const getStaticPaths = (() => {
     params: { lang: languages[v].slug },
   }));
 }) satisfies GetStaticPaths;
+
+// console.log("info base: ", Astro.currentLocale);
 ---
 
 <Layout title="UniCode">

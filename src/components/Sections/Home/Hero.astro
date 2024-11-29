@@ -48,7 +48,11 @@ const t = useTranslations(lang as Languages, "hero");
         >
           <h5 class="text-brand-white mb-3 uppercase">{t("title")}</h5>
           <h5>
-            <span id="hero-change-text" class="empty uppercase">
+            <span
+              id="hero-change-text"
+              class="empty uppercase"
+              data-text-range={t("subTitleRange")}
+            >
               {t("subTitle")}
             </span>
           </h5>
@@ -68,9 +72,14 @@ const t = useTranslations(lang as Languages, "hero");
 </section>
 
 <script>
-  const words = ["DREAMS", "DREAMS2", "DREAMS3"],
-    colors = ["text-brand-beigeLight", "text-brand-beige", "text-brand-gray"],
-    text = document.querySelector("#hero-change-text") as HTMLSpanElement;
+  const colors = [
+    "text-brand-beigeLight",
+    "text-brand-beige",
+    "text-brand-gray",
+  ];
+  const text = document.querySelector("#hero-change-text") as HTMLSpanElement;
+  const range = text.getAttribute("data-text-range");
+  const words = range?.split(",") || [];
 
   // Generator (iterate from 0-3)
   function* generator(): Generator<number> {
@@ -88,7 +97,7 @@ const t = useTranslations(lang as Languages, "hero");
   function printChar(word: string) {
     let i = 0;
     text.innerHTML = "";
-    text.classList.add(colors[words.indexOf(word)]);
+    text.classList.add(colors[words.indexOf(word)] || colors[1]);
     let id = setInterval(() => {
       if (i >= word?.length) {
         deleteChar();
