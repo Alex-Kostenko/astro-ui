@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
+    // "./src/pages/**/*.{astro,html,js,jsx}",
     "./src/layouts/**/*.{astro,html,js,jsx}",
     "./src/components/Button/**/*.{astro,html,js,jsx}",
     "./src/components/Container/**/*.{astro,html,js,jsx}",
@@ -14,14 +15,6 @@ export default {
   theme: {
     extend: {
       screens: {
-        // xs: "0px",
-        // sm1: "768px",
-        // sm2: "800px",
-        // md1: "1024px",
-        // lg2: "1280px",
-        // xl1: "1440px",
-        // xl2: "1600px",
-        // xl3: "1920px",
         xs: "360px",
         sm: "480px",
         lg: "960px",

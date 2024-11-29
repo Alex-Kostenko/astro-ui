@@ -1,7 +1,7 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { type Languages } from "@i18n/index";
+import { type Languages, languages } from "@i18n/index";
 import { cubeNear } from "src/assets";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
@@ -11,7 +11,6 @@ import { Container } from "@components/Container";
 import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 import type { IProjectDomain } from "@interfaces/project.domain";
 import { Pagination } from "@components/Pagination";
-import { ContactUsForm } from "@components/Form";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -29,12 +28,12 @@ export const getStaticPaths = (async ({ paginate }) => {
     },
   ];
 
-  const requestProjects = Object.keys({ en: "" }).flatMap((v) =>
+  const requestProjects = [...Object.keys(languages), ""].flatMap((lang) =>
     projectDomain.map((domain) =>
       projectService
         .get({
           pagination: { limit: "max" },
-          locale: v as Languages,
+          locale: lang as Languages,
           filter:
             domain.id !== 0
               ? [
@@ -45,7 +44,7 @@ export const getStaticPaths = (async ({ paginate }) => {
                 ]
               : [],
         })
-        .then((response) => ({ lang: v, case: domain, response })),
+        .then((response) => ({ lang, case: domain, response })),
     ),
   );
 
@@ -70,7 +69,7 @@ const { page, meta, slug } = Astro.props;
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
   <main class="flex flex-col gap-y-[120px]">
-    <div class="h-[144px] md1:h-[168px] bg-black bg-opacity-45">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
       <video
         autoplay
         muted

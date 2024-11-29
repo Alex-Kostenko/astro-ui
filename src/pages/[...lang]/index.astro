@@ -1,5 +1,6 @@
 ---
 import "@style/home.css";
+import type { GetStaticPaths } from "astro";
 import Layout from "@layouts/Layout.astro";
 import {
   AboutSection,
@@ -11,6 +12,21 @@ import {
   TestimonialsSection,
 } from "@components/Sections";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { languages } from "@i18n/index";
+
+export const getStaticPaths = (() => {
+  return [
+    ...Object.keys(languages).map((v) => ({ params: { lang: v } })),
+    { params: { lang: "" } },
+  ];
+}) satisfies GetStaticPaths;
+
+const lang = [...Object.keys(languages), ""];
+console.log(
+  lang.map((v) => ({
+    value: v,
+  })),
+);
 ---
 
 <Layout title="UniCode">

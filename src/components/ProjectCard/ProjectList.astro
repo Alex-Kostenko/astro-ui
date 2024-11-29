@@ -9,7 +9,7 @@ interface Props {
 const { projects } = Astro.props;
 ---
 
-<section class="grid sm1:grid-cols-2 gap-y-5 gap-x-5 mb-5">
+<section class="grid md:grid-cols-2 gap-y-5 gap-x-5 mb-5">
   {projects.map((v) => <ProjectCard project={v} class="project-item" />)}
 </section>
 

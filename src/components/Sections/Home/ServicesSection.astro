@@ -34,8 +34,8 @@ import { serviceList } from "@constant/index";
           </section>
 
           <section class="flex flex-row gap-y-4 overflow-auto">
-            <div class="2xl:flex-[0_1_75%] w-full 2xl:ml-auto flex justify-between">
-              <div class="max-w-[480px] w-full">
+            <div class="2xl:flex-[0_1_75%] w-full 2xl:ml-auto flex flex-col lg:flex-row justify-between">
+              <div class="lg:max-w-[480px] w-full">
                 <TypographyAstro type="body-4" class="my-6">
                   {v.description}
                 </TypographyAstro>
@@ -43,7 +43,7 @@ import { serviceList } from "@constant/index";
               </div>
               <div class="h-full max-h-[240px] aspect-square">
                 <img
-                  class="h-full max-h-[240px] "
+                  class="h-full max-h-[240px] mx-auto"
                   src={v.imgSrc}
                   alt={v.title}
                 />
