@@ -1,6 +1,11 @@
 ---
-const { open = false, arrowStyle = false } = Astro.props;
 import { DownArrow, UpArrow } from "src/assets";
+interface Props {
+  open?: boolean;
+  arrowStyle?: boolean;
+}
+
+const { open = false, arrowStyle = false } = Astro.props;
 ---
 
 {
