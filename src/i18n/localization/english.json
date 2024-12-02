@@ -86,5 +86,8 @@
   "testimonials": {
     "tag": "TESTIMONIALS",
     "title": "Our clients talk about testing the results that we can achieve together."
+  },
+  "contactUs": {
+    "text": ["Every journey", "starts from the", "first step"]
   }
 }
