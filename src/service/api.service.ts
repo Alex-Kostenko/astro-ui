@@ -30,8 +30,10 @@ class ApiService {
     });
 
     if (!res.ok) {
+      const data = await res.json();
+      console.log(data);
       throw new Error(
-        `API request failed ${path} : ${res.status} ${res.statusText}`,
+        `API request failed ${path} : ${res.status} ${res.statusText} \n${data}`,
       );
     }
     return res;

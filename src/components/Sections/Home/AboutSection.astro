@@ -7,6 +7,7 @@ import { ArrowRight, Human } from "src/assets";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.about");
+// have you ever counted of a single mis  hire?
 ---
 
 <Container class="mt-14">
@@ -18,11 +19,11 @@ const t = useTranslations(lang as Languages, "home.about");
       "text-36 md:text-64 lg:text-72 2xl:text-96",
     ]}
   >
-    <span> have you</span>
+    <span>{t("title.line-1-contained")}</span>
     <span
       class="text-stroken-green-2 md:text-stroken-green-4 md:flex-[1_1_30%]"
     >
-      ever
+      {t("title.line-1-outlined")}
     </span>
     <span class="text-stroken-green-2 md:text-stroken-green-4">counted</span>
     <span> of a single</span>
@@ -56,7 +57,9 @@ const t = useTranslations(lang as Languages, "home.about");
       <ButtonAstro color="black" class="mt-5">
         {t("aboutUs")}
 
-        <ArrowRight size={20} />
+        <span class="w-5 h-5 flex items-center justify-center">
+          <ArrowRight />
+        </span>
       </ButtonAstro>
     </div>
   </section>

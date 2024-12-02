@@ -9,7 +9,13 @@ import type {
 } from "@interfaces/index";
 
 class CommentService {
-  async get(pagination?: IPaginationQuery, locale?: Languages) {
+  async get({
+    locale,
+    pagination,
+  }: {
+    pagination?: IPaginationQuery;
+    locale?: Languages;
+  } = {}) {
     return apiService.get<IResponseApi<IComment[], MetaPagination>>(
       ApiPath.comment,
       {

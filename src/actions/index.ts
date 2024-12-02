@@ -19,8 +19,6 @@ export const server = {
     }),
     accept: "form",
     async handler(input, context) {
-      console.log("input: ", input);
-
       const file = await fileService.upload({
         files: input.file,
         path: UploadPath.document,

@@ -1,6 +1,7 @@
 ---
 import { Container } from "@components/Container";
 import { Link } from "@components/Link";
+import { useTranslations, type Languages } from "@i18n/index";
 import projectService from "@service/project.service";
 import { formatLink } from "@utils/index";
 
@@ -10,6 +11,9 @@ interface Props {
 
 const domains = await projectService.getDomains();
 const { domain } = Astro.props;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "cases.tabSection");
 ---
 
 <Container id="cases">
@@ -21,7 +25,8 @@ const { domain } = Astro.props;
           variant="none"
           color="biscuit"
           active={domain === "all"}
-          href={formatLink(Astro.url, `cases/all/1#cases`)}>All cases</Link
+          href={formatLink(Astro.url, `cases/all/1#cases`)}
+          >{t("allCases")}</Link
         >
 
         {

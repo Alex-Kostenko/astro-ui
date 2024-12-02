@@ -2,20 +2,164 @@
   "header": {
     "contactUs": "contact us"
   },
+  "footer": {
+    "menu": [
+      {
+        "title": "SERVICES",
+        "list": [
+          "Project Management Consulting",
+          "Top-Tier Expert Engagement",
+          "Application Engineering",
+          "Managed Team"
+        ]
+      },
+      {
+        "title": "EXPERTISE",
+        "list": ["Mobile Development", "Web Development", "UI/UX Design"]
+      },
+      {
+        "title": "ABOUT US",
+        "list": [
+          "Sustainable Technologies",
+          "Our story and values",
+          "How we work",
+          "Testimonials"
+        ]
+      },
+      {
+        "title": "CLIENTS",
+        "list": ["Scale-Up", "Start-Up"]
+      },
+      {
+        "title": "INSIGHTS",
+        "list": ["All articles"]
+      },
+      {
+        "title": "CAREERS",
+        "list": ["Start your way with Us"]
+      }
+    ],
+    "privacyPolicy": "Privacy Policy.",
+    "termsOfService": "Terms of Service.",
+    "copyright": "Copyright © 2023 Implex. All rights reserved."
+  },
+  "formContactUs": {
+    "title": "Leave your contact details, and we will reach you within 24 hours",
+    "submitBtn": "get in touch",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email address",
+    "messageLabel": "Your message",
+    "file": {
+      "button": "Add File",
+      "label": "File size up to 10Mb"
+    },
+    "consent": {
+      "start": "I have read and accepted the",
+      "divider": "and",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
   "hero": {
     "title": "ENGINEERING YOUR",
     "subTitle": "DREAMS",
+    "subTitleRange": ["DREAMS", "Products", "Team", "Result"],
     "descripton": "Transform your vision into reality with our expert team of engineers, committed to delivering innovative solutions tailored to your unique goals/aspirations."
   },
   "home": {
     "about": {
+      "title": {
+        "line-1-contained": "have you",
+        "line-1-outlined": "ever",
+        "line-2-contained": "counted",
+        "line-2-outlined": "of a single",
+        "line-3-start": "mis",
+        "line-3-end": "hire?"
+      },
       "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness.",
       "aboutUs": "more about us"
+    },
+    "services": {
+      "tag": "SERVICES",
+      "title": "Our services will help you to accomplish your purpose easier and better.",
+      "listOfOffer": [
+        {
+          "title": "Project portfolio management",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.png"
+        },
+        {
+          "title": "managed team",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.png"
+        },
+        {
+          "title": "top-tier expert engagement",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.png"
+        },
+        {
+          "title": "application engineering",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.png"
+        }
+      ]
+    },
+    "parthners": {
+      "tag": "PARTNERS",
+      "title": "OUR EXPERTISE ES DIVIDED FROM OUR community experts."
+    },
+    "project": {
+      "tag": "PROJECTS",
+      "title": "We take great pride in the work we do and the values we uphold.",
+      "btnExplorerMore": "explore more projects"
+    },
+    "advantagesSection": {
+      "tag": "ADVANTAGES",
+      "title": "Nothing kills business faster than a entry-level developers",
+      "advantages": {
+        "block1": {
+          "title": "EXPERT TEAM",
+          "text": "Stellar team, you would otherwise not have access to. Our community consists of more than 90% of senior developers and project managers with a T-shaped skill set."
+        },
+        "block2": {
+          "title": "Remote Convenience",
+          "text": "100% remote and always just a click away. We ensure seamless communication and collaboration, no matter where you are."
+        },
+        "block3": {
+          "title": "Empathetic Approach",
+          "text": "We approach every project with empathy and understanding that every client has unique pains and needs."
+        },
+        "block4": {
+          "title": "Efficient Execution",
+          "text": "We excel in project management ensuring that your project is executed efficiently and effectively."
+        },
+        "block5": {
+          "title": "Values-Driven",
+          "text": "We are deeply committed to our values of decency, meaningful engagement, standards, and synergy, which reflect in everything we do."
+        }
+      }
+    },
+    "testimonials": {
+      "tag": "TESTIMONIALS",
+      "title": "Our clients talk about testing the results that we can achieve together."
+    },
+    "contactUs": {
+      "text": ["Every journey", "starts from the", "first step"]
     }
   },
-  "services": {
-    "tag": "SERVICES",
-    "title": "Our services will help you to accomplish your purpose easier and better.",
-    "explore": "explore"
+  "cases": {
+    "intro": {
+      "title": {
+        "line-1": "we do",
+        "line-2": "great things",
+        "line-3": "for our clients"
+      },
+      "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness."
+    },
+    "tabSection": { "allCases": "All cases" },
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
   }
 }

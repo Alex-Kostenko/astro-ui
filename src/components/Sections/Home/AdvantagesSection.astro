@@ -1,14 +1,18 @@
 ---
 import { Container } from "@components/Container";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { SectionTitle } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
 import { cubeSide, Eye } from "src/assets";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.advantagesSection");
 ---
 
 <div class="bg-brand-black py-20">
   <Container>
     <SectionTitle
-      type="Advantages"
-      title="Nothing kills business faster than a entry-level developers"
+      title={t("title")}
+      type={t("tag")}
       colorTitle="text-brand-white"
     />
     <section class="grid grid-cols-2 grid-rows-5 md:grid-cols-4 md:grid-rows-4">
@@ -34,7 +38,7 @@ import { cubeSide, Eye } from "src/assets";
             "mb-3 2xl:mb-6",
           ]}
         >
-          EXPERT TEAM
+          {t("advantages.block1.title")}
         </h6>
         <p
           class:list={[
@@ -43,9 +47,7 @@ import { cubeSide, Eye } from "src/assets";
             "2xl:tracking-1",
           ]}
         >
-          Stellar team, you would otherwise not have access to. Our community
-          consists of more than 90% of senior developers and project managers
-          with a T-shaped skill set.
+          {t("advantages.block1.text")}
         </p>
       </article>
 
@@ -57,7 +59,7 @@ import { cubeSide, Eye } from "src/assets";
             "mb-3 2xl:mb-6",
           ]}
         >
-          Remote Convenience
+          {t("advantages.block2.title")}
         </h6>
         <p
           class:list={[
@@ -66,8 +68,7 @@ import { cubeSide, Eye } from "src/assets";
             "2xl:tracking-1",
           ]}
         >
-          100% remote and always just a click away. We ensure seamless
-          communication and collaboration, no matter where you are.
+          {t("advantages.block2.text")}
         </p>
       </article>
 
@@ -84,7 +85,7 @@ import { cubeSide, Eye } from "src/assets";
             "mb-3 2xl:mb-6",
           ]}
         >
-          Empathetic Approach
+          {t("advantages.block3.title")}
         </h6>
         <p
           class:list={[
@@ -93,8 +94,7 @@ import { cubeSide, Eye } from "src/assets";
             "2xl:tracking-1",
           ]}
         >
-          We approach every project with empathy and understanding that every
-          client has unique pains and needs.
+          {t("advantages.block3.text")}
         </p>
       </article>
 
@@ -109,7 +109,7 @@ import { cubeSide, Eye } from "src/assets";
             "mb-3 2xl:mb-6",
           ]}
         >
-          Efficient Execution
+          {t("advantages.block4.title")}
         </h6>
         <p
           class:list={[
@@ -118,8 +118,7 @@ import { cubeSide, Eye } from "src/assets";
             "2xl:tracking-1",
           ]}
         >
-          We excel in project management ensuring that your project is executed
-          efficiently and effectively.
+          {t("advantages.block4.text")}
         </p>
       </article>
 
@@ -131,7 +130,7 @@ import { cubeSide, Eye } from "src/assets";
             "mb-3 2xl:mb-6",
           ]}
         >
-          Values-Driven
+          {t("advantages.block5.title")}
         </h6>
         <p
           class:list={[
@@ -140,8 +139,7 @@ import { cubeSide, Eye } from "src/assets";
             "2xl:tracking-1",
           ]}
         >
-          We are deeply committed to our values of decency, meaningful
-          engagement, standards, and synergy, which reflect in everything we do.
+          {t("advantages.block5.text")}
         </p>
       </article>
 

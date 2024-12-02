@@ -2,17 +2,18 @@
 import { CommentAstro } from "@components/Comment";
 import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
 import commentService from "@service/comment.service";
 import { ArrowRight, ArrowLeft } from "src/assets";
 
-const comments = await commentService.get();
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.testimonials");
+
+const comments = await commentService.get({ locale: lang as Languages });
 ---
 
 <Container class="overflow-hidden">
-  <SectionTitle
-    type="TESTIMONIALS"
-    title="Our clients talk about testing the results that we can achieve together."
-  />
+  <SectionTitle title={t("title")} type={t("tag")} />
 
   <section class="swiper comment-swiper">
     <div class="swiper-wrapper">

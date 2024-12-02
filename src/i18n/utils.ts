@@ -10,7 +10,10 @@ export function getFromLocale(lang?: string) {
   return defaultLang;
 }
 
-export function useTranslations(lang: keyof typeof languages, ns?: string) {
+export function useTranslations(
+  lang: keyof typeof languages,
+  ns?: string,
+): any {
   const getNestedTranslation = (obj: any, path: string): string | undefined => {
     return path.split(".").reduce((acc, part) => acc && acc[part], obj);
   };

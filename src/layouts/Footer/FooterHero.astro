@@ -7,7 +7,7 @@ const t = useTranslations(lang as Languages, "hero");
 ---
 
 <section
-  class="relative min-h-dvh 3xl:min-h-[920px] 2xl:min-h-[780px] lg:min-h-[620px] pt-[136px] flex"
+  class="relative 2xl:min-h-[680px] xl:min-h-[680px] min-h-[560px] flex items-center"
 >
   <video
     autoplay
@@ -17,73 +17,54 @@ const t = useTranslations(lang as Languages, "hero");
   >
     <source src={cubeNear} type="video/mp4" />
   </video>
-  <div class="max-w-[1616px] h-full w-full my-auto mx-auto px-4 md:px-8">
+  <div class="max-w-[1616px] h-full w-full mx-auto my-auto 2xl:px-[112px]">
     <div
-      class:list={[
-        "flex flex-col lg:flex-row lg:justify-between",
-        "gap-y-16 md:gap-y-20 gap-x-6",
-        "lg:px-6",
-      ]}
+      class="flex flex-col 2xl:flex-row-reverse 2xl:justify-between gap-x-6 h-full w-full"
+      class:list={["gap-y-16 md:gap-y-12"]}
     >
       <figure
         class:list={[
-          "h-[112px] md:h-[220px] lg:h-[140px] xl:h-[200px] 2xl:h-[240px] my-auto",
-          "mx-auto lg:mx-0",
+          "h-[112px] md:h-[180px] 2xl:h-[240px]",
+          "mx-auto 2xl:mx-0",
         ]}
       >
         <img class="h-full" src={logo.src} alt="logo" />
       </figure>
 
       <article
-        class:list={[
-          "xl:max-w-[520px] lg:max-w-[380px] w-full",
-          "flex flex-col justify-between",
-          "gap-y-6 md:gap-y-10 lg:gap-y-4",
-        ]}
+        class="2xl:max-w-[520px] w-full flex flex-col 2xl:gap-y-3 gap-y-10 justify-center"
       >
         <div
-          class="font-extrabold text-center lg:text-start font-asket800"
-          class:list={["text-24 md:text-32 lg:text-24 xl:text-32 2xl:text-40"]}
+          class="text-24 md:text-32 2xl:text-40 font-extrabold text-center 2xl:text-start"
         >
-          <h5 class="text-brand-white mb-3 uppercase">{t("title")}</h5>
-          <h5>
+          <h5 class="text-brand-white mb-3">{t("title")}</h5>
+          <h5 class="text-brand-beigeLight">
             <span
-              id="hero-change-text"
+              id="footer-change-text"
               class="empty uppercase"
               data-text-range={t("subTitleRange")}
             >
-              {t("subTitle")}
-            </span>
+              {t("subTitle")}</span
+            >
           </h5>
         </div>
-        <p
-          class:list={[
-            "font-gothic tracking-0.8 text-brand-white",
-            "md:text-20 md:tracking-1 lg:text-base xl:text-20",
-          ]}
-          class="text-center lg:text-start"
-        >
-          {t("descripton")}
-        </p>
       </article>
     </div>
   </div>
 </section>
 
-<script is:inline>
+<script>
   const colors = [
     "text-brand-beigeLight",
     "text-brand-beige",
     "text-brand-gray",
   ];
-  const text = document.querySelector("#hero-change-text");
-  console.log(text);
-
+  const text = document.querySelector("#footer-change-text") as HTMLSpanElement;
   const range = text.getAttribute("data-text-range");
   const words = range?.split(",") || [];
 
   // Generator (iterate from 0-3)
-  function* generator() {
+  function* generator(): Generator<number> {
     var index = 0;
     while (true) {
       yield index++;
@@ -95,7 +76,7 @@ const t = useTranslations(lang as Languages, "hero");
   }
 
   // Printing effect
-  function printChar(word) {
+  function printChar(word: string) {
     let i = 0;
     text.innerHTML = "";
     text.classList.add(colors[words.indexOf(word)] || colors[1]);

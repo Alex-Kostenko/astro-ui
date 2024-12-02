@@ -1,7 +1,12 @@
 ---
 import "@style/cases.css";
 import Layout from "@layouts/Layout.astro";
-import { type Language, languages } from "@i18n/index";
+import {
+  type Language,
+  type Languages,
+  languages,
+  useTranslations,
+} from "@i18n/index";
 import { cubeNear } from "@assets/index";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
@@ -65,6 +70,16 @@ export const getStaticPaths = (async ({ paginate }) => {
   });
 }) satisfies GetStaticPaths;
 
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "cases.contactUs");
+
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+
 const { page, meta, slug } = Astro.props;
 ---
 
@@ -85,6 +100,7 @@ const { page, meta, slug } = Astro.props;
         <source src={cubeNear} type="video/mp4" />
       </video>
     </div>
+
     <IntroSection />
 
     <TabsSection domain={slug} />
@@ -94,12 +110,6 @@ const { page, meta, slug } = Astro.props;
       <Pagination paginate={page} href={`/cases/${slug}/`} toBlock="cases" />
     </Container>
 
-    <ContactUsSection
-      text={[
-        { text: "your idea", alight: "right", variant: "contained" },
-        { text: "& our mission", alight: "none", variant: "contained" },
-        { text: "to make it real", alight: "left", variant: "outlined" },
-      ]}
-    />
+    <ContactUsSection text={text} />
   </main>
 </Layout>

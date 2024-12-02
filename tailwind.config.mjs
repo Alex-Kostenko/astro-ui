@@ -29,6 +29,15 @@ export default {
           lg: "78px",
           "2xl": "130px",
         },
+        screens: {
+          xs: "auto",
+          sm: "480px",
+          md: "768px",
+          lg: "960px",
+          xl: "1280px",
+          "2xl": "1440px",
+          "3xl": "1920px",
+        },
       },
       colors: {
         brand: {
@@ -72,7 +81,7 @@ export default {
         96: ["6rem", { lineHeight: "97px", letterSpacing: "2px" }], // 96px = 6rem, lineHeight = 1.2
         72: ["4.5rem", { lineHeight: "73px" }], // 72px
         64: ["4rem", { lineHeight: "65px" }], // 64px
-        48: ["3rem", { lineHeight: "auto" }], // 48px
+        48: ["3rem", { lineHeight: "48px" }], // 48px
         46: ["2.875rem", { lineHeight: "auto" }], // 46px = 2.875rem
         40: ["2.5rem", { lineHeight: "44px" }], // 40px = 2.5rem
         36: ["2.25rem", { lineHeight: "37px" }], // 36px = 2.25rem

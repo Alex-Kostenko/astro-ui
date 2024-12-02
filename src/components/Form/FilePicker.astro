@@ -3,9 +3,10 @@ interface Props {
   name?: string;
   accept?: string;
   label?: string;
+  titleBtn?: string;
 }
 
-const { name, accept = "*", label } = Astro.props;
+const { name, accept = "*", label, titleBtn = "Add File" } = Astro.props;
 ---
 
 <file-pick class="flex items-center gap-x-2">
@@ -19,7 +20,7 @@ const { name, accept = "*", label } = Astro.props;
       "text-12 text-brand-white",
     ]}
   >
-    Add File
+    {titleBtn}
   </button>
   <span class="text-brand-white font-gothic text-14">{label}</span>
 </file-pick>
@@ -43,7 +44,25 @@ const { name, accept = "*", label } = Astro.props;
           const sizeInMB = files[0].size / (1000 * 1000);
           label.textContent = files[0].name + ` [ ${sizeInMB.toFixed(1)} MB ]`;
         }
+
+        console.log(e);
       };
+
+      const form = this.closest("form") as HTMLFormElement;
+      if (form) {
+        form.addEventListener("reset", this.handleFormReset.bind(this));
+      }
+    }
+
+    handleFormReset() {
+      const input = this.querySelector("input") as HTMLInputElement;
+      const label = this.querySelector("span") as HTMLSpanElement;
+
+      // Скидання вибору файлу
+      input.value = "";
+
+      // Відновлення тексту лейбла
+      label.textContent = this.labelText;
     }
   }
 

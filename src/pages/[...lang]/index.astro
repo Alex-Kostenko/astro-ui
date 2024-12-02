@@ -12,13 +12,23 @@ import {
   TestimonialsSection,
 } from "@components/Sections";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
-import { languages } from "@i18n/index";
+import { languages, useTranslations, type Languages } from "@i18n/index";
 
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((v) => ({
     params: { lang: languages[v].slug },
   }));
 }) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.contactUs");
+// console.log("info base: ", Astro.currentLocale);
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
 ---
 
 <Layout title="UniCode">
@@ -36,13 +46,7 @@ export const getStaticPaths = (() => {
       <ProjectsSection />
       <AdvantagesSection />
       <TestimonialsSection />
-      <ContactUsSection
-        text={[
-          { text: "Every journey", alight: "right", variant: "contained" },
-          { text: "starts from the", alight: "none", variant: "contained" },
-          { text: "first step", alight: "left", variant: "outlined" },
-        ]}
-      />
+      <ContactUsSection text={text} />
     </div>
   </main>
 </Layout>
