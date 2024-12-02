@@ -19,7 +19,7 @@ const list = t("listOfOffer") as {
   <section class="flex flex-col gap-y-5">
     {
       list.map((v, i) => (
-        <AccordionAstro>
+        <AccordionAstro open={i === 0}>
           <section slot="title" class="flex flex-row gap-y-4 items-center">
             <TypographyAstro
               type="body-2"
