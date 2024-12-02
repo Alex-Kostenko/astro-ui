@@ -3,6 +3,7 @@ import { AccordionAstro } from "@components/Accordion";
 import { TypographyAstro } from "@components/Typography";
 import { clutch, linkedin, youtube } from "src/assets";
 import FooterHero from "./FooterHero.astro";
+import { useTranslations, type Languages } from "@i18n/index";
 
 interface Props {
   variant?: "contained" | "outlined";
@@ -10,42 +11,9 @@ interface Props {
   class?: string;
 }
 
-const blockFooter = [
-  {
-    mainName: "SERVICES",
-    list: [
-      "Project Management Consulting",
-      "Top-Tier Expert Engagement",
-      "Application Engineering",
-      "Managed Team",
-    ],
-  },
-  {
-    mainName: "EXPERTISE",
-    list: ["Mobile Development", "Web Development", "UI/UX Design"],
-  },
-  {
-    mainName: "ABOUT US",
-    list: [
-      "Sustainable Technologies",
-      "Our story and values",
-      "How we work",
-      "Testimonials",
-    ],
-  },
-  {
-    mainName: "CLIENTS",
-    list: ["Scale-Up", "Start-Up"],
-  },
-  {
-    mainName: "INSIGHTS",
-    list: ["All articles"],
-  },
-  {
-    mainName: "CAREERS",
-    list: ["Start your way with Us"],
-  },
-];
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "footer");
+const blockFooter = t("menu") as { title: string; list: string[] }[];
 ---
 
 <footer class="pt-[120px]">
@@ -67,7 +35,7 @@ const blockFooter = [
                   color="white"
                   class="font-gothic mb-5 tracking-[0.8px]"
                 >
-                  {textBlock.mainName}
+                  {textBlock.title}
                 </TypographyAstro>
                 <div class="flex flex-col gap-y-2">
                   {textBlock.list.map((item) => (
@@ -90,7 +58,7 @@ const blockFooter = [
                   class="text-brand-white font-gothic tracking-0.8"
                   slot="title"
                 >
-                  {textBlock.mainName}
+                  {textBlock.title}
                 </p>
                 <ul class="list-disc list-inside ps-1">
                   {textBlock.list.map((itemList) => {
@@ -121,9 +89,9 @@ const blockFooter = [
             "text-gray font-gothic text-10 leading-3",
           ]}
         >
-          <p>Copyright © 2023 Implex. All rights reserved.</p>
-          <p>Privacy Policy.</p>
-          <p>Terms of Service.</p>
+          <p>{t("copyright")}</p>
+          <p>{t("privacyPolicy")}</p>
+          <p>{t("termsOfService")}</p>
         </div>
       </div>
     </div>
