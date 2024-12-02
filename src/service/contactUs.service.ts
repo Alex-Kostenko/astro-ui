@@ -4,7 +4,7 @@ import { ApiPath } from "@constant/api.path";
 
 class ContactUs {
   async create(body: IContactUsBody) {
-    return apiService.post(ApiPath.contactUs, { body });
+    return apiService.post(ApiPath.contactUs, { body: { data: body } });
   }
 }
 
