@@ -29,6 +29,15 @@ export default {
           lg: "78px",
           "2xl": "130px",
         },
+        screens: {
+          xs: "auto",
+          sm: "480px",
+          md: "768px",
+          lg: "960px",
+          xl: "1280px",
+          "2xl": "1440px",
+          "3xl": "1920px",
+        },
       },
       colors: {
         brand: {
