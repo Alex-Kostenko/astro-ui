@@ -35,7 +35,6 @@ const t = useTranslations(lang as Languages, "hero");
       </figure>
 
       <article
-        class=""
         class:list={[
           "xl:max-w-[520px] lg:max-w-[380px] w-full",
           "flex flex-col justify-between",
@@ -71,18 +70,20 @@ const t = useTranslations(lang as Languages, "hero");
   </div>
 </section>
 
-<script>
+<script is:inline>
   const colors = [
     "text-brand-beigeLight",
     "text-brand-beige",
     "text-brand-gray",
   ];
-  const text = document.querySelector("#hero-change-text") as HTMLSpanElement;
+  const text = document.querySelector("#hero-change-text");
+  console.log(text);
+
   const range = text.getAttribute("data-text-range");
   const words = range?.split(",") || [];
 
   // Generator (iterate from 0-3)
-  function* generator(): Generator<number> {
+  function* generator() {
     var index = 0;
     while (true) {
       yield index++;
@@ -94,7 +95,7 @@ const t = useTranslations(lang as Languages, "hero");
   }
 
   // Printing effect
-  function printChar(word: string) {
+  function printChar(word) {
     let i = 0;
     text.innerHTML = "";
     text.classList.add(colors[words.indexOf(word)] || colors[1]);
