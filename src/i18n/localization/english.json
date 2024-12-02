@@ -157,6 +157,9 @@
       },
       "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness."
     },
-    "tabSection": { "allCases": "All cases" }
+    "tabSection": { "allCases": "All cases" },
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
   }
 }
