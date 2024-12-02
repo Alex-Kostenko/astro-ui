@@ -3,6 +3,10 @@ import { ButtonAstro } from "@components/Button";
 import { TextField } from "@components/TextField";
 import FilePicker from "./FilePicker.astro";
 import CheckBox from "./CheckBox.astro";
+import { useTranslations, type Languages } from "@i18n/index";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "formContactUs");
 ---
 
 <section
@@ -13,7 +17,7 @@ import CheckBox from "./CheckBox.astro";
 >
   <div class="flex-grow xl:w-1/2 mt-auto md:px-16 lg:px-0">
     <h3 class="text-brand-beigeLight font-gothic uppercase text-20">
-      Leave your contact details, and we will reach you within 24 hours
+      {t("title")}
     </h3>
   </div>
 
@@ -22,25 +26,33 @@ import CheckBox from "./CheckBox.astro";
     class:list={["flex-grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
   >
     <div class="flex flex-col gap-y-4">
-      <TextField placeholder="Your name" name="name" />
-      <TextField placeholder="Your email address" type="email" name="email" />
-      <TextField placeholder="Your message" name="message" />
+      <TextField placeholder={t("nameLabel")} name="name" />
+      <TextField placeholder={t("emailLabel")} type="email" name="email" />
+      <TextField placeholder={t("messageLabel")} name="message" />
     </div>
 
     <div class="flex items-center gap-x-2">
-      <FilePicker name="file" label="File size up to 10Mb" />
+      <FilePicker
+        name="file"
+        titleBtn={t("file.button")}
+        label={t("file.label")}
+      />
     </div>
 
     <CheckBox name="consent">
       <p class="text-14 font-gothic text-brand-white">
-        I have read and accepted the
-        <a href="#" class="underline" target="_blank"> Terms & Conditions </a>
-        and
-        <a href="#" class="underline" target="_blank"> Privacy Policy </a>
+        {t("consent.start")}
+        <a href="#" class="underline" target="_blank">{t("consent.terms")}</a>
+        {t("consent.divider")}
+        <a href="#" class="underline" target="_blank">
+          {t("consent.privacyPolicy")}
+        </a>
       </p>
     </CheckBox>
 
-    <ButtonAstro color="biscuit" class="w-full">get in touch</ButtonAstro>
+    <ButtonAstro color="biscuit" class="w-full">
+      {t("submitBtn")}
+    </ButtonAstro>
   </form>
 </section>
 

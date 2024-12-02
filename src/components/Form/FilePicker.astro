@@ -3,9 +3,10 @@ interface Props {
   name?: string;
   accept?: string;
   label?: string;
+  titleBtn?: string;
 }
 
-const { name, accept = "*", label } = Astro.props;
+const { name, accept = "*", label, titleBtn = "Add File" } = Astro.props;
 ---
 
 <file-pick class="flex items-center gap-x-2">
@@ -19,7 +20,7 @@ const { name, accept = "*", label } = Astro.props;
       "text-12 text-brand-white",
     ]}
   >
-    Add File
+    {titleBtn}
   </button>
   <span class="text-brand-white font-gothic text-14">{label}</span>
 </file-pick>
