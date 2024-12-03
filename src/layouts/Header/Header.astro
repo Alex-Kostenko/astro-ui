@@ -4,7 +4,6 @@ import HeaderLinks from "./HeaderLinks.astro";
 import { ButtonAstro } from "@components/Button";
 import { getFromLocale, useTranslations } from "@i18n/index";
 import { formatLink } from "@utils/index";
-import { DrawerAstro } from "@components/Drawer";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
@@ -26,11 +25,59 @@ const t = useTranslations(lang, "header");
     </nav>
 
     <section class="flex gap-x-3">
-      <ButtonAstro color="biscuit" variant="contained" class="ml-10">
+      <ButtonAstro color="biscuit" variant="contained" class="2xl:ml-10">
         {t("contactUs")}
       </ButtonAstro>
 
-      <DrawerAstro />
+      <button id="menu" class:list={["relative h-10 w-10 py-3 px-2 menu"]}>
+        <span class="menu_line"></span>
+        <span class="menu_line"></span>
+        <span class="menu_line"></span>
+      </button>
     </section>
   </header>
 </div>
+
+<script>
+  const menu = document.querySelector("#menu");
+
+  menu?.addEventListener("click", function (e) {
+    menu.classList.toggle("active");
+  });
+</script>
+
+<style>
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .menu_line {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transition: all 0.3s ease;
+    opacity: 1;
+  }
+
+  .menu_line:nth-child(2) {
+    transform-origin: center center;
+  }
+
+  .menu.active .menu_line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu.active .menu_line:nth-child(2) {
+    opacity: 0;
+    transform: rotate(45deg);
+    height: 0px;
+  }
+
+  .menu.active .menu_line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+</style>
