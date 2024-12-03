@@ -39,9 +39,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
                 </TypographyAstro>
                 <div class="flex flex-col gap-y-2">
                   {textBlock.list.map((item) => (
-                    <TypographyAstro class="text-brand-white font-gothic text-xs">
-                      {item}
-                    </TypographyAstro>
+                    <p class="text-gray-200 font-gothic text-12">{item}</p>
                   ))}
                 </div>
               </div>
@@ -60,7 +58,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
                 >
                   {textBlock.title}
                 </p>
-                <ul class="list-disc list-inside ps-1">
+                <ul class="list-disc list-inside ps-1 text-12">
                   {textBlock.list.map((itemList) => {
                     return (
                       <li class="text-gray-200 font-gothic tracking-0.8">

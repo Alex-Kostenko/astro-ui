@@ -9,6 +9,7 @@ export default {
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
     "./src/components/Footer/**/*.{astro,html,js,jsx}",
     "./src/components/Form/**/*.{astro,html,js,jsx}",
+    "./src/components/Drawer/**/*.{astro,html,js,jsx}",
     "./src/components/TextField/**/*.{astro,html,js,jsx}",
     "./src/components/Sections/Home/Hero.astro",
   ],

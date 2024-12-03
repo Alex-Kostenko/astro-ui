@@ -68,15 +68,15 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
 
-    //     if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
-    //       return;
-    //     }
-    //
-    //     const { error, data } = await actions.contactUs(formData);
-    //     console.log("error", error);
-    //     if (data?.success) {
-    //       form.reset();
-    //     }
+    if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
+      return;
+    }
+
+    const { error, data } = await actions.contactUs(formData);
+    console.log("error", error);
+    if (data?.success) {
+      form.reset();
+    }
 
     form.reset();
   });
