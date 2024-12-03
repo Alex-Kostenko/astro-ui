@@ -1,6 +1,42 @@
 {
   "header": {
-    "contactUs": "contact us"
+    "contactUs": "contact us",
+    "menu": [
+      {
+        "title": "SERVICES",
+        "list": [
+          "Project Management Consulting",
+          "Top-Tier Expert Engagement",
+          "Application Engineering",
+          "Managed Team"
+        ]
+      },
+      {
+        "title": "EXPERTISE",
+        "list": ["Mobile Development", "Web Development", "UI/UX Design"]
+      },
+      {
+        "title": "ABOUT US",
+        "list": [
+          "Sustainable Technologies",
+          "Our story and values",
+          "How we work",
+          "Testimonials"
+        ]
+      },
+      {
+        "title": "CLIENTS",
+        "list": ["Scale-Up", "Start-Up"]
+      },
+      {
+        "title": "INSIGHTS",
+        "list": ["All articles"]
+      },
+      {
+        "title": "CAREERS",
+        "list": ["Start your way with Us"]
+      }
+    ]
   },
   "footer": {
     "menu": [
