@@ -15,6 +15,10 @@ export default {
   ],
   theme: {
     extend: {
+      zIndex: {
+        header: "1010",
+        headerMenu: "1000",
+      },
       screens: {
         xs: "360px",
         sm: "480px",
@@ -76,6 +80,10 @@ export default {
         },
         white: {
           DEFAULT: "#fff",
+        },
+        black: {
+          DEFAULT: "#000",
+          100: "#232528",
         },
       },
       fontSize: {

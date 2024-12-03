@@ -9,11 +9,11 @@ const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
 ---
 
-<div class="sticky h-0 inset-x-0 top-8 z-50 box-border mx-4 md:mx-8">
+<div class="sticky h-0 inset-x-0 top-8 z-header box-border mx-4 md:mx-8">
   <header
     class:list={[
       "flex items-center justify-between box-border ",
-      "max-w-[1680px] mx-auto py-4 2xl:py-5 px-8",
+      "max-w-[1680px] mx-auto py-4 2xl:py-5 px-2 2xl:px-8",
       "relative before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
     ]}
   >
@@ -29,24 +29,61 @@ const t = useTranslations(lang, "header");
         {t("contactUs")}
       </ButtonAstro>
 
-      <button id="menu" class:list={["relative h-10 w-10 py-3 px-2 menu"]}>
-        <span class="menu_line"></span>
-        <span class="menu_line"></span>
-        <span class="menu_line"></span>
+      <button id="menu" class:list={["relative h-10 w-10 py-3 px-2 "]}>
+        <div class="relative h-full menuWrapper">
+          <span class="menu_line"></span>
+          <span class="menu_line"></span>
+          <span class="menu_line"></span>
+        </div>
       </button>
+    </section>
+    <section
+      id="header-down-menu"
+      class:list={["fixed duration-700 -z-headerMenu bg-black-100"]}
+    >
     </section>
   </header>
 </div>
 
 <script>
+  const header = document.querySelector("header");
   const menu = document.querySelector("#menu");
+  const menuWraper = document.querySelector(".menuWrapper");
+  const downMenu = document.querySelector("#header-down-menu");
 
   menu?.addEventListener("click", function (e) {
-    menu.classList.toggle("active");
+    menuWraper?.classList.toggle("active");
+    downMenu?.classList.toggle("inset-0");
+    header?.classList.toggle("border-b");
+
+    if (menuWraper?.classList.contains("active")) {
+      // Save current padding-right before applying scroll blocking
+      const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
+
+      // Disable scrolling and add padding to the right to compensate for the scrollbar width
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    } else {
+      // Re-enable scrolling and reset padding
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
   });
 </script>
 
 <style>
+  #header-down-menu {
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transition: top 0.7s ease-out;
+  }
+
+  #header-down-menu.inset-0 {
+    top: 0;
+  }
   .menu {
     display: flex;
     flex-direction: column;
@@ -54,30 +91,145 @@ const t = useTranslations(lang, "header");
   }
 
   .menu_line {
-    position: relative;
+    position: absolute;
     display: block;
     width: 100%;
     height: 2px;
     background: #fff;
-    transition: all 0.3s ease;
+    transition:
+      bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
     opacity: 1;
+  }
+  .menu_line:nth-child(1) {
+    bottom: 100%;
   }
 
   .menu_line:nth-child(2) {
-    transform-origin: center center;
+    bottom: 50%;
   }
 
-  .menu.active .menu_line:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-
-  .menu.active .menu_line:nth-child(2) {
+  .active .menu_line:nth-child(2) {
     opacity: 0;
-    transform: rotate(45deg);
-    height: 0px;
   }
 
-  .menu.active .menu_line:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+  .menu_line:nth-child(3) {
+    bottom: 0;
+  }
+
+  .active .menu_line:nth-child(1) {
+    animation:
+      top-to-middle 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      rotate-line 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .active .menu_line:nth-child(3) {
+    animation:
+      bottom-to-middle 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      rotate 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .menu_line:nth-child(1):not(.active) {
+    animation:
+      rotate-line-reverse 400ms cubic-bezier(0.23, 1, 0.32, 1),
+      top-to-middle-reverse 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .menu_line:nth-child(3):not(.active) {
+    animation:
+      rotate-reverse 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      bottom-to-middle-reverse 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes top-to-middle {
+    from {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+
+    to {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  @keyframes rotate-line {
+    from {
+      transform: translateY(50%) rotate(0deg);
+    }
+
+    to {
+      transform: translateY(50%) rotate(-45deg);
+    }
+  }
+
+  @keyframes bottom-to-middle {
+    from {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+
+    to {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translateY(50%) rotate(0deg);
+    }
+
+    to {
+      transform: translateY(50%) rotate(45deg);
+    }
+  }
+
+  @keyframes top-to-middle-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    to {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes rotate-line-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+    to {
+      bottom: 50%;
+      transform: translateY(50%) rotate(0deg);
+    }
+  }
+
+  @keyframes bottom-to-middle-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    to {
+      bottom: 0;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes rotate-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%) rotate(45deg);
+    }
+    to {
+      bottom: 50%;
+      transform: translateY(50%) rotate(0deg);
+    }
   }
 </style>
