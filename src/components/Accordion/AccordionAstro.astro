@@ -54,12 +54,14 @@ const { open = false, arrowStyle = false } = Astro.props;
 <script>
   class Accordion extends HTMLElement {
     connectedCallback() {
+      const open = this.getAttribute("open");
+      const arrowStyle = this.getAttribute("arrowStyle");
+
       const button = this.querySelector("button");
       const content = this.querySelector("#content") as HTMLDivElement;
-      const downArrow = this.querySelector(".down-arrow") as HTMLImageElement;
-      const upArrow = this.querySelector(".up-arrow") as HTMLImageElement;
+      const downArrow = arrowStyle ? this.querySelector(".down-arrow") as HTMLImageElement : null;
+      const upArrow = arrowStyle ? this.querySelector(".up-arrow") as HTMLImageElement : null;
 
-      const open = this.getAttribute("open");
       if (open === "true") {
         content.style.maxHeight = content.scrollHeight + "px";
       }
@@ -73,13 +75,13 @@ const { open = false, arrowStyle = false } = Astro.props;
         if (open === "true") {
           content.style.maxHeight = 0 + "px";
           this.setAttribute("open", "false");
-          downArrow.classList.remove("hidden");
-          upArrow.classList.add("hidden");
+          downArrow && downArrow.classList.remove("hidden");
+          upArrow && upArrow.classList.add("hidden");
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
           this.setAttribute("open", "true");
-          downArrow.classList.add("hidden");
-          upArrow.classList.remove("hidden");
+          downArrow && downArrow.classList.add("hidden");
+          upArrow && upArrow.classList.remove("hidden");
         }
       });
     }
