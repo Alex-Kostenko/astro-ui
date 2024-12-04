@@ -8,7 +8,7 @@ import { AccordionAstro } from "../../components/Accordion";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
-const blockFooter = t("menu") as { title: string; list: string[] }[];
+const blockHeader = t("menu") as { title: string; list: string[] }[];
 ---
 
 <div class="sticky h-0 inset-x-0 top-8 z-header box-border mx-4 md:mx-8">
@@ -43,9 +43,9 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
       id="header-down-menu"
       class:list={["fixed duration-700 -z-headerMenu bg-black-100"]}
     >
-      <div class="flex flex-col pt-44 pl-8 pr-14">
+      <div class="flex flex-col pt-44 md:pl-8 md:pr-14 pl-4 pr-9">
         {
-          blockFooter.map((textBlock) => {
+          blockHeader.map((textBlock) => {
             return (
               <AccordionAstro arrowStyle>
                 <p
@@ -82,6 +82,10 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
     menuWraper?.classList.toggle("active");
     downMenu?.classList.toggle("inset-0");
     header?.classList.toggle("border-b");
+    const headerBefore = "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl"
+    headerBefore.split(" ").map(className => {
+      header?.classList.toggle(className)
+    })
 
     if (menuWraper?.classList.contains("active")) {
       // Save current padding-right before applying scroll blocking
