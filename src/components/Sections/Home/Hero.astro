@@ -77,8 +77,6 @@ const t = useTranslations(lang as Languages, "hero");
     "text-brand-gray",
   ];
   const text = document.querySelector("#hero-change-text");
-  console.log(text);
-
   const range = text.getAttribute("data-text-range");
   const words = range?.split(",") || [];
 

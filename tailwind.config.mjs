@@ -9,11 +9,16 @@ export default {
     "./src/components/Accordion/**/*.{astro,html,js,jsx}",
     "./src/components/Footer/**/*.{astro,html,js,jsx}",
     "./src/components/Form/**/*.{astro,html,js,jsx}",
+    "./src/components/Drawer/**/*.{astro,html,js,jsx}",
     "./src/components/TextField/**/*.{astro,html,js,jsx}",
     "./src/components/Sections/Home/Hero.astro",
   ],
   theme: {
     extend: {
+      zIndex: {
+        header: "1010",
+        headerMenu: "1000",
+      },
       screens: {
         xs: "360px",
         sm: "480px",
@@ -75,6 +80,10 @@ export default {
         },
         white: {
           DEFAULT: "#fff",
+        },
+        black: {
+          DEFAULT: "#000",
+          100: "#232528",
         },
       },
       fontSize: {

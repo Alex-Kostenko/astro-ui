@@ -10,6 +10,7 @@ import ArrowRight from "./arrowRight.astro";
 import ArrowLeft from "./arrowLeft.astro";
 import logoOutline from "./logoOutline.png";
 import youtube from "./youtube.svg";
+import Menu from "./menu.astro";
 
 export {
   smallLogo,
@@ -24,4 +25,5 @@ export {
   DownArrow,
   logoOutline,
   youtube,
+  Menu,
 };

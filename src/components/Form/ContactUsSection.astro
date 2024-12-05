@@ -30,7 +30,7 @@ const { text } = Astro.props;
         text.map((v) => (
           <h2
             class:list={[
-              "font-asket800 tracking-2 uppercase",
+              "font-asket800 tracking-2 uppercase break-words hyphens-auto",
               "text-48 md:text-64 lg:text-72 2xl:text-96",
               {
                 "text-green-200": v.variant === "contained",
