@@ -9,14 +9,19 @@ const t = useTranslations(lang as Languages, "hero");
 <section
   class="relative min-h-dvh 3xl:min-h-[920px] 2xl:min-h-[780px] lg:min-h-[620px] pt-[136px] flex"
 >
-  <video
-    autoplay
-    muted
-    loop
-    class="absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover"
+  <video-block
+    class="transition-opacity duration-300 ease-out absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full"
   >
-    <source src={cubeNear} type="video/mp4" />
-  </video>
+    <video
+      autoplay
+      muted
+      loop
+      onloadeddata="showVideo()"
+      class="opacity-0 absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover transition-opacity duration-1000 ease-out"
+    >
+      <source src={cubeNear} type="video/mp4" />
+    </video>
+  </video-block>
   <div class="max-w-[1616px] h-full w-full my-auto mx-auto px-4 md:px-8">
     <div
       class:list={[
@@ -128,11 +133,29 @@ const t = useTranslations(lang as Languages, "hero");
   let gen = generator();
 
   printChar(words[gen.next().value]);
+
+  function showVideo() {
+    const video = document.querySelector("video");
+    video.classList.add("opacity-anim");
+  }
+
+  class Video extends HTMLElement {
+    // connectedCallback() {
+    //   const video = this.querySelector("video");
+    //   video.onloadeddata(this.classList.add("opacity-anim"));
+    // }
+  }
+
+  customElements.define("video-block", Video);
 </script>
 
 <style is:global>
   .empty::after {
     content: "\00a0";
     visibility: hidden;
+  }
+
+  .opacity-anim {
+    opacity: 1;
   }
 </style>
