@@ -9,7 +9,6 @@ export default defineConfig({
   integrations: [tailwind()],
   output: "hybrid",
   adapter: vercelServerless(),
-  build: { inlineStylesheets: "never" },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ua"],
