@@ -1,7 +1,6 @@
 import { UploadPath } from "@interfaces/index";
 import contactUsService from "@service/contactUs.service";
 import fileService from "@service/file.service";
-import { file } from "astro/loaders";
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
@@ -18,7 +17,7 @@ export const server = {
         .refine((file) => file.size > 0 && file.size < MAX_FILE_SIZE),
     }),
     accept: "form",
-    async handler(input, context) {
+    async handler(input) {
       const file = await fileService.upload({
         files: input.file,
         path: UploadPath.document,

@@ -92,7 +92,7 @@ const blockHeader = t("menu") as { title: string; list: string[] }[];
   const menuWraper = document.querySelector(".menuWrapper");
   const downMenu = document.querySelector("#header-down-menu");
 
-  menu?.addEventListener("click", function (e) {
+  menu?.addEventListener("click", function () {
     menuWraper?.classList.toggle("active");
     downMenu?.classList.toggle("!inset-0");
     header?.classList.toggle("border-b");
