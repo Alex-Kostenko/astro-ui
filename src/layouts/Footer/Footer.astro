@@ -25,7 +25,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
         "mx-auto 2xl:max-w-[1216px] 3xl:max-w-[1696px]",
       ]}
     >
-      <div class="hidden 2xl:grid grid-cols-6 justify-between mb-[60px] gap-3">
+      <div class="hidden 2xl:flex justify-between mb-[60px]">
         {
           blockFooter.map((textBlock) => {
             return (
@@ -33,7 +33,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
                 <TypographyAstro
                   type="body-2"
                   color="white"
-                  class="font-gothic mb-5 tracking-[0.8px]"
+                  class="font-gothic mb-5 tracking-0.8"
                 >
                   {textBlock.title}
                 </TypographyAstro>
