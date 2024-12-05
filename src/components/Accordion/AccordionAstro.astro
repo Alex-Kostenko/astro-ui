@@ -10,7 +10,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 
 {
   !arrowStyle && (
-    <accordion-block open={open + ""}>
+    <accordion-block open={open + ""} arrowStyle={arrowStyle + ""}>
       <div class="border-b border-black box-border">
         <button class="w-full py-6 text-slate-800 text-start">
           <slot name="title" />
@@ -29,7 +29,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 }
 {
   arrowStyle && (
-    <accordion-block open={open + ""}>
+    <accordion-block open={open + ""} arrowStyle={arrowStyle + ""}>
       <div>
         <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
           <div class="flex justify-between ">
@@ -59,8 +59,14 @@ const { open = false, arrowStyle = false } = Astro.props;
 
       const button = this.querySelector("button");
       const content = this.querySelector("#content") as HTMLDivElement;
-      const downArrow = arrowStyle ? this.querySelector(".down-arrow") as HTMLImageElement : null;
-      const upArrow = arrowStyle ? this.querySelector(".up-arrow") as HTMLImageElement : null;
+      const downArrow =
+        arrowStyle === "true"
+          ? (this.querySelector(".down-arrow") as HTMLImageElement)
+          : null;
+      const upArrow =
+        arrowStyle === "true"
+          ? (this.querySelector(".up-arrow") as HTMLImageElement)
+          : null;
 
       if (open === "true") {
         content.style.maxHeight = content.scrollHeight + "px";
