@@ -1,11 +1,23 @@
 ---
 import Layout from "@layouts/Layout.astro";
+
+import { languages, useTranslations, type Languages } from "@i18n/index";
+import type { GetStaticPaths } from "node_modules/astro/dist/@types/astro";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({
+    params: { lang: languages[v].slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "404");
 ---
 
 <Layout title="404">
   <main class="">
     <p class="text">404</p>
-    <p class="text">Not found page</p>
+    <p class="text">{t("message")}</p>
   </main>
 </Layout>
 
