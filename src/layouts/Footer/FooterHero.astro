@@ -91,7 +91,6 @@ const t = useTranslations(lang as Languages, "hero");
     }, 200);
   }
 
-  // Deleting effect
   function deleteChar() {
     let word = text.innerHTML;
     let i = word.length - 1;
@@ -107,13 +106,12 @@ const t = useTranslations(lang as Languages, "hero");
     }, 100);
   }
 
-  // Initializing generator
   let gen = generator();
 
   printChar(words[gen.next().value]);
 </script>
 
-<style>
+<style is:global>
   .empty::after {
     content: "\00a0";
     visibility: hidden;
