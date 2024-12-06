@@ -6,9 +6,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind({ applyBaseStyles: false, configFile: "./tailwind.config.mjs" }),
-  ],
+  integrations: [tailwind()],
   output: "hybrid",
   adapter: vercelServerless(),
   build: { inlineStylesheets: "never" },

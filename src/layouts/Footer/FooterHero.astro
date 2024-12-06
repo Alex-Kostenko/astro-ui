@@ -113,7 +113,7 @@ const t = useTranslations(lang as Languages, "hero");
   printChar(words[gen.next().value]);
 </script>
 
-<style>
+<style is:global>
   .empty::after {
     content: "\00a0";
     visibility: hidden;
