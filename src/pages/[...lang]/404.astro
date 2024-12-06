@@ -15,8 +15,22 @@ const t = useTranslations(lang as Languages, "404");
 ---
 
 <Layout title="404">
-  <main class="h-dvh flex flex-col items-center justify-center">
-    <p class="text-48">404</p>
-    <p class="text-48">{t("message")}</p>
+  <main class="">
+    <p class="text">404</p>
+    <p class="text">{t("message")}</p>
   </main>
 </Layout>
+
+<style>
+  main {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text {
+    font-size: 60px;
+  }
+</style>
