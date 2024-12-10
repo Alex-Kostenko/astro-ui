@@ -21,7 +21,7 @@ const blockHeader = t("menu") as { title: string; list: string[] }[];
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>
-      <img src={smallLogo.src} class="max-h-12 2xl:max-h-none" alt="logo" />
+      <img src={smallLogo.src} class="max-h-12 lg:max-h-none" alt="logo" />
     </a>
     <nav class="ml-auto hidden 2xl:flex items-center gap-x-10">
       <HeaderLinks />
@@ -32,7 +32,10 @@ const blockHeader = t("menu") as { title: string; list: string[] }[];
         {t("contactUs")}
       </ButtonAstro>
 
-      <button id="menu" class:list={["relative h-10 w-10 py-3 px-2 "]}>
+      <button
+        id="menu"
+        class:list={["relative h-10 w-10 py-3 px-2 2xl:hidden"]}
+      >
         <div class="relative h-full menuWrapper">
           <span
             class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-full"
