@@ -10,3 +10,4 @@ export type { QueryApi, Popylate, IFilter } from "./query.api";
 export { type IUploadBody, UploadPath } from "./upload";
 export type { IContactUsBody } from "./contactUs";
 export type { IServices } from "./i.services";
+export type { IStep } from "./step";
