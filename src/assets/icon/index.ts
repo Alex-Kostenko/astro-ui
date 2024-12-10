@@ -11,6 +11,7 @@ import ArrowLeft from "./arrowLeft.astro";
 import logoOutline from "./logoOutline.webp";
 import youtube from "./youtube.svg";
 import Menu from "./menu.astro";
+import listSquare from "./listSquare.svg";
 
 export {
   smallLogo,
@@ -26,4 +27,5 @@ export {
   logoOutline,
   youtube,
   Menu,
+  listSquare,
 };
