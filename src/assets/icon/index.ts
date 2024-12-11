@@ -12,6 +12,7 @@ import logoOutline from "./logoOutline.webp";
 import youtube from "./youtube.svg";
 import Menu from "./menu.astro";
 import listSquare from "./listSquare.svg";
+import stepImg from "./stepImg.svg";
 
 export {
   smallLogo,
@@ -28,4 +29,5 @@ export {
   youtube,
   Menu,
   listSquare,
+  stepImg,
 };
