@@ -200,20 +200,15 @@
   },
   "service": {
     "description": {
-      "desktop": {
-        "title": {
-          "line-1-outlined": "PROJECT",
-          "line-2-outlined": "MANAGEMENT",
-          "line-3-contained": "CONSULTING"
-        },
-        "description": [
-          "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.",
-          "Let's take your project, project portfolio, processes, resource or release management to the next level!"
-        ]
+      "title": {
+        "line-1-outlined": "PROJECT",
+        "line-2-outlined": "MANAGEMENT",
+        "line-3-contained": "CONSULTING"
       },
-      "mobile": {},
-      "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness.",
-      "aboutUs": "more about us"
+      "description": [
+        "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.",
+        "Let's take your project, project portfolio, processes, resource or release management to the next level!"
+      ]
     },
     "about": {
       "tag": "ABOUT",

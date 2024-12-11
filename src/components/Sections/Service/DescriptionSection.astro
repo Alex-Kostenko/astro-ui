@@ -5,15 +5,7 @@ import { useTranslations, type Languages } from "@i18n/index";
 import { Human } from "src/assets";
 
 const { lang } = Astro.params;
-const tDesktop = useTranslations(
-  lang as Languages,
-  "service.description.desktop",
-);
-const tMobile = useTranslations(
-  lang as Languages,
-  "service.description.mobile",
-);
-// have you ever counted of a single mis  hire?
+const t = useTranslations(lang as Languages, "service.description");
 ---
 
 <Container class="mt-14">
@@ -26,12 +18,12 @@ const tMobile = useTranslations(
     ]}
   >
     <span class="text-stroken-green-2 md:text-stroken-green-4">
-      {tDesktop("title.line-1-outlined")}
+      {t("title.line-1-outlined")}
     </span>
     <span class="text-stroken-green-2 md:text-stroken-green-4">
-      {tDesktop("title.line-2-outlined")}
+      {t("title.line-2-outlined")}
     </span>
-    <span>{tDesktop("title.line-3-contained")}</span>
+    <span>{t("title.line-3-contained")}</span>
   </h2>
 
   <section
@@ -51,7 +43,7 @@ const tMobile = useTranslations(
 
     <div class="flex flex-col gap-5">
       {
-        tDesktop("description").map((line: string) => (
+        t("description").map((line: string) => (
           <TypographyAstro type="body-4" class="2xl:w-[480px] leading-1">
             {line}
           </TypographyAstro>
