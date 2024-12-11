@@ -1,7 +1,7 @@
 ---
 import { Container } from "@components/Container";
 import { ServiceHeader } from "@components/ServiceHeader";
-import StepAstro from "@components/Step/StepAstro.astro";
+import { StepAstro, FirstStep } from "@components/Step";
 import { SectionTitle } from "@components/Typography";
 import { type Languages, useTranslations } from "@i18n/index";
 import stepsService from "@service/steps.service";
@@ -22,19 +22,20 @@ const steps = await stepsService.get({ locale: lang as Languages });
   </article>
   <div class="swiper step-swiper mt-10">
     <div class="swiper-wrapper">
+      <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+        <FirstStep />
+      </div>
       {
         steps.data.map((step) => (
           <div class="swiper-slide duration-300 w-[280px] h-[578px]">
             <StepAstro step={step} />
           </div>
         ))
-      }{
-        steps.data.map((step) => (
-          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
-            <StepAstro step={step} />
-          </div>
-        ))
-      }{
+      }
+      <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+        <FirstStep />
+      </div>
+      {
         steps.data.map((step) => (
           <div class="swiper-slide duration-300 w-[280px] h-[578px]">
             <StepAstro step={step} />
