@@ -3,19 +3,21 @@ import { Container } from "@components/Container";
 import ProjectList from "@components/ProjectCard/ProjectList.astro";
 import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
+import type { IProject } from "@interfaces/project";
 import projectService from "@service/project.service";
 
+interface Props {
+  data: IProject[];
+}
+
 const { lang } = Astro.params;
-const response = await projectService.get({
-  pagination: { page: 1, pageSize: 4 },
-  locale: lang as Languages,
-});
+const { data } = Astro.props;
 
 const t = useTranslations(lang as Languages, "service.cases");
 ---
 
-<Container>
+<Container id="service">
   <SectionTitle title={t("title")} type={t("tag")} />
 
-  <ProjectList projects={response.data} />
+  <ProjectList projects={data} />
 </Container>
