@@ -1,0 +1,65 @@
+---
+import { Container } from "@components/Container";
+import { ServiceHeader } from "@components/ServiceHeader";
+import StepAstro from "@components/Step/StepAstro.astro";
+import { SectionTitle } from "@components/Typography";
+import { type Languages, useTranslations } from "@i18n/index";
+import stepsService from "@service/steps.service";
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "service.steps");
+
+const steps = await stepsService.get({ locale: lang as Languages });
+---
+
+<Container class="overflow-hidden">
+  <SectionTitle title={t("title")} type={t("tag")} />
+  <article class="flex flex-col gap-10">
+    <ServiceHeader>
+      {t("header")}
+    </ServiceHeader>
+  </article>
+  <div class="swiper step-swiper mt-10">
+    <div class="swiper-wrapper">
+      {
+        steps.data.map((step) => (
+          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+            <StepAstro step={step} />
+          </div>
+        ))
+      }{
+        steps.data.map((step) => (
+          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+            <StepAstro step={step} />
+          </div>
+        ))
+      }{
+        steps.data.map((step) => (
+          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+            <StepAstro step={step} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Container>
+
+<script>
+  import Swiper from "swiper";
+
+  const swiper = new Swiper(".step-swiper", {
+    slidesPerView: "auto",
+    centeredSlides: false,
+    loop: true,
+    speed: 400,
+    spaceBetween: 20,
+    grabCursor: true,
+    breakpoints: {
+      1440: { slidesPerView: 4 },
+      1280: { slidesPerView: 3 },
+      768: { slidesPerView: 2 },
+      0: { centeredSlides: false, spaceBetween: 0, slidesPerView: 1 },
+    },
+  });
+</script>

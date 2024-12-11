@@ -1,0 +1,58 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { languages, useTranslations, type Languages } from "@i18n/index";
+import type { GetStaticPaths } from "node_modules/astro/dist/@types/astro";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import {
+  TestimonialsSection,
+  CasesSection,
+  DescriptionSection,
+  AboutServiceSection,
+  StepsSection,
+} from "@components/Sections";
+import { cubeNear } from "@assets/index";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({
+    params: { lang: languages[v].slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "service.contactUs");
+
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+---
+
+<Layout title="UniCode Service">
+  <link
+    slot="head"
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main>
+    <div class="h-[420px] lg:h-[480px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <source src={cubeNear} type="video/mp4" />
+      </video>
+    </div>
+    <div class="flex flex-col gap-[120px]">
+      <DescriptionSection />
+      <AboutServiceSection />
+      <StepsSection />
+      <TestimonialsSection />
+      <CasesSection />
+      <ContactUsSection text={text} />
+    </div>
+  </main>
+</Layout>
