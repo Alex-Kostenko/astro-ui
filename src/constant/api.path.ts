@@ -7,4 +7,5 @@ export enum ApiPath {
   contactUs = "/contact-uses",
   upload = "/upload",
   step = "/steps",
+  service = "/services",
 }
