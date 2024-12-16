@@ -1,0 +1,24 @@
+---
+import type { IStep } from "@interfaces/step";
+import { Image } from "astro:assets";
+import { stepImg } from "@assets/index";
+
+interface Props {
+  step: IStep;
+}
+
+const { step } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-col gap-6 bg-brand-black text-brand-white font-gothic700",
+    "text-xl leading-6 w-full h-full p-4",
+  ]}
+>
+  <Image src={stepImg} alt="" />
+  <h4 class="uppercase">{step.title}</h4>
+  <p class="font-gothic">
+    {step.description}
+  </p>
+</div>

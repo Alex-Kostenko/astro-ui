@@ -1,4 +1,5 @@
 import type { IImage } from "./image";
+import type { IService } from "./service";
 import type { ITechnology } from "./technology";
 
 export interface IProject {
@@ -14,4 +15,5 @@ export interface IProject {
   clientSinceYear: string;
   image: IImage;
   technologies: ITechnology[];
+  services: IService[];
 }

@@ -6,4 +6,6 @@ export enum ApiPath {
   comment = "/comments",
   contactUs = "/contact-uses",
   upload = "/upload",
+  step = "/steps",
+  service = "/services",
 }
