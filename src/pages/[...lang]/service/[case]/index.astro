@@ -6,7 +6,6 @@ import {
   type Language,
   type Languages,
 } from "@i18n/index";
-import type { GetStaticPaths } from "node_modules/astro/dist/@types/astro";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import serviceService from "@service/service.service";
 
@@ -20,6 +19,7 @@ import {
 } from "@components/Sections";
 import { cubeNear } from "@assets/index";
 import type { IService } from "@interfaces/service";
+import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
   const projectService: IService[] = [

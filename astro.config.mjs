@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import vercelServerless from "@astrojs/vercel/serverless";
+import vercelServerless from "@astrojs/vercel";
 
 import tailwind from "@astrojs/tailwind";
 
@@ -8,7 +8,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   integrations: [tailwind()],
   output: "static",
-  // adapter: vercelServerless(),
+  adapter: vercelServerless(),
   build: { inlineStylesheets: "never" },
   i18n: {
     defaultLocale: "en",
