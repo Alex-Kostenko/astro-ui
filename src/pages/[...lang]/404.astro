@@ -2,7 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 
 import { languages, useTranslations, type Languages } from "@i18n/index";
-import type { GetStaticPaths } from "node_modules/astro/dist/@types/astro";
+import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((v) => ({
