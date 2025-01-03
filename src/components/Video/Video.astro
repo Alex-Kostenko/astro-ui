@@ -1,0 +1,51 @@
+---
+interface Props {
+  class: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<video-player class={className}>
+  <video muted loop class:list={["h-full w-full object-cover"]}>
+    <slot />
+  </video>
+</video-player>
+
+<script>
+  class VideoPlayer extends HTMLElement {
+    connectedCallback() {
+      var video = this.querySelector("video") as HTMLVideoElement;
+
+      function playVideo(
+        entries: IntersectionObserverEntry[],
+        observer: IntersectionObserver,
+      ) {
+        entries.forEach((entry) => {
+          const videoRect = entry.target.getBoundingClientRect();
+
+          if (
+            entry.isIntersecting &&
+            videoRect.top - window.innerHeight < 300
+          ) {
+            console.log("Playing video");
+            (entry.target as HTMLVideoElement).play();
+          } else {
+            console.log("Pausing video");
+            const targetVideo = entry.target as HTMLVideoElement;
+            targetVideo.pause();
+          }
+        });
+      }
+
+      var observer = new IntersectionObserver(playVideo, {
+        root: null,
+        threshold: 0,
+      });
+
+      observer.observe(video);
+    }
+  }
+
+  customElements.define("video-player", VideoPlayer);
+</script>

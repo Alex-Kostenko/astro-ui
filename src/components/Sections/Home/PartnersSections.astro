@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
@@ -22,7 +23,7 @@ const t = useTranslations(lang as Languages, "home.parthners");
               "w-[220px] h-32 text-white p-5 bg-green rounded",
             ]}
           >
-            <img src={v.src} alt={v.src} />
+            <Image src={v} alt={v.src} />
           </div>
         ))
       }
@@ -37,7 +38,7 @@ const t = useTranslations(lang as Languages, "home.parthners");
               "w-[220px] h-32 text-white p-5 bg-green",
             ]}
           >
-            <img src={v.src} alt={v.src} />
+            <Image src={v} alt={v.src} />
           </div>
         ))
       }
