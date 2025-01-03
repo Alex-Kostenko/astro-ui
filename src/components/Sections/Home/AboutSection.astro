@@ -3,6 +3,7 @@ import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
+import { Image } from "astro:assets";
 import { ArrowRight, Human } from "src/assets";
 
 const { lang } = Astro.params;
@@ -41,9 +42,9 @@ const t = useTranslations(lang as Languages, "home.about");
     ]}
   >
     <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
+      <Image
         class="min-h-full object-cover min-w-full"
-        src={Human.src}
+        src={Human}
         alt="human face of number"
       />
     </div>

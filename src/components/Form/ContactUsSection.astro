@@ -2,6 +2,7 @@
 import { Container } from "@components/Container";
 import ContactUsForm from "./ContactUsForm.astro";
 import { logoOutline } from "src/assets";
+import { Image } from "astro:assets";
 
 interface Props {
   text: {
@@ -20,7 +21,7 @@ const { text } = Astro.props;
     <figure
       class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40 pointer-events-none"
     >
-      <img src={logoOutline.src} alt="logo outline" />
+      <Image src={logoOutline} alt="logo outline" />
     </figure>
 
     <article

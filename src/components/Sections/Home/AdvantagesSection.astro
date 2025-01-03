@@ -1,7 +1,9 @@
 ---
 import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
+import Video from "@components/Video/Video.astro";
 import { useTranslations, type Languages } from "@i18n/index";
+import { Image } from "astro:assets";
 import { cubeSide, Eye } from "src/assets";
 
 const { lang } = Astro.params;
@@ -16,14 +18,9 @@ const t = useTranslations(lang as Languages, "home.advantagesSection");
       colorTitle="text-brand-white"
     />
     <section class="grid grid-cols-2 grid-rows-5 md:grid-cols-4 md:grid-rows-4">
-      <video
-        autoplay
-        muted
-        loop
-        class="md:col-span-2 md:row-span-2 h-full w-full object-cover"
-      >
-        <source src={cubeSide} type="video/mp4" /></video
-      >
+      <Video class="md:col-span-2 md:row-span-2 h-full w-full object-cover">
+        <source src={cubeSide} type="video/mp4" />
+      </Video>
 
       <div class="row-start-1 col-start-2 md:row-start-auto md:col-start-auto">
       </div>
@@ -146,7 +143,7 @@ const t = useTranslations(lang as Languages, "home.advantagesSection");
       <div class="hidden md:block"></div>
 
       <figure class="border border-brand-white">
-        <img src={Eye.src} alt="Eye image" class="h-full w-full object-cover" />
+        <Image src={Eye} alt="Eye image" class="h-full w-full object-cover" />
       </figure>
     </section>
   </Container>
