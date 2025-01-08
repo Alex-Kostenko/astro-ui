@@ -71,7 +71,7 @@ const { class: className, project } = Astro.props;
   <div class="h-[352px] flex-1">
     <img
       class="h-full w-full object-cover object-center"
-      src={executeImg(project.image)}
+      src={project.image.base64}
     />
   </div>
 </section>
