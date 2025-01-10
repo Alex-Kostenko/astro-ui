@@ -73,6 +73,7 @@ const { class: className, project } = Astro.props;
       class="h-full w-full object-cover object-center"
       src={project.image.base64}
       alt={project.image.name || "project preview"}
+      loading="lazy"
     />
   </div>
 </section>

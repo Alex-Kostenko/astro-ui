@@ -30,12 +30,14 @@ const comments = await commentService.get({ locale: lang as Languages });
       <button
         id="testimonials-previous"
         class="text-brand-black bg-gray-100 p-1 rounded previous-swipe"
+        aria-label="previous slide"
       >
         <ArrowLeft />
       </button>
       <button
         id="testimonials-next"
         class="text-brand-black bg-gray-100 p-1 rounded next-swipe"
+        aria-label="next slide"
       >
         <ArrowRight />
       </button>
