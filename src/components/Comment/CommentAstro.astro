@@ -42,7 +42,7 @@ const { comment, class: className } = Astro.props;
       {
         Array.from({ length: comment.rating }).map(() => (
           <div class="max-h-6">
-            <img class="aspect-square" src={star.src} />
+            <img class="aspect-square" src={star.src} alt="star" />
           </div>
         ))
       }
