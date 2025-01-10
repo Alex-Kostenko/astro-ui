@@ -13,7 +13,8 @@ const t = useTranslations(lang as Languages, "hero");
     autoplay
     muted
     loop
-    onloadeddata="showVideo()"
+    preload="auto"
+    onloadeddata="this.classList.add('opacity-anim')"
     class="opacity-0 absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover transition-opacity duration-1000 ease-out"
   >
     <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
@@ -130,12 +131,12 @@ const t = useTranslations(lang as Languages, "hero");
 
   printChar(words[gen.next().value]);
 
-  function showVideo() {
-    const video = document.querySelector("video");
-    setTimeout(() => {
-      video.classList.add("opacity-anim");
-    }, 500);
-  }
+  // function showVideo() {
+  //   const video = document.querySelector("video");
+  //   setTimeout(() => {
+  //     video.classList.add("opacity-anim");
+  //   }, 1);
+  // }
 </script>
 
 <style is:global>
