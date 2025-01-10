@@ -85,7 +85,8 @@ const { page, slug } = Astro.props;
 <Layout title="UniCode Cases">
   <link
     slot="head"
-    rel="stylesheet"
+    rel="preload"
+    as="stylesheet"
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
   <main class="flex flex-col gap-y-[120px]">
