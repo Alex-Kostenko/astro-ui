@@ -17,6 +17,7 @@ const t = useTranslations(lang as Languages, "hero");
     onloadeddata="this.classList.add('opacity-anim')"
     class="opacity-0 absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover transition-opacity duration-1000 ease-out"
   >
+    <track kind="captions" src="/captions/empty_captions.vtt" />
     <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
   </video>
   <div class="max-w-[1616px] h-full w-full my-auto mx-auto px-4 md:px-8">

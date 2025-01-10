@@ -103,8 +103,10 @@ const text = t("text").map((t: string, i: number) => {
         autoplay
         muted
         loop
+        preload="auto"
         class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
       >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
         <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
       </video>
       <HeroTabsSection domain={slug} />
