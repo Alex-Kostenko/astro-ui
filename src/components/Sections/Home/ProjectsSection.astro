@@ -20,7 +20,7 @@ const t = useTranslations(lang as Languages, "home.project");
   <SectionTitle title={t("title")} type={t("tag")} />
 
   <ProjectList projects={response.data} />
-  <ButtonAstro class="w-full">
+  <ButtonAstro asLink href="/cases/all/1" class="w-full">
     {t("btnExplorerMore")}
     <span class="w-5 h-5 flex items-center justify-center">
       <ArrowRight />

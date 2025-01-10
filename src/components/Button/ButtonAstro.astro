@@ -3,19 +3,25 @@ interface Props {
   variant?: "contained" | "outlined";
   color?: "black" | "biscuit";
   class?: string;
+  asLink?: boolean;
+  href?: string;
 }
 
 const {
   color = "black",
   variant = "contained",
   class: className,
+  href = "#",
+  asLink = false,
 } = Astro.props;
+
+const Tag = asLink ? "a" : "button";
 ---
 
-<button
+<Tag
   class:list={[
     "min-h-11 min-w-11 px-4 py-3 rounded box-border font-gothic700 flex justify-center gap-x-2",
-    "uppercase text-center font-bold text-base leading-tight",
+    "uppercase text-center font-bold text-base leading-tight cursor-pointer",
     "duration-200",
     {
       "bg-brand-white text-green":
@@ -31,6 +37,7 @@ const {
     },
     className,
   ]}
+  {...asLink && { href }}
 >
   <slot />
-</button>
+</Tag>
