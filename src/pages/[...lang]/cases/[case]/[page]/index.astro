@@ -6,7 +6,7 @@ import {
   languages,
   useTranslations,
 } from "@i18n/index";
-import { cubeNear } from "@assets/index";
+import { cubeNear, cubeNearVP9 } from "@assets/index";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
 import projectService from "@service/project.service";
@@ -100,6 +100,7 @@ const { page, slug } = Astro.props;
       >
         <track kind="captions" src="/captions/empty_captions.vtt" />
         <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
       </video>
     </div>
 

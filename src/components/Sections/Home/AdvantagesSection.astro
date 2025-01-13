@@ -4,7 +4,7 @@ import { SectionTitle } from "@components/Typography";
 import Video from "@components/Video/Video.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 import { Image } from "astro:assets";
-import { cubeSide, Eye } from "src/assets";
+import { cubeSide, cubeSideVP9, Eye } from "src/assets";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.advantagesSection");
@@ -24,6 +24,7 @@ const t = useTranslations(lang as Languages, "home.advantagesSection");
           src={cubeSide}
           type="video/mp4; ; codecs=avc1.42E01E,mp4a.40.2"
         />
+        <source src={cubeSideVP9} type="video/mp4" />
       </Video>
 
       <div class="row-start-1 col-start-2 md:row-start-auto md:col-start-auto">
