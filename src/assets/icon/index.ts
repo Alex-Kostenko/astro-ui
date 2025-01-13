@@ -1,11 +1,11 @@
 import smallLogo from "./smallLogo.webp";
 import logo from "./logo.svg";
-import clutch from "./clutch.svg";
+import clutch from "./Clutch.svg";
 import linkedin from "./Linkedin.svg";
 import UpArrow from "./upArrow.astro";
 import DownArrow from "./downArrow.astro";
 import * as company from "./company";
-import star from "./Star.svg";
+import star from "./star.svg";
 import ArrowRight from "./arrowRight.astro";
 import ArrowLeft from "./arrowLeft.astro";
 import logoOutline from "./logoOutline.webp";
