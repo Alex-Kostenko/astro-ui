@@ -5,6 +5,7 @@ interface Props {
   class?: string;
   asLink?: boolean;
   href?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   class: className,
   href = "#",
   asLink = false,
+  type = "button",
 } = Astro.props;
 
 const Tag = asLink ? "a" : "button";
@@ -37,7 +39,7 @@ const Tag = asLink ? "a" : "button";
     },
     className,
   ]}
-  {...asLink && { href }}
+  {...asLink ? { href } : { type }}
 >
   <slot />
 </Tag>
