@@ -87,7 +87,7 @@
     "messageLabel": "Your message",
     "file": {
       "button": "Add File",
-      "label": "File size up to 10Mb"
+      "label": "File size up to 5Mb"
     },
     "consent": {
       "start": "I have read and accepted the",

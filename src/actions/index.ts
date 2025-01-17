@@ -4,7 +4,7 @@ import fileService from "@service/file.service";
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
-const MAX_FILE_SIZE = 10000000;
+const MAX_FILE_SIZE = 5242880; // 5mb
 
 export const server = {
   contactUs: defineAction({

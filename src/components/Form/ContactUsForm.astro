@@ -36,6 +36,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
         name="file"
         titleBtn={t("file.button")}
         label={t("file.label")}
+        accept=".pdf"
       />
     </div>
 
@@ -50,7 +51,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
       </p>
     </CheckBox>
 
-    <ButtonAstro color="biscuit" class="w-full">
+    <ButtonAstro color="biscuit" class="w-full" type="submit">
       {t("submitBtn")}
     </ButtonAstro>
   </form>
