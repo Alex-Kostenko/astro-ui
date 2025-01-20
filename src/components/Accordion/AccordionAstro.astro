@@ -10,7 +10,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 
 {
   !arrowStyle && (
-    <accordion-block isOpen={open + ""} arrowStyle={arrowStyle + ""}>
+    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
       <div class="border-b border-black box-border">
         <button class="w-full py-6 text-slate-800 text-start">
           <slot name="title" />
@@ -29,7 +29,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 }
 {
   arrowStyle && (
-    <accordion-block isOpen={open + ""} arrowStyle={arrowStyle + ""}>
+    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
       <div>
         <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
           <div class="flex justify-between ">
