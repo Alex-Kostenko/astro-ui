@@ -5,11 +5,11 @@ const styles = {
     "py-2",
     "rounded",
     "cursor-pointer",
-    "max-w-[325px]",
+    "w-[325px]",
   ],
   info: ["bg-blue-400", "hover:bg-blue-500"],
   success: ["bg-green-100", "hover:bg-green-200"],
-  error: ["bg-red-400", "hover:bg-red-500", "!text-black"],
+  error: ["bg-[#d32f2f]", "!text-black"],
 };
 
 export function toast(msg: string, type?: keyof typeof styles) {
