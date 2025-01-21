@@ -104,6 +104,20 @@ export default {
         1: "1px",
         2: "2px",
       },
+      keyframes: {
+        toastLeft: {
+          "0%": { transform: "translateX(120%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        toastRight: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(120%)" },
+        },
+      },
+      animation: {
+        toastLeft: "toastLeft .2s ease-in-out forwards",
+        toastRight: "toastRight .2s ease-in-out forwards",
+      },
     },
   },
   plugins: [
