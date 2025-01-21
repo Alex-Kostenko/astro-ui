@@ -1,3 +1,3 @@
 import Toast from "./Toast.astro";
-
-export { Toast };
+import { toast } from "./toast";
+export { Toast, toast };

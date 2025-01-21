@@ -4,7 +4,6 @@ import { TextField } from "@components/TextField";
 import FilePicker from "./FilePicker.astro";
 import CheckBox from "./CheckBox.astro";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Toast } from "@components/Toast";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "formContactUs");
@@ -51,7 +50,15 @@ const t = useTranslations(lang as Languages, "formContactUs");
         </a>
       </p>
     </CheckBox>
-    <Toast type="success">
+    <ButtonAstro
+      slot="toast-trigger"
+      color="biscuit"
+      class="w-full"
+      type="submit"
+    >
+      {t("submitBtn")}
+    </ButtonAstro>
+    <!-- <Toast type="success">
       <p slot="toast-content">Success</p>
       <ButtonAstro
         slot="toast-trigger"
@@ -61,12 +68,13 @@ const t = useTranslations(lang as Languages, "formContactUs");
       >
         {t("submitBtn")}
       </ButtonAstro>
-    </Toast>
+    </Toast> -->
   </form>
 </section>
 
 <script>
   import { actions } from "astro:actions";
+  import { toast } from "@components/Toast";
   const form = document.querySelector("#form-contac-us") as HTMLFormElement;
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -76,11 +84,8 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
 
-    const toast = document.getElementById("toast");
-
     if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
-      toast?.classList.remove("info", "success");
-      toast?.classList.add("error");
+      toast("Fill in all fields and upload only one file", "error");
       return;
     }
 
@@ -88,8 +93,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
     console.log("error", error);
 
     if (data?.success) {
-      toast?.classList.remove("info", "error");
-      toast?.classList.add("success");
+      toast("Form submitted", "success");
       form.reset();
     }
 

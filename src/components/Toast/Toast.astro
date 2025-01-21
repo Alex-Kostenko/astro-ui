@@ -1,74 +1,9 @@
 ---
-interface Props {
-  type?: string;
-}
 
-const { type = "info" } = Astro.props;
 ---
 
-<style>
-  .info {
-    background: #1276cd;
-  }
-  .info:hover {
-    background: #169fde;
-  }
-
-  .success {
-    background: #25cd12;
-  }
-  .success:hover {
-    background: #2ade16;
-  }
-
-  .error {
-    background: #cd3b12;
-  }
-  .error:hover {
-    background: #de5216;
-  }
-</style>
-
-<toast-astro
-  id={`toast`}
-  class={`fixed right-4 bottom-4 z-50 rounded-md px-5 py-2 text-white hidden opacity-0 transition-opacity duration-300 ${type}`}
+<div
+  id="toast-container"
+  class="fixed bottom-4 right-4 flex flex-col z-40 gap-2"
 >
-  <slot name="toast-content" />
-</toast-astro>
-
-<div id="launch-toast">
-  <slot name="toast-trigger" />
 </div>
-
-<script>
-  let toastTimer: NodeJS.Timeout;
-  class Toast extends HTMLElement {
-    connectedCallback() {
-      const launchToastBtn = document.getElementById("launch-toast")!;
-
-      const showToast = () => {
-        if (this.classList.contains("block")) return;
-
-        this.classList.replace("hidden", "block");
-        setTimeout(() => {
-          this.classList.replace("opacity-0", "opacity-100");
-        }, 10);
-
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => hideToast(), 5000);
-      };
-
-      const hideToast = () => {
-        this.classList.replace("opacity-100", "opacity-0");
-        setTimeout(() => {
-          this.classList.replace("block", "hidden");
-        }, 300);
-      };
-
-      this.addEventListener("click", hideToast);
-      launchToastBtn.addEventListener("click", showToast);
-    }
-  }
-
-  customElements.define("toast-astro", Toast);
-</script>

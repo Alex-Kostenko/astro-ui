@@ -2,6 +2,8 @@
 import "@style/main.css";
 import Header from "./Header/Header.astro";
 import Footer from "./Footer/Footer.astro";
+import { Toast } from "@components/Toast";
+
 interface Props {
   title: string;
 }
@@ -26,6 +28,7 @@ const { lang } = Astro.params;
     <title>{title}</title>
   </head>
   <body class="bg-brand-white">
+    <Toast />
     <Header />
     <slot />
     <Footer />
