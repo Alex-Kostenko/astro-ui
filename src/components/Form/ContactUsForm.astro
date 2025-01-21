@@ -4,6 +4,7 @@ import { TextField } from "@components/TextField";
 import FilePicker from "./FilePicker.astro";
 import CheckBox from "./CheckBox.astro";
 import { useTranslations, type Languages } from "@i18n/index";
+import { Toast } from "@components/Toast";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "formContactUs");
@@ -50,16 +51,22 @@ const t = useTranslations(lang as Languages, "formContactUs");
         </a>
       </p>
     </CheckBox>
-
-    <ButtonAstro color="biscuit" class="w-full" type="submit">
-      {t("submitBtn")}
-    </ButtonAstro>
+    <Toast type="success">
+      <p slot="toast-content">Success</p>
+      <ButtonAstro
+        slot="toast-trigger"
+        color="biscuit"
+        class="w-full"
+        type="submit"
+      >
+        {t("submitBtn")}
+      </ButtonAstro>
+    </Toast>
   </form>
 </section>
 
 <script>
   import { actions } from "astro:actions";
-
   const form = document.querySelector("#form-contac-us") as HTMLFormElement;
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -69,13 +76,20 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
 
+    const toast = document.getElementById("toast");
+
     if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
+      toast?.classList.remove("info", "success");
+      toast?.classList.add("error");
       return;
     }
 
     const { error, data } = await actions.contactUs(formData);
     console.log("error", error);
+
     if (data?.success) {
+      toast?.classList.remove("info", "error");
+      toast?.classList.add("success");
       form.reset();
     }
 
