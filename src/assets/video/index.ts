@@ -1,5 +1,5 @@
-import cubeNear from "./cube_near_reversed.mp4";
-import cubeNearVP9 from "./cube_near_reversed_vp9.mp4";
+import cubeNear from "./cube_near.mp4";
+import cubeNearVP9 from "./cube_near_vp9.mp4";
 import cubeSide from "./cube_side.mp4";
 import cubeSideVP9 from "./cube_side_vp9.mp4";
 
