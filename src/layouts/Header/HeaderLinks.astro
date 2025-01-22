@@ -4,10 +4,10 @@ import { DownArrow, UpArrow } from "src/assets";
 import { routes } from "src/routes";
 
 const links = [
-  { name: "Services", href: routes.service, drop: true },
-  { name: "Cases", href: routes.cases, drop: true },
-  { name: "Expertise", href: "#", drop: true },
-  { name: "About Us", href: "#", drop: true },
+  { name: "Services", href: routes.service, drop: false },
+  { name: "Cases", href: routes.cases, drop: false },
+  { name: "Expertise", href: "#", drop: false },
+  { name: "About Us", href: "#", drop: false },
   { name: "Insights", href: "#", drop: false },
 ];
 
@@ -27,7 +27,7 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px]",
+        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px] underline",
         {
           "text-brand-white": !IsCurrentPage(link.href),
           "text-brand-beigeLight": IsCurrentPage(link.href),
