@@ -77,7 +77,7 @@
     ],
     "privacyPolicy": "Політика конфіденційності.",
     "termsOfService": "Умови надання послуг.",
-    "copyright": "Copyright © 2023 Implex. Всі права захищені."
+    "copyright": "Copyright © $year UniCode Software. Всі права захищені."
   },
   "formContactUs": {
     "title": "Залиште свої контактні дані, і ми зв'яжемося з вами протягом 24 годин",

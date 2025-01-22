@@ -77,7 +77,7 @@
     ],
     "privacyPolicy": "Privacy Policy.",
     "termsOfService": "Terms of Service.",
-    "copyright": "Copyright © 2023 Implex. All rights reserved."
+    "copyright": "Copyright © $year UniCode Software. All rights reserved."
   },
   "formContactUs": {
     "title": "Leave your contact details, and we will reach you within 24 hours",

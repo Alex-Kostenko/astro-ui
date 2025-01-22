@@ -87,7 +87,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
             "text-gray font-gothic text-10 leading-3",
           ]}
         >
-          <p>{t("copyright")}</p>
+          <p>{(t("copyright")).replace('$year', new Date().getFullYear())}</p>
           <p>{t("privacyPolicy")}</p>
           <p>{t("termsOfService")}</p>
         </div>
