@@ -4,6 +4,8 @@ interface Props {
   color?: "black" | "biscuit";
   class?: string;
   asLink?: boolean;
+  withArrow?: boolean;
+  iconOnly?: boolean;
   href?: string;
   type?: "button" | "submit" | "reset";
 }
@@ -14,6 +16,8 @@ const {
   class: className,
   href = "#",
   asLink = false,
+  withArrow = false,
+  iconOnly = false,
   type = "button",
 } = Astro.props;
 
@@ -37,9 +41,35 @@ const Tag = asLink ? "a" : "button";
       "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500":
         variant === "contained" && color === "black",
     },
+    { "items-center": withArrow },
+    { "w-fit items-center": iconOnly },
     className,
   ]}
   {...asLink ? { href } : { type }}
 >
-  <slot />
+  {!iconOnly && <slot />}
+  {
+    (withArrow || iconOnly) && (
+      <svg
+        width="13"
+        height="8"
+        viewBox="0 0 13 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.666016 3.99996H11.666M11.666 3.99996L8.33268 0.666626M11.666 3.99996L8.33268 7.33329"
+          stroke={
+            color === "black"
+              ? variant === "outlined"
+                ? "#171A1F"
+                : "#F3F3EF"
+              : "#034425"
+          }
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
 </Tag>
