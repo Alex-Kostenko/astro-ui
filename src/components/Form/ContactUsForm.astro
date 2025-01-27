@@ -73,25 +73,36 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
 
+    // form validation
     for (const [name, value] of entries) {
       if (typeof value === "string" && value !== "on") {
         const field = form.querySelector(`[name="${name}"]`);
+
         const errorField = field?.nextElementSibling;
-        !value && errorField?.classList.remove("hidden");
-        value && errorField?.classList.add("hidden");
+        if (!value) {
+          errorField?.classList.remove("hidden");
+          field?.classList.add("border-b-red");
+        } else {
+          errorField?.classList.add("hidden");
+          field?.classList.remove("border-b-red");
+        }
       } else if (typeof value === "object") {
         const field = form.querySelector(`[name="${name}"]`)?.parentElement;
+
         const errorField = field?.nextElementSibling;
-        value.size <= 0 && errorField?.classList.remove("hidden");
-        value.size > 0 && errorField?.classList.add("hidden");
+        if (value.size <= 0) {
+          errorField?.classList.remove("hidden");
+          field?.classList.add("border-b-red");
+        } else {
+          errorField?.classList.add("hidden");
+          field?.classList.remove("border-b-red");
+        }
       }
     }
 
     const consentField = form.querySelector(`[name="consent"]`)?.parentElement;
-    console.log(consentField);
 
     const consentErrorField = consentField?.nextElementSibling;
-    console.log(consentErrorField);
     if (consent === null) {
       consentErrorField?.classList.remove("hidden");
     } else {
