@@ -6,11 +6,14 @@ interface Props {
 const { name } = Astro.props;
 ---
 
-<label class="custom-checkbox">
-  <slot />
-  <input type="checkbox" name={name} />
-  <span class="checkmark"></span>
-</label>
+<div>
+  <label class="custom-checkbox">
+    <slot />
+    <input type="checkbox" name={name} />
+    <span class="checkmark"></span>
+  </label>
+  <p class="hidden text-red px-4">Required field</p>
+</div>
 
 <style>
   /* Основний контейнер */

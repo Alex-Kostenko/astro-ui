@@ -24,6 +24,7 @@ const { name, accept = "*", label, titleBtn = "Add File" } = Astro.props;
   </button>
   <span class="text-brand-white font-gothic text-14">{label}</span>
 </file-pick>
+<p class="hidden text-red" id="file-picker-error">Upload at least one file</p>
 
 <script>
   class FilePicker extends HTMLElement {
@@ -32,6 +33,7 @@ const { name, accept = "*", label, titleBtn = "Add File" } = Astro.props;
       const button = this.querySelector("button") as HTMLButtonElement;
       const input = this.querySelector("input") as HTMLInputElement;
       const label = this.querySelector("span") as HTMLSpanElement;
+      const error = this.nextElementSibling as HTMLParagraphElement;
       this.labelText = label.textContent;
       button.onclick = function () {
         input.click();
@@ -45,6 +47,8 @@ const { name, accept = "*", label, titleBtn = "Add File" } = Astro.props;
 
           const sizeInMB = files[0].size / (1000 * 1000);
           label.textContent = files[0].name + ` [ ${sizeInMB.toFixed(1)} MB ]`;
+
+          error.classList.add("hidden");
         }
 
         console.log(e);

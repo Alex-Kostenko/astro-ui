@@ -58,17 +58,6 @@ const t = useTranslations(lang as Languages, "formContactUs");
     >
       {t("submitBtn")}
     </ButtonAstro>
-    <!-- <Toast type="success">
-      <p slot="toast-content">Success</p>
-      <ButtonAstro
-        slot="toast-trigger"
-        color="biscuit"
-        class="w-full"
-        type="submit"
-      >
-        {t("submitBtn")}
-      </ButtonAstro>
-    </Toast> -->
   </form>
 </section>
 
@@ -83,6 +72,31 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const consent = formData.get("consent");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
+
+    for (const [name, value] of entries) {
+      if (typeof value === "string" && value !== "on") {
+        const field = form.querySelector(`[name="${name}"]`);
+        const errorField = field?.nextElementSibling;
+        !value && errorField?.classList.remove("hidden");
+        value && errorField?.classList.add("hidden");
+      } else if (typeof value === "object") {
+        const field = form.querySelector(`[name="${name}"]`)?.parentElement;
+        const errorField = field?.nextElementSibling;
+        value.size <= 0 && errorField?.classList.remove("hidden");
+        value.size > 0 && errorField?.classList.add("hidden");
+      }
+    }
+
+    const consentField = form.querySelector(`[name="consent"]`)?.parentElement;
+    console.log(consentField);
+
+    const consentErrorField = consentField?.nextElementSibling;
+    console.log(consentErrorField);
+    if (consent === null) {
+      consentErrorField?.classList.remove("hidden");
+    } else {
+      consentErrorField?.classList.add("hidden");
+    }
 
     if (!consent || file.size <= 0 || entries.some((v) => !v[1])) {
       toast("Fill in all fields and upload only one file", "error");

@@ -49,6 +49,9 @@ export default {
           400: "#022916",
           500: "#022213",
         },
+        red: {
+          DEFAULT: "#DE0D0D",
+        },
         gray: {
           DEFAULT: "#939290",
           100: "#D9D9D9",
