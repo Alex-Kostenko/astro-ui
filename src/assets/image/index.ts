@@ -4,4 +4,6 @@ import Eye from "./885eb6a27d799518a0f56dee300bf4c6.webp";
 import AboutService from "./aboutSerivce.webp";
 import { steps } from "./steps";
 
+export * from "./project";
+
 export { Human, Circly, Eye, AboutService, steps };
