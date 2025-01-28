@@ -238,6 +238,11 @@
       "text": ["your idea", "& our mission", "to make it real"]
     }
   },
+  "project": {
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
+  },
   "404": {
     "message": "Page not found"
   }
