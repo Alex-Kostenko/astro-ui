@@ -115,12 +115,21 @@ function convertToQueryString(params?: QueryApi): string {
   return query ? `?${query}` : "";
 }
 
-function convertPopylate(popylate?: (Popylate | string)[]) {
+function convertPopylate(
+  popylate?: (Popylate | string | `${string}:${string}`)[],
+) {
   if (!popylate) return "";
 
   return popylate
     .map((v) => {
-      if (typeof v === "string") return `populate=${v}`;
+      if (typeof v === "string") {
+        if (v.includes(":")) {
+          const [q, w] = v.split(":");
+          return `populate[${q}][populate]=${w}`;
+        } else {
+          return `populate=${v}`;
+        }
+      }
       if (typeof v === "object")
         return `populate[${v.field}][fields]=${v.insideFields.join(",")}`;
     })

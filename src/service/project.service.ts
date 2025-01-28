@@ -9,6 +9,7 @@ import type {
 import apiService from "./api.service";
 import { ApiPath } from "@constant/api.path";
 import type { Languages } from "@i18n/index";
+import type { IProjectWithInfo } from "@interfaces/project";
 
 class ProjectService {
   async get({
@@ -45,6 +46,36 @@ class ProjectService {
           limit: "max",
         },
         filter,
+        locale,
+      },
+    });
+  }
+
+  async getOneBySlug(
+    slug: string,
+    {
+      locale,
+      filter,
+    }: {
+      locale?: Languages;
+      filter?: IFilter[];
+    },
+  ): Promise<IResponseApi<IProjectWithInfo[], MetaPagination>> {
+    return apiService.get(ApiPath.project, {
+      query: {
+        populate: [
+          { field: "image", insideFields: ["id", "formats", "url"] },
+          { field: "technologies", insideFields: ["*"] },
+          "project_info:challenge",
+          "project_info:stack",
+        ],
+        filter: [
+          {
+            fields: ["slug"],
+            value: slug,
+          },
+          ...(filter || []),
+        ],
         locale,
       },
     });
