@@ -1,0 +1,23 @@
+---
+import { Container as div } from "@components/Container";
+
+interface Props {
+  title: string;
+  subTitle: string;
+}
+
+const { title, subTitle } = Astro.props;
+---
+
+<div>
+  <p
+    class="font-asket800 uppercase md:tracking-2 text-36 2xl:text-64 text-stroken-green-2 md:flex-[1_1_30%] max-w-[75%]"
+  >
+    {title}
+  </p>
+  <p
+    class="font-asket800 uppercase md:tracking-2 text-36 2xl:text-64 text-green-200 md:flex-[1_1_30%] max-w-[65%]"
+  >
+    {subTitle}
+  </p>
+</div>

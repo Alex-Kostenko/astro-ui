@@ -1,0 +1,20 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import Slider from "./Slider.astro";
+
+interface Props {
+  tracking: Record<string, number>;
+}
+
+const { tracking } = Astro.props;
+---
+
+<Container class="space-y-10">
+  <SectionTitle title="Design & development Tracking" type="what we did" />
+  <TypographyAstro type="title-2" class="!text-20 leading-[1.4] ml-[295px]">
+    Our team applied the full range of their knowledge and best solutions to
+    implement this project.
+  </TypographyAstro>
+  <Slider tracking={tracking} />
+</Container>

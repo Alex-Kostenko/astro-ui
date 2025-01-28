@@ -1,0 +1,105 @@
+---
+import type { GetStaticPaths } from "astro";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Layout from "@layouts/Layout.astro";
+import projectService from "@service/project.service";
+import {
+  languages,
+  type Language,
+  type Languages,
+  useTranslations,
+} from "@i18n/index";
+import {
+  Cover,
+  Description,
+  ChallengeSection,
+  Tracking,
+  Technologies,
+} from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import type { IProjectWithInfo } from "@interfaces/project";
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+
+export const getStaticPaths = (async () => {
+  const req = Object.keys(languages).flatMap((lang) =>
+    projectService
+      .get({
+        locale: languages[lang].lang,
+      })
+      .then((res) => {
+        return {
+          lang: languages[lang] as Language,
+          res,
+        };
+      }),
+  );
+  const currentProject = async (
+    slug: string,
+    lang: string,
+  ): Promise<IProjectWithInfo> =>
+    (await projectService.getOneBySlug(slug, { locale: languages[lang].lang }))
+      .data[0];
+
+  const resArr = await Promise.all(req);
+
+  return resArr.flatMap((v) => {
+    return v.res.data.map((project) => {
+      return {
+        params: { lang: v.lang.slug, slug: project.slug },
+        props: {
+          meta: v.res.meta,
+          project: currentProject(project.slug, v.lang.lang),
+        },
+      };
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { lang, slug } = Astro.params;
+const project = await Astro.props.project;
+
+const t = useTranslations(lang as Languages, "project.contactUs");
+// console.log("info base: ", Astro.currentLocale);
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+---
+
+<Layout title={project.title}>
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+    </div>
+    <Description {...project} />
+    <Cover />
+    <ChallengeSection {...project} />
+    <Tracking tracking={project.project_info.tracking} />
+    <Technologies stackList={project.project_info.stack} />
+    <Container>
+      <ButtonAstro withArrow variant="contained" color="black" class="w-full"
+        >View full project</ButtonAstro
+      >
+    </Container>
+    <ContactUsSection text={text} />
+  </main>
+</Layout>

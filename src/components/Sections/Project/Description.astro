@@ -1,0 +1,59 @@
+---
+import type { IProjectWithInfo } from "@interfaces/project";
+import Title from "./Title.astro";
+import { TypographyAstro } from "@components/Typography";
+
+type Props = IProjectWithInfo;
+
+const data = Astro.props;
+---
+
+<article class="container flex flex-col gap-10">
+  <Title {...data} />
+  <section class="grid grid-cols-[280px,auto] gap-5">
+    <div class="w-[280px] h-[152px] bg-gray-900 rounded"></div>
+    <p class="py-7">
+      {data.project_info.description}
+    </p>
+  </section>
+  <section class="flex justify-between">
+    <div>
+      <TypographyAstro type="subTitle-sm-4" color="gray">
+        Industry:
+      </TypographyAstro>
+      <TypographyAstro type="body-2" color="black" class="tracking-[0.8px]"
+        >{data.industry}</TypographyAstro
+      >
+    </div>
+    <div>
+      <TypographyAstro type="subTitle-sm-4" color="gray">
+        client since:
+      </TypographyAstro>
+      <TypographyAstro type="body-2" color="black" class="tracking-[0.8px]"
+        >{data.clientSinceYear}</TypographyAstro
+      >
+    </div>
+    <div>
+      <TypographyAstro type="subTitle-sm-4" color="gray">
+        region:
+      </TypographyAstro>
+      <TypographyAstro type="body-2" color="black" class="tracking-[0.8px]"
+        >{data.region}</TypographyAstro
+      >
+    </div>
+    <div>
+      <TypographyAstro type="subTitle-sm-4" color="gray">
+        technologies:
+      </TypographyAstro>
+      <div class="space-x-1">
+        {
+          data.technologies.map((v) => (
+            <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
+              {v.name}
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</article>
