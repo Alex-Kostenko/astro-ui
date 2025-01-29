@@ -20,6 +20,8 @@ import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import type { IProject } from "@interfaces/project";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -50,6 +52,7 @@ export const getStaticPaths = (async () => {
         props: {
           meta: v.res.meta,
           project: currentProject(project.slug, v.lang.lang),
+          data: v.res.data,
         },
       };
     });
@@ -58,6 +61,7 @@ export const getStaticPaths = (async () => {
 
 const { lang, slug } = Astro.params;
 const project = await Astro.props.project;
+const { data } = Astro.props;
 
 const t = useTranslations(lang as Languages, "project.contactUs");
 const text = t("text").map((t: string, i: number) => {
@@ -90,7 +94,7 @@ const text = t("text").map((t: string, i: number) => {
       </video>
     </div>
     <Description {...project} />
-    <Cover />
+    <Cover image={project.image.base64} />
     <ChallengeSection {...project} />
     <Tracking tracking={project.tracking} />
     <Technologies stackList={project.stack} />
@@ -99,6 +103,7 @@ const text = t("text").map((t: string, i: number) => {
         >View full project</ButtonAstro
       >
     </Container>
+    <ProjectMore projects={data.filter((_, index) => index < 2)} />
     <ContactUsSection text={text} />
   </main>
 </Layout>

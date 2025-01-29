@@ -1,9 +1,15 @@
 ---
 import { cover } from "@assets/index";
+
+interface Props {
+  image: string;
+}
+
+const { image } = Astro.props;
 ---
 
 <img
   class="w-full h-[486px] object-cover object-center"
-  src={cover.src}
+  src={image}
   alt="project cover"
 />

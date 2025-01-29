@@ -1,0 +1,49 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
+import { SectionTitle } from "@components/Typography";
+import type { IProject } from "@interfaces/project";
+
+interface Props {
+  projects: IProject[];
+}
+
+const { projects } = Astro.props;
+---
+
+<Container>
+  <SectionTitle title="MORE PROJECTS IN OUR BASKET" type="PROJECTS" />
+  <section class="grid md:grid-cols-2 gap-y-5 gap-x-5 mb-5">
+    {projects.map((v) => <ProjectCard project={v} class="project-more" />)}
+  </section>
+  <ButtonAstro withArrow variant="contained" color="black" class="w-full"
+    >explore more projects</ButtonAstro
+  >
+</Container>
+
+<style is:global>
+  .project-more {
+    flex-direction: column-reverse;
+  }
+
+  @media (min-width: 768px) {
+    .project-more:nth-child(2n + 1),
+    .project-more:nth-child(2n + 2) {
+      grid-column: span 2;
+      gap: 0 20px;
+      flex-direction: column-reverse;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .project-more:nth-child(6n + 1),
+    .project-more:nth-child(6n + 2) {
+      flex-direction: row;
+    }
+
+    .project-more:nth-child(6n + 2) {
+      flex-direction: row-reverse;
+    }
+  }
+</style>
