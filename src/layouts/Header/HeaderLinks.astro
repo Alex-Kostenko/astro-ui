@@ -27,10 +27,9 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px] underline",
+        "flex gap-x-1 items-center px-2  font-gothic tracking-[0.8px] text-brand-white",
         {
-          "text-brand-white": !IsCurrentPage(link.href),
-          "text-brand-beigeLight": IsCurrentPage(link.href),
+          "!text-brand-beigeLight border-b": IsCurrentPage(link.href),
         },
       ]}
     >

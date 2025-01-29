@@ -58,10 +58,10 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
                 >
                   {textBlock.title}
                 </p>
-                <ul class="list-disc list-inside ps-1 text-12">
+                <ul class="ist-inside text-12 list-none space-y-2 mb-2">
                   {textBlock.list.map((itemList) => {
                     return (
-                      <li class="text-gray-200 font-gothic tracking-0.8">
+                      <li class="text-gray-200 font-gothic text-16 tracking-0.8 uppercase">
                         {itemList}
                       </li>
                     );
