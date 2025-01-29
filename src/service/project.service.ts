@@ -9,7 +9,6 @@ import type {
 import apiService from "./api.service";
 import { ApiPath } from "@constant/api.path";
 import type { Languages } from "@i18n/index";
-import type { IProjectWithInfo } from "@interfaces/project";
 
 class ProjectService {
   async get({
@@ -60,14 +59,13 @@ class ProjectService {
       locale?: Languages;
       filter?: IFilter[];
     },
-  ): Promise<IResponseApi<IProjectWithInfo[], MetaPagination>> {
+  ): Promise<IResponseApi<IProject[], MetaPagination>> {
     return apiService.get(ApiPath.project, {
       query: {
         populate: [
           { field: "image", insideFields: ["id", "formats", "url"] },
           { field: "technologies", insideFields: ["*"] },
-          "project_info:challenge",
-          "project_info:stack",
+          { field: "stack", insideFields: ["*"] },
         ],
         filter: [
           {

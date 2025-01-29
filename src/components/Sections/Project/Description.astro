@@ -1,9 +1,9 @@
 ---
-import type { IProjectWithInfo } from "@interfaces/project";
+import type { IProject } from "@interfaces/project";
 import Title from "./Title.astro";
 import { TypographyAstro } from "@components/Typography";
 
-type Props = IProjectWithInfo;
+type Props = IProject;
 
 const data = Astro.props;
 ---
@@ -13,7 +13,7 @@ const data = Astro.props;
   <section class="grid grid-cols-[280px,auto] gap-5">
     <div class="w-[280px] h-[152px] bg-gray-900 rounded"></div>
     <p class="py-7">
-      {data.project_info.description}
+      {data.description}
     </p>
   </section>
   <section class="flex justify-between">

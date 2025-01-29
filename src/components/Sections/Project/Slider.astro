@@ -10,17 +10,17 @@ const { tracking } = Astro.props;
 
 <section class="swiper track-swiper">
   <div class="swiper-wrapper">
-    <!-- <div class={`swiper-slide w-[132px] duration-300`}>
+    <div class={`swiper-slide w-[132px] duration-300 h-full`}>
       <div
-        class={`flex flex-col justify-between h-full rounded bg-brand-green text-brand-white items-center px-2 py-4 `}
+        class={`block rounded text-center bg-brand-green text-brand-white px-2 py-4 `}
       >
-        <TypographyAstro color="white" class="rotate-90 h-full">
+        <TypographyAstro color="white" class="rotate-90 w-full">
           Start
         </TypographyAstro>
       </div>
-    </div> -->
+    </div>
     {
-      Object.entries(tracking).map(([key, value]) => (
+      Object.entries(tracking || {}).map(([key, value]) => (
         <div class={`swiper-slide w-[132px] mt-auto duration-300 h-full`}>
           <div
             class={`flex flex-col justify-between rounded bg-brand-black text-brand-white items-center px-2 py-4 `}
@@ -33,7 +33,7 @@ const { tracking } = Astro.props;
       ))
     }
     {
-      Object.entries(tracking).map(([key, value]) => (
+      Object.entries(tracking || {}).map(([key, value]) => (
         <div class={`swiper-slide w-[132px] mt-auto duration-300 h-full`}>
           <div
             class={`flex flex-col justify-between rounded bg-brand-black text-brand-white items-center px-2 py-4 `}

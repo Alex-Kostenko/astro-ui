@@ -1,7 +1,7 @@
 ---
 import { AccordionAstro } from "@components/Accordion";
 import { TypographyAstro } from "@components/Typography";
-import { clutch, linkedin, youtube } from "src/assets";
+import { clutch, linkedin, youtube } from "@assets/index";
 import FooterHero from "./FooterHero.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 
@@ -87,7 +87,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
             "text-gray font-gothic text-10 leading-3",
           ]}
         >
-          <p>{(t("copyright")).replace('$year', new Date().getFullYear())}</p>
+          <p>{t("copyright").replace("$year", new Date().getFullYear())}</p>
           <p>{t("privacyPolicy")}</p>
           <p>{t("termsOfService")}</p>
         </div>

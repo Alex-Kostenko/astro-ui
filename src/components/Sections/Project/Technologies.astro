@@ -19,7 +19,7 @@ const { stackList } = Astro.props;
   <div class="carousel overflow-hidden flex">
     <div class="tech will-change-transform flex gap-5 pr-5">
       {
-        stackList.map((tech) => (
+        (stackList || []).map((tech) => (
           <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
             <img src={stack[tech.name as keyof typeof stack].src} alt="" />
           </div>
@@ -29,7 +29,7 @@ const { stackList } = Astro.props;
 
     <div aria-hidden class="tech will-change-transform flex gap-5 pr-5">
       {
-        stackList.map((tech) => (
+        (stackList || []).map((tech) => (
           <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
             <img
               src={stack[tech.name as keyof typeof stack].src}

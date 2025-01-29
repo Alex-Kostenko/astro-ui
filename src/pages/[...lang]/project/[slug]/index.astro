@@ -17,7 +17,7 @@ import {
   Technologies,
 } from "@components/Sections";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
-import type { IProjectWithInfo } from "@interfaces/project";
+import type { IProject } from "@interfaces/project";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 
@@ -37,7 +37,7 @@ export const getStaticPaths = (async () => {
   const currentProject = async (
     slug: string,
     lang: string,
-  ): Promise<IProjectWithInfo> =>
+  ): Promise<IProject> =>
     (await projectService.getOneBySlug(slug, { locale: languages[lang].lang }))
       .data[0];
 
@@ -60,7 +60,6 @@ const { lang, slug } = Astro.params;
 const project = await Astro.props.project;
 
 const t = useTranslations(lang as Languages, "project.contactUs");
-// console.log("info base: ", Astro.currentLocale);
 const text = t("text").map((t: string, i: number) => {
   if (i === 2) {
     return { text: t, alight: "none", variant: "outlined" };
@@ -93,8 +92,8 @@ const text = t("text").map((t: string, i: number) => {
     <Description {...project} />
     <Cover />
     <ChallengeSection {...project} />
-    <Tracking tracking={project.project_info.tracking} />
-    <Technologies stackList={project.project_info.stack} />
+    <Tracking tracking={project.tracking} />
+    <Technologies stackList={project.stack} />
     <Container>
       <ButtonAstro withArrow variant="contained" color="black" class="w-full"
         >View full project</ButtonAstro
