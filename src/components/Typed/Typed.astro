@@ -9,11 +9,14 @@ const wordsList = words;
 ---
 
 <typed-astro
-  class="flex relative text-24 md:text-32 2xl:text-40 font-extrabold text-center text-brand-black 2xl:text-start"
+  class="flex empty relative text-24 md:text-32 2xl:text-40 font-extrabold text-center text-brand-black 2xl:text-start"
 >
   {
     wordsList.map((w, i) => (
-      <p data-index={i} class="empty absolute uppercase">
+      <p
+        data-index={i}
+        class="empty absolute left-1/2 -translate-x-1/2 2xl:left-0 2xl:translate-x-0 uppercase"
+      >
         {w.split("").map((s) => (
           <span class="hidden">{s}</span>
         ))}
@@ -44,9 +47,8 @@ const wordsList = words;
         const word = wordList[index];
         const symbols = word.querySelectorAll("span");
 
-        console.log(index);
         word.classList.remove(...colors);
-        word.classList.add(colors[index]);
+        word.classList.add(colors[index % (wordList.length - 1)]);
 
         const totalPrintTime = symbols.length * letterPrintTime;
 
