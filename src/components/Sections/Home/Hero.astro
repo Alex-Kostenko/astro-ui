@@ -1,4 +1,5 @@
 ---
+import { Typed } from "@components/Typed";
 import { useTranslations, type Languages } from "@i18n/index";
 import { cubeNear, cubeNearVP9, logo } from "src/assets";
 
@@ -51,13 +52,7 @@ const t = useTranslations(lang as Languages, "hero");
         >
           <h5 class="text-brand-white mb-3 uppercase">{t("title")}</h5>
           <h5>
-            <span
-              id="hero-change-text"
-              class="empty uppercase"
-              data-text-range={t("subTitleRange")}
-            >
-              {t("subTitle")}
-            </span>
+            <Typed words={t("subTitleRange")} />
           </h5>
         </div>
         <p
@@ -74,79 +69,7 @@ const t = useTranslations(lang as Languages, "hero");
   </div>
 </section>
 
-<script is:inline>
-  const colors = [
-    "text-brand-beigeLight",
-    "text-brand-beige",
-    "text-brand-gray",
-  ];
-  const text = document.querySelector("#hero-change-text");
-  const range = text.getAttribute("data-text-range");
-  const words = range?.split(",") || [];
-
-  // Generator (iterate from 0-3)
-  function* generator() {
-    var index = 0;
-    while (true) {
-      yield index++;
-
-      if (index > words.length - 1) {
-        index = 0;
-      }
-    }
-  }
-
-  // Printing effect
-  function printChar(word) {
-    let i = 0;
-    text.innerHTML = "";
-    text.classList.add(colors[words.indexOf(word)] || colors[1]);
-    let id = setInterval(() => {
-      if (i >= word?.length) {
-        deleteChar();
-        clearInterval(id);
-      } else {
-        text.innerHTML += word[i];
-        i++;
-      }
-    }, 200);
-  }
-
-  // Deleting effect
-  function deleteChar() {
-    let word = text.innerHTML;
-    let i = word.length - 1;
-    let id = setInterval(() => {
-      if (i >= 0) {
-        text.innerHTML = text.innerHTML.substring(0, text.innerHTML.length - 1);
-        i--;
-      } else {
-        text.classList.remove(colors[words.indexOf(word)]);
-        printChar(words[gen.next().value]);
-        clearInterval(id);
-      }
-    }, 100);
-  }
-
-  // Initializing generator
-  let gen = generator();
-
-  printChar(words[gen.next().value]);
-
-  // function showVideo() {
-  //   const video = document.querySelector("video");
-  //   setTimeout(() => {
-  //     video.classList.add("opacity-anim");
-  //   }, 1);
-  // }
-</script>
-
-<style is:global>
-  .empty::after {
-    content: "\00a0";
-    visibility: hidden;
-  }
-
+<style>
   .opacity-anim {
     opacity: 1;
   }
