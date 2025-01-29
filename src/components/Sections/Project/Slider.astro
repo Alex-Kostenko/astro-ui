@@ -6,25 +6,28 @@ interface Props {
 }
 
 const { tracking } = Astro.props;
+const maxValue = Object.values(tracking).reduce(
+  (acc, cur) => (cur > acc ? cur : acc),
+  0,
+);
+const trackingLength = Object.keys(tracking).length;
 ---
 
 <section class="swiper track-swiper">
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper" style={`height: ${maxValue * 20 + 80}px`}>
     <div class={`swiper-slide w-[132px] duration-300 h-full`}>
       <div
-        class={`block rounded text-center bg-brand-green text-brand-white px-2 py-4 `}
+        class={`rounded text-center flex items-center bg-brand-green h-full text-brand-white px-2 py-4 `}
       >
-        <TypographyAstro color="white" class="rotate-90 w-full">
-          Start
-        </TypographyAstro>
+        <TypographyAstro color="white" class="w-full"> Start </TypographyAstro>
       </div>
     </div>
     {
       Object.entries(tracking || {}).map(([key, value]) => (
-        <div class={`swiper-slide w-[132px] mt-auto duration-300 h-full`}>
+        <div class={`swiper-slide w-[132px] flex h-full duration-300`}>
           <div
-            class={`flex flex-col justify-between rounded bg-brand-black text-brand-white items-center px-2 py-4 `}
-            style={{ height: value * 42 + "px" }}
+            class={`flex flex-col justify-between rounded mt-auto w-full bg-brand-black text-brand-white items-center px-2 py-4 `}
+            style={{ height: value * 20 + 80 + "px" }}
           >
             <p>{value}%</p>
             <p>{key}</p>
@@ -32,18 +35,35 @@ const { tracking } = Astro.props;
         </div>
       ))
     }
+
+    <!-- Duplicate if length is less than 9 -->
     {
-      Object.entries(tracking || {}).map(([key, value]) => (
-        <div class={`swiper-slide w-[132px] mt-auto duration-300 h-full`}>
+      trackingLength < 9 && (
+        <div class={`swiper-slide w-[132px] duration-300 h-full`}>
           <div
-            class={`flex flex-col justify-between rounded bg-brand-black text-brand-white items-center px-2 py-4 `}
-            style={{ height: value * 42 + "px" }}
+            class={`rounded text-center flex items-center bg-brand-green h-full text-brand-white px-2 py-4 `}
           >
-            <p>{value}%</p>
-            <p>{key}</p>
+            <TypographyAstro color="white" class="w-full">
+              {" "}
+              Start{" "}
+            </TypographyAstro>
           </div>
         </div>
-      ))
+      )
+    }
+    {
+      trackingLength < 9 &&
+        Object.entries(tracking || {}).map(([key, value]) => (
+          <div class={`swiper-slide w-[132px] flex h-full duration-300`}>
+            <div
+              class={`flex flex-col justify-between rounded mt-auto w-full bg-brand-black text-brand-white items-center px-2 py-4 `}
+              style={{ height: value * 20 + 80 + "px" }}
+            >
+              <p>{value}%</p>
+              <p>{key}</p>
+            </div>
+          </div>
+        ))
     }
   </div>
 </section>
