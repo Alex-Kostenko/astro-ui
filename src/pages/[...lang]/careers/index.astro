@@ -13,8 +13,8 @@ import vacancyService from "@service/vacancy.service";
 import {
   Advantages,
   Positions,
-  VacancyTitle,
-} from "@components/Sections/Vacancy";
+  CareerTitle,
+} from "@components/Sections/Career";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 
 export const getStaticPaths = (async () => {
@@ -66,7 +66,7 @@ const t = useTranslations(lang as Languages, "careers");
       </video>
       <Breadcrumbs />
     </div>
-    <VacancyTitle />
+    <CareerTitle />
     <Advantages />
     <Positions vacancyList={vacancyList} />
     <ContactUsSection inline text={t("contactUs")} table="vacancy-replay" />
