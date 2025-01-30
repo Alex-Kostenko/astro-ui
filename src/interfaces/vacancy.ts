@@ -1,3 +1,4 @@
+import type { IImage } from "./image";
 import type { IWorker } from "./worker";
 
 interface ISkill {
@@ -23,12 +24,13 @@ export interface ISchedule {
 
 export interface IVacancy {
   title: string;
+  image: IImage;
   skills: ISkill[];
+  workType: ISchedule[];
 }
 
 export interface IVacancyInfo {
   description: IList[];
-  schedule: ISchedule[];
   recruiter: IWorker;
 }
 
