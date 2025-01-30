@@ -122,7 +122,14 @@ function convertPopylate(
 
   return popylate
     .map((v) => {
-      if (typeof v === "string") return `populate=${v}`;
+      if (typeof v === "string") {
+        if (v.includes(":")) {
+          const [field, populate] = v.split(":");
+          return `populate[${field}][populate]=${populate}`;
+        } else {
+          return `populate=${v}`;
+        }
+      }
       if (typeof v === "object")
         return `populate[${v.field}][fields]=${v.insideFields.join(",")}`;
     })
