@@ -8,12 +8,15 @@
           "Project Management Consulting",
           "Top-Tier Expert Engagement",
           "Application Engineering",
-          "Managed Team"
+          "Managed Team",
+          "Mobile Development",
+          "Web Development",
+          "UI/UX Design"
         ]
       },
       {
-        "title": "EXPERTISE",
-        "list": ["Mobile Development", "Web Development", "UI/UX Design"]
+        "title": "CASES",
+        "list": ["Scale-Up", "Start-Up"]
       },
       {
         "title": "ABOUT US",
@@ -25,12 +28,12 @@
         ]
       },
       {
-        "title": "CLIENTS",
-        "list": ["Scale-Up", "Start-Up"]
-      },
-      {
         "title": "INSIGHTS",
         "list": ["All articles"]
+      },
+      {
+        "title": "TEAM",
+        "list": []
       },
       {
         "title": "CAREERS",
