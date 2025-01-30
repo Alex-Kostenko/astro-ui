@@ -5,7 +5,12 @@ import FilePicker from "./FilePicker.astro";
 import CheckBox from "./CheckBox.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 
+interface Props {
+  table?: "contact-us" | "vacancy-replay";
+}
+
 const { lang } = Astro.params;
+const { table = "contact-us" } = Astro.props;
 const t = useTranslations(lang as Languages, "formContactUs");
 ---
 
@@ -23,6 +28,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
 
   <form
     id="form-contac-us"
+    data-table={table}
     class:list={["flex-grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
   >
     <div class="flex flex-col gap-y-4">
@@ -74,6 +80,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
     const consent = formData.get("consent");
     const file = formData.get("file") as File;
     const entries = Array.from(formData.entries());
+    const table = form.getAttribute("data-table");
 
     // form validation
     for (const [name, value] of entries) {
@@ -116,7 +123,10 @@ const t = useTranslations(lang as Languages, "formContactUs");
       return;
     }
 
-    const { error, data } = await actions.contactUs(formData);
+    const { error, data } =
+      table === "vacancy-replay"
+        ? await actions.vacancyReplay(formData)
+        : await actions.contactUs(formData);
     console.log("error", error);
 
     if (data?.success) {

@@ -1,0 +1,49 @@
+---
+import { AccordionAstro } from "@components/Accordion";
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "careers.advantages");
+const list = t("list") as { title: string; text: string }[];
+---
+
+<Container>
+  <SectionTitle type={t("type")} title={t("title")} />
+  {
+    list.map((item, index) => (
+      <AccordionAstro open={index === 0}>
+        <section slot="title" class="flex flex-row gap-y-4 items-center">
+          <TypographyAstro
+            type="body-2"
+            class="flex-[1_1_25%] text-brand-beige tracking-[0.8px]"
+          >
+            [ {(index + 1).toString().padStart(2, "0")} ]
+          </TypographyAstro>
+          <p
+            class="flex-[1_1_75%]"
+            class:list={[
+              "text-brand-black font-gothic700 uppercase font-bold",
+              "text-20 2xl:text-24",
+            ]}
+          >
+            {item.title}
+          </p>
+        </section>
+
+        <section class="flex flex-row gap-y-4 overflow-auto">
+          <div class="2xl:flex-[0_1_75%] w-full 2xl:ml-auto flex flex-col lg:flex-row justify-between">
+            <div class="lg:max-w-[480px] w-full">
+              <TypographyAstro type="body-4" class="text-gray-700">
+                {item.text}
+              </TypographyAstro>
+            </div>
+          </div>
+        </section>
+      </AccordionAstro>
+    ))
+  }
+</Container>

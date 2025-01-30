@@ -260,6 +260,54 @@
       "text": ["your idea", "& our mission", "to make it real"]
     }
   },
+  "careers": {
+    "title": {
+      "line-1-contained": "we foster",
+      "line-2-outlined": "an excellent",
+      "line-3-outlined": "community",
+      "line-4-contained": "in our team"
+    },
+    "advantages": {
+      "title": "Explore Why Professionals Choose to Join the Unicode Community",
+      "type": "OUR ADVANTAGES",
+      "list": [
+        {
+          "title": "Driven by Challenge, Inspired by Innovation",
+          "text": "Professionals that choose us and stay with us for a long time are those who thrive on interesting and challenging tasks, fostering an environment where innovation and problem-solving are celebrated."
+        },
+        {
+          "title": "Passion & Achievement",
+          "text": "We recognize and celebrate the satisfaction that comes from achieving goals and exceeding expectations. We engage in business to pursue and fulfill our dynamic passions, driven by the collaboration of sharp intellects and vibrant interests."
+        },
+        {
+          "title": "Empowering Flexibility and a Seamless Work Environment",
+          "text": "For us, this means an understanding that individual preferences and work styles contribute to a more productive and harmonious workplace. We encourage the opportunity to work part-time; continuous development and learning new things on different projects."
+        },
+        {
+          "title": "Core Values: Transparency and Communication",
+          "text": "We believe in open and honest communication, ensuring that every team member is well-informed and engaged in the collective journey. Our team members are open in communication and are happy to help at all levels of the company."
+        },
+        {
+          "title": "Team and Management Maturity",
+          "text": "For us, this means an understanding that individual preferences and work styles contribute to a more productive and harmonious workplace. We encourage the opportunity to work part-time; continuous development and learning new things on different projects."
+        }
+      ]
+    },
+    "positions": {
+      "title": "Explore Why Professionals Choose to Join the Unicode Community",
+      "type": "OUR ADVANTAGES"
+    },
+    "contactUs": [
+      {
+        "text": "let's get",
+        "variant": "contained"
+      },
+      {
+        "text": "in touch",
+        "variant": "outlined"
+      }
+    ]
+  },
   "404": {
     "message": "Page not found"
   }
