@@ -13,6 +13,7 @@ import youtube from "./youtube.svg";
 import Menu from "./menu.astro";
 import listSquare from "./listSquare.svg";
 import stepImg from "./stepImg.svg";
+import breadcrumbsHome from "./breadcrumbsHome.svg";
 
 export {
   smallLogo,
@@ -30,4 +31,5 @@ export {
   Menu,
   listSquare,
   stepImg,
+  breadcrumbsHome,
 };
