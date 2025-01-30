@@ -16,6 +16,7 @@ import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 import type { IProjectDomain } from "@interfaces/project.domain";
 import { Pagination } from "@components/Pagination";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projectDomain: IProjectDomain[] = [
@@ -102,6 +103,7 @@ const { page, slug } = Astro.props;
         <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
         <source src={cubeNearVP9} type="video/mp4" />
       </video>
+      <Breadcrumbs />
     </div>
 
     <IntroSection />

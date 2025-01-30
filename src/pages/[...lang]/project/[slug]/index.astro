@@ -21,6 +21,7 @@ import type { IProject } from "@interfaces/project";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -91,6 +92,7 @@ const text = t("contactUs.text").map((t: string, i: number) => {
         <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
         <source src={cubeNearVP9} type="video/mp4" />
       </video>
+      <Breadcrumbs />
     </div>
     <Description {...project} />
     <Cover image={project.image.base64} />
