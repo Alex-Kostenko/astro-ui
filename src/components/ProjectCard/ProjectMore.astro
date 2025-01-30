@@ -22,8 +22,13 @@ const t = useTranslations(lang as Languages, "project.more");
   <section class="grid md:grid-cols-2 gap-y-5 gap-x-5 mb-5">
     {projects.map((v) => <ProjectCard project={v} class="project-more" />)}
   </section>
-  <ButtonAstro withArrow variant="contained" color="black" class="w-full"
-    >{t("button")}</ButtonAstro
+  <ButtonAstro
+    withArrow
+    asLink
+    href="/todo"
+    variant="contained"
+    color="black"
+    class="w-full">{t("button")}</ButtonAstro
   >
 </Container>
 

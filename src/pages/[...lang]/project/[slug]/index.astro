@@ -100,8 +100,13 @@ const text = t("contactUs.text").map((t: string, i: number) => {
     <Tracking tracking={project.tracking} />
     <Technologies stackList={project.stack} />
     <Container>
-      <ButtonAstro withArrow variant="contained" color="black" class="w-full"
-        >{t("button")}</ButtonAstro
+      <ButtonAstro
+        withArrow
+        asLink
+        href="/todo"
+        variant="contained"
+        color="black"
+        class="w-full">{t("button")}</ButtonAstro
       >
     </Container>
     <ProjectMore projects={data.filter((_, index) => index < 2)} />
