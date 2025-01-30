@@ -308,6 +308,26 @@
       }
     ]
   },
+  "vacancy": {
+    "title": "we are hiring",
+    "description": {
+      "title": "Your Next Big Adventure in Frontend Starts Here! ",
+      "type": "HI, MATE",
+      "list": []
+    },
+    "recruiter": {
+      "title": "You are interested in this opportunity, but still, have any questions?",
+      "type": "your recruiter"
+    },
+    "contactUs": [
+      {
+        "text": "you are the",
+        "variant": "outlined"
+      },
+      { "text": "next hero in", "variant": "contained" },
+      { "text": "our team", "variant": "contained" }
+    ]
+  },
   "404": {
     "message": "Page not found"
   }

@@ -1,0 +1,59 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+import type { IWorker } from "@interfaces/index";
+import { executeImg } from "@utils/excuteImg";
+
+interface Props {
+  recruiter: IWorker;
+}
+
+const { lang } = Astro.params;
+const { recruiter } = Astro.props;
+
+const t = useTranslations(lang as Languages, "vacancy.recruiter");
+---
+
+<Container>
+  <SectionTitle type={t("type")} title={t("title")} />
+  <div class="flex 2xl:ml-[295px] gap-8">
+    <img src={executeImg(recruiter.photo)} alt="recruiter photo" />
+    <div>
+      <TypographyAstro>
+        {recruiter.name}
+      </TypographyAstro>
+      <TypographyAstro>
+        {recruiter.position}
+      </TypographyAstro>
+      {
+        recruiter.linkedIn && (
+          <div class="flex mt-auto gap-4">
+            <a href={recruiter.linkedIn}>
+              <img src="" alt="" />
+            </a>
+          </div>
+        )
+      }
+      {
+        recruiter.telegram && (
+          <div class="flex mt-auto gap-4">
+            <a href={recruiter.telegram}>
+              <img src="" alt="" />
+            </a>
+          </div>
+        )
+      }
+      {
+        recruiter.email && (
+          <div class="flex mt-auto gap-4">
+            <a href={recruiter.email}>
+              <img src="" alt="" />
+            </a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</Container>

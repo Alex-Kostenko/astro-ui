@@ -13,4 +13,7 @@ export interface IWorker {
   experience: Date;
   stack: IStack[];
   vacancies: any;
+  linkedIn: string;
+  telegram: string;
+  email: string;
 }

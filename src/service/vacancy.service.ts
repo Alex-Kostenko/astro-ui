@@ -51,7 +51,7 @@ class VacancyService {
           { field: "skills", insideFields: ["*"] },
           { field: "workType", insideFields: ["*"] },
           "description:items",
-          "recruiter",
+          "recruiter:photo",
         ],
         filter,
         pagination,

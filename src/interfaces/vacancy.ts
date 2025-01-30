@@ -6,7 +6,7 @@ interface ISkill {
   name: string;
 }
 
-interface IList {
+export interface IList {
   id: number;
   title: string;
   items: IListItem[];
@@ -25,6 +25,7 @@ export interface ISchedule {
 export interface IVacancy {
   title: string;
   image: IImage;
+  slug: string;
   skills: ISkill[];
   workType: ISchedule[];
 }
