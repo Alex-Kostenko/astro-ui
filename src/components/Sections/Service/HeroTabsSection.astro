@@ -13,6 +13,8 @@ const { domain } = Astro.props;
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "cases.tabSection");
+
+const currentDomain = domains.data.find((v) => v.slug === domain);
 ---
 
 <div
@@ -24,18 +26,23 @@ const t = useTranslations(lang as Languages, "cases.tabSection");
       variant="none"
       color="biscuit"
       active={true}
-      >{domains.data.map((v) => v.slug === domain && v.name)}</ServiceLink
+      >{currentDomain ? currentDomain.name : t("allCases")}</ServiceLink
     >
     <div class="mySwiper swiper">
       <section class:list={["swiper-wrapper justify-between"]}>
-        <ServiceLink
-          class="swiper-slide w-fit"
-          variant="none"
-          color="biscuit"
-          active={domain === "all"}
-          href={formatLink(Astro.url, `service/all#service`)}
-          >{t("allCases")}</ServiceLink
-        >
+        {
+          domain !== "all" && (
+            <ServiceLink
+              class="swiper-slide w-fit"
+              variant="none"
+              color="biscuit"
+              active={domain === "all"}
+              href={formatLink(Astro.url, `service/all#service`)}
+            >
+              {t("allCases")}
+            </ServiceLink>
+          )
+        }
 
         {
           domains.data.map(
