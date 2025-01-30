@@ -46,7 +46,7 @@ const steps = await stepsService.get({ locale: lang as Languages });
 <script>
   import Swiper from "swiper";
 
-  const swiper = new Swiper(".step-swiper", {
+  new Swiper(".step-swiper", {
     slidesPerView: "auto",
     centeredSlides: false,
     loop: true,

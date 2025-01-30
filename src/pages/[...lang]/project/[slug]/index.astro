@@ -59,7 +59,7 @@ export const getStaticPaths = (async () => {
   });
 }) satisfies GetStaticPaths;
 
-const { lang, slug } = Astro.params;
+const { lang } = Astro.params;
 const project = await Astro.props.project;
 const { data } = Astro.props;
 

@@ -19,7 +19,7 @@ const { class: className } = Astro.props;
 
       function playVideo(
         entries: IntersectionObserverEntry[],
-        observer: IntersectionObserver,
+        // observer: IntersectionObserver,
       ) {
         entries.forEach((entry) => {
           const videoRect = entry.target.getBoundingClientRect();

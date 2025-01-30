@@ -1,5 +1,5 @@
 ---
-import { Container as section } from "@components/Container";
+import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { stack } from "@assets/index";
 import { useTranslations } from "@i18n/utils";
@@ -16,9 +16,9 @@ const t = useTranslations(lang as Languages, "project.technologies");
 ---
 
 <div>
-  <section class="container">
+  <Container>
     <SectionTitle title={t("title")} type={t("type")} />
-  </section>
+  </Container>
 
   <section class="lg:container">
     <div class="carousel overflow-hidden flex">
