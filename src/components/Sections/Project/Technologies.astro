@@ -2,20 +2,22 @@
 import { Container as section } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { stack } from "@assets/index";
+import { useTranslations } from "@i18n/utils";
+import type { Languages } from "@i18n/ui";
 
 interface Props {
   stackList: { name: string }[];
 }
 
 const { stackList } = Astro.props;
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "project.technologies");
 ---
 
 <div>
   <section class="container">
-    <SectionTitle
-      title="The tools and technologies we used"
-      type="TECHNOLOGIES"
-    />
+    <SectionTitle title={t("title")} type={t("type")} />
   </section>
 
   <section class="lg:container">

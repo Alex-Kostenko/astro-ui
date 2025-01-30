@@ -238,6 +238,21 @@
     }
   },
   "project": {
+    "tracking": {
+      "type": "what we did",
+      "title": "Design & development Tracking",
+      "subTitle": "Our team applied the full range of their knowledge and best solutions to implement this project."
+    },
+    "technologies": {
+      "type": "TECHNOLOGIES",
+      "title": "The tools and technologies we used"
+    },
+    "button": "View full project",
+    "more": {
+      "title": "MORE PROJECTS IN OUR BASKET",
+      "type": "PROJECTS",
+      "button": "explore more projects"
+    },
     "contactUs": {
       "text": ["your idea", "& our mission", "to make it real"]
     }

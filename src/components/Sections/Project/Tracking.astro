@@ -2,19 +2,23 @@
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import Slider from "./Slider.astro";
+import { useTranslations } from "@i18n/utils";
+import { type Languages } from "@i18n/ui";
 
 interface Props {
   tracking: Record<string, number>;
 }
 
+const { lang } = Astro.params;
 const { tracking } = Astro.props;
+
+const t = useTranslations(lang as Languages, "project.tracking");
 ---
 
 <Container class="space-y-10">
-  <SectionTitle title="Design & development Tracking" type="what we did" />
+  <SectionTitle title={t("title")} type={t("type")} />
   <TypographyAstro type="title-2" class="!text-20 leading-[1.4] 2xl:ml-[295px]">
-    Our team applied the full range of their knowledge and best solutions to
-    implement this project.
+    {t("subTitle")}
   </TypographyAstro>
   <Slider tracking={tracking} />
 </Container>

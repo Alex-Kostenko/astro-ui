@@ -20,7 +20,6 @@ import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import type { IProject } from "@interfaces/project";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
-import ProjectList from "@components/ProjectCard/ProjectList.astro";
 import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
 
 export const getStaticPaths = (async () => {
@@ -63,8 +62,8 @@ const { lang, slug } = Astro.params;
 const project = await Astro.props.project;
 const { data } = Astro.props;
 
-const t = useTranslations(lang as Languages, "project.contactUs");
-const text = t("text").map((t: string, i: number) => {
+const t = useTranslations(lang as Languages, "project");
+const text = t("contactUs.text").map((t: string, i: number) => {
   if (i === 2) {
     return { text: t, alight: "none", variant: "outlined" };
   }
@@ -100,7 +99,7 @@ const text = t("text").map((t: string, i: number) => {
     <Technologies stackList={project.stack} />
     <Container>
       <ButtonAstro withArrow variant="contained" color="black" class="w-full"
-        >View full project</ButtonAstro
+        >{t("button")}</ButtonAstro
       >
     </Container>
     <ProjectMore projects={data.filter((_, index) => index < 2)} />
