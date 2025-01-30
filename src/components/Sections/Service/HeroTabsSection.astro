@@ -18,7 +18,15 @@ const t = useTranslations(lang as Languages, "cases.tabSection");
 <div
   class:list={"absolute z-20 bottom-14 left-1/2 -translate-x-1/2 px-4 w-full max-w-[1470px] mx-auto py-4 2xl:py-5 2xl:px-8"}
 >
-  <div class="bg-brand-white px-2 py-2 rounded-lg">
+  <div class="bg-brand-white px-2 py-2 rounded-lg flex gap-[30px]">
+    <ServiceLink
+      class="swiper-slide w-fit"
+      variant="none"
+      color="biscuit"
+      active={true}
+      href={formatLink(Astro.url, `service/all#service`)}
+      >{domains.data.map((v) => v.slug === domain && v.name)}</ServiceLink
+    >
     <div class="mySwiper swiper">
       <section class:list={["swiper-wrapper justify-between"]}>
         <ServiceLink
@@ -31,17 +39,36 @@ const t = useTranslations(lang as Languages, "cases.tabSection");
         >
 
         {
-          domains.data.map((v) => (
-            <ServiceLink
-              class="swiper-slide w-fit"
-              variant="none"
-              color="biscuit"
-              active={domain === v.slug}
-              href={formatLink(Astro.url, `service/${v.slug}#service`)}
-            >
-              {v.name}
-            </ServiceLink>
-          ))
+          domains.data.map(
+            (v) =>
+              v.slug !== domain && (
+                <ServiceLink
+                  class="swiper-slide w-fit"
+                  variant="none"
+                  color="biscuit"
+                  active={domain === v.slug}
+                  href={formatLink(Astro.url, `service/${v.slug}#service`)}
+                >
+                  {v.name}
+                </ServiceLink>
+              ),
+          )
+        }
+        {
+          domains.data.map(
+            (v) =>
+              v.slug !== domain && (
+                <ServiceLink
+                  class="swiper-slide w-fit"
+                  variant="none"
+                  color="biscuit"
+                  active={domain === v.slug}
+                  href={formatLink(Astro.url, `service/${v.slug}#service`)}
+                >
+                  {v.name}
+                </ServiceLink>
+              ),
+          )
         }
       </section>
     </div>
@@ -50,10 +77,17 @@ const t = useTranslations(lang as Languages, "cases.tabSection");
 
 <script>
   import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
 
   new Swiper(".mySwiper", {
     slidesPerView: "auto",
     spaceBetween: 30,
+    modules: [Autoplay],
+    autoplay: {
+      delay: 1000,
+      disableOnInteraction: false,
+    },
+    loop: true,
   });
 </script>
 
