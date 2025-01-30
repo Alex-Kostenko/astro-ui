@@ -1,4 +1,5 @@
 import type { IImage } from "./image";
+import type { IPartner } from "./partner";
 import type { IService } from "./service";
 import type { ITechnology } from "./technology";
 
@@ -23,4 +24,5 @@ export interface IProject {
   challengeTitle: string;
   challengeSubtitle: string;
   challengeDescription: string;
+  partner: IPartner;
 }

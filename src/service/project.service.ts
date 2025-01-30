@@ -66,6 +66,7 @@ class ProjectService {
           { field: "image", insideFields: ["id", "formats", "url"] },
           { field: "technologies", insideFields: ["*"] },
           { field: "stack", insideFields: ["*"] },
+          { field: "partner", insideFields: ["*"] },
         ],
         filter: [
           {

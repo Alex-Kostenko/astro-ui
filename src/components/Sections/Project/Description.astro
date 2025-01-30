@@ -2,6 +2,7 @@
 import type { IProject } from "@interfaces/project";
 import Title from "./Title.astro";
 import { TypographyAstro } from "@components/Typography";
+import { objCompany } from "@assets/icon/company";
 
 type Props = IProject;
 
@@ -11,7 +12,14 @@ const data = Astro.props;
 <article class="container flex flex-col gap-10">
   <Title {...data} />
   <section class="grid lg:grid-cols-[280px,auto] gap-5">
-    <div class="w-full ls:w-[280px] h-[152px] mx-auto bg-brand-black rounded">
+    <div
+      class="w-full ls:w-[280px] h-[152px] flex items-center justify-center py-9 p-2.5 mx-auto bg-brand-black rounded"
+    >
+      <img
+        src={objCompany[data.partner.name as keyof typeof objCompany].src}
+        alt=""
+        class=""
+      />
     </div>
     <p class="my-auto font-gothic text-20 tracking-1 text-brand-black">
       {data.description}
