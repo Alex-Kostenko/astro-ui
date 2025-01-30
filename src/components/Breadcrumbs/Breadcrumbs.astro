@@ -4,6 +4,12 @@ const paths = Astro.url.pathname.split("/").filter((crumb: any) => crumb);
 import { breadcrumbsHome, UpArrow } from "@assets/index";
 import { Container } from "@components/Container";
 
+interface Props {
+  last?: string;
+}
+
+const { last } = Astro.props;
+
 function isNumeric(value: string): boolean {
   return /^[0-9]+$/.test(value);
 }
@@ -15,7 +21,7 @@ function isNumeric(value: string): boolean {
       <li><a href="/"><img src={breadcrumbsHome.src} alt="" /></a></li>
       {
         paths.map(
-          (p) =>
+          (p, index) =>
             p !== "ua" &&
             p !== "en" &&
             !isNumeric(p) && (
@@ -25,7 +31,7 @@ function isNumeric(value: string): boolean {
                 </li>
                 <li class="capitalize">
                   <a href={paths.reduce((acc, cur) => acc + cur + "/", "/")}>
-                    {p}
+                    {index + 1 < paths.length ? p : last || p}
                   </a>
                 </li>
               </>
