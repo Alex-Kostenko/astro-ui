@@ -15,6 +15,10 @@ import listSquare from "./listSquare.svg";
 import stepImg from "./stepImg.svg";
 import breadcrumbsHome from "./breadcrumbsHome.svg";
 
+import linkedInLogo from "./linkedInLogo.svg";
+import telegram from "./telegram.svg";
+import email from "./email.svg";
+
 export {
   smallLogo,
   logo,
@@ -32,4 +36,7 @@ export {
   listSquare,
   stepImg,
   breadcrumbsHome,
+  linkedInLogo,
+  telegram,
+  email,
 };
