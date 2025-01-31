@@ -42,7 +42,7 @@ const { list } = Astro.props;
         <section class="flex flex-row gap-y-4 overflow-auto">
           <ul class="space-y-4 list-disc 2xl:flex-[0_1_75%] w-full 2xl:ml-auto flex flex-col justify-between">
             {item.items.map((item) => (
-              <li class="ml-8 lg:max-w-[480px] w-full font-normal font-gothic text-20 tracking-1 text-gray-700">
+              <li class="ml-8 lg:max-w-[480px] font-normal font-gothic text-16 md:text-20 tracking-1 text-gray-700">
                 {item.text}
               </li>
             ))}
