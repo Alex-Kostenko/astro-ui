@@ -24,7 +24,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
         <div class="flex flex-col">
           <img src={executeImg(v.image)} alt="" />
           <TypographyAstro type="subTitle-1" color="green" class="mt-3 mb-5">
-            {v.title}
+            <a href={v.slug}>{v.title}</a>
           </TypographyAstro>
           <div class="flex flex-col gap-3">
             <article class="flex flex-col gap-1">
@@ -48,7 +48,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
                   (acc, cur, index) =>
                     (acc +=
                       cur.name + (index + 1 < v.skills.length ? ", " : "")),
-                  "",
+                  ""
                 )}
               </p>
             </article>
