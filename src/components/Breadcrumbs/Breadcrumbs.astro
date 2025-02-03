@@ -30,7 +30,12 @@ function isNumeric(value: string): boolean {
                   <UpArrow class="rotate-90" />
                 </li>
                 <li class="capitalize">
-                  <a href={paths.reduce((acc, cur) => acc + cur + "/", "/")}>
+                  <a
+                    href={paths.reduce(
+                      (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
+                      "/",
+                    )}
+                  >
                     {index + 1 < paths.length ? p : last || p}
                   </a>
                 </li>
