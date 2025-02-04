@@ -9,6 +9,7 @@ import { VacancyTitle, VacancyDescription } from "@components/Sections/Vacancy";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
 import Recruiter from "@components/Sections/Vacancy/Recruiter.astro";
+import { executeImg } from "@utils/excuteImg";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -35,10 +36,19 @@ export const getStaticPaths = (async () => {
 const { lang } = Astro.params;
 const { vacancy } = Astro.props;
 
+const pageDescription = vacancy.skills.map((skill) => skill.name).join(", ");
+
 const t = useTranslations(lang as Languages, "vacancy");
 ---
 
-<Layout title={vacancy.title}>
+<Layout
+  title={vacancy.title}
+  openGraph={{
+    image: executeImg(vacancy.image),
+    title: vacancy.title,
+    description: pageDescription,
+  }}
+>
   <main class="flex flex-col gap-[120px]">
     <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
       <video
