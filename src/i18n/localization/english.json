@@ -328,6 +328,35 @@
       { "text": "our team", "variant": "contained" }
     ]
   },
+  "whoWeAre": {
+    "title": {
+      "line-1-outlined": "empowering",
+      "line-2-contained": "the future",
+      "line-3-contained": "with code"
+    },
+    "mission": {
+      "title": "IT for humans, by humans.",
+      "type": "our mission",
+      "subTitle": "OUR MISSION............",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras efficitur nunc quis vehicula hendrerit. Vivamus in purus in tellus dictum rhoncus sed ac sem. Morbi urna metus, commodo in purus at, hendrerit vehicula nisi. Morbi gravida, odio ac vestibulum vestibulum, ex tellus porttitor neque, vel mollis ex quam et sem. Phasellus sed dui eget massa eleifend viverra. Donec nec ultrices leo. Phasellus sagittis lectus ac ultrices scelerisque."
+    },
+    "values": {
+      "title": "We innovate and strive for excellence, ensuring that every project we undertake delivers long-term results.",
+      "type": "our core values"
+    },
+    "services": {
+      "title": "Our services will help you to accomplish your purpose easier and better.",
+      "type": "SERVICES & EXPERTISE"
+    },
+    "contactUs": [
+      {
+        "text": "every journey",
+        "variant": "contained"
+      },
+      { "text": "starts from the", "variant": "contained" },
+      { "text": "first step", "variant": "outlined" }
+    ]
+  },
   "404": {
     "message": "Page not found"
   }

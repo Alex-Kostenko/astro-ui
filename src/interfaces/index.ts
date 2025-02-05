@@ -13,3 +13,4 @@ export type { IServices } from "./i.services";
 export type { IStep } from "./step";
 export * from "./vacancy";
 export * from "./worker";
+export type { IWhoWeAre } from "./whoWeAre";

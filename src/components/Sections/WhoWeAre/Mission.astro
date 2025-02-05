@@ -1,28 +1,30 @@
 ---
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
 import { challenge } from "@assets/index";
-import type { IProject } from "@interfaces/project";
 
-type Props = IProject;
-const data = Astro.props;
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "whoWeAre.mission");
 ---
 
 <Container>
-  <SectionTitle title={data.challengeTitle} type="challenge" />
+  <SectionTitle title={t("title")} type={t("type")} />
   <article
     class="grid lg:grid-cols-[275px,auto] 3xl:grid-cols-[395px,auto] gap-y-6 gap-x-5"
   >
     <img
       src={challenge.src}
       alt=""
-      class="w-full h-[280px] lg:h-full xl:h-[291px] row-span-2 object-cover object-center"
+      class="w-full h-[193px] lg:h-full xl:h-[193px] row-span-2 object-cover object-center"
     />
     <TypographyAstro type="subTitle-sm-1" color="black">
-      {data.challengeSubtitle}
+      {t("subTitle")}
     </TypographyAstro>
     <TypographyAstro type="body-4" color="black">
-      {data.challengeDescription}
+      {t("description")}
     </TypographyAstro>
   </article>
 </Container>

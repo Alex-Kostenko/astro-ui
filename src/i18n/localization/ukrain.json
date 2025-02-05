@@ -336,6 +336,41 @@
       }
     ]
   },
+  "whoWeAre": {
+    "title": {
+      "line-1-outlined": "розширюючи можливості",
+      "line-2-contained": "майбутнього",
+      "line-3-contained": "за допомогою коду"
+    },
+    "mission": {
+      "title": "ІТ для людей, створене людьми.",
+      "type": "наша місія",
+      "subTitle": "НАША МІСІЯ............",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras efficitur nunc quis vehicula hendrerit. Vivamus in purus in tellus dictum rhoncus sed ac sem. Morbi urna metus, commodo in purus at, hendrerit vehicula nisi. Morbi gravida, odio ac vestibulum vestibulum, ex tellus porttitor neque, vel mollis ex quam et sem. Phasellus sed dui eget massa eleifend viverra. Donec nec ultrices leo. Phasellus sagittis lectus ac ultrices scelerisque."
+    },
+    "values": {
+      "title": "Ми впроваджуємо інновації та прагнемо до досконалості, гарантуючи, що кожен наш проєкт приносить довготривалі результати.",
+      "type": "наші основні цінності"
+    },
+    "services": {
+      "title": "Наші послуги допоможуть вам досягти своєї мети легше та ефективніше.",
+      "type": "ПОСЛУГИ ТА ЕКСПЕРТИЗА"
+    },
+    "contactUs": [
+      {
+        "text": "кожна подорож",
+        "variant": "contained"
+      },
+      {
+        "text": "починається з",
+        "variant": "contained"
+      },
+      {
+        "text": "першого кроку",
+        "variant": "outlined"
+      }
+    ]
+  },
   "404": {
     "message": "Сторінку не знайдено"
   }
