@@ -1,11 +1,10 @@
 ---
 import { Container } from "@components/Container";
 import List from "@components/List";
-import { SectionTitle } from "@components/Typography";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
 import { type Languages, useTranslations } from "@i18n/index";
 import { AboutService } from "@assets/index";
 import { Image } from "astro:assets";
-import { ServiceHeader } from "@components/ServiceHeader";
 
 const { lang } = Astro.params;
 
@@ -15,9 +14,9 @@ const t = useTranslations(lang as Languages, "service.about");
 <Container>
   <SectionTitle title={t("title")} type={t("tag")} />
   <article class="flex flex-col gap-10">
-    <ServiceHeader>
+    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
       {t("header")}
-    </ServiceHeader>
+    </TypographyAstro>
     <div class="flex gap-5">
       <Image src={AboutService} alt="" class="hidden lg:block" />
       <List items={t("list")} />
