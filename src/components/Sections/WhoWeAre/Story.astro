@@ -1,0 +1,32 @@
+---
+import { Container } from "@components/Container";
+import List from "@components/List";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { type Languages, useTranslations } from "@i18n/index";
+import { AboutService, Human } from "@assets/index";
+import { Image } from "astro:assets";
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "service.about");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("tag")} />
+  <article class="flex flex-col gap-6">
+    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
+      {t("header")}
+    </TypographyAstro>
+    <div class="flex flex-col lg:flex-row gap-5">
+      <Image src={Human} alt="" class="block lg:hidden" />
+      <Image src={AboutService} alt="" class="hidden lg:block" />
+      <List items={t("list")} />
+    </div>
+  </article>
+</Container>
+
+<style is:global>
+  .header-shadow {
+    box-shadow: 0 4px 4px #00000040;
+  }
+</style>
