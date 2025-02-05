@@ -11,4 +11,5 @@ export enum ApiPath {
   service = "/services",
   worker = "/workers",
   vacancy = "/vacancies",
+  whoWeAre = "/who-we-ares",
 }
