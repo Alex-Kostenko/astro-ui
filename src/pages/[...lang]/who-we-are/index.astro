@@ -40,8 +40,6 @@ export const getStaticPaths = (async () => {
 const { lang } = Astro.params;
 const { data } = Astro.props;
 
-console.log("1234", data);
-
 const t = useTranslations(lang as Languages, "whoWeAre");
 const text = t("contactUs");
 ---
