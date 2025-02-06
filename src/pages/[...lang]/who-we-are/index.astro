@@ -15,6 +15,7 @@ import {
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
 import whoWeAreService from "@service/whoWeAre.service";
+import { TestimonialsSection } from "@components/Sections";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap(async (lang) => {
@@ -38,6 +39,8 @@ export const getStaticPaths = (async () => {
 
 const { lang } = Astro.params;
 const { data } = Astro.props;
+
+console.log("1234", data);
 
 const t = useTranslations(lang as Languages, "whoWeAre");
 const text = t("contactUs");
@@ -68,9 +71,10 @@ const text = t("contactUs");
     <Title />
     <Mission />
     <Values />
-    <Story />
+    <Story list={data.story} />
     <Partners />
-    <Services list={data.list} />
+    <Services list={data.services} />
+    <TestimonialsSection />
     <ContactUsSection text={text} />
   </main>
 </Layout>

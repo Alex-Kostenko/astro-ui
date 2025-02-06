@@ -1,5 +1,5 @@
 ---
-import { Circly } from "@assets/image";
+import { step_6 } from "@assets/image/steps";
 import { AccordionAstro } from "@components/Accordion";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
@@ -41,14 +41,14 @@ const t = useTranslations(lang as Languages, "whoWeAre.services");
         </section>
 
         <section class="flex ">
-          <div class="xl:flex-[0_1_75%] w-full xl:ml-auto flex justify-between">
+          <div class="xl:flex-[0_1_75%] w-full xl:ml-auto flex flex-col md:flex-row justify-between">
             <div class="flex flex-col gap-6 justify-center">
               <TypographyAstro class="xl:max-w-[480px]" type="body-2">
                 {item.text}
               </TypographyAstro>
               <ButtonAstro class="w-fit">explore</ButtonAstro>
             </div>
-            <img src={Circly.src} alt="" class="w-[240px] h-[240px]" />
+            <img src={step_6.src} alt="" class="w-[240px] h-[240px] invert" />
           </div>
         </section>
       </AccordionAstro>
