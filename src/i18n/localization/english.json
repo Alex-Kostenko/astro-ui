@@ -344,6 +344,11 @@
       "title": "We innovate and strive for excellence, ensuring that every project we undertake delivers long-term results.",
       "type": "our core values"
     },
+    "story": {
+      "title": "Our story is a journey from idea to innovation.",
+      "type": "our story",
+      "subTitle": "Every code starts with a single line, and every company starts with a big idea. We started our journey with enthusiasm and aspiration to create cutting-edge IT solutions that change business. Year after year, we grew, mastered new technologies and implemented projects that we are proud of."
+    },
     "services": {
       "title": "Our services will help you to accomplish your purpose easier and better.",
       "type": "SERVICES & EXPERTISE"
