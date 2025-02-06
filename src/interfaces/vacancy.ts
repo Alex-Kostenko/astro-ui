@@ -1,20 +1,10 @@
 import type { IImage } from "./image";
+import type { IListWithTitle } from "./list";
 import type { IWorker } from "./worker";
 
 interface ISkill {
   id: number;
   name: string;
-}
-
-export interface IList {
-  id: number;
-  title: string;
-  items: IListItem[];
-}
-
-interface IListItem {
-  id: number;
-  text: string;
 }
 
 export interface ISchedule {
@@ -31,7 +21,7 @@ export interface IVacancy {
 }
 
 export interface IVacancyInfo {
-  description: IList[];
+  description: IListWithTitle[];
   recruiter: IWorker;
 }
 

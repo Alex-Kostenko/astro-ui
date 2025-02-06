@@ -13,7 +13,7 @@ class WhoWeAreService {
   }): Promise<IResponseApi<IWhoWeAre[], MetaPagination>> {
     return apiService.get(ApiPath.whoWeAre, {
       query: {
-        populate: ["list:*"],
+        populate: ["services:*", "story:*"],
         locale,
       },
     });

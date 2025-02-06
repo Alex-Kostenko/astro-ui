@@ -1,12 +1,10 @@
+import type { IList, IListItemWithTitle, IListItemWithYear } from "./list";
+
 export interface IWhoWeAre {
   id: number;
   documentId: string;
-  list: {
-    items: {
-      title: string;
-      text: string;
-    }[];
-  };
+  services: IList<IListItemWithTitle>;
+  story: IList<IListItemWithYear>;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
