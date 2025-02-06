@@ -4,10 +4,10 @@ import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
-import type { IList } from "@interfaces/index";
+import type { IListWithTitle } from "@interfaces/index";
 
 interface Props {
-  list: IList[];
+  list: IListWithTitle[];
 }
 
 const { lang } = Astro.params;
