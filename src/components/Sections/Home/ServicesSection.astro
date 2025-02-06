@@ -1,4 +1,5 @@
 ---
+import { step_6 } from "@assets/image/steps";
 import { AccordionAstro } from "@components/Accordion";
 import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
@@ -10,7 +11,6 @@ const t = useTranslations(lang as Languages, "home.services");
 const list = t("listOfOffer") as {
   title: string;
   description: string;
-  img: string;
 }[];
 ---
 
@@ -48,8 +48,8 @@ const list = t("listOfOffer") as {
               </div>
               <div class="h-full max-h-[240px] aspect-square">
                 <img
-                  class="h-full max-h-[240px] mx-auto"
-                  src={v.img}
+                  class="h-full max-h-[240px] invert"
+                  src={step_6.src}
                   alt={v.title}
                 />
               </div>
