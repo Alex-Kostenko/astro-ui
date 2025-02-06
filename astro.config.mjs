@@ -20,6 +20,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     AstroPWA({
+      strategies: "generateSW",
       manifest: {
         name: "UniCode Software",
         short_name: "UniCode",
@@ -75,7 +76,7 @@ export default defineConfig({
         navigateFallback: "/",
       },
       devOptions: {
-        enabled: true,
+        enabled: false,
         navigateFallbackAllowlist: [/^\//],
       },
       experimental: {
