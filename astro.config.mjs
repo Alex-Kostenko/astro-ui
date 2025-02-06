@@ -76,8 +76,10 @@ export default defineConfig({
         navigateFallback: "/",
       },
       devOptions: {
-        enabled: false,
-        navigateFallbackAllowlist: [/^\//],
+        enabled: true,
+        // navigateFallbackAllowlist: [/^\//],
+        navigateFallback: "index.html",
+        type: "classic",
       },
       experimental: {
         directoryAndTrailingSlashHandler: true,
