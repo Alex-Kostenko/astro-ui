@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { listCompany } from "src/assets/icon/company";
+import { listCompany } from "@assets/icon/company";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.parthners");

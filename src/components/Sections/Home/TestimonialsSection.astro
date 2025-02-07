@@ -4,7 +4,7 @@ import { Container } from "@components/Container";
 import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import commentService from "@service/comment.service";
-import { ArrowRight, ArrowLeft } from "src/assets";
+import { ArrowRight, ArrowLeft } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.testimonials");
