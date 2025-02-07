@@ -108,6 +108,12 @@ export default defineConfig({
   output: "static",
   build: { inlineStylesheets: "never" },
 
+  redirects: {
+    "/service": "/service/all",
+    "/cases": "/cases/all/1",
+    "/cases/all": "/cases/all/1",
+  },
+
   i18n: {
     defaultLocale: "en",
     locales: ["en", "ua"],

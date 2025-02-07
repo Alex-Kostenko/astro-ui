@@ -25,16 +25,9 @@ const steps = await stepsService.get({ locale: lang as Languages });
         <FirstStep />
       </div>
       {
-        steps.data.map((step, index) => (
+        [...steps.data, ...steps.data].map((step, index) => (
           <div class="swiper-slide duration-300 w-[280px] h-[578px]">
             <StepAstro step={step} imageIndex={index} />
-          </div>
-        ))
-      }
-      {
-        steps.data.map((step, index) => (
-          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
-            <StepAstro step={step} imageIndex={index + 3} />
           </div>
         ))
       }
