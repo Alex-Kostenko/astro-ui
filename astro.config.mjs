@@ -1,26 +1,32 @@
 // @ts-check
 // import vercelServerless from "@astrojs/vercel";
-// import node from "@astrojs/node";
+import node from "@astrojs/node";
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import cloudflare from "@astrojs/cloudflare";
 import AstroPWA from "@vite-pwa/astro";
 
+const adapter =
+  process.env.MODE === "dev" ? node({ mode: "standalone" }) : cloudflare();
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    logLevel: "info",
+    logLevel: "error",
     server: {
       fs: {
         // Allow serving files from hoisted root node_modules
-        allow: ["../.."],
+        // allow: ["../.."],
       },
     },
+    publicDir: "public",
   },
   integrations: [
     tailwind(),
     AstroPWA({
       strategies: "generateSW",
+      registerType: "autoUpdate",
+      base: "/",
       manifest: {
         name: "UniCode Software",
         short_name: "UniCode",
@@ -57,32 +63,45 @@ export default defineConfig({
         // ],
       },
       workbox: {
+        disableDevLogs: true,
         cleanupOutdatedCaches: true, // Clears old caches properly
         clientsClaim: true, // Ensures clients are controlled immediately
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10mb
-        globPatterns: ["**/*{.,js,css,html,png,svg,webp,ico,json,astro}"],
-        // runtimeCaching: [
-        //   {
-        //     urlPattern: /.*\/[^\/]+/,
-        //     handler: "CacheFirst",
-        //     options: {
-        //       cacheName: "image-cache",
-        //       expiration: { maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 },
-        //     },
-        //   },
-        // ],
+        globPatterns: ["**/*.{js,css,html,svg,png,webp,ico,json,mp4}"],
+        skipWaiting: true,
+        runtimeCaching: [
+          {
+            urlPattern: /.*\/[^\/]+\.(png|jpe?g|gif|webp|svg|bmp|tiff?)/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "image-cache",
+              expiration: {
+                maxEntries: 5000,
+                maxAgeSeconds: 24 * 60 * 60 * 30,
+              },
+            },
+          },
+          {
+            urlPattern: /.*\/[^\/]+\.mp4/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "video-cache",
+              expiration: { maxEntries: 10, maxAgeSeconds: 24 * 60 * 60 * 30 },
+            },
+          },
+        ],
         // exclude: [/\.map$/, /@fs\//], // Exclude FS paths
         globIgnores: ["**/404.{html,astro,js,ts,css}", "**/_routes.json"],
         navigateFallback: "/",
       },
       devOptions: {
-        enabled: true,
+        enabled: false,
         // navigateFallbackAllowlist: [/^\//],
         navigateFallback: "index.html",
         type: "classic",
       },
       experimental: {
-        directoryAndTrailingSlashHandler: true,
+        directoryAndTrailingSlashHandler: false,
       },
     }),
   ],
@@ -94,5 +113,5 @@ export default defineConfig({
     locales: ["en", "ua"],
   },
 
-  adapter: cloudflare(),
+  adapter,
 });
