@@ -4,7 +4,7 @@ import { SectionTitle } from "@components/Typography";
 import Video from "@components/Video/Video.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 import { Image } from "astro:assets";
-import { cubeSide, cubeSideVP9, Eye } from "src/assets";
+import { cubeSide, cubeSideVP9, Eye } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.advantagesSection");

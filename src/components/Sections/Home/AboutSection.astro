@@ -4,7 +4,7 @@ import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import { Image } from "astro:assets";
-import { ArrowRight, Human } from "src/assets";
+import { ArrowRight, Human } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.about");

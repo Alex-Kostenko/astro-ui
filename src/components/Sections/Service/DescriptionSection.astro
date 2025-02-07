@@ -2,7 +2,7 @@
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "src/assets";
+import { Human } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "service.description");
