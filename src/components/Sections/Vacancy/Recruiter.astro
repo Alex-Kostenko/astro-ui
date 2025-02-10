@@ -36,7 +36,11 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {
           recruiter.linkedIn && (
             <div class="flex mt-auto gap-4">
-              <a href={recruiter.linkedIn} target="_blank">
+              <a
+                href={recruiter.linkedIn}
+                target="_blank"
+                aria-label="linkedin"
+              >
                 <img src={linkedInLogo.src} alt="" />
               </a>
             </div>
@@ -45,7 +49,11 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {
           recruiter.telegram && (
             <div class="flex mt-auto gap-4">
-              <a href={recruiter.telegram} target="_blank">
+              <a
+                href={recruiter.telegram}
+                target="_blank"
+                aria-label="telegram"
+              >
                 <img src={telegram.src} alt="" />
               </a>
             </div>
@@ -54,7 +62,7 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {
           recruiter.email && (
             <div class="flex mt-auto gap-4">
-              <a href={`mailto:${recruiter.email}`}>
+              <a href={`mailto:${recruiter.email}`} aria-label="email">
                 <img src={email.src} alt="" />
               </a>
             </div>
