@@ -6,17 +6,22 @@ interface Props {
 }
 
 const { open = false, arrowStyle = false } = Astro.props;
+const uuid = Date.now().toString(36) + Math.random().toString(36).slice(2);
 ---
 
 {
   !arrowStyle && (
-    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
+    <accordion-block
+      isOpen={String(open)}
+      arrowStyle={String(arrowStyle)}
+      contentId={uuid}
+    >
       <div class="border-b border-black box-border">
         <button class="w-full py-6 text-slate-800 text-start">
           <slot name="title" />
         </button>
         <div
-          id="content"
+          id={uuid}
           class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
         >
           <div class="pb-6 w-full">
@@ -29,7 +34,11 @@ const { open = false, arrowStyle = false } = Astro.props;
 }
 {
   arrowStyle && (
-    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
+    <accordion-block
+      isOpen={String(open)}
+      arrowStyle={String(arrowStyle)}
+      contentId={uuid}
+    >
       <div>
         <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
           <div class="flex justify-between ">
@@ -39,7 +48,7 @@ const { open = false, arrowStyle = false } = Astro.props;
           </div>
         </button>
         <div
-          id="content"
+          id={uuid}
           class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
         >
           <div class="pt-1 w-full">
@@ -56,9 +65,11 @@ const { open = false, arrowStyle = false } = Astro.props;
     connectedCallback() {
       const open = this.getAttribute("isOpen");
       const arrowStyle = this.getAttribute("arrowStyle");
+      const uuid = "#" + this.getAttribute("contentId")!;
 
       const button = this.querySelector("button");
-      const content = this.querySelector("#content") as HTMLDivElement;
+      const content = this.querySelector(uuid) as HTMLDivElement;
+
       const downArrow =
         arrowStyle === "true"
           ? (this.querySelector(".down-arrow") as HTMLImageElement)
@@ -73,7 +84,7 @@ const { open = false, arrowStyle = false } = Astro.props;
       }
 
       button?.addEventListener("click", () => {
-        const content = this.querySelector("#content") as HTMLDivElement;
+        const content = this.querySelector(uuid) as HTMLDivElement;
         if (!content || !content.style) return;
 
         const open = this.getAttribute("isOpen");
