@@ -17,9 +17,12 @@ const uuid = Date.now().toString(36) + Math.random().toString(36).slice(2);
       contentId={uuid}
     >
       <div class="border-b border-black box-border">
-        <button class="w-full py-6 text-slate-800 text-start">
+        <div
+          id={`${uuid}-trigger`}
+          class="w-full py-6 text-slate-800 text-start cursor-pointer"
+        >
           <slot name="title" />
-        </button>
+        </div>
         <div
           id={uuid}
           class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
@@ -40,13 +43,16 @@ const uuid = Date.now().toString(36) + Math.random().toString(36).slice(2);
       contentId={uuid}
     >
       <div>
-        <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
+        <div
+          id={`${uuid}-trigger`}
+          class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base cursor-pointer"
+        >
           <div class="flex justify-between ">
             <slot name="title" />
             <DownArrow class="down-arrow text-brand-white my-auto" />
             <UpArrow class="up-arrow hidden text-brand-white text-opacity-50 my-auto" />
           </div>
-        </button>
+        </div>
         <div
           id={uuid}
           class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
@@ -67,7 +73,8 @@ const uuid = Date.now().toString(36) + Math.random().toString(36).slice(2);
       const arrowStyle = this.getAttribute("arrowStyle");
       const uuid = "#" + this.getAttribute("contentId")!;
 
-      const button = this.querySelector("button");
+      const button = this.querySelector(`${uuid}-trigger`);
+
       const content = this.querySelector(uuid) as HTMLDivElement;
 
       const downArrow =
