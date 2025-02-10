@@ -18,6 +18,8 @@ interface Props {
 
 const { title, openGraph } = Astro.props;
 const { lang } = Astro.params;
+
+const domain = import.meta.env.DOMAIN;
 ---
 
 <!doctype html>
@@ -43,14 +45,14 @@ const { lang } = Astro.params;
       content={openGraph?.image || "/open-graph-preview.jpg"}
     />
     <!-- <meta property="og:image:type" content="image/png" /> -->
-    <meta property="og:url" content="https://unicode-3n3.pages.dev" />
+    <meta property="og:url" content={`https:/${domain}`} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="UniCode" />
 
     <!-- Twitter open graph -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="unicode-3n3.pages.dev" />
-    <meta property="twitter:url" content="https://unicode-3n3.pages.dev/" />
+    <meta property="twitter:domain" content={domain} />
+    <meta property="twitter:url" content={`https:/${domain}`} />
     <meta
       property="twitter:title"
       content={openGraph?.title || "UniCode Software"}
