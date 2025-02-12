@@ -1,0 +1,22 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { IWorker } from "@interfaces/worker";
+import Worker from "./Worker.astro";
+
+interface Props {
+  list: IWorker[];
+  title: string;
+  type: string;
+}
+
+const { list, title, type } = Astro.props;
+---
+
+<Container>
+  <SectionTitle title={title} type={type} />
+  <div class="flex flex-wrap gap-5">
+    {list.map((worker) => <Worker worker={worker} />)}
+  </div>
+</Container>

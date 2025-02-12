@@ -362,6 +362,34 @@
       { "text": "first step", "variant": "outlined" }
     ]
   },
+  "team": {
+    "description": {
+      "line-1-contained": "meet",
+      "line-2-outlined": "the minds",
+      "line-3-contained": "behind the code",
+      "text": "We searched far and wide to bring together the best minds in technology, assembling a team of passionate experts dedicated to creating cutting-edge software solutions. Every member brings unique skills, experience, and creativity, allowing us to tackle complex challenges and drive innovation. Together, we don’t just write code—we shape the future of technology."
+    },
+    "worker": {
+      "greeting": "hi there",
+      "technologies": "technologies",
+      "experience": "experience",
+      "about": "about",
+      "years": "years",
+      "months": "months"
+    },
+    "recruiter": {
+      "title": "Are you interested in becoming part of the team & have any questions?",
+      "type": "YOUR RECRUTER"
+    },
+    "contactUs": [
+      {
+        "text": "every journey",
+        "variant": "contained"
+      },
+      { "text": "starts from the", "variant": "contained" },
+      { "text": "first step", "variant": "outlined" }
+    ]
+  },
   "404": {
     "message": "Page not found"
   }
