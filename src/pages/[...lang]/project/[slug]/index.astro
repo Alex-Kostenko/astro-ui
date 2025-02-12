@@ -22,7 +22,6 @@ import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
-import { executeImg } from "@utils/excuteImg";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -78,7 +77,7 @@ const text = t("contactUs.text").map((t: string, i: number) => {
   openGraph={{
     title: project.title,
     description: project.description,
-    image: executeImg(project.image),
+    image: project.image.base64,
   }}
 >
   <link
