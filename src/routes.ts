@@ -4,4 +4,5 @@ export const routes = {
   service: "/service/all",
   careers: "/careers",
   whoWeAre: "/who-we-are",
+  team: "/team",
 };
