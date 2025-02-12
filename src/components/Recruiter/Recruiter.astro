@@ -8,16 +8,16 @@ import type { IWorker } from "@interfaces/index";
 
 interface Props {
   recruiter: IWorker;
+  title: string;
+  type: string;
 }
 
 const { lang } = Astro.params;
-const { recruiter } = Astro.props;
-
-const t = useTranslations(lang as Languages, "vacancy.recruiter");
+const { recruiter, title, type } = Astro.props;
 ---
 
 <Container>
-  <SectionTitle type={t("type")} title={t("title")} />
+  <SectionTitle type={type} title={title} />
   <div class="flex 2xl:ml-[295px] 3xl:ml-[415px] gap-8">
     <img src={recruiter.photo.base64} alt="recruiter photo" class="rounded" />
     <div class="flex flex-col gap-2">
@@ -25,7 +25,7 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {recruiter.name}
       </TypographyAstro>
       <TypographyAstro type="subTitle-sm-1">
-        {recruiter.position}
+        uni code {recruiter.position}
       </TypographyAstro>
       <div class="flex gap-4 mt-auto">
         {
