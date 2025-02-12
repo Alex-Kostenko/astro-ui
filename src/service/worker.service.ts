@@ -22,7 +22,7 @@ class WorkerService {
     return apiService.get(ApiPath.worker, {
       query: {
         populate: [
-          { field: "image", insideFields: ["id", "formats", "url"] }, // TODO: test query
+          { field: "photo", insideFields: ["id", "formats", "url"] },
           "stack",
         ],
         filter,
