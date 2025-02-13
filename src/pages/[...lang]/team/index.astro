@@ -38,23 +38,15 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 function filterByType(workerList: IWorker[], type: string | string[]) {
-  if (typeof type === "string") {
-    return workerList.filter((worker) =>
-      worker.position.toLowerCase().includes(type.toLowerCase()),
-    );
-  } else if (Array.isArray(type)) {
-    const filtered: IWorker[] = [];
-    type.map((t) => {
-      const f = workerList.filter(
-        (worker) => worker.position.toLowerCase().includes(t) === true,
-      );
+  if (!type || workerList.length === 0) return [];
 
-      filtered.push(...f);
-    });
+  const types = Array.isArray(type)
+    ? type.map((t) => t.toLowerCase())
+    : [type.toLowerCase()];
 
-    return filtered;
-  }
-  return [];
+  return workerList.filter((worker) =>
+    types.some((t) => worker.position.toLowerCase().includes(t)),
+  );
 }
 
 const { lang } = Astro.params;
