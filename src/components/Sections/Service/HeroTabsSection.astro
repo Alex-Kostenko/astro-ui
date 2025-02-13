@@ -90,8 +90,9 @@ const currentDomain = domains.data.find((v) => v.slug === domain);
     spaceBetween: 30,
     modules: [Autoplay],
     autoplay: {
-      delay: 1000,
+      delay: 1500,
       disableOnInteraction: false,
+      pauseOnMouseEnter: true,
     },
     loop: true,
   });
