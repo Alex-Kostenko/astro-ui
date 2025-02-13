@@ -2,8 +2,6 @@
 import { email, linkedInLogo, telegram } from "@assets/icon";
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
-import type { Languages } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
 import type { IWorker } from "@interfaces/index";
 
 interface Props {
@@ -12,7 +10,6 @@ interface Props {
   type: string;
 }
 
-const { lang } = Astro.params;
 const { recruiter, title, type } = Astro.props;
 ---
 
