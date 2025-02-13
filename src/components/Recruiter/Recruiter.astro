@@ -19,7 +19,11 @@ const { recruiter, title, type } = Astro.props;
 <Container>
   <SectionTitle type={type} title={title} />
   <div class="flex 2xl:ml-[295px] 3xl:ml-[415px] gap-8">
-    <img src={recruiter.photo.base64} alt="recruiter photo" class="rounded" />
+    <img
+      src={recruiter.photo.base64}
+      alt="recruiter photo"
+      class="rounded w-[146px] h-[146px] object-cover object-center"
+    />
     <div class="flex flex-col gap-2">
       <TypographyAstro type="title-1">
         {recruiter.name}
