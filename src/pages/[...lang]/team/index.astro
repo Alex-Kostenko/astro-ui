@@ -13,6 +13,7 @@ import {
 import workerService from "@service/worker.service";
 import Recruiter from "@components/Recruiter/Recruiter.astro";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import type { IWorker } from "@interfaces/worker";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).map(async (lang) => {
@@ -30,14 +31,44 @@ export const getStaticPaths = (async () => {
     return {
       params: { lang: v.lang.slug },
       props: {
-        data: v.workers,
+        data: v.workers.data,
       },
     };
   });
 }) satisfies GetStaticPaths;
 
+function filterByType(workerList: IWorker[], type: string | string[]) {
+  if (typeof type === "string") {
+    return workerList.filter((worker) =>
+      worker.position.toLowerCase().includes(type.toLowerCase()),
+    );
+  } else if (Array.isArray(type)) {
+    const filtered: IWorker[] = [];
+    type.map((t) => {
+      const f = workerList.filter(
+        (worker) => worker.position.toLowerCase().includes(t) === true,
+      );
+
+      filtered.push(...f);
+    });
+
+    return filtered;
+  }
+  return [];
+}
+
 const { lang } = Astro.params;
 const { data } = Astro.props;
+
+const devs = filterByType(data, ["dev", "engineer"]);
+const designers = filterByType(data, ["designer"]);
+const managers = filterByType(data, [
+  "manager",
+  "pm",
+  "project manager",
+  "product manager",
+]);
+const recruiter = filterByType(data, ["hr", "recruiter"]);
 
 const t = useTranslations(lang as Languages, "team");
 ---
@@ -66,12 +97,22 @@ const t = useTranslations(lang as Languages, "team");
     </div>
     <Description />
     <WorkersList
-      list={data.data}
+      list={devs}
       title="The Architects of Innovation"
       type="DEVELOPERS"
     />
+    <WorkersList
+      list={designers}
+      title="The Architects of Innovation"
+      type="DESIGNERS"
+    />
+    <WorkersList
+      list={managers}
+      title="The Architects of Innovation"
+      type="MANAGEMENT"
+    />
     <Recruiter
-      recruiter={data.data[1]}
+      recruiter={recruiter[0]}
       title={t("recruiter.title")}
       type={t("recruiter.type")}
     />
