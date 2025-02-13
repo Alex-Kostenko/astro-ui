@@ -16,7 +16,48 @@ const { list, title, type } = Astro.props;
 
 <Container>
   <SectionTitle title={title} type={type} />
-  <div class="flex flex-wrap gap-5">
+  <div class="hidden xl:flex flex-wrap gap-5">
     {list.map((worker) => <Worker worker={worker} />)}
   </div>
+  <div class="workers-swiper swiper xl:hidden">
+    <div class="swiper-wrapper">
+      {
+        [
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+          ...list,
+        ].map((worker) => (
+          <div class="swiper-slide w-fit">
+            <Worker worker={worker} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </Container>
+
+<script>
+  import Swiper from "swiper";
+  import { Autoplay } from "swiper/modules";
+
+  new Swiper(".workers-swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 20,
+    modules: [Autoplay],
+    autoplay: {
+      delay: 1700,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
+    },
+    loop: true,
+  });
+</script>

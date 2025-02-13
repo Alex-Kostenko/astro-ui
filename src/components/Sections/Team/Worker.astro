@@ -7,38 +7,42 @@ import type { IWorker } from "@interfaces/worker";
 
 interface Props {
   worker: IWorker;
+  class?: string;
 }
 
 const { lang } = Astro.params;
-const { worker } = Astro.props;
+const { worker, class: className } = Astro.props;
 
 const t = useTranslations(lang as Languages, "team.worker");
 ---
 
 <div class="group hover:cursor-pointer relative w-[380px] h-[442px]">
   <div
-    class="absolute group-hover:rotate-y-180 perspective-100 inset-0 duration-200 backface-hidden transform-3d bg-brand-black rounded p-6 flex flex-col justify-between gap-5"
+    class:list={[
+      "absolute group-hover:rotate-y-180 inset-0 duration-200 backface-hidden transform-3d bg-brand-white rounded border border-brand-black p-4 xl:p-6 flex flex-col justify-between",
+      className,
+    ]}
   >
     <img
       src={worker.photo.base64}
       alt=""
-      class="w-full h-full object-cover object-center rounded"
+      class="w-full h-[320px] object-cover object-center rounded"
     />
     <div class="flex justify-between">
       <div>
-        <TypographyAstro type="subTitle-1" color="white">
+        <TypographyAstro type="subTitle-1" color="black">
           {worker.name}
         </TypographyAstro>
         <TypographyAstro
           type="subTitle-sm-4"
-          color="white"
-          class="text-brand-white text-opacity-75"
+          color="black"
+          class="text-brand-black text-opacity-75"
         >
           {worker.position}
         </TypographyAstro>
       </div>
       <ButtonAstro
-        variant="outlined"
+        variant="contained"
         iconOnly
         iconClass="-rotate-45"
         class="mt-auto"
@@ -46,13 +50,13 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
   </div>
   <div
-    class="absolute group-hover:rotate-y-360 inset-0 duration-200 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded p-6 flex flex-col gap-5"
+    class="absolute group-hover:rotate-y-360 inset-0 duration-200 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded p-4 xl:p-6 flex flex-col gap-5"
   >
     <TypographyAstro type="subTitle-1" color="white">
       {t("greeting")}
     </TypographyAstro>
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro type="subTitle-sm-4" color="brand-gray">
+      <TypographyAstro type="subTitle-sm-4" color="brand-gray" class="!text-14">
         {t("technologies")}:
       </TypographyAstro>
       <p class="flex flex-wrap gap-1">
@@ -67,10 +71,10 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
 
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4">
+      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="!text-14">
         {t("experience")}:
       </TypographyAstro>
-      <TypographyAstro color="white" type="body-2">
+      <TypographyAstro color="white" type="body-2" class="!text-14">
         {new Date().getFullYear() - new Date(worker.experience).getFullYear()}
         years
         <!-- TODO: add dynamic time detect -->
@@ -78,16 +82,21 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
 
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4">
+      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="!text-14">
         {t("about")}:
       </TypographyAstro>
-      <TypographyAstro color="white" type="body-2" class="line-clamp-4">
+      <TypographyAstro
+        color="white"
+        type="body-2"
+        class="line-clamp-4 !text-14"
+      >
         {worker.description}
       </TypographyAstro>
     </div>
 
     <ButtonAstro
-      variant="outlined"
+      variant="contained"
+      color="white"
       iconOnly
       class="mt-auto ml-auto"
       iconClass="rotate-45"

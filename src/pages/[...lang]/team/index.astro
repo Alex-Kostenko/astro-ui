@@ -43,6 +43,13 @@ const t = useTranslations(lang as Languages, "team");
 ---
 
 <Layout title="UniCode Team">
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
   <main class="flex flex-col gap-[120px]">
     <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
       <video
