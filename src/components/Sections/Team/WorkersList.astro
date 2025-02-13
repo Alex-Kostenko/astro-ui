@@ -22,20 +22,7 @@ const { list, title, type } = Astro.props;
   <div class="workers-swiper swiper xl:hidden">
     <div class="swiper-wrapper">
       {
-        [
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-          ...list,
-        ].map((worker) => (
+        [...list, ...list, ...list].map((worker) => (
           <div class="swiper-slide w-fit">
             <Worker worker={worker} />
           </div>
