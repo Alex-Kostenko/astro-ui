@@ -369,6 +369,18 @@
       "line-3-contained": "behind the code",
       "text": "We searched far and wide to bring together the best minds in technology, assembling a team of passionate experts dedicated to creating cutting-edge software solutions. Every member brings unique skills, experience, and creativity, allowing us to tackle complex challenges and drive innovation. Together, we don’t just write code—we shape the future of technology."
     },
+    "developers": {
+      "title": "The Architects of Innovation",
+      "type": "DEVELOPERS"
+    },
+    "designers": {
+      "title": "Crafting Experiences with Creativity",
+      "type": "DESIGNERS"
+    },
+    "management": {
+      "title": "Leading with Vision and Strategy",
+      "type": "MANAGEMENT"
+    },
     "worker": {
       "greeting": "hi there 👋",
       "technologies": "technologies",

@@ -90,18 +90,18 @@ const t = useTranslations(lang as Languages, "team");
     <Description />
     <WorkersList
       list={devs}
-      title="The Architects of Innovation"
-      type="DEVELOPERS"
+      title={t("developers.title")}
+      type={t("developers.type")}
     />
     <WorkersList
       list={designers}
-      title="The Architects of Innovation"
-      type="DESIGNERS"
+      title={t("designers.title")}
+      type={t("designers.type")}
     />
     <WorkersList
       list={managers}
-      title="The Architects of Innovation"
-      type="MANAGEMENT"
+      title={t("management.title")}
+      type={t("management.type")}
     />
     <Recruiter
       recruiter={recruiter[0]}
