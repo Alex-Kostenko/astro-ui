@@ -112,6 +112,8 @@ export default defineConfig({
     "/service": "/service/all",
     "/cases": "/cases/all/1",
     "/cases/all": "/cases/all/1",
+    "/insights": "/insights/all/1",
+    "/insights/all": "/insights/all/1",
   },
 
   i18n: {
