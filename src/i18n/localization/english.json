@@ -362,6 +362,30 @@
       { "text": "first step", "variant": "outlined" }
     ]
   },
+  "insights": {
+    "description": {
+      "line-1-contained": "insights",
+      "line-2-outlined": "& innovations:",
+      "line-3-contained": "our tech blog",
+      "text": "Stay ahead in the world of technology with expert insights, industry trends, and development tips from our team. Explore innovative solutions, best practices, and the latest in software development—all in one place."
+    },
+    "categories": {
+      "title": "Categories",
+      "type": "INSIGHTS"
+    },
+    "list": {
+      "all": "all",
+      "explore": "Show more"
+    },
+    "contactUs": [
+      {
+        "text": "tech news",
+        "variant": "contained"
+      },
+      { "text": "you can’t miss", "variant": "contained" },
+      { "text": "subscribe now", "variant": "outlined" }
+    ]
+  },
   "team": {
     "description": {
       "line-1-contained": "meet",

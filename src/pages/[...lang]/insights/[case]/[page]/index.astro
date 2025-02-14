@@ -1,0 +1,92 @@
+---
+import type { GetStaticPaths } from "astro";
+import insightService from "@service/insight.service";
+import type { IInsightCategory } from "@interfaces/index";
+import { languages, type Language, type Languages } from "@i18n/ui";
+import Layout from "@layouts/Layout.astro";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import { Description, InsightsList } from "@components/Sections/Insights";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { useTranslations } from "@i18n/utils";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const categories: IInsightCategory[] = [
+    ...(await insightService.getCategory()).data,
+    { id: 0, name: "all", slug: "all", documentId: "" },
+  ];
+
+  const req = Object.keys(languages).flatMap((lang) =>
+    categories.map((c) =>
+      insightService
+        .get({
+          pagination: { limit: "max" },
+          locale: languages[lang].lang,
+          filter:
+            c.id === 0
+              ? []
+              : [
+                  {
+                    fields: ["insight_category", "documentId"],
+                    value: c.documentId,
+                  },
+                ],
+        })
+        .then((response) => {
+          return {
+            lang: languages[lang] as Language,
+            category: c,
+            response,
+          };
+        }),
+    ),
+  );
+
+  const resArr = await Promise.all(req);
+
+  return resArr.flatMap((r) => {
+    return paginate(r.response.data, {
+      params: { lang: r.lang.slug, case: r.category.slug },
+      props: {
+        slug: r.category.slug,
+        category: r.category,
+        meta: r.response.meta,
+      },
+      pageSize: 12,
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { slug, page } = Astro.props;
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "insights");
+---
+
+<Layout title="UniCode Insights">
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+      <Breadcrumbs />
+    </div>
+    <Description />
+    <InsightsList slug={slug} page={page} />
+    <ContactUsSection text={t("contactUs")} />
+  </main>
+</Layout>

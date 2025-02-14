@@ -1,0 +1,50 @@
+---
+import { Container } from "@components/Container";
+import { TypographyAstro } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
+import { Human } from "@assets/index";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "insights.description");
+---
+
+<Container class="mt-7">
+  <h2
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+    ]}
+  >
+    <span>
+      {t("line-1-contained")}
+    </span>
+    <span class="text-stroken-green-2 md:text-stroken-green-4">
+      {t("line-2-outlined")}
+    </span>
+    <span>{t("line-3-contained")}</span>
+  </h2>
+
+  <section
+    class="gap-y-4 mt-10 font-gothic"
+    class:list={[
+      "flex flex-col 2xl:flex-row-reverse justify-between",
+      "gap-y-3 md:gap-y-6",
+    ]}
+  >
+    <div class="2xl:max-w-[604px] object-cover w-full">
+      <img
+        class="min-h-full object-cover min-w-full"
+        src={Human.src}
+        alt="human face of number"
+      />
+    </div>
+
+    <div class="flex flex-col gap-5">
+      <TypographyAstro type="body-4" class="2xl:w-[480px] leading-1">
+        {t("text")}
+      </TypographyAstro>
+    </div>
+  </section>
+</Container>
