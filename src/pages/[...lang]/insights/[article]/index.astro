@@ -42,7 +42,7 @@ const date = new Date(insight.createdAt)
 ---
 
 <Layout title={insight.title}>
-  <main class="flex flex-col gap-[120px]">
+  <main class="flex flex-col gap-10 lg:gap-[120px]">
     <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
       <video
         autoplay
@@ -58,11 +58,11 @@ const date = new Date(insight.createdAt)
     </div>
     <Title title={insight.title} />
     <Container>
-      <div class="flex justify-between">
+      <div class="flex flex-wrap justify-between">
         <div>
           {date}
         </div>
-        <div class="flex gap-3">
+        <div class="flex flex-wrap gap-3">
           {
             insight.technologies.map((t) => (
               <span class="py-1 px-3 bg-brand-beige rounded-3xl text-brand-black text-12 font-gothic">

@@ -12,8 +12,10 @@ const { content } = Astro.props;
 const path = Astro.originPathname.replace(/\/$/, "");
 ---
 
-<Container class="grid grid-cols-[280px,_auto] gap-5">
-  <aside class="flex flex-col gap-3">
+<Container
+  class="grid grid-rows-[auto,auto] lg:grid-rows-1 lg:grid-cols-[280px,_auto] gap-5"
+>
+  <aside class="flex flex-col gap-3 mb-5 lg:mb-0">
     {
       content.map((c, i) => (
         <a
@@ -40,7 +42,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
       content.map((c, i) => {
         return (
           <article
-            class="scroll-m-[200px] [&:not(:last-child)]:mb-[120px]"
+            class="scroll-m-[200px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]"
             id={`${c.title.replace(" ", "-")}-${i}`}
           >
             <SectionTitle
@@ -49,7 +51,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
               classContainer="mb-10"
             />
             {c.content.map((c) => (
-              <div class="flex flex-col gap-[120px] [&:not(:last-child)]:mb-[120px]">
+              <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]">
                 <>{c.text && <TypographyAstro>{c.text}</TypographyAstro>}</>
                 <>
                   {c.image &&

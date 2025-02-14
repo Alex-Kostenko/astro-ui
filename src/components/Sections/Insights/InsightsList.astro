@@ -23,7 +23,7 @@ const t = useTranslations(lang as Languages, "insights.categories");
 <Container id="insights">
   <SectionTitle title={t("title")} type={t("type")} />
   <Tabs category={slug} page={page.currentPage} />
-  <div class="grid grid-cols-3 gap-5 mb-5">
+  <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-5 mb-5">
     {page.data.map((i) => <InsightCard insight={i} />)}
   </div>
   <Pagination
