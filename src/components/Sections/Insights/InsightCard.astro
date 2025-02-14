@@ -17,6 +17,8 @@ const date = new Date(insight.createdAt)
     year: "numeric",
   })
   .replace(/(\w+) (\d+), (\d+)/, "$1, $2, $3");
+
+const insightLink = routes.insight + "/" + insight.slug;
 ---
 
 <article class="flex flex-col gap-5 p-4 rounded border border-brand-black">
@@ -30,18 +32,22 @@ const date = new Date(insight.createdAt)
       {insight.technologies[0].name}
     </span>
   </div>
-  <img
-    src={insight.image.base64}
-    alt=""
-    class="object-cover object-center h-[184px] w-full"
-  />
+  <a href={insightLink}>
+    <img
+      src={insight.image.base64}
+      alt=""
+      class="object-cover object-center h-[184px] w-full"
+    />
+  </a>
   <article class="flex flex-col gap-3">
     <TypographyAstro type="subTitle-1" color="green" tag="h3">
-      <a href={routes.insight + "/" + insight.slug}>{insight.title}</a>
+      <a href={insightLink}>{insight.title}</a>
     </TypographyAstro>
     <TypographyAstro color="black" type="body-2">
       {insight.description}
     </TypographyAstro>
   </article>
-  <ButtonAstro iconOnly iconClass="-rotate-45" class="ml-auto mt-auto" />
+  <a href={insightLink}>
+    <ButtonAstro iconOnly iconClass="-rotate-45" class="ml-auto mt-auto" />
+  </a>
 </article>
