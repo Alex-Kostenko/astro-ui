@@ -10,7 +10,7 @@ export interface IInsight {
   technologies: ITechnology[];
   slug: string;
   insight_category: IInsightCategory;
-  content: InsightContent;
+  content: InsightContent[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
@@ -25,10 +25,10 @@ export interface IInsightCategory {
 
 export interface InsightContent {
   title: string;
-  content: Content;
+  content: Content[];
 }
 
 export interface Content {
   text: string;
-  image: IImage;
+  image: IImage[];
 }
