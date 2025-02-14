@@ -4,5 +4,7 @@ export const routes = {
   service: "/service/all",
   careers: "/careers",
   whoWeAre: "/who-we-are",
+  insight: "/insights",
+  allInsights: "/insights/all/1",
   team: "/team",
 };
