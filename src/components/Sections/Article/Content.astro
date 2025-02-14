@@ -52,7 +52,13 @@ const path = Astro.originPathname.replace(/\/$/, "");
             />
             {c.content.map((c) => (
               <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]">
-                <>{c.text && <TypographyAstro>{c.text}</TypographyAstro>}</>
+                <>
+                  {c.text && (
+                    <TypographyAstro color="black" type="body-4">
+                      {c.text}
+                    </TypographyAstro>
+                  )}
+                </>
                 <>
                   {c.image &&
                     c.image.map((img) => <img alt="" src={img.base64} />)}

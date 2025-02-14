@@ -5,6 +5,7 @@ import { Container } from "@components/Container";
 import { SubscribeSection } from "@components/Form/index";
 import { Content, Share } from "@components/Sections/Article";
 import Title from "@components/Sections/Article/Title.astro";
+import { TypographyAstro } from "@components/Typography";
 import { languages, type Language, type Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
 import Layout from "@layouts/Layout.astro";
@@ -59,13 +60,13 @@ const date = new Date(insight.createdAt)
     <Title title={insight.title} />
     <Container>
       <div class="flex flex-wrap justify-between">
-        <div>
+        <TypographyAstro color="black" type="body-2">
           {date}
-        </div>
+        </TypographyAstro>
         <div class="flex flex-wrap gap-3">
           {
             insight.technologies.map((t) => (
-              <span class="py-1 px-3 bg-brand-beige rounded-3xl text-brand-black text-12 font-gothic">
+              <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
                 {t.name}
               </span>
             ))
