@@ -386,6 +386,10 @@
       { "text": "subscribe now", "variant": "outlined" }
     ]
   },
+  "article": {
+    "title": "Share the Knowledge – Spread the Innovation",
+    "type": "LET OTHERS KNOW"
+  },
   "team": {
     "description": {
       "line-1-contained": "meet",

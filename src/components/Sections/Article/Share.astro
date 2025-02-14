@@ -1,0 +1,26 @@
+---
+import { email, linkedInLogo, telegram } from "@assets/icon";
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "article");
+
+const links = [email, linkedInLogo, telegram];
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("type")} />
+  <div class="flex gap-4 ml-auto w-full 2xl:w-3/4">
+    {
+      links.map((l) => (
+        <a>
+          <img src={l.src} alt={l.name} />
+        </a>
+      ))
+    }
+  </div>
+</Container>

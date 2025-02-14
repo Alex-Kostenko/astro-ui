@@ -1,0 +1,57 @@
+---
+import { Container } from "@components/Container";
+
+interface Props {
+  title: string;
+}
+
+const props = Astro.props;
+
+function splitTextToVariants(
+  input: string,
+): { text: string; variant: "contained" | "outlined" }[] {
+  const words = input.split(" "),
+    result = [];
+  for (let i = 0, line = "", count = 0; i < words.length + 1; i++) {
+    if ((line + " " + words[i]).trim().length <= 14 && count < 2) {
+      line = (line + " " + words[i]).trim();
+      count++;
+    } else {
+      result.push(line);
+      line = words[i];
+      count = 1;
+    }
+  }
+  return result.map((text, i) => ({
+    text,
+    variant: i % 4 === 1 || i % 4 === 2 ? "outlined" : "contained",
+  }));
+}
+
+const title = splitTextToVariants(props.title);
+---
+
+<Container>
+  <h2
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+    ]}
+  >
+    {
+      title.map((t) => (
+        <span
+          class={
+            t.variant === "outlined"
+              ? "text-stroken-green-2 md:text-stroken-green-4"
+              : ""
+          }
+        >
+          {t.text}
+        </span>
+      ))
+    }
+  </h2>
+</Container>
