@@ -7,4 +7,6 @@ export const routes = {
   insight: "/insights",
   allInsights: "/insights/all/1",
   team: "/team",
+  privacyPolicy: "/privacy-policy",
+  terms: "/terms-of-service",
 };

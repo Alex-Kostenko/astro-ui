@@ -1,0 +1,64 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import { languages } from "@i18n/ui";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { Container } from "@components/Container";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang: languages[lang].slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const privacy = Array.from({ length: 30 }).map((_, index) => ({
+  id: index,
+  title: "title",
+  text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa.",
+}));
+---
+
+<Layout title="Privacy Policy">
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+      <Breadcrumbs />
+    </div>
+    <Container>
+      <h2
+        class:list={[
+          "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+          "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+          "font-asket800 uppercase text-green-200 md:tracking-2",
+          "text-36 md:text-64 lg:text-72 2xl:text-96 lg:mt-0 mt-20",
+        ]}
+      >
+        Terms Of Service
+      </h2>
+    </Container>
+    {
+      privacy.map((p) => (
+        <Container>
+          <SectionTitle
+            title={p.title}
+            type={String(p.id + 1).padStart(2, "0")}
+          />
+          <TypographyAstro type="body-2" color="black">
+            {p.text}
+          </TypographyAstro>
+        </Container>
+      ))
+    }
+  </main>
+</Layout>
