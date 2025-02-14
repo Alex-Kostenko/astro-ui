@@ -7,8 +7,8 @@ import Layout from "@layouts/Layout.astro";
 import { cubeNear, cubeNearVP9 } from "@assets/video";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 import { Description, InsightsList } from "@components/Sections/Insights";
-import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
+import { SubscribeSection } from "@components/Form";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const categories: IInsightCategory[] = [
@@ -87,6 +87,6 @@ const t = useTranslations(lang as Languages, "insights");
     </div>
     <Description />
     <InsightsList slug={slug} page={page} />
-    <ContactUsSection text={t("contactUs")} />
+    <SubscribeSection text={t("contactUs")} />
   </main>
 </Layout>

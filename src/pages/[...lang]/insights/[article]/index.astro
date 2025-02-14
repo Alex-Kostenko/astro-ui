@@ -2,7 +2,7 @@
 import { cubeNear, cubeNearVP9 } from "@assets/video";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 import { Container } from "@components/Container";
-import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { SubscribeSection } from "@components/Form/index";
 import { Content, Share } from "@components/Sections/Article";
 import Title from "@components/Sections/Article/Title.astro";
 import { languages, type Language, type Languages } from "@i18n/ui";
@@ -75,6 +75,6 @@ const date = new Date(insight.createdAt)
     </Container>
     <Content content={insight.content} />
     <Share />
-    <ContactUsSection text={t("contactUs")} />
+    <SubscribeSection text={t("contactUs")} />
   </main>
 </Layout>

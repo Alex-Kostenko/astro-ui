@@ -14,4 +14,5 @@ export enum ApiPath {
   whoWeAre = "/who-we-ares",
   insight = "/insights",
   insightCategory = "/insight-categories",
+  subscribeNews = "/news-subscribers",
 }

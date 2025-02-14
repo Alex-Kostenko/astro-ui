@@ -98,6 +98,18 @@
       "terms": "Terms & Conditions"
     }
   },
+  "subscribeForm": {
+    "title": "Be the first to get fresh ideas, tech news, and exclusive content — straight to your inbox!",
+    "submitBtn": "get in touch",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email address",
+    "consent": {
+      "start": "I have read and accepted the",
+      "divider": "and",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
   "hero": {
     "title": "ENGINEERING YOUR",
     "subTitle": "DREAMS",
