@@ -23,7 +23,7 @@ class InsightService {
       query: {
         populate: [
           { field: "image", insideFields: ["id", "formats", "url"] },
-          { field: "technology", insideFields: ["*"] },
+          { field: "technologies", insideFields: ["*"] },
           { field: "insight_category", insideFields: ["*"] },
         ],
         filter,
