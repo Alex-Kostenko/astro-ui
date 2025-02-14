@@ -7,7 +7,7 @@ export interface IInsight {
   title: string;
   description: string;
   image: IImage;
-  technology: ITechnology;
+  technology: ITechnology[];
   slug: string;
   insight_category: IInsightCategory;
   createdAt: string;
