@@ -25,6 +25,7 @@ class InsightService {
           { field: "image", insideFields: ["id", "formats", "url"] },
           { field: "technologies", insideFields: ["*"] },
           { field: "insight_category", insideFields: ["*"] },
+          "content:content.image",
         ],
         filter,
         pagination,
