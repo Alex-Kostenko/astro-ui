@@ -66,7 +66,9 @@ const path = Astro.originPathname.replace(/\/$/, "");
                   </>
                   <>
                     {c.image &&
-                      c.image.map((img) => <img alt="" src={img.base64} />)}
+                      c.image.map((img) => (
+                        <img alt={img.name} src={img.base64} />
+                      ))}
                   </>
                 </div>
               ))}
