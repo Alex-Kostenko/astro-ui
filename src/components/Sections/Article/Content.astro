@@ -79,10 +79,6 @@ const path = Astro.originPathname.replace(/\/$/, "");
 </Container>
 
 <script>
-  // const obs = new IntersectionObserver((entries, observer) => {
-  //
-  // });
-
   class ArticleContent extends HTMLElement {
     connectedCallback() {
       const aside = this.querySelector("aside")!;
