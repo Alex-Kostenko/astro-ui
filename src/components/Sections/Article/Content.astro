@@ -23,7 +23,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
             <a
               id={`${c.title.replace(" ", "-")}-${i}-link`}
               href={`${path}#${c.title.replace(" ", "-")}-${i}`}
-              class="flex group justify-between rounded p-4 bg-greenLight-200 transition-colors duration-150 hover:bg-greenLight-600 data-[active]:bg-greenLight-600"
+              class="flex group items-center justify-between rounded p-4 bg-greenLight-200 transition-colors duration-150 hover:bg-greenLight-600 data-[active]:bg-greenLight-600"
             >
               <TypographyAstro
                 class="!text-brand-black group-hover:!text-brand-white transition-colors duration-150 group-data-[active]:text-brand-white"
@@ -54,6 +54,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
                 title={c.title}
                 type={String(i + 1).padStart(2, "0")}
                 classContainer="mb-10"
+                classType="!flex-none mr-[50px]"
               />
               {c.content.map((c) => (
                 <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]">
