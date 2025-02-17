@@ -88,10 +88,6 @@ const path = Astro.originPathname.replace(/\/$/, "");
       const aside = this.querySelector("aside")!;
       const anchors = aside?.querySelectorAll("div>a")!;
 
-      anchors.forEach((link) =>
-        link.addEventListener("click", (e) => console.log(e)),
-      );
-
       const content = this.querySelector("section");
       const headers = content?.querySelectorAll("&>article")!;
 
