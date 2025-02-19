@@ -1,0 +1,17 @@
+---
+import { cubeNear, cubeNearVP9 } from "@assets/index";
+---
+
+<div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+  <video
+    autoplay
+    muted
+    loop
+    class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+  >
+    <track kind="captions" src="/captions/empty_captions.vtt" />
+    <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+    <source src={cubeNearVP9} type="video/mp4" />
+  </video>
+  <slot />
+</div>
