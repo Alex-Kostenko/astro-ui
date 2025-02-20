@@ -1,10 +1,11 @@
-import { ui, defaultLang, languages } from "./ui";
+import { ui, defaultLang, languages, type Languages } from "./ui";
 
-export function getLangFromUrl(url: URL) {
+export function getLangFromUrl(url: URL): Languages {
   const [, lang] = url.pathname.split("/");
-  if (lang in languages) return lang as keyof typeof languages;
+  if (lang in languages) return lang as Languages;
   return defaultLang;
 }
+
 export function getFromLocale(lang?: string) {
   if (lang && lang in ui) return lang as keyof typeof languages;
   return defaultLang;

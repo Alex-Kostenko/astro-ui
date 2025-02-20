@@ -443,6 +443,8 @@
     ]
   },
   "404": {
-    "message": "Page not found"
+    "title": "Oops! You’re lost!",
+    "subTitle": "Sorry, we can’t find the page you’re looking for.",
+    "backToHome": "go back home page"
   }
 }

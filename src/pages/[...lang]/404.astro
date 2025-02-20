@@ -3,6 +3,11 @@ import Layout from "@layouts/Layout.astro";
 
 import { languages, useTranslations, type Languages } from "@i18n/index";
 import type { GetStaticPaths } from "astro";
+import { HeroHeadAstro } from "@components/Hero";
+import { ArrowRight, circleWithHoleToLeft } from "@assets/index";
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import { formatLink } from "@utils/format.link";
 
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((v) => ({
@@ -15,22 +20,38 @@ const t = useTranslations(lang as Languages, "404");
 ---
 
 <Layout title="404">
-  <main class="">
-    <p class="text">404</p>
-    <p class="text">{t("message")}</p>
+  <main class="w-full">
+    <HeroHeadAstro />
+    <Container class:list={["py-16 pb-52", "flex flex-col items-center gap-8"]}>
+      <section
+        class:list={[
+          "h-[118px] lg:h-[240px]",
+          "flex items-center gap-2 lg:gap-[44px]",
+          "text-stroken-green-2 text-[9rem] lg:text-[19rem] font-gothic700",
+        ]}
+      >
+        4
+        <img
+          src={circleWithHoleToLeft.src}
+          class="h-full w-full aspect-square max-w-[220px]"
+        />
+        4
+      </section>
+      <article class="flex flex-col gap-3 items-center">
+        <p class="font-asket800 text-20 lg:text-24 font-extrabold uppercase">
+          {t("title")}
+        </p>
+        <p class="font-gothic700 text-14 lg:text-20 uppercase text-center">
+          {t("subTitle")}
+        </p>
+      </article>
+
+      <a href={formatLink(Astro.url, "/")}>
+        <ButtonAstro>
+          {t("backToHome")}
+          <ArrowRight class="-rotate-45" />
+        </ButtonAstro>
+      </a>
+    </Container>
   </main>
 </Layout>
-
-<style>
-  main {
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .text {
-    font-size: 60px;
-  }
-</style>
