@@ -1,17 +1,21 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "@layouts/Layout.astro";
-import { languages } from "@i18n/ui";
+import { languages, type Languages } from "@i18n/ui";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import { Container } from "@components/Container";
 import { cubeNear, cubeNearVP9 } from "@assets/video";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import { useTranslations } from "@i18n/utils";
 
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((lang) => ({
     params: { lang: languages[lang].slug },
   }));
 }) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "terms");
 
 const privacy = Array.from({ length: 30 }).map((_, index) => ({
   id: index,
@@ -20,7 +24,7 @@ const privacy = Array.from({ length: 30 }).map((_, index) => ({
 }));
 ---
 
-<Layout title="Privacy Policy">
+<Layout title="Terms & Conditions">
   <main class="flex flex-col gap-[120px]">
     <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
       <video
@@ -44,7 +48,25 @@ const privacy = Array.from({ length: 30 }).map((_, index) => ({
           "text-36 md:text-64 lg:text-72 2xl:text-96 lg:mt-0 mt-20",
         ]}
       >
-        Terms Of Service
+        {
+          t("title").map(
+            (t: { text: string; variant: "contained" | "outlined" }) => (
+              <span
+                class:list={[
+                  "font-asket800 tracking-2 uppercase break-words hyphens-auto",
+                  "text-48 md:text-64 lg:text-72 2xl:text-96",
+                  {
+                    "text-green-200": t.variant === "contained",
+                    "text-stroken-green-3 md:text-stroken-green-4":
+                      t.variant === "outlined",
+                  },
+                ]}
+              >
+                {t.text}
+              </span>
+            )
+          )
+        }
       </h2>
     </Container>
     {
@@ -53,6 +75,7 @@ const privacy = Array.from({ length: 30 }).map((_, index) => ({
           <SectionTitle
             title={p.title}
             type={String(p.id + 1).padStart(2, "0")}
+            classType="flex-none mr-14"
           />
           <TypographyAstro type="body-2" color="black">
             {p.text}

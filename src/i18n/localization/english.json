@@ -442,6 +442,30 @@
       { "text": "first step", "variant": "outlined" }
     ]
   },
+  "terms": {
+    "title": [
+      {
+        "text": "terms",
+        "variant": "contained"
+      },
+      {
+        "text": "& conditions",
+        "variant": "outlined"
+      }
+    ]
+  },
+  "privacy": {
+    "title": [
+      {
+        "text": "privacy",
+        "variant": "contained"
+      },
+      {
+        "text": "policy",
+        "variant": "outlined"
+      }
+    ]
+  },
   "404": {
     "title": "Oops! You’re lost!",
     "subTitle": "Sorry, we can’t find the page you’re looking for.",
