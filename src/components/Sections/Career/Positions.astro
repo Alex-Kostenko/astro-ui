@@ -4,7 +4,6 @@ import { SectionTitle, TypographyAstro } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
 import type { IVacancy } from "@interfaces/vacancy";
-import { executeImg } from "@utils/excuteImg";
 import { routes } from "src/routes";
 
 interface Props {
@@ -23,7 +22,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
     {
       vacancyList.map((v) => (
         <div class="flex flex-col">
-          <img src={executeImg(v.image)} alt="" />
+          <img src={v.image.base64} alt="" />
           <TypographyAstro type="subTitle-1" color="green" class="mt-3 mb-5">
             <a href={routes.careers + "/" + v.slug}>{v.title}</a>
           </TypographyAstro>

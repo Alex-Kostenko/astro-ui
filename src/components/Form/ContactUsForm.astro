@@ -47,7 +47,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
     </div>
 
     <CheckBox name="consent">
-      <p class="text-14 font-gothic text-brand-white">
+      <span class="text-14 font-gothic text-brand-white">
         {t("consent.start")}
         <a href="/todo" class="underline" target="_blank"
           >{t("consent.terms")}</a
@@ -56,7 +56,7 @@ const t = useTranslations(lang as Languages, "formContactUs");
         <a href="/todo" class="underline" target="_blank">
           {t("consent.privacyPolicy")}
         </a>
-      </p>
+      </span>
     </CheckBox>
     <ButtonAstro
       slot="toast-trigger"

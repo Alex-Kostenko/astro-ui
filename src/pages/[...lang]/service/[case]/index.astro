@@ -71,14 +71,15 @@ export const getStaticPaths = (async () => {
       props: {
         meta: v.response.meta,
         slug: v.case.slug,
-        data: v.response.data,
+        projects: v.response.data,
+        service: v.case,
       },
     };
   });
 }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params;
-const { slug, data } = Astro.props;
+const { slug, projects, service } = Astro.props;
 
 const t = useTranslations(lang as Languages, "service.contactUs");
 
@@ -112,13 +113,13 @@ const text = t("text").map((t: string, i: number) => {
         <source src={cubeNearVP9} type="video/mp4" />
       </video>
       <HeroTabsSection domain={slug} />
-      <Breadcrumbs />
+      <Breadcrumbs last={service?.name || slug} />
     </div>
     <DescriptionSection />
     <AboutServiceSection />
     <StepsSection />
     <TestimonialsSection />
-    <CasesSection data={data} />
+    <CasesSection data={projects} />
     <ContactUsSection text={text} />
   </main>
 </Layout>

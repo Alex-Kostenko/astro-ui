@@ -2,41 +2,41 @@
 import { email, linkedInLogo, telegram } from "@assets/icon";
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
-import type { Languages } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
 import type { IWorker } from "@interfaces/index";
-import { executeImg } from "@utils/excuteImg";
 
 interface Props {
   recruiter: IWorker;
+  title: string;
+  type: string;
 }
 
-const { lang } = Astro.params;
-const { recruiter } = Astro.props;
-
-const t = useTranslations(lang as Languages, "vacancy.recruiter");
+const { recruiter, title, type } = Astro.props;
 ---
 
 <Container>
-  <SectionTitle type={t("type")} title={t("title")} />
+  <SectionTitle type={type} title={title} />
   <div class="flex 2xl:ml-[295px] 3xl:ml-[415px] gap-8">
     <img
-      src={executeImg(recruiter.photo)}
+      src={recruiter.photo.base64}
       alt="recruiter photo"
-      class="rounded"
+      class="rounded w-[146px] h-[146px] object-cover object-center"
     />
     <div class="flex flex-col gap-2">
       <TypographyAstro type="title-1">
         {recruiter.name}
       </TypographyAstro>
       <TypographyAstro type="subTitle-sm-1">
-        {recruiter.position}
+        uni code {recruiter.position}
       </TypographyAstro>
       <div class="flex gap-4 mt-auto">
         {
           recruiter.linkedIn && (
             <div class="flex mt-auto gap-4">
-              <a href={recruiter.linkedIn} target="_blank">
+              <a
+                href={recruiter.linkedIn}
+                target="_blank"
+                aria-label="linkedin"
+              >
                 <img src={linkedInLogo.src} alt="" />
               </a>
             </div>
@@ -45,7 +45,11 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {
           recruiter.telegram && (
             <div class="flex mt-auto gap-4">
-              <a href={recruiter.telegram} target="_blank">
+              <a
+                href={recruiter.telegram}
+                target="_blank"
+                aria-label="telegram"
+              >
                 <img src={telegram.src} alt="" />
               </a>
             </div>
@@ -54,7 +58,7 @@ const t = useTranslations(lang as Languages, "vacancy.recruiter");
         {
           recruiter.email && (
             <div class="flex mt-auto gap-4">
-              <a href={`mailto:${recruiter.email}`}>
+              <a href={`mailto:${recruiter.email}`} aria-label="email">
                 <img src={email.src} alt="" />
               </a>
             </div>

@@ -8,8 +8,7 @@ import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 import { VacancyTitle, VacancyDescription } from "@components/Sections/Vacancy";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
-import Recruiter from "@components/Sections/Vacancy/Recruiter.astro";
-import { executeImg } from "@utils/excuteImg";
+import Recruiter from "@components/Recruiter/Recruiter.astro";
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -44,7 +43,7 @@ const t = useTranslations(lang as Languages, "vacancy");
 <Layout
   title={vacancy.title}
   openGraph={{
-    image: executeImg(vacancy.image),
+    image: vacancy.image.base64,
     title: vacancy.title,
     description: pageDescription,
   }}
@@ -65,7 +64,11 @@ const t = useTranslations(lang as Languages, "vacancy");
     </div>
     <VacancyTitle title={vacancy.title} />
     <VacancyDescription list={vacancy.description} />
-    <Recruiter recruiter={vacancy.recruiter} />
+    <Recruiter
+      recruiter={vacancy.recruiter}
+      title={t("recruiter.title")}
+      type={t("recruiter.type")}
+    />
     <ContactUsSection text={t("contactUs")} table="vacancy-replay" />
   </main>
 </Layout>

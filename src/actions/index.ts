@@ -1,6 +1,7 @@
 import { UploadPath } from "@interfaces/index";
 import contactUsService from "@service/contactUs.service";
 import fileService from "@service/file.service";
+import subscribeService from "@service/subscribe.service";
 import vacancyService from "@service/vacancy.service";
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
@@ -71,6 +72,25 @@ export const server = {
       }
 
       return { success: false };
+    },
+  }),
+  subscribeNews: defineAction({
+    input: z.object({
+      name: z.string(),
+      email: z.string().email(),
+    }),
+    accept: "form",
+    async handler(input) {
+      try {
+        await subscribeService.create({
+          email: input.email,
+          name: input.name,
+        });
+
+        return { success: true };
+      } catch {
+        return { success: false, error: { message: "You already subscribed" } };
+      }
     },
   }),
 };

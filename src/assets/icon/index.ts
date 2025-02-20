@@ -14,6 +14,7 @@ import Menu from "./menu.astro";
 import listSquare from "./listSquare.svg";
 import stepImg from "./stepImg.svg";
 import breadcrumbsHome from "./breadcrumbsHome.svg";
+import circleWithHoleToLeft from "./circleWithHoleToLeft.svg";
 
 import linkedInLogo from "./linkedInLogo.svg";
 import telegram from "./telegram.svg";
@@ -39,4 +40,5 @@ export {
   linkedInLogo,
   telegram,
   email,
+  circleWithHoleToLeft,
 };

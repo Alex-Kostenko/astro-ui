@@ -3,6 +3,7 @@ import "@style/main.css";
 import Header from "./Header/Header.astro";
 import Footer from "./Footer/Footer.astro";
 import { Toast } from "@components/Toast";
+import { pwaInfo } from "virtual:pwa-info";
 
 interface IOpenGraph {
   title?: string;
@@ -17,11 +18,63 @@ interface Props {
 
 const { title, openGraph } = Astro.props;
 const { lang } = Astro.params;
+
+const domain = import.meta.env.DOMAIN;
+const gaToken = import.meta.env.GA_TOKEN;
+const gtmToken = import.meta.env.GTM_TOKEN;
 ---
 
 <!doctype html>
 <html lang={lang || "en"}>
   <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <meta id="tokens" data-ga-token={gaToken} data-gtm-token={gtmToken} />
+    <script
+      async
+      is:inline
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaToken}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      const tokens = document.querySelector("#tokens");
+      const gaToken = tokens.getAttribute("data-ga-token");
+
+      gtag("js", new Date());
+
+      gtag("config", gaToken);
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      const metaTokens = document.querySelector("#tokens");
+      const gtmToken = metaTokens.getAttribute("data-gtm-token");
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", gtmToken);
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmToken}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
     <meta charset="UTF-8" />
     <meta name="description" content="We make your business UNIQUE" />
     <meta name="viewport" content="width=device-width" />
@@ -42,14 +95,14 @@ const { lang } = Astro.params;
       content={openGraph?.image || "/open-graph-preview.jpg"}
     />
     <!-- <meta property="og:image:type" content="image/png" /> -->
-    <meta property="og:url" content="https://unicode-3n3.pages.dev" />
+    <meta property="og:url" content={`https://${domain}`} />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="UniCode" />
+    <meta property="og:site_name" content="UniCode Software" />
 
     <!-- Twitter open graph -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="unicode-3n3.pages.dev" />
-    <meta property="twitter:url" content="https://unicode-3n3.pages.dev/" />
+    <meta property="twitter:domain" content={domain} />
+    <meta property="twitter:url" content={`https://${domain}`} />
     <meta
       property="twitter:title"
       content={openGraph?.title || "UniCode Software"}
@@ -60,9 +113,7 @@ const { lang } = Astro.params;
     />
     <meta
       property="twitter:image"
-      content={openGraph?.image
-        ? "" + openGraph.image
-        : "/open-graph-preview.jpg"}
+      content={openGraph?.image || "/open-graph-preview.jpg"}
     />
     <!-- <meta name="twitter:site" content="@YourTwitterHandle" /> -->
 
@@ -71,9 +122,13 @@ const { lang } = Astro.params;
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="UniCode" />
-    <link rel="manifest" href="/site.webmanifest" />
+    <!-- <link rel="manifest" href="/site.webmanifest" /> -->
 
     <meta name="generator" content={Astro.generator} />
+
+    <script src="/src/pwa.ts"></script>
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+
     <slot name="head" />
     <title>{title}</title>
   </head>

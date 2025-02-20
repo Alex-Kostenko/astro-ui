@@ -1,8 +1,9 @@
 ---
 interface Props {
   variant?: "contained" | "outlined";
-  color?: "black" | "biscuit";
+  color?: "black" | "biscuit" | "white";
   class?: string;
+  iconClass?: string;
   asLink?: boolean;
   withArrow?: boolean;
   iconOnly?: boolean;
@@ -14,6 +15,7 @@ const {
   color = "black",
   variant = "contained",
   class: className,
+  iconClass,
   href = "#",
   asLink = false,
   withArrow = false,
@@ -25,8 +27,9 @@ const Tag = asLink ? "a" : "button";
 ---
 
 <Tag
+  aria-label={"button"}
   class:list={[
-    "min-h-11 min-w-11 px-4 py-3 rounded box-border font-gothic700 flex justify-center gap-x-2",
+    "min-h-11 min-w-11 px-4 py-3 rounded box-border font-gothic700 flex justify-center items-center gap-x-2",
     "uppercase text-center font-bold text-base leading-tight cursor-pointer",
     "duration-200",
     {
@@ -40,6 +43,10 @@ const Tag = asLink ? "a" : "button";
     {
       "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500":
         variant === "contained" && color === "black",
+    },
+    {
+      "bg-brand-white text-brand-black hover:bg-gray-100 focus:bg-gray-500":
+        variant === "contained" && color === "white",
     },
     { "items-center": withArrow },
     { "w-fit items-center": iconOnly },
@@ -56,6 +63,7 @@ const Tag = asLink ? "a" : "button";
         viewBox="0 0 13 8"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        class={iconClass}
       >
         <path
           d="M0.666016 3.99996H11.666M11.666 3.99996L8.33268 0.666626M11.666 3.99996L8.33268 7.33329"

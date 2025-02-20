@@ -139,6 +139,21 @@ export default {
           "-webkit-text-stroke": "4px #003300",
           color: "transparent",
         },
+        ".backface-hidden": {
+          "backface-visibility": "hidden",
+        },
+        ".backface-visible": {
+          "backface-visibility": "visible",
+        },
+        ".transform-3d": {
+          "transform-style": "preserve-3d",
+        },
+        ".rotate-y-180": {
+          transform: "rotateY(180deg)",
+        },
+        ".rotate-y-360": {
+          transform: "rotateY(360deg)",
+        },
       });
     },
   ],

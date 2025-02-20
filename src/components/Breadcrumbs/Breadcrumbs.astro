@@ -1,5 +1,11 @@
 ---
-const paths = Astro.url.pathname.split("/").filter((crumb: any) => crumb);
+const paths = Astro.url.pathname
+  .split("/")
+  .filter(
+    (crumb: string) =>
+      crumb !== "ua" && crumb !== "en" && !isNumeric(crumb) && crumb,
+  );
+
 // const hasTrailingSlash = Astro.url.pathname.endsWith("/");
 import { breadcrumbsHome, UpArrow } from "@assets/index";
 import { Container } from "@components/Container";
@@ -18,30 +24,30 @@ function isNumeric(value: string): boolean {
 <Container>
   <nav class="mt-4 py-3">
     <ol class="flex gap-1 items-center font-gothic text-14 text-green-500">
-      <li><a href="/"><img src={breadcrumbsHome.src} alt="" /></a></li>
+      <li>
+        <a href="/" aria-label="home page"
+          ><img src={breadcrumbsHome.src} alt="" /></a>
+      </li>
       {
-        paths.map(
-          (p, index) =>
-            p !== "ua" &&
-            p !== "en" &&
-            !isNumeric(p) && (
-              <>
-                <li class="w-4 h-4 flex items-center fill-green-500 justify-center">
-                  <UpArrow class="rotate-90" />
-                </li>
-                <li class="capitalize">
-                  <a
-                    href={paths.reduce(
-                      (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
-                      "/",
-                    )}
-                  >
-                    {index + 1 < paths.length ? p : last || p}
-                  </a>
-                </li>
-              </>
-            ),
-        )
+        paths.map((p, index) => (
+          <>
+            <li class="w-4 h-4 flex items-center fill-green-500 justify-center">
+              <UpArrow class="rotate-90" />
+            </li>
+            <li class="capitalize">
+              <a
+                href={paths.reduce(
+                  (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
+                  "/",
+                )}
+              >
+                {index + 1 < paths.length
+                  ? p.replaceAll("-", " ")
+                  : last || p.replaceAll("-", " ")}
+              </a>
+            </li>
+          </>
+        ))
       }
     </ol>
   </nav>

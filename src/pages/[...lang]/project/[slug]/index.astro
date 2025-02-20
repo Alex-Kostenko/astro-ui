@@ -72,7 +72,14 @@ const text = t("contactUs.text").map((t: string, i: number) => {
 });
 ---
 
-<Layout title={project.title}>
+<Layout
+  title={project.title}
+  openGraph={{
+    title: project.title,
+    description: project.description,
+    image: project.image.base64,
+  }}
+>
   <link
     slot="head"
     rel="preload stylesheet"
