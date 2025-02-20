@@ -1,6 +1,7 @@
 ---
+import { Typed } from "@components/Typed";
 import { useTranslations, type Languages } from "@i18n/index";
-import { cubeNear, logo } from "src/assets";
+import { cubeNear, cubeNearVP9, logo } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "hero");
@@ -15,7 +16,9 @@ const t = useTranslations(lang as Languages, "hero");
     loop
     class="absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover"
   >
-    <source src={cubeNear} type="video/mp4" />
+    <track kind="captions" src="/captions/empty_captions.vtt" />
+    <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+    <source src={cubeNearVP9} type="video/mp4" />
   </video>
   <div class="max-w-[1616px] h-full w-full mx-auto my-auto 2xl:px-[112px]">
     <div
@@ -38,82 +41,11 @@ const t = useTranslations(lang as Languages, "hero");
           class="text-24 md:text-32 2xl:text-40 font-extrabold text-center 2xl:text-start"
         >
           <h5 class="text-brand-white mb-3">{t("title")}</h5>
-          <h5 class="text-brand-beigeLight">
-            <span
-              id="footer-change-text"
-              class="empty uppercase"
-              data-text-range={t("subTitleRange")}
-            >
-              {t("subTitle")}</span
-            >
+          <h5 class="text-brand-beigeLight empty">
+            <Typed words={t("subTitleRange")} />
           </h5>
         </div>
       </article>
     </div>
   </div>
 </section>
-
-<script>
-  const colors = [
-    "text-brand-beigeLight",
-    "text-brand-beige",
-    "text-brand-gray",
-  ];
-  const text = document.querySelector("#footer-change-text") as HTMLSpanElement;
-  const range = text.getAttribute("data-text-range");
-  const words = range?.split(",") || [];
-
-  // Generator (iterate from 0-3)
-  function* generator(): Generator<number> {
-    var index = 0;
-    while (true) {
-      yield index++;
-
-      if (index > words.length - 1) {
-        index = 0;
-      }
-    }
-  }
-
-  // Printing effect
-  function printChar(word: string) {
-    let i = 0;
-    text.innerHTML = "";
-    text.classList.add(colors[words.indexOf(word)] || colors[1]);
-    let id = setInterval(() => {
-      if (i >= word?.length) {
-        deleteChar();
-        clearInterval(id);
-      } else {
-        text.innerHTML += word[i];
-        i++;
-      }
-    }, 200);
-  }
-
-  function deleteChar() {
-    let word = text.innerHTML;
-    let i = word.length - 1;
-    let id = setInterval(() => {
-      if (i >= 0) {
-        text.innerHTML = text.innerHTML.substring(0, text.innerHTML.length - 1);
-        i--;
-      } else {
-        text.classList.remove(colors[words.indexOf(word)]);
-        printChar(words[gen.next().value]);
-        clearInterval(id);
-      }
-    }, 100);
-  }
-
-  let gen = generator();
-
-  printChar(words[gen.next().value]);
-</script>
-
-<style is:global>
-  .empty::after {
-    content: "\00a0";
-    visibility: hidden;
-  }
-</style>

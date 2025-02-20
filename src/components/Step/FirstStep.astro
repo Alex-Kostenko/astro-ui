@@ -1,0 +1,15 @@
+---
+import { Image } from "astro:assets";
+import { Eye } from "@assets/index";
+---
+
+<div
+  class:list={[
+    "flex flex-col justify-center items-center gap-6 bg-brand-black text-brand-white font-gothic700",
+    "text-xl leading-6 w-full h-full",
+  ]}
+>
+  <div class="w-[280px] h-[295px]">
+    <Image src={Eye} alt="" class="object-cover object-center w-full h-full" />
+  </div>
+</div>

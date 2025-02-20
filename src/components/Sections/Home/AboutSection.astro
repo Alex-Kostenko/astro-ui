@@ -3,11 +3,11 @@ import { ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { ArrowRight, Human } from "src/assets";
+import { Image } from "astro:assets";
+import { ArrowRight, Human } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.about");
-// have you ever counted of a single mis  hire?
 ---
 
 <Container class="mt-14">
@@ -42,9 +42,9 @@ const t = useTranslations(lang as Languages, "home.about");
     ]}
   >
     <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
+      <Image
         class="min-h-full object-cover min-w-full"
-        src={Human.src}
+        src={Human}
         alt="human face of number"
       />
     </div>

@@ -1,13 +1,13 @@
 ---
 import { Container } from "@components/Container";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "src/assets";
+import { Human } from "@assets/index";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "cases.intro");
 ---
 
-<Container>
+<Container class="mt-7">
   <h2
     class="md:flex flex-col gap-y-4"
     class:list={[

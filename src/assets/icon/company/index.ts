@@ -38,8 +38,30 @@ const listCompany = [
   yoy,
 ];
 
+const objCompany = {
+  admit,
+  bom,
+  bsg,
+  cyberQuantic,
+  deloitte,
+  fcg,
+  finland,
+  ms,
+  mars,
+  mon,
+  percona,
+  raiffeisen,
+  skyhive,
+  smartlane,
+  together,
+  vodafone,
+  wikiArt,
+  yoy,
+};
+
 export {
   listCompany,
+  objCompany,
   admit,
   bom,
   bsg,

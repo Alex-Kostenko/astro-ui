@@ -5,7 +5,6 @@ import ProjectList from "@components/ProjectCard/ProjectList.astro";
 import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import projectService from "@service/project.service";
-import { ArrowRight } from "src/assets";
 
 const { lang } = Astro.params;
 const response = await projectService.get({
@@ -20,10 +19,7 @@ const t = useTranslations(lang as Languages, "home.project");
   <SectionTitle title={t("title")} type={t("tag")} />
 
   <ProjectList projects={response.data} />
-  <ButtonAstro class="w-full">
+  <ButtonAstro withArrow asLink href="/cases/all/1" class="w-full">
     {t("btnExplorerMore")}
-    <span class="w-5 h-5 flex items-center justify-center">
-      <ArrowRight />
-    </span>
   </ButtonAstro>
 </Container>

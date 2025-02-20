@@ -6,5 +6,10 @@ export function executeImg(
   image: IImage,
   format: "small" | "thumbnail" = "small",
 ): string {
-  return imgUrl + image.formats?.[format]?.url || image.url;
+  return (
+    imgUrl +
+    (image.formats?.[format]?.url !== undefined
+      ? image.formats?.[format]?.url
+      : image.url)
+  );
 }

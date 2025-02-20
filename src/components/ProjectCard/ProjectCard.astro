@@ -1,7 +1,7 @@
 ---
 import { TypographyAstro } from "@components/Typography";
 import type { IProject } from "@interfaces/project";
-import { executeImg } from "@utils/index";
+// import { executeImg } from "@utils/index";
 
 interface Props {
   project: IProject;
@@ -71,7 +71,9 @@ const { class: className, project } = Astro.props;
   <div class="h-[352px] flex-1">
     <img
       class="h-full w-full object-cover object-center"
-      src={executeImg(project.image)}
+      src={project.image.base64}
+      alt={project.image.name || "project preview"}
+      loading="lazy"
     />
   </div>
 </section>

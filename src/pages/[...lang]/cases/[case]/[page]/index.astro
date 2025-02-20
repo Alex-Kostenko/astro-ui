@@ -6,7 +6,7 @@ import {
   languages,
   useTranslations,
 } from "@i18n/index";
-import { cubeNear } from "@assets/index";
+import { cubeNear, cubeNearVP9 } from "@assets/index";
 import { IntroSection } from "@components/Sections";
 import type { GetStaticPaths } from "astro";
 import projectService from "@service/project.service";
@@ -16,6 +16,7 @@ import TabsSection from "@components/Sections/Cases/TabsSection.astro";
 import type { IProjectDomain } from "@interfaces/project.domain";
 import { Pagination } from "@components/Pagination";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projectDomain: IProjectDomain[] = [
@@ -85,7 +86,9 @@ const { page, slug } = Astro.props;
 <Layout title="UniCode Cases">
   <link
     slot="head"
-    rel="stylesheet"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
   <main class="flex flex-col gap-y-[120px]">
@@ -96,8 +99,11 @@ const { page, slug } = Astro.props;
         loop
         class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
       >
-        <source src={cubeNear} type="video/mp4" />
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
       </video>
+      <Breadcrumbs />
     </div>
 
     <IntroSection />

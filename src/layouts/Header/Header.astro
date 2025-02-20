@@ -1,5 +1,5 @@
 ---
-import { smallLogo } from "src/assets";
+import { smallLogo } from "@assets/index";
 import HeaderLinks from "./HeaderLinks.astro";
 import { ButtonAstro } from "@components/Button";
 import { getFromLocale, useTranslations } from "@i18n/index";
@@ -28,13 +28,20 @@ const blockHeader = t("menu") as { title: string; list: string[] }[];
     </nav>
 
     <section class="flex gap-x-3">
-      <ButtonAstro color="biscuit" variant="contained" class="2xl:ml-10">
+      <ButtonAstro
+        asLink
+        href="#contact-us-form"
+        color="biscuit"
+        variant="contained"
+        class="2xl:ml-10"
+      >
         {t("contactUs")}
       </ButtonAstro>
 
       <button
         id="menu"
         class:list={["relative h-10 w-10 py-3 px-2 2xl:hidden"]}
+        aria-label="drop down menu"
       >
         <div class="relative h-full menuWrapper">
           <span

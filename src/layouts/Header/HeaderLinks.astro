@@ -1,14 +1,15 @@
 ---
 import { formatLink } from "@utils/index";
-import { DownArrow, UpArrow } from "src/assets";
+import { DownArrow, UpArrow } from "@assets/index";
 import { routes } from "src/routes";
 
 const links = [
-  { name: "Services", href: "#", drop: true },
-  { name: "Cases", href: routes.cases, drop: true },
-  { name: "Expertise", href: "#", drop: true },
-  { name: "About Us", href: "#", drop: true },
-  { name: "Insights", href: "#", drop: false },
+  { name: "Services", href: routes.service, drop: false },
+  { name: "Cases", href: routes.cases, drop: false },
+  { name: "Who We Are", href: routes.whoWeAre, drop: false },
+  { name: "Insights", href: "/todo", drop: false },
+  { name: "Team", href: "/todo", drop: false },
+  { name: "Careers", href: routes.careers, drop: false },
 ];
 
 const url = Astro.url;
@@ -27,10 +28,9 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center p-2 font-gothic tracking-[0.8px]",
+        "flex gap-x-1 items-center px-2  font-gothic tracking-[0.8px] text-brand-white",
         {
-          "text-brand-white": !IsCurrentPage(link.href),
-          "text-brand-beigeLight": IsCurrentPage(link.href),
+          "!text-brand-beigeLight border-b": IsCurrentPage(link.href),
         },
       ]}
     >

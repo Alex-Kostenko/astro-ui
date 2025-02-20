@@ -1,7 +1,7 @@
 ---
 import { AccordionAstro } from "@components/Accordion";
 import { TypographyAstro } from "@components/Typography";
-import { clutch, linkedin, youtube } from "src/assets";
+import { clutch, linkedin, youtube } from "@assets/index";
 import FooterHero from "./FooterHero.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 
@@ -58,10 +58,10 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
                 >
                   {textBlock.title}
                 </p>
-                <ul class="list-disc list-inside ps-1 text-12">
+                <ul class="ist-inside text-12 list-none space-y-2 mb-2">
                   {textBlock.list.map((itemList) => {
                     return (
-                      <li class="text-gray-200 font-gothic tracking-0.8">
+                      <li class="text-gray-200 font-gothic text-16 tracking-0.8 uppercase">
                         {itemList}
                       </li>
                     );
@@ -87,7 +87,7 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
             "text-gray font-gothic text-10 leading-3",
           ]}
         >
-          <p>{t("copyright")}</p>
+          <p>{t("copyright").replace("$year", new Date().getFullYear())}</p>
           <p>{t("privacyPolicy")}</p>
           <p>{t("termsOfService")}</p>
         </div>

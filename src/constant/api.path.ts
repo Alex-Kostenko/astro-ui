@@ -5,5 +5,11 @@ export enum ApiPath {
   technology = "/technologies",
   comment = "/comments",
   contactUs = "/contact-uses",
+  vacancyReplay = "/vacancy-replays",
   upload = "/upload",
+  step = "/steps",
+  service = "/services",
+  worker = "/workers",
+  vacancy = "/vacancies",
+  whoWeAre = "/who-we-ares",
 }

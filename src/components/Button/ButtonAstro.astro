@@ -3,19 +3,31 @@ interface Props {
   variant?: "contained" | "outlined";
   color?: "black" | "biscuit";
   class?: string;
+  asLink?: boolean;
+  withArrow?: boolean;
+  iconOnly?: boolean;
+  href?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 const {
   color = "black",
   variant = "contained",
   class: className,
+  href = "#",
+  asLink = false,
+  withArrow = false,
+  iconOnly = false,
+  type = "button",
 } = Astro.props;
+
+const Tag = asLink ? "a" : "button";
 ---
 
-<button
+<Tag
   class:list={[
     "min-h-11 min-w-11 px-4 py-3 rounded box-border font-gothic700 flex justify-center gap-x-2",
-    "uppercase text-center font-bold text-base leading-tight",
+    "uppercase text-center font-bold text-base leading-tight cursor-pointer",
     "duration-200",
     {
       "bg-brand-white text-green":
@@ -29,8 +41,35 @@ const {
       "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500":
         variant === "contained" && color === "black",
     },
+    { "items-center": withArrow },
+    { "w-fit items-center": iconOnly },
     className,
   ]}
+  {...asLink ? { href } : { type }}
 >
-  <slot />
-</button>
+  {!iconOnly && <slot />}
+  {
+    (withArrow || iconOnly) && (
+      <svg
+        width="13"
+        height="8"
+        viewBox="0 0 13 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.666016 3.99996H11.666M11.666 3.99996L8.33268 0.666626M11.666 3.99996L8.33268 7.33329"
+          stroke={
+            color === "black"
+              ? variant === "outlined"
+                ? "#171A1F"
+                : "#F3F3EF"
+              : "#034425"
+          }
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
+</Tag>

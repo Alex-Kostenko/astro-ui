@@ -49,6 +49,36 @@ class ProjectService {
       },
     });
   }
+
+  async getOneBySlug(
+    slug: string,
+    {
+      locale,
+      filter,
+    }: {
+      locale?: Languages;
+      filter?: IFilter[];
+    },
+  ): Promise<IResponseApi<IProject[], MetaPagination>> {
+    return apiService.get(ApiPath.project, {
+      query: {
+        populate: [
+          { field: "image", insideFields: ["id", "formats", "url"] },
+          { field: "technologies", insideFields: ["*"] },
+          { field: "stack", insideFields: ["*"] },
+          { field: "partner", insideFields: ["*"] },
+        ],
+        filter: [
+          {
+            fields: ["slug"],
+            value: slug,
+          },
+          ...(filter || []),
+        ],
+        locale,
+      },
+    });
+  }
 }
 
 export default new ProjectService();

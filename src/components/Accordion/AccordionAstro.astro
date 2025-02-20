@@ -1,5 +1,5 @@
 ---
-import { DownArrow, UpArrow } from "src/assets";
+import { DownArrow, UpArrow } from "@assets/index";
 interface Props {
   open?: boolean;
   arrowStyle?: boolean;
@@ -10,7 +10,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 
 {
   !arrowStyle && (
-    <accordion-block open={open + ""} arrowStyle={arrowStyle + ""}>
+    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
       <div class="border-b border-black box-border">
         <button class="w-full py-6 text-slate-800 text-start">
           <slot name="title" />
@@ -29,7 +29,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 }
 {
   arrowStyle && (
-    <accordion-block open={open + ""} arrowStyle={arrowStyle + ""}>
+    <accordion-block isOpen={String(open)} arrowStyle={String(arrowStyle)}>
       <div>
         <button class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base">
           <div class="flex justify-between ">
@@ -54,7 +54,7 @@ const { open = false, arrowStyle = false } = Astro.props;
 <script>
   class Accordion extends HTMLElement {
     connectedCallback() {
-      const open = this.getAttribute("open");
+      const open = this.getAttribute("isOpen");
       const arrowStyle = this.getAttribute("arrowStyle");
 
       const button = this.querySelector("button");
@@ -76,16 +76,16 @@ const { open = false, arrowStyle = false } = Astro.props;
         const content = this.querySelector("#content") as HTMLDivElement;
         if (!content || !content.style) return;
 
-        const open = this.getAttribute("open");
+        const open = this.getAttribute("isOpen");
 
         if (open === "true") {
           content.style.maxHeight = 0 + "px";
-          this.setAttribute("open", "false");
+          this.setAttribute("isOpen", "false");
           downArrow && downArrow.classList.remove("hidden");
           upArrow && upArrow.classList.add("hidden");
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
-          this.setAttribute("open", "true");
+          this.setAttribute("isOpen", "true");
           downArrow && downArrow.classList.add("hidden");
           upArrow && upArrow.classList.remove("hidden");
         }

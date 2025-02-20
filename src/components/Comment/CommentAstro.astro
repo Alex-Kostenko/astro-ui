@@ -1,6 +1,6 @@
 ---
 import type { IComment } from "@interfaces/index";
-import { star } from "src/assets";
+import { star } from "@assets/index";
 
 interface Props {
   comment: IComment;
@@ -42,7 +42,7 @@ const { comment, class: className } = Astro.props;
       {
         Array.from({ length: comment.rating }).map(() => (
           <div class="max-h-6">
-            <img class="aspect-square" src={star.src} />
+            <img class="aspect-square" src={star.src} alt="star" />
           </div>
         ))
       }

@@ -1,0 +1,72 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { type Languages, useTranslations } from "@i18n/index";
+import { step_6 } from "@assets/image/steps";
+import type { IList, IListItemWithYear } from "@interfaces/list";
+import { AccordionAstro } from "@components/Accordion";
+
+interface Props {
+  list: IList<IListItemWithYear>;
+}
+
+const { lang } = Astro.params;
+const { list } = Astro.props;
+
+const t = useTranslations(lang as Languages, "whoWeAre.story");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("type")} />
+  <article class="flex flex-col gap-6">
+    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
+      {t("subTitle")}
+    </TypographyAstro>
+    <!-- <div class="flex flex-col lg:flex-row gap-5">
+      <Image src={Human} alt="" class="block lg:hidden" />
+      <Image src={AboutService} alt="" class="hidden lg:block" />
+      <List items={t("list")} />
+    </div> -->
+
+    {
+      list.items.map((item, index) => (
+        <AccordionAstro open={index === 0}>
+          <section slot="title" class="flex flex-row gap-y-4 items-center">
+            <TypographyAstro
+              type="body-2"
+              class="flex-[1_1_25%] text-brand-beige tracking-[0.8px]"
+            >
+              [ {item.year} ]
+            </TypographyAstro>
+            <p
+              class="flex-[1_1_75%]"
+              class:list={[
+                "text-brand-black font-gothic700 uppercase font-bold",
+                "text-20 2xl:text-24",
+              ]}
+            >
+              {item.title}
+            </p>
+          </section>
+
+          <section class="flex ">
+            <div class="xl:flex-[0_1_75%] w-full xl:ml-auto flex flex-col md:flex-row justify-between">
+              <div class="flex flex-col gap-6 justify-center">
+                <TypographyAstro class="xl:max-w-[480px]" type="body-2">
+                  {item.text}
+                </TypographyAstro>
+              </div>
+              <img src={step_6.src} alt="" class="w-[240px] h-[240px] invert" />
+            </div>
+          </section>
+        </AccordionAstro>
+      ))
+    }
+  </article>
+</Container>
+
+<style is:global>
+  .header-shadow {
+    box-shadow: 0 4px 4px #00000040;
+  }
+</style>

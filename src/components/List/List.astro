@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import { listSquare } from "@assets/index";
+
+interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="list-inside flex flex-col gap-3">
+  {
+    items.map((item: string) => (
+      <li
+        class:list={[
+          "first:border-t border-gray-600 border-b p-3 flex gap-8 lg:gap-20",
+          "font-gothic700 text-xl leading-6 uppercase",
+        ]}
+      >
+        <Image src={listSquare} alt="square" />
+        {item}
+      </li>
+    ))
+  }
+</ol>

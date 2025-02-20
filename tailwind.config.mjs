@@ -49,6 +49,9 @@ export default {
           400: "#022916",
           500: "#022213",
         },
+        red: {
+          DEFAULT: "#DE0D0D",
+        },
         gray: {
           DEFAULT: "#939290",
           100: "#D9D9D9",
@@ -57,6 +60,7 @@ export default {
           400: "#92928F",
           500: "#7A7A78",
           600: "#616160",
+          700: "#2B2638",
         },
         greenLight: {
           100: "#E6ECE9",
@@ -103,6 +107,20 @@ export default {
         0.8: "0.8px",
         1: "1px",
         2: "2px",
+      },
+      keyframes: {
+        toastLeft: {
+          "0%": { transform: "translateX(120%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        toastRight: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(120%)" },
+        },
+      },
+      animation: {
+        toastLeft: "toastLeft .2s ease-in-out forwards",
+        toastRight: "toastRight .2s ease-in-out forwards",
       },
     },
   },
