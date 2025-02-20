@@ -1,0 +1,474 @@
+{
+  "header": {
+    "contactUs": "contact us",
+    "menu": [
+      {
+        "title": "SERVICES",
+        "list": [
+          "Project Management Consulting",
+          "Top-Tier Expert Engagement",
+          "Application Engineering",
+          "Managed Team",
+          "Mobile Development",
+          "Web Development",
+          "UI/UX Design"
+        ]
+      },
+      {
+        "title": "CASES",
+        "list": ["Scale-Up", "Start-Up"]
+      },
+      {
+        "title": "ABOUT US",
+        "list": [
+          "Sustainable Technologies",
+          "Our story and values",
+          "How we work",
+          "Testimonials"
+        ]
+      },
+      {
+        "title": "INSIGHTS",
+        "list": ["All articles"]
+      },
+      {
+        "title": "TEAM",
+        "list": []
+      },
+      {
+        "title": "CAREERS",
+        "list": ["Start your way with Us"]
+      }
+    ]
+  },
+  "footer": {
+    "menu": [
+      {
+        "title": "SERVICES",
+        "list": [
+          "Project Management Consulting",
+          "Top-Tier Expert Engagement",
+          "Application Engineering",
+          "Managed Team",
+          "Mobile Development",
+          "Web Development",
+          "UI/UX Design"
+        ]
+      },
+      {
+        "title": "CASES",
+        "list": ["Scale-Up", "Start-Up"]
+      },
+      {
+        "title": "ABOUT US",
+        "list": [
+          "Sustainable Technologies",
+          "Our story and values",
+          "How we work",
+          "Testimonials"
+        ]
+      },
+      {
+        "title": "INSIGHTS",
+        "list": ["All articles"]
+      },
+      {
+        "title": "CAREERS",
+        "list": ["Start your way with Us"]
+      }
+    ],
+    "privacyPolicy": "Privacy Policy.",
+    "termsOfService": "Terms of Service.",
+    "copyright": "Copyright © $year UniCode Software. All rights reserved."
+  },
+  "formContactUs": {
+    "title": "Leave your contact details, and we will reach you within 24 hours",
+    "submitBtn": "get in touch",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email address",
+    "messageLabel": "Your message",
+    "file": {
+      "button": "Add File",
+      "label": "File size up to 5Mb"
+    },
+    "consent": {
+      "start": "I have read and accepted the",
+      "divider": "and",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
+  "subscribeForm": {
+    "title": "Be the first to get fresh ideas, tech news, and exclusive content — straight to your inbox!",
+    "submitBtn": "get in touch",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email address",
+    "consent": {
+      "start": "I have read and accepted the",
+      "divider": "and",
+      "privacyPolicy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
+  "hero": {
+    "title": "ENGINEERING YOUR",
+    "subTitle": "DREAMS",
+    "subTitleRange": ["DREAMS", "Products", "Team", "Result"],
+    "descripton": "Transform your vision into reality with our expert team of engineers, committed to delivering innovative solutions tailored to your unique goals/aspirations."
+  },
+  "home": {
+    "about": {
+      "title": {
+        "line-1-contained": "have you",
+        "line-1-outlined": "ever",
+        "line-2-contained": "counted",
+        "line-2-outlined": "of a single",
+        "line-3-start": "mis",
+        "line-3-end": "hire?"
+      },
+      "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness.",
+      "aboutUs": "more about us"
+    },
+    "services": {
+      "tag": "SERVICES",
+      "title": "Our services will help you to accomplish your purpose easier and better.",
+      "listOfOffer": [
+        {
+          "title": "Project portfolio management",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.webp"
+        },
+        {
+          "title": "managed team",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.webp"
+        },
+        {
+          "title": "top-tier expert engagement",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.webp"
+        },
+        {
+          "title": "application engineering",
+          "description": "We strategically oversee and maintain an organization's entire IT portfolio, including resources, projects, and investments, to ensure financial viability and alignment with business goals.",
+          "img": "/assets/img/Circly.webp"
+        }
+      ]
+    },
+    "parthners": {
+      "tag": "PARTNERS",
+      "title": "OUR EXPERTISE ES DIVIDED FROM OUR community experts."
+    },
+    "project": {
+      "tag": "PROJECTS",
+      "title": "We take great pride in the work we do and the values we uphold.",
+      "btnExplorerMore": "explore more projects"
+    },
+    "advantagesSection": {
+      "tag": "ADVANTAGES",
+      "title": "Nothing kills business faster than a entry-level developers",
+      "advantages": {
+        "block1": {
+          "title": "EXPERT TEAM",
+          "text": "Stellar team, you would otherwise not have access to. Our community consists of more than 90% of senior developers and project managers with a T-shaped skill set."
+        },
+        "block2": {
+          "title": "Remote Convenience",
+          "text": "100% remote and always just a click away. We ensure seamless communication and collaboration, no matter where you are."
+        },
+        "block3": {
+          "title": "Empathetic Approach",
+          "text": "We approach every project with empathy and understanding that every client has unique pains and needs."
+        },
+        "block4": {
+          "title": "Efficient Execution",
+          "text": "We excel in project management ensuring that your project is executed efficiently and effectively."
+        },
+        "block5": {
+          "title": "Values-Driven",
+          "text": "We are deeply committed to our values of decency, meaningful engagement, standards, and synergy, which reflect in everything we do."
+        }
+      }
+    },
+    "testimonials": {
+      "tag": "TESTIMONIALS",
+      "title": "Our clients talk about testing the results that we can achieve together."
+    },
+    "contactUs": {
+      "text": ["Every journey", "starts from the", "first step"]
+    }
+  },
+  "cases": {
+    "intro": {
+      "title": {
+        "line-1": "we do",
+        "line-2": "great things",
+        "line-3": "for our clients"
+      },
+      "description": "We are firm believers that: no matter the size or budgets of a company, they should have access to the very best technical expertise to overcome any challenge. We also know that talented professionals crave dynamic and engaging environments to truly shine. Our mission is to unite these two values and empower businesses and professionals alike to achieve greatness."
+    },
+    "tabSection": { "allCases": "All cases" },
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
+  },
+  "service": {
+    "description": {
+      "title": {
+        "line-1-outlined": "PROJECT",
+        "line-2-outlined": "MANAGEMENT",
+        "line-3-contained": "CONSULTING"
+      },
+      "description": [
+        "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.",
+        "Let's take your project, project portfolio, processes, resource or release management to the next level!"
+      ]
+    },
+    "about": {
+      "tag": "ABOUT",
+      "title": "What is a Project Management Consulting service?",
+      "header": "Project Management Consulting offers expert guidance to help organizations plan, execute, and complete projects successfully.",
+      "list": [
+        "Audit of existing processes",
+        "Cost-benefit analysis of projects or features",
+        "Development of processes for project evaluation, prioritization, management, resource allocation, and release planning.",
+        "Tool implementation and configuration for processes, plus risk management and mitigation strategies.",
+        "Building an up-to-date roadmap",
+        "Implementation of processes and execution by our team members over a span of three months",
+        "Team structure assessment and optimization: identifying and addressing skill and / or personnel shortage",
+        "Providing support and coaching to empower project teams and stakeholders in process execution."
+      ]
+    },
+    "steps": {
+      "tag": "STEPS",
+      "title": "Experience the seamless and transparent process.",
+      "header": "our service applies insights from other projects, allowing clients to benefit from others' experiences and avoid repeating their mistakes."
+    },
+    "cases": {
+      "title": "& meet PM consulting cases in our basket",
+      "tag": "CASES"
+    },
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
+  },
+  "project": {
+    "tracking": {
+      "type": "what we did",
+      "title": "Design & development Tracking",
+      "subTitle": "Our team applied the full range of their knowledge and best solutions to implement this project."
+    },
+    "technologies": {
+      "type": "TECHNOLOGIES",
+      "title": "The tools and technologies we used"
+    },
+    "button": "View full project",
+    "more": {
+      "title": "MORE PROJECTS IN OUR BASKET",
+      "type": "PROJECTS",
+      "button": "explore more projects"
+    },
+    "contactUs": {
+      "text": ["your idea", "& our mission", "to make it real"]
+    }
+  },
+  "careers": {
+    "title": {
+      "line-1-contained": "we foster",
+      "line-2-outlined": "an excellent",
+      "line-3-outlined": "community",
+      "line-4-contained": "in our team"
+    },
+    "advantages": {
+      "title": "Explore Why Professionals Choose to Join the Unicode Community",
+      "type": "OUR ADVANTAGES",
+      "list": [
+        {
+          "title": "Driven by Challenge, Inspired by Innovation",
+          "text": "Professionals that choose us and stay with us for a long time are those who thrive on interesting and challenging tasks, fostering an environment where innovation and problem-solving are celebrated."
+        },
+        {
+          "title": "Passion & Achievement",
+          "text": "We recognize and celebrate the satisfaction that comes from achieving goals and exceeding expectations. We engage in business to pursue and fulfill our dynamic passions, driven by the collaboration of sharp intellects and vibrant interests."
+        },
+        {
+          "title": "Empowering Flexibility and a Seamless Work Environment",
+          "text": "For us, this means an understanding that individual preferences and work styles contribute to a more productive and harmonious workplace. We encourage the opportunity to work part-time; continuous development and learning new things on different projects."
+        },
+        {
+          "title": "Core Values: Transparency and Communication",
+          "text": "We believe in open and honest communication, ensuring that every team member is well-informed and engaged in the collective journey. Our team members are open in communication and are happy to help at all levels of the company."
+        },
+        {
+          "title": "Team and Management Maturity",
+          "text": "For us, this means an understanding that individual preferences and work styles contribute to a more productive and harmonious workplace. We encourage the opportunity to work part-time; continuous development and learning new things on different projects."
+        }
+      ]
+    },
+    "positions": {
+      "title": "& Start Your Journey with Us",
+      "type": "OPEN POSITIONS"
+    },
+    "contactUs": [
+      {
+        "text": "let's get",
+        "variant": "contained"
+      },
+      {
+        "text": "in touch",
+        "variant": "outlined"
+      }
+    ]
+  },
+  "vacancy": {
+    "title": "we are hiring",
+    "description": {
+      "title": "Your Next Big Adventure in Frontend Starts Here! ",
+      "type": "HI, MATE",
+      "list": []
+    },
+    "recruiter": {
+      "title": "You are interested in this opportunity, but still, have any questions?",
+      "type": "your recruiter"
+    },
+    "contactUs": [
+      {
+        "text": "you are the",
+        "variant": "outlined"
+      },
+      { "text": "next hero in", "variant": "contained" },
+      { "text": "our team", "variant": "contained" }
+    ]
+  },
+  "whoWeAre": {
+    "title": {
+      "line-1-outlined": "empowering",
+      "line-2-contained": "the future",
+      "line-3-contained": "with code"
+    },
+    "mission": {
+      "title": "IT for humans, by humans.",
+      "type": "our mission",
+      "subTitle": "OUR MISSION............",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras efficitur nunc quis vehicula hendrerit. Vivamus in purus in tellus dictum rhoncus sed ac sem. Morbi urna metus, commodo in purus at, hendrerit vehicula nisi. Morbi gravida, odio ac vestibulum vestibulum, ex tellus porttitor neque, vel mollis ex quam et sem. Phasellus sed dui eget massa eleifend viverra. Donec nec ultrices leo. Phasellus sagittis lectus ac ultrices scelerisque."
+    },
+    "values": {
+      "title": "We innovate and strive for excellence, ensuring that every project we undertake delivers long-term results.",
+      "type": "our core values"
+    },
+    "story": {
+      "title": "Our story is a journey from idea to innovation.",
+      "type": "our story",
+      "subTitle": "Every code starts with a single line, and every company starts with a big idea. We started our journey with enthusiasm and aspiration to create cutting-edge IT solutions that change business. Year after year, we grew, mastered new technologies and implemented projects that we are proud of."
+    },
+    "services": {
+      "title": "Our services will help you to accomplish your purpose easier and better.",
+      "type": "SERVICES & EXPERTISE"
+    },
+    "contactUs": [
+      {
+        "text": "every journey",
+        "variant": "contained"
+      },
+      { "text": "starts from the", "variant": "contained" },
+      { "text": "first step", "variant": "outlined" }
+    ]
+  },
+  "insights": {
+    "description": {
+      "line-1-contained": "insights",
+      "line-2-outlined": "& innovations:",
+      "line-3-contained": "our tech blog",
+      "text": "Stay ahead in the world of technology with expert insights, industry trends, and development tips from our team. Explore innovative solutions, best practices, and the latest in software development—all in one place."
+    },
+    "categories": {
+      "title": "Categories",
+      "type": "INSIGHTS"
+    },
+    "list": {
+      "all": "all",
+      "explore": "Show more"
+    },
+    "contactUs": [
+      {
+        "text": "tech news",
+        "variant": "contained"
+      },
+      { "text": "you can’t miss", "variant": "contained" },
+      { "text": "subscribe now", "variant": "outlined" }
+    ]
+  },
+  "article": {
+    "title": "Share the Knowledge – Spread the Innovation",
+    "type": "LET OTHERS KNOW"
+  },
+  "team": {
+    "description": {
+      "line-1-contained": "meet",
+      "line-2-outlined": "the minds",
+      "line-3-contained": "behind the code",
+      "text": "We searched far and wide to bring together the best minds in technology, assembling a team of passionate experts dedicated to creating cutting-edge software solutions. Every member brings unique skills, experience, and creativity, allowing us to tackle complex challenges and drive innovation. Together, we don’t just write code—we shape the future of technology."
+    },
+    "developers": {
+      "title": "The Architects of Innovation",
+      "type": "DEVELOPERS"
+    },
+    "designers": {
+      "title": "Crafting Experiences with Creativity",
+      "type": "DESIGNERS"
+    },
+    "management": {
+      "title": "Leading with Vision and Strategy",
+      "type": "MANAGEMENT"
+    },
+    "worker": {
+      "greeting": "hi there 👋",
+      "technologies": "technologies",
+      "experience": "experience",
+      "about": "about",
+      "years": "years",
+      "months": "months"
+    },
+    "recruiter": {
+      "title": "Are you interested in becoming part of the team & have any questions?",
+      "type": "YOUR RECRUTER"
+    },
+    "contactUs": [
+      {
+        "text": "every journey",
+        "variant": "contained"
+      },
+      { "text": "starts from the", "variant": "contained" },
+      { "text": "first step", "variant": "outlined" }
+    ]
+  },
+  "terms": {
+    "title": [
+      {
+        "text": "terms",
+        "variant": "contained"
+      },
+      {
+        "text": "& conditions",
+        "variant": "outlined"
+      }
+    ]
+  },
+  "privacy": {
+    "title": [
+      {
+        "text": "privacy",
+        "variant": "contained"
+      },
+      {
+        "text": "policy",
+        "variant": "outlined"
+      }
+    ]
+  },
+  "404": {
+    "title": "Oops! You’re lost!",
+    "subTitle": "Sorry, we can’t find the page you’re looking for.",
+    "backToHome": "go back home page"
+  }
+}

@@ -1,0 +1,99 @@
+---
+interface Props {
+  words: string[];
+}
+
+const { words } = Astro.props;
+
+const wordsList = words;
+---
+
+<typed-astro
+  class="flex empty relative text-24 md:text-32 2xl:text-40 font-extrabold text-center text-brand-black 2xl:text-start"
+>
+  {
+    wordsList.map((w, i) => (
+      <p
+        data-index={i}
+        class="empty absolute left-1/2 -translate-x-1/2 2xl:left-0 2xl:translate-x-0 uppercase"
+      >
+        {w.split("").map((s) => (
+          <span class="hidden">{s}</span>
+        ))}
+      </p>
+    ))
+  }
+</typed-astro>
+
+<script>
+  class Typed extends HTMLElement {
+    connectedCallback() {
+      const colors = [
+        "text-brand-beigeLight",
+        "text-brand-beige",
+        "text-brand-gray",
+      ];
+
+      const letterPrintTime = 200;
+      const printDelay = 500;
+      const removeTime = 50;
+      const removeDelay = 100;
+
+      const wordList = Array.from(this.querySelectorAll("p"));
+
+      const wordCycle = (index = 0) => {
+        if (index >= wordList.length) return;
+
+        const word = wordList[index];
+        const symbols = word.querySelectorAll("span");
+
+        word.classList.remove(...colors);
+        word.classList.add(colors[index % (wordList.length - 1)]);
+
+        const totalPrintTime = symbols.length * letterPrintTime;
+
+        const printWord = () => {
+          symbols.forEach((s, i) => {
+            setTimeout(() => {
+              s.classList.remove("hidden");
+            }, i * letterPrintTime);
+          });
+        };
+
+        const removeWord = () => {
+          return new Promise<void>((resolve) => {
+            symbols.forEach((s, i) => {
+              setTimeout(
+                () => {
+                  s.classList.add("hidden");
+                  if (i === symbols.length - 1) resolve();
+                },
+                removeTime * (symbols.length - i) + removeDelay,
+              );
+            });
+          });
+        };
+
+        printWord();
+
+        setTimeout(async () => {
+          await removeWord();
+          setTimeout(() => {
+            wordCycle((index + 1) % wordList.length);
+          }, printDelay);
+        }, totalPrintTime);
+      };
+
+      wordCycle(0);
+    }
+  }
+
+  customElements.define("typed-astro", Typed);
+</script>
+
+<style is:global>
+  .empty::after {
+    content: "\00a0";
+    visibility: hidden;
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import { Container } from "@components/Container";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import { SectionTitle } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
+import type { IProject } from "@interfaces/project";
+
+interface Props {
+  data: IProject[];
+}
+
+const { lang } = Astro.params;
+const { data } = Astro.props;
+
+const t = useTranslations(lang as Languages, "service.cases");
+---
+
+<Container id="service">
+  <SectionTitle title={t("title")} type={t("tag")} />
+
+  <ProjectList projects={data} />
+</Container>

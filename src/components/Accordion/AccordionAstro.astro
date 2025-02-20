@@ -1,51 +1,111 @@
 ---
-import { nanoid } from "nanoid";
-
+import { DownArrow, UpArrow } from "@assets/index";
 interface Props {
   open?: boolean;
+  arrowStyle?: boolean;
 }
 
-const { open = false } = Astro.props;
+const { open = false, arrowStyle = false } = Astro.props;
+const uuid = Date.now().toString(36) + Math.random().toString(36).slice(2);
 ---
 
-<accordion-block open={open + ""}>
-  <div class="border-b-2 border-black">
-    <button class="w-full py-6 text-slate-800 text-start">
-      <slot name="title" />
-    </button>
-    <div
-      id="content"
-      class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+{
+  !arrowStyle && (
+    <accordion-block
+      isOpen={String(open)}
+      arrowStyle={String(arrowStyle)}
+      contentId={uuid}
     >
-      <div class="py-6 w-full"><slot /></div>
-    </div>
-  </div>
-</accordion-block>
+      <div class="border-b border-black box-border">
+        <div
+          id={`${uuid}-trigger`}
+          class="w-full py-6 text-slate-800 text-start cursor-pointer"
+        >
+          <slot name="title" />
+        </div>
+        <div
+          id={uuid}
+          class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        >
+          <div class="pb-6 w-full">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </accordion-block>
+  )
+}
+{
+  arrowStyle && (
+    <accordion-block
+      isOpen={String(open)}
+      arrowStyle={String(arrowStyle)}
+      contentId={uuid}
+    >
+      <div>
+        <div
+          id={`${uuid}-trigger`}
+          class="w-full py-2 text-biscuit text-start font-gothic tracking-[0.8px] font-normal text-base cursor-pointer"
+        >
+          <div class="flex justify-between ">
+            <slot name="title" />
+            <DownArrow class="down-arrow text-brand-white my-auto" />
+            <UpArrow class="up-arrow hidden text-brand-white text-opacity-50 my-auto" />
+          </div>
+        </div>
+        <div
+          id={uuid}
+          class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+        >
+          <div class="pt-1 w-full">
+            <slot />
+          </div>
+        </div>
+      </div>
+    </accordion-block>
+  )
+}
 
 <script>
   class Accordion extends HTMLElement {
     connectedCallback() {
-      const button = this.querySelector("button");
-      const content = this.querySelector("#content") as HTMLDivElement;
+      const open = this.getAttribute("isOpen");
+      const arrowStyle = this.getAttribute("arrowStyle");
+      const uuid = "#" + this.getAttribute("contentId")!;
 
-      const open = this.getAttribute("open");
+      const button = this.querySelector(`${uuid}-trigger`);
+
+      const content = this.querySelector(uuid) as HTMLDivElement;
+
+      const downArrow =
+        arrowStyle === "true"
+          ? (this.querySelector(".down-arrow") as HTMLImageElement)
+          : null;
+      const upArrow =
+        arrowStyle === "true"
+          ? (this.querySelector(".up-arrow") as HTMLImageElement)
+          : null;
+
       if (open === "true") {
         content.style.maxHeight = content.scrollHeight + "px";
       }
 
       button?.addEventListener("click", () => {
-        const content = this.querySelector("#content") as HTMLDivElement;
+        const content = this.querySelector(uuid) as HTMLDivElement;
         if (!content || !content.style) return;
 
-        const open = this.getAttribute("open");
-        console.log(open);
+        const open = this.getAttribute("isOpen");
 
         if (open === "true") {
           content.style.maxHeight = 0 + "px";
-          this.setAttribute("open", "false");
+          this.setAttribute("isOpen", "false");
+          downArrow && downArrow.classList.remove("hidden");
+          upArrow && upArrow.classList.add("hidden");
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
-          this.setAttribute("open", "true");
+          this.setAttribute("isOpen", "true");
+          downArrow && downArrow.classList.add("hidden");
+          upArrow && upArrow.classList.remove("hidden");
         }
       });
     }

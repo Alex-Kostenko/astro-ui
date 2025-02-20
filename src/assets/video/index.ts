@@ -1,4 +1,6 @@
 import cubeNear from "./cube_near.mp4";
-import cubeSide from "./408250_Cube Cgi 3d Changing_By_Finn_Moeller_Artlist_HD.mp4";
+import cubeNearVP9 from "./cube_near_vp9.mp4";
+import cubeSide from "./cube_side.mp4";
+import cubeSideVP9 from "./cube_side_vp9.mp4";
 
-export { cubeNear, cubeSide };
+export { cubeNear, cubeNearVP9, cubeSide, cubeSideVP9 };

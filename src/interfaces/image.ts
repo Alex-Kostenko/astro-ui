@@ -11,6 +11,7 @@ export interface IImage {
   ext: string;
   mime: string;
   size: number;
+  base64: string;
   url: string;
   previewUrl: any;
   provider: string;

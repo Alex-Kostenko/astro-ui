@@ -1,0 +1,135 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { TextField } from "@components/TextField";
+import CheckBox from "./CheckBox.astro";
+import { useTranslations, type Languages } from "@i18n/index";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "subscribeForm");
+---
+
+<section
+  class:list={[
+    "bg-brand-black bg-opacity-85 px-4 md:px-[60px] 2xl:px-[120px] py-10 xl:py-8",
+    "flex flex-col gap-x-8 gap-y-8 xl:flex-row clip after:hidden md:after:block",
+  ]}
+>
+  <div class="flex-grow xl:w-1/2 mt-auto md:px-16 lg:px-0">
+    <h3 class="text-brand-beigeLight font-gothic uppercase text-20">
+      {t("title")}
+    </h3>
+  </div>
+
+  <form
+    id="form-contac-us"
+    class:list={["flex-grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
+  >
+    <div class="flex flex-col gap-y-4">
+      <TextField placeholder={t("nameLabel")} name="name" />
+      <TextField placeholder={t("emailLabel")} type="email" name="email" />
+    </div>
+
+    <CheckBox name="consent">
+      <span class="text-14 font-gothic text-brand-white">
+        {t("consent.start")}
+        <a href="/todo" class="underline" target="_blank"
+          >{t("consent.terms")}</a
+        >
+        {t("consent.divider")}
+        <a href="/todo" class="underline" target="_blank">
+          {t("consent.privacyPolicy")}
+        </a>
+      </span>
+    </CheckBox>
+    <ButtonAstro
+      slot="toast-trigger"
+      color="biscuit"
+      class="w-full"
+      type="submit"
+    >
+      {t("submitBtn")}
+    </ButtonAstro>
+  </form>
+</section>
+
+<script>
+  import { actions } from "astro:actions";
+  import { toast } from "@components/Toast";
+  const form = document.querySelector("#form-contac-us") as HTMLFormElement;
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const consent = formData.get("consent");
+    const entries = Array.from(formData.entries());
+
+    // form validation
+    for (const [name, value] of entries) {
+      if (typeof value === "string" && value !== "on") {
+        const field = form.querySelector(`[name="${name}"]`);
+
+        const errorField = field?.nextElementSibling;
+        if (!value) {
+          errorField?.classList.remove("hidden");
+          field?.classList.add("border-b-red");
+        } else {
+          errorField?.classList.add("hidden");
+          field?.classList.remove("border-b-red");
+        }
+      } else if (typeof value === "object") {
+        const field = form.querySelector(`[name="${name}"]`)?.parentElement;
+
+        const errorField = field?.nextElementSibling;
+        if (value.size <= 0) {
+          errorField?.classList.remove("hidden");
+          field?.classList.add("border-b-red");
+        } else {
+          errorField?.classList.add("hidden");
+          field?.classList.remove("border-b-red");
+        }
+      }
+    }
+
+    const consentField = form.querySelector(`[name="consent"]`)?.parentElement;
+
+    const consentErrorField = consentField?.nextElementSibling;
+    if (consent === null) {
+      consentErrorField?.classList.remove("hidden");
+    } else {
+      consentErrorField?.classList.add("hidden");
+    }
+
+    if (!consent || entries.some((v) => !v[1])) {
+      toast("Fill in all fields and upload only one file", "error");
+      return;
+    }
+
+    const { data } = await actions.subscribeNews(formData);
+
+    if (data?.success) {
+      toast("Form submitted", "success");
+      form.reset();
+    } else if (data?.error?.message) {
+      toast(data.error.message, "info");
+    }
+
+    form.reset();
+  });
+</script>
+
+<style>
+  .clip {
+    position: relative;
+    /* clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%, 0 9%); */
+  }
+  .clip::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 0;
+    height: 0;
+    border-right: 80px solid transparent;
+    border-top: 60px solid #f3f3ef;
+  }
+</style>

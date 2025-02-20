@@ -1,7 +1,6 @@
 ---
 import { TypographyAstro } from "@components/Typography";
 import type { IProject } from "@interfaces/project";
-import { executeImg } from "@utils/index";
 
 interface Props {
   project: IProject;
@@ -13,13 +12,15 @@ const { class: className, project } = Astro.props;
 
 <section
   class:list={[
-    "flex justify-between gap-y-3 border-t border-coal border-opacity-45 pt-5",
+    "flex justify-between gap-y-3 pt-6 relative border-project",
+    "before:content-[''] before:absolute before:top-0 before:right-0 before:left-0 before:h-px",
+    "before:min-w-5 before:bg-brand-black before:bg-opacity-[48%]",
     className,
   ]}
 >
   <section class="flex flex-col justify-between flex-1">
     <article class="mb-5">
-      <TypographyAstro type="subTitle-1" class="text-green">
+      <TypographyAstro type="subTitle-1" class="text-green mb-2">
         {project.title}
       </TypographyAstro>
       <TypographyAstro type="subTitle-sm-1" color="gray">
@@ -31,10 +32,10 @@ const { class: className, project } = Astro.props;
         <TypographyAstro type="subTitle-sm-4" color="gray">
           TECHNOLOGIES:
         </TypographyAstro>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 mt-1">
           {
             project.technologies.map((v) => (
-              <span class="py-1 px-3 bg-brown rounded-3xl text-coal text-label4">
+              <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
                 {v.name}
               </span>
             ))
@@ -69,7 +70,9 @@ const { class: className, project } = Astro.props;
   <div class="h-[352px] flex-1">
     <img
       class="h-full w-full object-cover object-center"
-      src={executeImg(project.image)}
+      src={project.image.base64}
+      alt={project.image.name || "project preview"}
+      loading="lazy"
     />
   </div>
 </section>

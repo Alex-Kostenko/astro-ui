@@ -1,0 +1,25 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import ProjectList from "@components/ProjectCard/ProjectList.astro";
+import { SectionTitle } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
+import projectService from "@service/project.service";
+
+const { lang } = Astro.params;
+const response = await projectService.get({
+  pagination: { page: 1, pageSize: 4 },
+  locale: lang as Languages,
+});
+
+const t = useTranslations(lang as Languages, "home.project");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("tag")} />
+
+  <ProjectList projects={response.data} />
+  <ButtonAstro withArrow asLink href="/cases/all/1" class="w-full">
+    {t("btnExplorerMore")}
+  </ButtonAstro>
+</Container>

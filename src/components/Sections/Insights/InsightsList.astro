@@ -1,0 +1,44 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+import Tabs from "./Tabs.astro";
+import type { IInsight } from "@interfaces/insight";
+import InsightCard from "./InsightCard.astro";
+import { Pagination } from "@components/Pagination";
+import type { Page } from "astro";
+import { routes } from "src/routes";
+
+interface Props {
+  slug: string;
+  page: Page<IInsight>;
+}
+
+const { lang } = Astro.params;
+const { slug, page } = Astro.props;
+const t = useTranslations(lang as Languages, "insights.categories");
+---
+
+<Container id="insights">
+  <SectionTitle title={t("title")} type={t("type")} />
+  <Tabs category={slug} page={page.currentPage} />
+  <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-5 mb-5">
+    {page.data.map((i) => <InsightCard insight={i} />)}
+  </div>
+  {
+    page.currentPage > 1 && (
+      <Pagination
+        href={`${routes.insight}/${slug}/`}
+        paginate={page}
+        toBlock="insights"
+      />
+    )
+  }
+</Container>
+
+<style is:global>
+  #insights {
+    scroll-margin-top: 200px;
+  }
+</style>

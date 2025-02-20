@@ -1,27 +1,142 @@
 ---
 import "@style/main.css";
 import Header from "./Header/Header.astro";
-interface Props {
-  title: string;
+import Footer from "./Footer/Footer.astro";
+import { Toast } from "@components/Toast";
+import { pwaInfo } from "virtual:pwa-info";
+
+interface IOpenGraph {
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  openGraph?: IOpenGraph;
+}
+
+const { title, openGraph } = Astro.props;
+const { lang } = Astro.params;
+
+const domain = import.meta.env.DOMAIN;
+const gaToken = import.meta.env.GA_TOKEN;
+const gtmToken = import.meta.env.GTM_TOKEN;
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale || "en"}>
+<html lang={lang || "en"}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <!-- Google tag (gtag.js) -->
+    <meta id="tokens" data-ga-token={gaToken} data-gtm-token={gtmToken} />
+    <script
+      async
+      is:inline
+      src={`https://www.googletagmanager.com/gtag/js?id=${gaToken}`}></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      const tokens = document.querySelector("#tokens");
+      const gaToken = tokens.getAttribute("data-ga-token");
+
+      gtag("js", new Date());
+
+      gtag("config", gaToken);
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      const metaTokens = document.querySelector("#tokens");
+      const gtmToken = metaTokens.getAttribute("data-gtm-token");
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", gtmToken);
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${gtmToken}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
+    <meta charset="UTF-8" />
+    <meta name="description" content="We make your business UNIQUE" />
     <meta name="viewport" content="width=device-width" />
+    <!-- Remove next line for allow robots on site (allow indexing) -->
+    <!-- <meta name="”robots”" content="”none”" /> -->
+
+    <!-- Open graph -->
+    <meta
+      property="og:title"
+      content={openGraph?.title || "UniCode Software"}
+    />
+    <meta
+      property="og:description"
+      content={openGraph?.description || "We make your business UNIQUE"}
+    />
+    <meta
+      property="og:image"
+      content={openGraph?.image || "/open-graph-preview.jpg"}
+    />
+    <!-- <meta property="og:image:type" content="image/png" /> -->
+    <meta property="og:url" content={`https://${domain}`} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="UniCode Software" />
+
+    <!-- Twitter open graph -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content={domain} />
+    <meta property="twitter:url" content={`https://${domain}`} />
+    <meta
+      property="twitter:title"
+      content={openGraph?.title || "UniCode Software"}
+    />
+    <meta
+      property="twitter:description"
+      content={openGraph?.description || "We make your business UNIQUE"}
+    />
+    <meta
+      property="twitter:image"
+      content={openGraph?.image || "/open-graph-preview.jpg"}
+    />
+    <!-- <meta name="twitter:site" content="@YourTwitterHandle" /> -->
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="UniCode" />
+    <!-- <link rel="manifest" href="/site.webmanifest" /> -->
+
     <meta name="generator" content={Astro.generator} />
+
+    <script src="/src/pwa.ts"></script>
+    {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+
     <slot name="head" />
     <title>{title}</title>
   </head>
-  <body class="bg-biscuit">
+  <body class="bg-brand-white">
+    <Toast />
     <Header />
     <slot />
+    <Footer />
   </body>
 </html>
 <style is:global>
@@ -30,5 +145,55 @@ const { title } = Astro.props;
   }
   body {
     min-height: 100%;
+  }
+
+  @font-face {
+    font-family: "Gothic400";
+    src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Gothic700";
+    src: url("/fonts/centuryGothic/centurygothic_bold.ttf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Asket800Condensed";
+    src: url("/fonts/asket/asketCondensedExtrabold.otf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-stretch: condensed;
+  }
+  @font-face {
+    font-family: "Asket300Extended";
+    src: url("/fonts/asket/asketExtendedLight.otf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-stretch: expanded;
+  }
+  @font-face {
+    font-family: "Asket800";
+    src: url("/fonts/asket/asketExtrabold.otf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-stretch: expanded;
+    font-stretch: normal;
+  }
+  @font-face {
+    font-family: "Asket300";
+    src: url("/fonts/asket/asketNarrowLight.otf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-stretch: expanded;
+    font-stretch: ultra-condensed;
   }
 </style>

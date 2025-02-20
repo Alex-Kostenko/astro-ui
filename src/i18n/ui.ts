@@ -1,21 +1,24 @@
-export const languages = {
-  en: "English",
-  ua: "Ukrain",
+import ua from "./localization/ukrain.json";
+import en from "./localization/english.json";
+
+export const languages: LanguageSet = {
+  default: { label: "English", slug: undefined, lang: "en" },
+  en: { label: "English", slug: "en", lang: "en" },
+  ua: { label: "Ukrain", slug: "ua", lang: "ua" },
 };
+
+export interface Language {
+  label: string;
+  lang: Languages;
+  slug: string | undefined;
+}
+
+export interface LanguageSet {
+  [key: string]: Language;
+}
+
+export type Languages = "en" | "ua";
 
 export const defaultLang = "en";
 
-export const ui: any = {
-  en: {
-    header: {
-      contactUs: "contact us",
-    },
-    hero: {
-      title: "ENGINEERING YOUR",
-      subTitle: "DREAMS",
-      descripton:
-        "Transform your vision into reality with our expert team of engineers, committed to delivering innovative solutions tailored to your unique goals/aspirations.",
-    },
-  },
-  ua: {},
-} as const;
+export const ui: any = { en, ua } as const;
