@@ -1,0 +1,60 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+import type { IVacancy } from "@interfaces/vacancy";
+import { routes } from "src/routes";
+
+interface Props {
+  vacancyList: IVacancy[];
+}
+
+const { lang } = Astro.params;
+const { vacancyList } = Astro.props;
+
+const t = useTranslations(lang as Languages, "careers.positions");
+---
+
+<Container>
+  <SectionTitle type={t("type")} title={t("title")} />
+  <article class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {
+      vacancyList.map((v) => (
+        <div class="flex flex-col">
+          <img src={v.image.base64} alt="" />
+          <TypographyAstro type="subTitle-1" color="green" class="mt-3 mb-5">
+            <a href={routes.careers + "/" + v.slug}>{v.title}</a>
+          </TypographyAstro>
+          <div class="flex flex-col gap-3">
+            <article class="flex flex-col gap-1">
+              <TypographyAstro type="subTitle-sm-4" color="gray">
+                Work type:
+              </TypographyAstro>
+              <div class="flex flex-wrap gap-1">
+                {v.workType.map((s) => (
+                  <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
+                    {s.type}
+                  </span>
+                ))}
+              </div>
+            </article>
+            <article class="flex flex-col gap-1">
+              <TypographyAstro type="subTitle-sm-4" color="gray">
+                main skills:
+              </TypographyAstro>
+              <p class="text-brand-black text-16 font-gothic">
+                {v.skills.reduce(
+                  (acc, cur, index) =>
+                    (acc +=
+                      cur.name + (index + 1 < v.skills.length ? ", " : "")),
+                  "",
+                )}
+              </p>
+            </article>
+          </div>
+        </div>
+      ))
+    }
+  </article>
+</Container>

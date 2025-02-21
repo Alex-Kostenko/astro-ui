@@ -1,0 +1,113 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import { Description, WorkersList } from "@components/Sections/Team";
+import {
+  languages,
+  useTranslations,
+  type Language,
+  type Languages,
+} from "@i18n/index";
+import workerService from "@service/worker.service";
+import Recruiter from "@components/Recruiter/Recruiter.astro";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import type { IWorker } from "@interfaces/worker";
+
+export const getStaticPaths = (async () => {
+  const req = Object.keys(languages).map(async (lang) => {
+    const workers = await workerService.get({ locale: languages[lang].lang });
+
+    return {
+      lang: languages[lang] as Language,
+      workers,
+    };
+  });
+
+  const resArr = await Promise.all(req);
+
+  return resArr.map((v) => {
+    return {
+      params: { lang: v.lang.slug },
+      props: {
+        data: v.workers.data,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+function filterByType(workerList: IWorker[], type: string | string[]) {
+  if (!type || workerList.length === 0) return [];
+
+  const types = Array.isArray(type)
+    ? type.map((t) => t.toLowerCase())
+    : [type.toLowerCase()];
+
+  return workerList.filter((worker) =>
+    types.some((t) => worker.position.toLowerCase().includes(t)),
+  );
+}
+
+const { lang } = Astro.params;
+const { data } = Astro.props;
+
+const devs = filterByType(data, ["dev", "engineer"]);
+const designers = filterByType(data, ["designer"]);
+const managers = filterByType(data, [
+  "manager",
+  "pm",
+  "project manager",
+  "product manager",
+]);
+const recruiter = filterByType(data, ["hr", "recruiter"]);
+
+const t = useTranslations(lang as Languages, "team");
+---
+
+<Layout title="UniCode Team">
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+      <Breadcrumbs />
+    </div>
+    <Description />
+    <WorkersList
+      list={devs}
+      title={t("developers.title")}
+      type={t("developers.type")}
+    />
+    <WorkersList
+      list={designers}
+      title={t("designers.title")}
+      type={t("designers.type")}
+    />
+    <WorkersList
+      list={managers}
+      title={t("management.title")}
+      type={t("management.type")}
+    />
+    <Recruiter
+      recruiter={recruiter[0]}
+      title={t("recruiter.title")}
+      type={t("recruiter.type")}
+    />
+    <ContactUsSection text={t("contactUs")} table="vacancy-replay" />
+  </main>
+</Layout>

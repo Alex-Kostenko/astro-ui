@@ -1,4 +1,3 @@
-@tailwind base;
-
-.container-content {
+html {
+  scroll-behavior: smooth;
 }

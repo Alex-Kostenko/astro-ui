@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
+import { listCompany } from "@assets/icon/company";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.parthners");
+---
+
+<section class="py-8">
+  <Container>
+    <SectionTitle title={t("title")} type={t("tag")} />
+  </Container>
+  <div class="overflow-hidden flex">
+    <div class="partners will-change-transform flex gap-5 pr-5">
+      {
+        listCompany.map((v) => (
+          <div
+            class:list={[
+              "flex justify-center items-center",
+              "w-[220px] h-32 text-white p-5 bg-green rounded",
+            ]}
+          >
+            <Image src={v} alt={v.src} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div aria-hidden class="partners will-change-transform flex gap-5 pr-5">
+      {
+        listCompany.map((v) => (
+          <div
+            class:list={[
+              "flex justify-center items-center",
+              "w-[220px] h-32 text-white p-5 bg-green",
+            ]}
+          >
+            <Image src={v} alt={v.src} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .partners {
+    animation: horizontalSlide 120s linear infinite;
+  }
+
+  @keyframes horizontalSlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>

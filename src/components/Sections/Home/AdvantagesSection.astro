@@ -1,0 +1,161 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import Video from "@components/Video/Video.astro";
+import { useTranslations, type Languages } from "@i18n/index";
+import { Image } from "astro:assets";
+import { cubeSide, cubeSideVP9, Eye } from "@assets/index";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.advantagesSection");
+---
+
+<div class="bg-brand-black py-20">
+  <Container>
+    <SectionTitle
+      title={t("title")}
+      type={t("tag")}
+      colorTitle="text-brand-white"
+    />
+    <section class="grid grid-cols-2 grid-rows-5 md:grid-cols-4 md:grid-rows-4">
+      <Video class="md:col-span-2 md:row-span-2 h-full w-full object-cover">
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source
+          src={cubeSide}
+          type="video/mp4; ; codecs=avc1.42E01E,mp4a.40.2"
+        />
+        <source src={cubeSideVP9} type="video/mp4" />
+      </Video>
+
+      <div class="row-start-1 col-start-2 md:row-start-auto md:col-start-auto">
+      </div>
+
+      <article
+        class="xl:p-4 p-2 border-r md:border border-brand-white row-start-1 md:row-start-auto"
+      >
+        <h6
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
+        >
+          {t("advantages.block1.title")}
+        </h6>
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
+          {t("advantages.block1.text")}
+        </p>
+      </article>
+
+      <article class="xl:p-4 p-2 border-t border-brand-white">
+        <h6
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
+        >
+          {t("advantages.block2.title")}
+        </h6>
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
+          {t("advantages.block2.text")}
+        </p>
+      </article>
+
+      <div class="hidden md:block"></div>
+      <div class="hidden md:block"></div>
+
+      <article
+        class="xl:p-4 p-2 border-r border-b md:border-l md:border-t border-brand-white"
+      >
+        <h6
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
+        >
+          {t("advantages.block3.title")}
+        </h6>
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
+          {t("advantages.block3.text")}
+        </p>
+      </article>
+
+      <div class="text-white"></div>
+      <div class="md:hidden"></div>
+
+      <article class="xl:p-4 p-2 md:border border-brand-white">
+        <h6
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
+        >
+          {t("advantages.block4.title")}
+        </h6>
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
+          {t("advantages.block4.text")}
+        </p>
+      </article>
+
+      <article class="xl:p-4 p-2 md:border-l md:border-b border-brand-white">
+        <h6
+          class:list={[
+            "text-brand-white xl:font-bold",
+            "text-16 md:text-14 lg:text-16 xl:text-18 2xl:text-20",
+            "mb-3 2xl:mb-6",
+          ]}
+        >
+          {t("advantages.block5.title")}
+        </h6>
+        <p
+          class:list={[
+            "text-brand-white font-gothic",
+            "text-12 md:text-10 lg:text-12 xl:text-base 2xl:text-20",
+            "2xl:tracking-1",
+          ]}
+        >
+          {t("advantages.block5.text")}
+        </p>
+      </article>
+
+      <div class="hidden md:block"></div>
+
+      <figure class="border border-brand-white">
+        <Image src={Eye} alt="Eye image" class="h-full w-full object-cover" />
+      </figure>
+    </section>
+  </Container>
+</div>
+
+<style>
+  .container-aspect > * {
+    aspect-ratio: 1/1;
+  }
+</style>

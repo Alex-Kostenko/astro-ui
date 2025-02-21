@@ -1,0 +1,41 @@
+---
+import { email, linkedInLogo, telegram } from "@assets/icon";
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "article");
+const domain = import.meta.env.DOMAIN;
+
+const message = encodeURIComponent("UniCode Tech News.\nCheck this out!");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("type")} />
+  <div class="flex gap-4 ml-auto w-full 2xl:w-3/4">
+    <a
+      href={`https://www.linkedin.com/messaging/thread/new/`}
+      title={"social network link"}
+      target="_blank"
+    >
+      <img src={linkedInLogo.src} alt={"social network link"} />
+    </a>
+    <a
+      href={`https://t.me/share/url?url=https://${domain}&text=${message}`}
+      title={"social network link"}
+      target="_blank"
+    >
+      <img src={telegram.src} alt={"social network link"} />
+    </a>
+    <a
+      href={`mailto:?subject=UniCode%20Tech%20News&body=${message}`}
+      title={"social network link"}
+      target="_blank"
+    >
+      <img src={email.src} alt={"social network link"} />
+    </a>
+  </div>
+</Container>

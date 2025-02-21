@@ -1,0 +1,28 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { challenge } from "@assets/index";
+import type { IProject } from "@interfaces/project";
+
+type Props = IProject;
+const data = Astro.props;
+---
+
+<Container>
+  <SectionTitle title={data.challengeTitle} type="challenge" />
+  <article
+    class="grid lg:grid-cols-[275px,auto] 3xl:grid-cols-[395px,auto] gap-y-6 gap-x-5"
+  >
+    <img
+      src={challenge.src}
+      alt=""
+      class="w-full h-[280px] lg:h-full xl:h-[291px] row-span-2 object-cover object-center"
+    />
+    <TypographyAstro type="subTitle-sm-1" color="black">
+      {data.challengeSubtitle}
+    </TypographyAstro>
+    <TypographyAstro type="body-4" color="black">
+      {data.challengeDescription}
+    </TypographyAstro>
+  </article>
+</Container>

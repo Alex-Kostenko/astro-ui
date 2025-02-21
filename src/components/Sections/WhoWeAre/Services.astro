@@ -1,0 +1,57 @@
+---
+import { step_6 } from "@assets/image/steps";
+import { AccordionAstro } from "@components/Accordion";
+import { ButtonAstro } from "@components/Button";
+import { Container } from "@components/Container";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+interface Props {
+  list: { items: { title: string; text: string }[] };
+}
+
+const { list } = Astro.props;
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "whoWeAre.services");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("type")} />
+  {
+    list.items.map((item, index) => (
+      <AccordionAstro open={index === 0}>
+        <section slot="title" class="flex flex-row gap-y-4 items-center">
+          <TypographyAstro
+            type="body-2"
+            class="flex-[1_1_25%] text-brand-beige tracking-[0.8px]"
+          >
+            [ {(index + 1).toString().padStart(2, "0")} ]
+          </TypographyAstro>
+          <p
+            class="flex-[1_1_75%]"
+            class:list={[
+              "text-brand-black font-gothic700 uppercase font-bold",
+              "text-20 2xl:text-24",
+            ]}
+          >
+            {item.title}
+          </p>
+        </section>
+
+        <section class="flex ">
+          <div class="xl:flex-[0_1_75%] w-full xl:ml-auto flex flex-col md:flex-row justify-between">
+            <div class="flex flex-col gap-6 justify-center">
+              <TypographyAstro class="xl:max-w-[480px]" type="body-2">
+                {item.text}
+              </TypographyAstro>
+              <ButtonAstro class="w-fit">explore</ButtonAstro>
+            </div>
+            <img src={step_6.src} alt="" class="w-[240px] h-[240px] invert" />
+          </div>
+        </section>
+      </AccordionAstro>
+    ))
+  }
+</Container>
