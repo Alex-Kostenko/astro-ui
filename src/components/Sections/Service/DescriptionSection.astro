@@ -2,7 +2,8 @@
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "@assets/index";
+import { rareWavesBlack } from "@assets/index";
+import { VideoSource } from "@components/Video";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "service.description");
@@ -34,10 +35,15 @@ const t = useTranslations(lang as Languages, "service.description");
     ]}
   >
     <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
+      <!-- <img
         class="min-h-full object-cover min-w-full"
         src={Human.src}
         alt="human face of number"
+      /> -->
+
+      <VideoSource
+        source={[{ src: rareWavesBlack }]}
+        class="mix-blend-difference"
       />
     </div>
 

@@ -2,7 +2,8 @@
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "@assets/index";
+import { loopWavy } from "@assets/index";
+import { VideoSource } from "@components/Video";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "insights.description");
@@ -26,6 +27,7 @@ const t = useTranslations(lang as Languages, "insights.description");
     <span>{t("line-3-contained")}</span>
   </h2>
 
+  <!-- OKEY -> Team exception -->
   <section
     class="gap-y-4 mt-10 font-gothic"
     class:list={[
@@ -34,11 +36,7 @@ const t = useTranslations(lang as Languages, "insights.description");
     ]}
   >
     <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
-        class="min-h-full object-cover min-w-full"
-        src={Human.src}
-        alt="human face of number"
-      />
+      <VideoSource source={[{ src: loopWavy }]} class="mix-blend-difference" />
     </div>
 
     <div class="flex flex-col gap-5">

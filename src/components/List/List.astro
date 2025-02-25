@@ -9,15 +9,20 @@ interface Props {
 const { items } = Astro.props;
 ---
 
-<ol class="list-inside flex flex-col gap-3">
+<ol class="list-inside flex flex-col gap-3 box-border">
   {
     items.map((item: string) => (
       <li
         class:list={[
           "first:border-t border-gray-600 border-b p-3 flex gap-8 lg:gap-20",
           "font-gothic700 text-xl leading-6 uppercase",
+          "box-border",
         ]}
       >
+        {/* 
+        1) remove it and start using the features of the li tag 
+        2) ::before as alternative
+         */}
         <Image src={listSquare} alt="square" />
         {item}
       </li>

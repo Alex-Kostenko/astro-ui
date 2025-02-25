@@ -2,7 +2,8 @@
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "@assets/index";
+import { curveWaves } from "@assets/index";
+import { VideoSource } from "@components/Video";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "team.description");
@@ -26,6 +27,8 @@ const t = useTranslations(lang as Languages, "team.description");
     <span>{t("line-3-contained")}</span>
   </h2>
 
+  <!-- PLEASE DON'T COPY MY OLD CODE. YOU DIDN'T EVEN UPDATE THIS TO YOUR DESIGN -->
+  <!-- grid use -->
   <section
     class="gap-y-4 mt-10 font-gothic"
     class:list={[
@@ -33,11 +36,10 @@ const t = useTranslations(lang as Languages, "team.description");
       "gap-y-3 md:gap-y-6",
     ]}
   >
-    <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
-        class="min-h-full object-cover min-w-full"
-        src={Human.src}
-        alt="human face of number"
+    <div class="2xl:max-w-[508px] w-full">
+      <VideoSource
+        source={[{ src: curveWaves }]}
+        class="mix-blend-difference max-h-[164px] 2xl:max-h-[192px]"
       />
     </div>
 

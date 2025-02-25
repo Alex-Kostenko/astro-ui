@@ -1,7 +1,8 @@
 ---
 import { Container } from "@components/Container";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "@assets/index";
+import { twistedTunel } from "@assets/index";
+import { VideoSource } from "@components/Video";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "cases.intro");
@@ -42,10 +43,9 @@ const t = useTranslations(lang as Languages, "cases.intro");
     </p>
 
     <div class="object-cover w-full" class:list={["h-[164px] md:h-[280px]"]}>
-      <img
-        class="h-full object-cover min-w-full"
-        src={Human.src}
-        alt="human face of number"
+      <VideoSource
+        source={[{ src: twistedTunel }]}
+        class="mix-blend-difference"
       />
     </div>
   </section>
