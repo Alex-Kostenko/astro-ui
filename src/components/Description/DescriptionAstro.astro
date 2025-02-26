@@ -1,0 +1,34 @@
+---
+import { TypographyAstro } from "@components/Typography";
+import { VideoSource } from "@components/Video";
+
+interface Props {
+  videoSrc: string;
+  text: string;
+  class?: string;
+}
+
+const { videoSrc, text, class: className } = Astro.props;
+---
+
+<article
+  class:list={[
+    "grid ",
+    "gap-3 xl:gap-[48px] 2xl:gap-[96px]",
+    "grid-rows-[164px,auto] xl:grid-rows-none",
+    "xl:grid-cols-[auto,508px]",
+    className,
+  ]}
+>
+  <TypographyAstro
+    color="black"
+    type="body-4"
+    class="leading-1 order-1 xl:order-none"
+  >
+    {text}
+  </TypographyAstro>
+
+  <section class="h-full">
+    <VideoSource source={[{ src: videoSrc }]} class="mix-blend-difference" />
+  </section>
+</article>
