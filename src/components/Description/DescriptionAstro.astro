@@ -4,14 +4,15 @@ import { VideoSource } from "@components/Video";
 
 interface Props {
   videoSrc: string;
-  text: string;
+  text?: string;
   class?: string;
+  artcleClass?: string;
 }
 
-const { videoSrc, text, class: className } = Astro.props;
+const { videoSrc, text, class: className, artcleClass } = Astro.props;
 ---
 
-<article
+<section
   class:list={[
     "grid min-h-24 items-center",
     "gap-3 xl:gap-[48px] 2xl:gap-[96px]",
@@ -20,13 +21,20 @@ const { videoSrc, text, class: className } = Astro.props;
     className,
   ]}
 >
-  <TypographyAstro
-    color="black"
-    type="body-4"
-    class="leading-1 order-1 xl:order-none"
-  >
-    {text}
-  </TypographyAstro>
+  <article class:list={["order-1 xl:order-none", artcleClass]}>
+    {
+      text && (
+        <TypographyAstro
+          color="black"
+          type="body-4"
+          class="leading-1 whitespace-pre-line"
+        >
+          {text}
+        </TypographyAstro>
+      )
+    }
+    <slot />
+  </article>
 
   <section class="overflow-clip relative h-full">
     <!-- aspect-[2.65/1] -->
@@ -35,4 +43,4 @@ const { videoSrc, text, class: className } = Astro.props;
       class="mix-blend-difference absolute"
     />
   </section>
-</article>
+</section>
