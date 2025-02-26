@@ -1,6 +1,14 @@
 {
   "header": {
     "contactUs": "звязатись",
+    "navigation": {
+      "services": "Послуги",
+      "cases": "Випадки",
+      "who_we_are": "Хто ми є",
+      "insights": "Уявлення",
+      "team": "Команда",
+      "careers": "Карєри"
+    },
     "menu": [
       {
         "title": "ПОСЛУГИ",
