@@ -13,7 +13,7 @@ const { videoSrc, text, class: className } = Astro.props;
 
 <article
   class:list={[
-    "grid ",
+    "grid min-h-24 items-center",
     "gap-3 xl:gap-[48px] 2xl:gap-[96px]",
     "grid-rows-[164px,auto] xl:grid-rows-none",
     "xl:grid-cols-[auto,508px]",
@@ -28,10 +28,11 @@ const { videoSrc, text, class: className } = Astro.props;
     {text}
   </TypographyAstro>
 
-  <section class="overflow-clip">
+  <section class="overflow-clip relative h-full">
+    <!-- aspect-[2.65/1] -->
     <VideoSource
       source={[{ src: videoSrc }]}
-      class="mix-blend-difference aspect-[2.65/1]"
+      class="mix-blend-difference absolute"
     />
   </section>
 </article>
