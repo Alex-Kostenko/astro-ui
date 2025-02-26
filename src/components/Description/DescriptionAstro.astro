@@ -28,7 +28,10 @@ const { videoSrc, text, class: className } = Astro.props;
     {text}
   </TypographyAstro>
 
-  <section class="h-full">
-    <VideoSource source={[{ src: videoSrc }]} class="mix-blend-difference" />
+  <section class="overflow-clip">
+    <VideoSource
+      source={[{ src: videoSrc }]}
+      class="mix-blend-difference aspect-[2.65/1]"
+    />
   </section>
 </article>

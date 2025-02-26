@@ -4,6 +4,7 @@ import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import { curveWaves } from "@assets/index";
 import { VideoSource } from "@components/Video";
+import { DescriptionAstro } from "@components/Description";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "team.description");
@@ -28,7 +29,7 @@ const t = useTranslations(lang as Languages, "team.description");
   </h2>
 
   <!-- grid use -->
-  <section
+  <!-- <section
     class="gap-y-4 mt-10 font-gothic"
     class:list={[
       "flex flex-col 2xl:flex-row-reverse justify-between",
@@ -50,6 +51,7 @@ const t = useTranslations(lang as Languages, "team.description");
       >
         {t("text")}
       </TypographyAstro>
-    </div>
-  </section>
+    </div> -->
+
+  <DescriptionAstro text={t("text")} videoSrc={curveWaves} />
 </Container>
