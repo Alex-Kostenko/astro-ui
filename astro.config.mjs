@@ -46,21 +46,6 @@ export default defineConfig({
             type: "image/png",
           },
         ],
-        // description:
-        //   "This is a long text that can describe what your PWA does to the user",
-        // categories: ["games", "education"],
-        // screenshots: [
-        //   {
-        //     src: "",
-        //     type: "image/png",
-        //     sizes: "512x512",
-        //   },
-        //   {
-        //     src: "",
-        //     type: "image/png",
-        //     sizes: "512x512",
-        //   },
-        // ],
       },
       workbox: {
         disableDevLogs: true,
