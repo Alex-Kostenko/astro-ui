@@ -1,6 +1,14 @@
 {
   "header": {
     "contactUs": "contact us",
+    "navigation": {
+      "services": "Services",
+      "cases": "Cases",
+      "who_we_are": "Who We Are",
+      "insights": "Insights",
+      "team": "Team",
+      "careers": "Careers"
+    },
     "menu": [
       {
         "title": "SERVICES",

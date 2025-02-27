@@ -2,18 +2,21 @@
 import { formatLink } from "@utils/index";
 import { DownArrow, UpArrow } from "@assets/index";
 import { routes } from "src/routes";
+import { useTranslations, type Languages } from "@i18n/index";
 
 const links = [
-  { name: "Services", href: routes.service, drop: false },
-  { name: "Cases", href: routes.cases, drop: false },
-  { name: "Who We Are", href: routes.whoWeAre, drop: false },
-  { name: "Insights", href: routes.allInsights, drop: false },
-  { name: "Team", href: routes.team, drop: false },
-  { name: "Careers", href: routes.careers, drop: false },
+  { name: "services", href: routes.service, drop: false },
+  { name: "cases", href: routes.cases, drop: false },
+  { name: "who_we_are", href: routes.whoWeAre, drop: false },
+  { name: "insights", href: routes.allInsights, drop: false },
+  { name: "team", href: routes.team, drop: false },
+  { name: "careers", href: routes.careers, drop: false },
 ];
 
 const url = Astro.url;
 const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "header.navigation");
 
 function IsCurrentPage(page: string): boolean {
   return url.pathname
@@ -34,7 +37,7 @@ function IsCurrentPage(page: string): boolean {
         },
       ]}
     >
-      {link.name}
+      {t(link.name)}
       {link.drop && (
         <span class="flex items-center justify-center min-w-4">
           <DownArrow
