@@ -219,10 +219,7 @@
         "line-2-outlined": "MANAGEMENT",
         "line-3-contained": "CONSULTING"
       },
-      "description": [
-        "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.",
-        "Let's take your project, project portfolio, processes, resource or release management to the next level!"
-      ]
+      "text": "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.\n\nLet's take your project, project portfolio, processes, resource or release management to the next level!"
     },
     "about": {
       "tag": "ABOUT",

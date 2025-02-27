@@ -12,7 +12,6 @@ export default {
         sm: "480px",
         lg: "960px",
         "2xl": "1440px",
-        "3xl": "1920px",
       },
       container: {
         center: true,
@@ -29,7 +28,6 @@ export default {
           lg: "960px",
           xl: "1280px",
           "2xl": "1440px",
-          "3xl": "1920px",
         },
       },
       colors: {

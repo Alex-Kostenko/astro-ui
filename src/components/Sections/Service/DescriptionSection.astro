@@ -2,7 +2,9 @@
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
-import { Human } from "@assets/index";
+import { rareWavesBlack } from "@assets/index";
+import { VideoSource } from "@components/Video";
+import { DescriptionAstro } from "@components/Description";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "service.description");
@@ -26,7 +28,7 @@ const t = useTranslations(lang as Languages, "service.description");
     <span>{t("title.line-3-contained")}</span>
   </h2>
 
-  <section
+  <!-- <section
     class="gap-y-4 mt-10 font-gothic"
     class:list={[
       "flex flex-col 2xl:flex-row-reverse justify-between",
@@ -34,10 +36,9 @@ const t = useTranslations(lang as Languages, "service.description");
     ]}
   >
     <div class="2xl:max-w-[604px] object-cover w-full">
-      <img
-        class="min-h-full object-cover min-w-full"
-        src={Human.src}
-        alt="human face of number"
+      <VideoSource
+        source={[{ src: rareWavesBlack }]}
+        class="mix-blend-difference"
       />
     </div>
 
@@ -50,5 +51,10 @@ const t = useTranslations(lang as Languages, "service.description");
         ))
       }
     </div>
-  </section>
+  </section> -->
+  <DescriptionAstro
+    videoSrc={rareWavesBlack}
+    text={t("text")}
+    class:list={["xl:grid-cols-[auto,604px]"]}
+  />
 </Container>
