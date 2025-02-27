@@ -1,5 +1,5 @@
 import smallLogo from "./smallLogo.webp";
-import logo from "./logo.png";
+import logo from "./logo.webp";
 import clutch from "./Clutch.svg";
 import linkedin from "./Linkedin.svg";
 import UpArrow from "./upArrow.astro";
