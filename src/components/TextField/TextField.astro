@@ -1,0 +1,32 @@
+---
+interface Props {
+  type?: "text" | "email" | "number";
+  name?: string;
+  placeholder?: string;
+  errorMessage?: string;
+}
+
+const {
+  type = "text",
+  name,
+  placeholder,
+  errorMessage = "Required field",
+} = Astro.props;
+---
+
+<div class:list={[]}>
+  <input
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    class:list={[
+      "w-full bg-transparent duration-500 transition-all ",
+      "font-gothic text-brand-white text-base",
+      "outline-none caret-brand-white",
+      "focus:placeholder:px-2",
+      "min-h-10 py-[10px] px-4",
+      "border-b border-brand-white",
+    ]}
+  />
+  <p class="hidden text-red px-4">{errorMessage}</p>
+</div>

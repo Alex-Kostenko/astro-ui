@@ -1,0 +1,30 @@
+---
+import { Container } from "@components/Container";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+interface Props {
+  title: string | string[];
+}
+
+const { lang } = Astro.params;
+const { title } = Astro.props;
+
+const t = useTranslations(lang as Languages, "vacancy");
+---
+
+<Container>
+  <h2
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+    ]}
+  >
+    <span class="text-stroken-green-2 md:text-stroken-green-4"
+      >{t("title")}</span
+    >
+    <span>{title}</span>
+  </h2>
+</Container>
