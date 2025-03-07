@@ -5,6 +5,7 @@ import { ButtonAstro } from "@components/Button";
 import { getFromLocale, useTranslations } from "@i18n/index";
 import { formatLink } from "@utils/index";
 import { AccordionAstro } from "../../components/Accordion";
+import LanguageSwitchAstro from "./LanguageSwitchAstro.astro";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
@@ -38,6 +39,8 @@ const blockHeader = t("menu") as { title: string; list: string[] }[];
         {t("contactUs")}
       </ButtonAstro>
 
+      <div class:list={["flex items-center"]}></div>
+      <LanguageSwitchAstro />
       <button
         id="menu"
         class:list={["relative h-10 w-10 py-3 px-2 2xl:hidden"]}

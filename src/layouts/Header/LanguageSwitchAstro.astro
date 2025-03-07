@@ -1,0 +1,32 @@
+---
+import { languages } from "@i18n/index";
+
+const { lang } = Astro.params;
+
+const langs = Object.keys(languages)
+  .map((key) => languages[key])
+  .filter((lang) => lang.slug);
+---
+
+<select
+  class:list={["bg-transparent text-brand-white outline-0", "uppercase"]}
+  onchange="switchLang(value)"
+>
+  {
+    langs.map((language) => (
+      <option value={language.slug} selected={language.slug === lang}>
+        {language.slug}
+      </option>
+    ))
+  }
+</select>
+
+<script is:inline>
+  function switchLang(e) {
+    const lang = document.documentElement.lang;
+    const url = new URL(window.location.href);
+    const newPathname = url.pathname.replace(`/${lang}`, "");
+    const newUrl = `${url.origin}/${e}${newPathname}${url.search}${url.hash}`;
+    window.location.assign(newUrl);
+  }
+</script>
