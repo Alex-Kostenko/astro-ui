@@ -1,4 +1,5 @@
 ---
+import { DownArrow, UpArrow } from "@assets/icon";
 import { languages } from "@i18n/index";
 
 interface Props {
@@ -13,29 +14,137 @@ const langs = Object.keys(languages)
   .filter((lang) => lang.slug);
 ---
 
-<select
+<custom-select
   class:list={[
+    "relative",
+    "min-w-8 h-fit",
+    "py-3 px-2",
     "bg-transparent text-gray-200 outline-0",
     "uppercase text-16 font-gothic font-normal",
     className,
   ]}
-  onchange="switchLang(value)"
 >
-  {
-    langs.map((language) => (
-      <option value={language.slug} selected={language.slug === lang}>
-        {language.slug}
-      </option>
-    ))
-  }
-</select>
+  <section class="flex">
+    <select
+      data-lang={lang}
+      onchange="switchLang(value)"
+      class:list={["h-0 w-0"]}
+    >
+      {
+        langs.map((language) => (
+          <option value={language.slug} selected={language.slug === lang}>
+            {language.slug}
+          </option>
+        ))
+      }
+    </select>
+  </section>
+
+  <button class:list={["flex gap-1 items-center", "cursor-pointer"]}>
+    <span class="value flex-grow">Choce</span>
+    <span
+      class="open hidden"
+      class:list={["flex justify-center items-center", "w-4 aspect-square"]}
+    >
+      <UpArrow />
+    </span>
+    <span
+      class="close w-4 aspect-square"
+      class:list={["flex justify-center items-center", "w-4 aspect-square"]}
+    >
+      <DownArrow />
+    </span>
+  </button>
+
+  <ul
+    class:list={[
+      "absolute bottom-100 inset-x-0 w-full list-none",
+      "flex flex-col gap-1",
+      "mt-1 p-1",
+      "bg-black-100 hidden rounded-sm",
+    ]}
+  >
+    {
+      langs.map((language) => (
+        <li
+          class:list={["cursor-pointer"]}
+          value={language.slug}
+          data-selected="false"
+        >
+          {language.slug}
+        </li>
+      ))
+    }
+  </ul>
+</custom-select>
 
 <script is:inline>
-  function switchLang(e) {
-    const lang = document.documentElement.lang;
-    const url = new URL(window.location.href);
-    const newPathname = url.pathname.replace(`/${lang}`, "");
-    const newUrl = `${url.origin}/${e}${newPathname}${url.search}${url.hash}`;
-    window.location.assign(newUrl);
+  // function switchLang(e) {
+  //   const lang = document.documentElement.lang;
+  //   const url = new URL(window.location.href);
+  //   const newPathname = url.pathname.replace(`/${lang}`, "");
+  //   const newUrl = `${url.origin}/${e}${newPathname}${url.search}${url.hash}`;
+  //   window.location.assign(newUrl);
+  // }
+
+  class SelectCustom extends HTMLElement {
+    connectedCallback() {
+      this.button = this.querySelector("button");
+      this.list = this.querySelector("ul");
+      this.select = this.querySelector("select");
+
+      this.setValue = this.updateValueField.bind(this);
+      this.setArrow = this.updateArrow.bind(this);
+      this.setValue(this.select?.value);
+
+      this.button.addEventListener("click", this.onClick.bind(this));
+      this.list.addEventListener("click", this.onClickMenu.bind(this));
+      document.addEventListener("click", this.onClickOutside.bind(this));
+    }
+
+    updateValueField(value) {
+      const valueText = this.button.querySelector(".value");
+      valueText.textContent = value;
+      this.select.value = value;
+    }
+
+    updateArrow(value) {
+      const iconOpen = this.button.querySelector(".open");
+      const iconClose = this.button.querySelector(".close");
+      if (value) {
+        iconOpen.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+      } else {
+        iconClose.classList.add("hidden");
+        iconOpen.classList.remove("hidden");
+      }
+    }
+
+    onClickOutside(event) {
+      if (!this.contains(event.target)) {
+        this.list.classList.add("hidden");
+        this.setArrow(true);
+      }
+    }
+
+    onClick(event) {
+      const list = this.querySelector("ul");
+      list.classList.toggle("hidden");
+      const state = list.classList.contains("hidden");
+      console.log(state);
+
+      this.setArrow(state);
+    }
+
+    onClickMenu(event) {
+      const clickedItem = event.target.closest("li");
+      if (!clickedItem) return;
+      const selectedValue = clickedItem.getAttribute("value");
+      this.list.classList.add("hidden");
+
+      this.setValue(selectedValue);
+    }
   }
+
+  customElements.define("custom-select", SelectCustom);
 </script>
