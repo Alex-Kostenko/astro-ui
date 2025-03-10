@@ -9,7 +9,14 @@ export interface IList<T = IListItem> {
   items: T[];
 }
 
-interface IListItem {
+export interface ListWithSubTitle<T = IListItem> {
+  id: number;
+  title: string;
+  subTitle: string;
+  items: T[];
+}
+
+export interface IListItem {
   id: number;
   text: string;
 }
