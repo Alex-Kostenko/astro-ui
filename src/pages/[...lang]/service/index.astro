@@ -1,0 +1,85 @@
+---
+import type { GetStaticPaths } from "astro";
+import { HeroHeadAstro } from "@components/Hero";
+import Layout from "@layouts/Layout.astro";
+import { languages, type Language, type Languages } from "@i18n/ui";
+import { HeroSection, ServicesList } from "@components/Sections/Services";
+import { PartnersSections, TestimonialsSection } from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { useTranslations } from "@i18n/utils";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import type { IService } from "@interfaces/service";
+import serviceService from "@service/service.service";
+
+export const getStaticPaths = (async () => {
+  const projectService: IService[] = (await serviceService.getService()).data;
+
+  const requestProjects = Object.keys(languages).flatMap(
+    (lang) =>
+      // projectService.map((service) =>
+      serviceService
+        .get({
+          pagination: { limit: "max" },
+          locale: languages[lang].lang,
+        })
+        .then((response) => {
+          return {
+            lang: languages[lang] as Language,
+            // case: service,
+            response,
+          };
+        }),
+    // ),
+  );
+
+  const responses = await Promise.all(requestProjects);
+
+  return responses.flatMap((v) => {
+    return {
+      params: {
+        lang: v.lang.slug,
+        // case: v.case.slug
+      },
+      props: {
+        meta: v.response.meta,
+        // slug: v.case.slug,
+        projects: v.response.data,
+        // service: v.case,
+        services: projectService,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "service.contactUs");
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+
+const { projects, services } = Astro.props;
+---
+
+<Layout title="UniCode Services">
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main class="flex flex-col gap-[120px]">
+    <HeroHeadAstro>
+      <Breadcrumbs />
+    </HeroHeadAstro>
+
+    <HeroSection />
+    <ServicesList services={services} />
+    <PartnersSections />
+    <TestimonialsSection />
+    <ContactUsSection text={text} />
+  </main>
+</Layout>
