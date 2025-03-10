@@ -1,7 +1,12 @@
 ---
 import { languages } from "@i18n/index";
 
+interface Props {
+  class?: string;
+}
+
 const { lang } = Astro.params;
+const { class: className } = Astro.props;
 
 const langs = Object.keys(languages)
   .map((key) => languages[key])
@@ -9,7 +14,11 @@ const langs = Object.keys(languages)
 ---
 
 <select
-  class:list={["bg-transparent text-brand-white outline-0", "uppercase"]}
+  class:list={[
+    "bg-transparent text-gray-200 outline-0",
+    "uppercase text-16 font-gothic font-normal",
+    className,
+  ]}
   onchange="switchLang(value)"
 >
   {
