@@ -1,9 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import { listSquare } from "@assets/index";
+import type { IListItem } from "@interfaces/index";
 
 interface Props {
-  items: string[];
+  items: IListItem[];
 }
 
 const { items } = Astro.props;
@@ -11,7 +12,7 @@ const { items } = Astro.props;
 
 <ol class="list-inside flex flex-col gap-3 box-border">
   {
-    items.map((item: string) => (
+    items.map((item: IListItem) => (
       <li
         class:list={[
           "first:border-t border-gray-600 border-b p-3 flex gap-8 lg:gap-20",
@@ -24,7 +25,7 @@ const { items } = Astro.props;
         2) ::before as alternative
          */}
         <Image src={listSquare} alt="square" />
-        {item}
+        {item.text}
       </li>
     ))
   }
