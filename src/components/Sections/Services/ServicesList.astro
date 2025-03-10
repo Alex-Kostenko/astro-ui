@@ -1,0 +1,30 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+import ServicesCard from "./ServicesCard.astro";
+import type { IProject } from "@interfaces/project";
+import type { IService } from "@interfaces/service";
+
+interface Props {
+  services: IService[];
+}
+
+const { lang } = Astro.params;
+const { services } = Astro.props;
+
+const t = useTranslations(lang as Languages, "service.list");
+---
+
+<Container>
+  <SectionTitle title={t("title")} type={t("type")} />
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+    {
+      services.map((s, index) => {
+        return <ServicesCard service={s} index={index + 1} />;
+      })
+    }
+  </div>
+</Container>

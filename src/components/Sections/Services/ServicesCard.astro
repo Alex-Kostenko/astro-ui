@@ -1,0 +1,44 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { IProject } from "@interfaces/project";
+import type { IService } from "@interfaces/service";
+
+interface Props {
+  service: IService;
+  index: number;
+}
+const { service, index } = Astro.props;
+---
+
+<div
+  class="w-full h-full bg-brand-white rounded-lg p-6 flex flex-col gap-6 border border-brand-black"
+>
+  <img
+    src={service.preview.base64}
+    alt="Project Preview"
+    class="w-full xl:h-[186px] h-[112px] object-cover object-center"
+  />
+
+  <SectionTitle
+    title={service.name}
+    type={index.toString().padStart(2, "0")}
+    classContainer="!mb-0 !flex-col"
+    colorTitle="brand-black"
+  />
+
+  <TypographyAstro type="body-4" color="black">
+    <!-- {service.description} -->
+    The new Telemetry service enhances Percona's decision-making by collecting client
+    usage data, enabling the prioritization of features and improving product development.
+    This scalable, high-quality solution supports timely releases and efficient software
+    management.
+  </TypographyAstro>
+
+  <ButtonAstro
+    class="w-fit ml-auto mt-auto"
+    withArrow
+    asLink
+    href={`/service/${service.slug}`}>Explore</ButtonAstro
+  >
+</div>

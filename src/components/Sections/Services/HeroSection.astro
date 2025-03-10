@@ -1,0 +1,59 @@
+---
+import { Container } from "@components/Container";
+import { TypographyAstro } from "@components/Typography";
+import { useTranslations, type Languages } from "@i18n/index";
+import { abstractLoopBgWithLines } from "@assets/index";
+import { VideoSource } from "@components/Video";
+import { DescriptionAstro } from "@components/Description";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "service.description");
+---
+
+<Container class="mt-7">
+  <h2
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+    ]}
+  >
+    <span class="text-stroken-green-2 md:text-stroken-green-4">
+      {t("title.line-1-outlined")}
+    </span>
+    <span>
+      {t("title.line-2-contained")}
+    </span>
+  </h2>
+
+  <!-- <section
+    class="gap-y-4 mt-10 font-gothic"
+    class:list={[
+      "flex flex-col 2xl:flex-row-reverse justify-between",
+      "gap-y-3 md:gap-y-6",
+    ]}
+  >
+    <div class="2xl:max-w-[604px] object-cover w-full">
+      <VideoSource
+        source={[{ src: rareWavesBlack }]}
+        class="mix-blend-difference"
+      />
+    </div>
+
+    <div class="flex flex-col gap-5">
+      {
+        t("description").map((line: string) => (
+          <TypographyAstro type="body-4" class="2xl:w-[480px] leading-1">
+            {line}
+          </TypographyAstro>
+        ))
+      }
+    </div>
+  </section> -->
+  <DescriptionAstro
+    videoSrc={abstractLoopBgWithLines}
+    text={t("text")}
+    class:list={["xl:grid-cols-[auto,604px] mt-4 md:mt-10"]}
+  />
+</Container>
