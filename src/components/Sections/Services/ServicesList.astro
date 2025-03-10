@@ -4,11 +4,10 @@ import { SectionTitle } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
 import ServicesCard from "./ServicesCard.astro";
-import type { IProject } from "@interfaces/project";
-import type { IService } from "@interfaces/service";
+import type { IServicePreview } from "@interfaces/service";
 
 interface Props {
-  services: IService[];
+  services: IServicePreview[];
 }
 
 const { lang } = Astro.params;

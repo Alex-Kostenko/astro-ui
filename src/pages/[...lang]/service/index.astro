@@ -8,28 +8,23 @@ import { PartnersSections, TestimonialsSection } from "@components/Sections";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
-import type { IService } from "@interfaces/service";
 import serviceService from "@service/service.service";
 
 export const getStaticPaths = (async () => {
-  const projectService: IService[] = (await serviceService.getService()).data;
+  const projectService = (await serviceService.getServicePreview()).data;
 
-  const requestProjects = Object.keys(languages).flatMap(
-    (lang) =>
-      // projectService.map((service) =>
-      serviceService
-        .get({
-          pagination: { limit: "max" },
-          locale: languages[lang].lang,
-        })
-        .then((response) => {
-          return {
-            lang: languages[lang] as Language,
-            // case: service,
-            response,
-          };
-        }),
-    // ),
+  const requestProjects = Object.keys(languages).flatMap((lang) =>
+    serviceService
+      .get({
+        pagination: { limit: "max" },
+        locale: languages[lang].lang,
+      })
+      .then((response) => {
+        return {
+          lang: languages[lang] as Language,
+          response,
+        };
+      }),
   );
 
   const responses = await Promise.all(requestProjects);
@@ -38,13 +33,10 @@ export const getStaticPaths = (async () => {
     return {
       params: {
         lang: v.lang.slug,
-        // case: v.case.slug
       },
       props: {
         meta: v.response.meta,
-        // slug: v.case.slug,
         projects: v.response.data,
-        // service: v.case,
         services: projectService,
       },
     };
@@ -60,7 +52,7 @@ const text = t("text").map((t: string, i: number) => {
   return { text: t, alight: "none", variant: "contained" };
 });
 
-const { projects, services } = Astro.props;
+const { services } = Astro.props;
 ---
 
 <Layout title="UniCode Services">
