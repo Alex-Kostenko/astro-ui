@@ -20,7 +20,11 @@ const t = useTranslations(lang, "header");
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>
-      <img src={smallLogo.src} class="max-h-12 lg:max-h-16" alt="logo" />
+      <img
+        src={smallLogo.src}
+        class="max-h-12 lg:max-h-16 object-contain"
+        alt="logo"
+      />
     </a>
     <nav class="ml-auto hidden 2xl:flex items-center gap-x-10">
       <HeaderLinks />
