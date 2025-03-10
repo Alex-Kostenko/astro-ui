@@ -1,17 +1,18 @@
 import type { IImage, ListWithSubTitle } from ".";
 
-export interface IService {
+export interface IService extends IServicePreview {
+  features: ListWithSubTitle;
+  steps: IStepList;
+}
+
+export interface IServicePreview {
   id: number;
   documentId: string;
   slug: string;
   name: string;
-
   description: string;
-  features: ListWithSubTitle;
-  steps: IStepList;
   casesTitle: string;
   preview: IImage;
-
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
