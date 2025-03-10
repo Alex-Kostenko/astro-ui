@@ -71,15 +71,16 @@ const { projects, services } = Astro.props;
     type="text/css"
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
-  <main class="flex flex-col gap-[120px]">
+  <main>
     <HeroHeadAstro>
       <Breadcrumbs />
     </HeroHeadAstro>
-
-    <HeroSection />
-    <ServicesList services={services} />
-    <PartnersSections />
-    <TestimonialsSection />
-    <ContactUsSection text={text} />
+    <div class="flex flex-col gap-[120px] mt-[60px]">
+      <HeroSection />
+      <ServicesList services={services} />
+      <PartnersSections />
+      <TestimonialsSection />
+      <ContactUsSection text={text} />
+    </div>
   </main>
 </Layout>
