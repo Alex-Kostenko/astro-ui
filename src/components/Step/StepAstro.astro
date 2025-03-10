@@ -1,14 +1,13 @@
 ---
-import type { IStep } from "@interfaces/step";
+import type { IStepListItem } from "@interfaces/index";
+import { executeImg } from "@utils/excuteImg";
 import { Image } from "astro:assets";
-import { stepImg, steps } from "@assets/index";
 
 interface Props {
-  step: IStep;
-  imageIndex?: number;
+  step: IStepListItem;
 }
 
-const { step, imageIndex } = Astro.props;
+const { step } = Astro.props;
 ---
 
 <div
@@ -17,7 +16,7 @@ const { step, imageIndex } = Astro.props;
     "text-xl leading-6 w-full h-full p-4",
   ]}
 >
-  <Image src={(imageIndex && steps[imageIndex % 6]) || stepImg} alt="" />
+  <img src={step.image.base64} alt="" class="w-[136px] h-[136px]" />
   <h4 class="uppercase">{step.title}</h4>
   <p class="font-gothic">
     {step.description}
