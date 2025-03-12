@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { ButtonAstro, ButtonIcon, ButtonType } from "@components/Button";
 import { TypographyAstro } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
@@ -41,12 +41,7 @@ const t = useTranslations(lang as Languages, "team.worker");
           {worker.position}
         </TypographyAstro>
       </div>
-      <ButtonAstro
-        variant="contained"
-        iconOnly
-        iconClass="-rotate-45"
-        class="mt-auto"
-      />
+      <ButtonIcon iconClass="-rotate-45" class="mt-auto" />
     </div>
   </div>
   <div
@@ -93,13 +88,10 @@ const t = useTranslations(lang as Languages, "team.worker");
         {worker.description}
       </TypographyAstro>
     </div>
-
-    <ButtonAstro
-      variant="contained"
-      color="white"
-      iconOnly
+    <ButtonIcon
       class="mt-auto ml-auto"
-      iconClass="rotate-45"
+      iconClass="rotate-45 text-brand-black"
+      type={ButtonType.Secondary}
     />
   </div>
 </div>

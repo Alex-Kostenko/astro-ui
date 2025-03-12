@@ -1,7 +1,7 @@
 ---
 import { smallLogo } from "@assets/index";
 import HeaderLinks from "./HeaderLinks.astro";
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonAstro, ButtonType } from "@components/Button";
 import { getFromLocale, useTranslations } from "@i18n/index";
 import { formatLink } from "@utils/index";
 import LanguageSwitchAstro from "./LanguageSwitchAstro.astro";
@@ -31,15 +31,13 @@ const t = useTranslations(lang, "header");
     </nav>
 
     <section class="flex gap-x-3">
-      <ButtonAstro
-        asLink
+      <Button
         href="#contact-us-form"
-        color="biscuit"
-        variant="contained"
         class="2xl:ml-10"
+        type={ButtonType.Secondary}
       >
         {t("contactUs")}
-      </ButtonAstro>
+      </Button>
 
       <div class:list={["hidden 2xl:flex"]}><LanguageSwitchAstro /></div>
 

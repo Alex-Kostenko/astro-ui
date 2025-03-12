@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { ArrowedButton } from "@components/Button";
 import { Container } from "@components/Container";
 import ProjectList from "@components/ProjectCard/ProjectList.astro";
 import { SectionTitle } from "@components/Typography";
@@ -19,7 +19,7 @@ const t = useTranslations(lang as Languages, "home.project");
   <SectionTitle title={t("title")} type={t("tag")} />
 
   <ProjectList projects={response.data} />
-  <ButtonAstro withArrow asLink href="/cases/all/1" class="w-full">
+  <ArrowedButton href="/cases/all/1" class="w-full">
     {t("btnExplorerMore")}
-  </ButtonAstro>
+  </ArrowedButton>
 </Container>

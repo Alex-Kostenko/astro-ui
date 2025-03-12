@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { ButtonAstro, ButtonIcon } from "@components/Button";
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import type { InsightContent } from "@interfaces/insight";
@@ -32,8 +32,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
               >
                 {c.title}
               </TypographyAstro>
-              <ButtonAstro
-                iconOnly
+              <ButtonIcon
                 iconClass="-rotate-45 transition-transform duration-150 group-hover:rotate-45 group-data-[active]:!rotate-45"
                 class="group-data-[active]:bg-green-100"
               />

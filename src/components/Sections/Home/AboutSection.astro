@@ -1,10 +1,11 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { TypographyAstro } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import { ArrowRight, lotOfWavesBlack } from "@assets/index";
 import { VideoSource } from "@components/Video";
+import { ButtonType } from "@components/Button";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.about");
@@ -54,13 +55,13 @@ const t = useTranslations(lang as Languages, "home.about");
       </TypographyAstro>
 
       <div>
-        <ButtonAstro color="black" class="mt-5">
+        <Button type={ButtonType.Secondary} class="mt-5">
           {t("aboutUs")}
 
-          <span class="w-5 h-5 flex items-center justify-center">
+          <span slot="end" class="w-5 h-5 flex items-center justify-center">
             <ArrowRight />
           </span>
-        </ButtonAstro>
+        </Button>
       </div>
     </div>
   </section>

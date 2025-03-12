@@ -1,0 +1,18 @@
+---
+import { ArrowRight } from "@assets/icon";
+import { Button, ButtonType } from ".";
+
+interface Props {
+  href?: string;
+  type?: ButtonType;
+  class?: string;
+  iconClass?: string;
+}
+
+const props = Astro.props;
+---
+
+<Button {...props}>
+  <slot />
+  <ArrowRight slot="end" />
+</Button>
