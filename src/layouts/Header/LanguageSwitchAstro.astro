@@ -54,7 +54,7 @@ function swithLang(newLang: string) {
       <UpArrow />
     </span>
     <span
-      class="close w-4 aspect-square"
+      class="close"
       class:list={["flex justify-center items-center", "w-4 aspect-square"]}
     >
       <DownArrow />
@@ -97,6 +97,7 @@ function swithLang(newLang: string) {
       this.onClickOutside = this.onClickOutside.bind(this);
       this.updateValueField = this.updateValueField.bind(this);
       this.updateArrow = this.updateArrow.bind(this);
+      this.onChangeSelect = this.onChangeSelect.bind(this);
     }
 
     connectedCallback() {
@@ -157,6 +158,10 @@ function swithLang(newLang: string) {
       this.list.classList.add("hidden");
       this.updateValueField(selectedValue);
       this.updateArrow(true);
+    }
+
+    onChangeSelect(event: Event) {
+      this.updateValueField((event.target as HTMLSelectElement).value);
     }
   }
 
