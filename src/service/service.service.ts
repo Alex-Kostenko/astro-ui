@@ -9,6 +9,7 @@ import type {
 import apiService from "./api.service";
 import { ApiPath } from "@constant/api.path";
 import type { Languages } from "@i18n/index";
+import type { IService, IServicePreview } from "@interfaces/service";
 
 class ProjectService {
   async get({
@@ -38,13 +39,32 @@ class ProjectService {
     locale,
     filter,
   }: { locale?: Languages; filter?: IFilter[] } = {}): Promise<
-    IResponseApi<IProjectDomain[], MetaPagination>
+    IResponseApi<IService[], MetaPagination>
   > {
     return apiService.get(ApiPath.service, {
       query: {
         pagination: {
           limit: "max",
         },
+        populate: ["features:*", "steps:items.image", "preview"],
+        filter,
+        locale,
+      },
+    });
+  }
+
+  async getServicePreview({
+    locale,
+    filter,
+  }: { locale?: Languages; filter?: IFilter[] } = {}): Promise<
+    IResponseApi<IServicePreview[], MetaPagination>
+  > {
+    return apiService.get(ApiPath.service, {
+      query: {
+        pagination: {
+          limit: "max",
+        },
+        populate: ["preview"],
         filter,
         locale,
       },

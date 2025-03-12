@@ -19,6 +19,8 @@ export interface LanguageSet {
 
 export type Languages = "en" | "ua";
 
+export const languagesSet = new Set<Languages>(["en", "ua"]);
+
 export const defaultLang = "en";
 
 export const ui: any = { en, ua } as const;

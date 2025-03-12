@@ -3,20 +3,26 @@ import { Container } from "@components/Container";
 import { StepAstro, FirstStep } from "@components/Step";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import { type Languages, useTranslations } from "@i18n/index";
+import type { IStepList } from "@interfaces/service";
 import stepsService from "@service/steps.service";
 
+interface Props {
+  steps: IStepList;
+}
+
 const { lang } = Astro.params;
+const { steps } = Astro.props;
 
 const t = useTranslations(lang as Languages, "service.steps");
 
-const steps = await stepsService.get({ locale: lang as Languages });
+// const steps = await stepsService.get({ locale: lang as Languages });
 ---
 
 <Container class="overflow-hidden">
-  <SectionTitle title={t("title")} type={t("tag")} />
+  <SectionTitle title={steps.title} type={t("tag")} />
   <article class="flex flex-col gap-10">
     <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
-      {t("header")}
+      {steps.subTitle}
     </TypographyAstro>
   </article>
   <div class="swiper step-swiper mt-10">
@@ -25,9 +31,9 @@ const steps = await stepsService.get({ locale: lang as Languages });
         <FirstStep />
       </div>
       {
-        [...steps.data, ...steps.data].map((step, index) => (
+        steps.items.map((step, index) => (
           <div class="swiper-slide duration-300 w-[280px] h-[578px]">
-            <StepAstro step={step} imageIndex={index} />
+            <StepAstro step={step} />
           </div>
         ))
       }

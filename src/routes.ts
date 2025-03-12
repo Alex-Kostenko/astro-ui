@@ -1,7 +1,7 @@
 export const routes = {
   home: "/",
   cases: "/cases/all/1",
-  service: "/service/all",
+  service: "/service",
   careers: "/careers",
   whoWeAre: "/who-we-are",
   insight: "/insights",

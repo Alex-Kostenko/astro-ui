@@ -224,26 +224,13 @@
   "service": {
     "description": {
       "title": {
-        "line-1-outlined": "PROJECT",
-        "line-2-outlined": "MANAGEMENT",
-        "line-3-contained": "CONSULTING"
+        "line-1-outlined": "powering your",
+        "line-2-contained": "digitals growth"
       },
-      "text": "Developing complex systems or applications can be challenging. Uncertainty in feature deployment, inefficient time management, budget overruns, and project conflicts are common. Our project management consultancy service leverages the experiences of others, allowing you to learn from their mistakes and avoid risks.\n\nLet's take your project, project portfolio, processes, resource or release management to the next level!"
+      "text": "We provide cutting-edge IT solutions that drive business growth, streamline operations, and enhance digital transformation. From web and mobile development to AI, cloud computing, and DevOps, we cover the full spectrum of software development and technology integration."
     },
     "about": {
-      "tag": "ABOUT",
-      "title": "What is a Project Management Consulting service?",
-      "header": "Project Management Consulting offers expert guidance to help organizations plan, execute, and complete projects successfully.",
-      "list": [
-        "Audit of existing processes",
-        "Cost-benefit analysis of projects or features",
-        "Development of processes for project evaluation, prioritization, management, resource allocation, and release planning.",
-        "Tool implementation and configuration for processes, plus risk management and mitigation strategies.",
-        "Building an up-to-date roadmap",
-        "Implementation of processes and execution by our team members over a span of three months",
-        "Team structure assessment and optimization: identifying and addressing skill and / or personnel shortage",
-        "Providing support and coaching to empower project teams and stakeholders in process execution."
-      ]
+      "tag": "ABOUT"
     },
     "steps": {
       "tag": "STEPS",
@@ -255,8 +242,18 @@
       "tag": "CASES"
     },
     "contactUs": {
-      "text": ["your idea", "& our mission", "to make it real"]
-    }
+      "text": ["every journey", "starts from the", "first step"]
+    },
+    "list": {
+      "title": "Our services will help you to accomplish your purpose easier and better.",
+      "type": "SERVICES"
+    },
+    "whyUs": {
+      "type": "why us",
+      "title": "Your Trusted Partner in Innovation.",
+      "subTitle": "our service applies insights from other projects, allowing clients to benefit from others' experiences and avoid repeating their mistakes."
+    },
+    "explore": "Explore"
   },
   "project": {
     "tracking": {

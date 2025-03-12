@@ -16,3 +16,4 @@ export * from "./worker";
 export type { IWhoWeAre } from "./whoWeAre";
 export * from "./list";
 export * from "./insight";
+export * from "./service";

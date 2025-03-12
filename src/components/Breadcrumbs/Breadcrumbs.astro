@@ -1,14 +1,7 @@
 ---
-const paths = Astro.url.pathname
-  .split("/")
-  .filter(
-    (crumb: string) =>
-      crumb !== "ua" && crumb !== "en" && !isNumeric(crumb) && crumb,
-  );
-
-// const hasTrailingSlash = Astro.url.pathname.endsWith("/");
 import { breadcrumbsHome, UpArrow } from "@assets/index";
 import { Container } from "@components/Container";
+import { isLanguage } from "@i18n/index";
 
 interface Props {
   last?: string;
@@ -16,13 +9,20 @@ interface Props {
 
 const { last } = Astro.props;
 
+const paths = Astro.url.pathname
+  .split("/")
+  .filter((crumb: string) => !isNumeric(crumb) && !isLanguage(crumb) && crumb);
+
+const lang =
+  Astro.url.pathname.split("/").find((crumb) => isLanguage(crumb)) || "";
+
 function isNumeric(value: string): boolean {
   return /^[0-9]+$/.test(value);
 }
 ---
 
 <Container>
-  Break link!!!!
+  <!-- Break link!!!! -->
   <!-- 
   
   /ua/team redirect to /
@@ -32,7 +32,7 @@ function isNumeric(value: string): boolean {
   <nav class="mt-4 py-3">
     <ol class="flex gap-1 items-center font-gothic text-14 text-green-500">
       <li>
-        <a href="/" aria-label="home page"
+        <a href={`/${lang && lang + "/"}`} aria-label="home page"
           ><img src={breadcrumbsHome.src} alt="" /></a
         >
       </li>
@@ -46,7 +46,7 @@ function isNumeric(value: string): boolean {
               <a
                 href={paths.reduce(
                   (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
-                  "/",
+                  `/${lang && lang + "/"}`,
                 )}
               >
                 {index + 1 < paths.length

@@ -15,27 +15,14 @@ import {
   DescriptionSection,
   AboutServiceSection,
   StepsSection,
-  HeroTabsSection,
 } from "@components/Sections";
-import { cubeNear, cubeNearVP9 } from "@assets/index";
 import type { IService } from "@interfaces/service";
 import type { GetStaticPaths } from "astro";
 import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import HeroHeadAstro from "@components/Hero/HeroHeadAstro.astro";
 
 export const getStaticPaths = (async () => {
-  const projectService: IService[] = [
-    ...(await serviceService.getService()).data,
-    {
-      slug: "all",
-      documentId: "",
-      createdAt: "",
-      id: 0,
-      locale: "en",
-      name: "all",
-      publishedAt: "",
-      updatedAt: "",
-    },
-  ];
+  const projectService: IService[] = (await serviceService.getService()).data;
 
   const requestProjects = Object.keys(languages).flatMap((lang) =>
     projectService.map((service) =>
@@ -79,7 +66,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params;
-const { slug, projects, service } = Astro.props;
+const { projects, service } = Astro.props;
 
 const t = useTranslations(lang as Languages, "service.contactUs");
 
@@ -99,27 +86,16 @@ const text = t("text").map((t: string, i: number) => {
     type="text/css"
     href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
   />
-  <main class="flex flex-col gap-[120px]">
-    <div class="relative h-[420px] lg:h-[480px] bg-black bg-opacity-45">
-      <video
-        autoplay
-        muted
-        loop
-        preload="auto"
-        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
-      >
-        <track kind="captions" src="/captions/empty_captions.vtt" />
-        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-        <source src={cubeNearVP9} type="video/mp4" />
-      </video>
-      <HeroTabsSection domain={slug} />
-      <Breadcrumbs last={service?.name || slug} />
+  <main>
+    <HeroHeadAstro />
+    <Breadcrumbs />
+    <div class="flex flex-col gap-[120px] mt-[60px]">
+      <DescriptionSection service={service} />
+      <AboutServiceSection features={service.features} />
+      <StepsSection steps={service.steps} />
+      <TestimonialsSection />
+      <CasesSection data={projects} />
+      <ContactUsSection text={text} />
     </div>
-    <DescriptionSection />
-    <AboutServiceSection />
-    <StepsSection />
-    <TestimonialsSection />
-    <CasesSection data={projects} />
-    <ContactUsSection text={text} />
   </main>
 </Layout>

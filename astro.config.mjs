@@ -94,7 +94,7 @@ export default defineConfig({
   build: { inlineStylesheets: "never" },
 
   redirects: {
-    "/service": "/service/all",
+    // "/service": "/service/all",
     "/cases": "/cases/all/1",
     "/cases/all": "/cases/all/1",
     "/insights": "/insights/all/1",
