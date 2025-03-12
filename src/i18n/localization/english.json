@@ -248,8 +248,11 @@
       "type": "SERVICES"
     },
     "whyUs": {
-      "type": "why us"
-    }
+      "type": "why us",
+      "title": "Your Trusted Partner in Innovation.",
+      "subTitle": "our service applies insights from other projects, allowing clients to benefit from others' experiences and avoid repeating their mistakes."
+    },
+    "explore": "Explore"
   },
   "project": {
     "tracking": {
