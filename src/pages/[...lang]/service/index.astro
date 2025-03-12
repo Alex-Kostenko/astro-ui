@@ -3,7 +3,11 @@ import type { GetStaticPaths } from "astro";
 import { HeroHeadAstro } from "@components/Hero";
 import Layout from "@layouts/Layout.astro";
 import { languages, type Language, type Languages } from "@i18n/ui";
-import { HeroSection, ServicesList } from "@components/Sections/Services";
+import {
+  HeroSection,
+  ServicesList,
+  WhyUs,
+} from "@components/Sections/Services";
 import { PartnersSections, TestimonialsSection } from "@components/Sections";
 import ContactUsSection from "@components/Form/ContactUsSection.astro";
 import { useTranslations } from "@i18n/utils";
@@ -70,6 +74,7 @@ const { services } = Astro.props;
       <HeroSection />
       <ServicesList services={services} />
       <PartnersSections />
+      <WhyUs />
       <TestimonialsSection />
       <ContactUsSection text={text} />
     </div>
