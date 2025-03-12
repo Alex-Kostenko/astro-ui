@@ -1,7 +1,7 @@
 ---
 import { step_6 } from "@assets/image/steps";
 import { AccordionAstro } from "@components/Accordion";
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
@@ -46,7 +46,7 @@ const t = useTranslations(lang as Languages, "whoWeAre.services");
               <TypographyAstro class="xl:max-w-[480px]" type="body-2">
                 {item.text}
               </TypographyAstro>
-              <ButtonAstro class="w-fit">explore</ButtonAstro>
+              <Button class="w-fit">explore</Button>
             </div>
             <img src={step_6.src} alt="" class="w-[240px] h-[240px] invert" />
           </div>

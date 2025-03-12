@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { ButtonAstro, ButtonIcon } from "@components/Button";
 import { TypographyAstro } from "@components/Typography";
 import type { IInsight } from "@interfaces/insight";
 import { routes } from "src/routes";
@@ -48,6 +48,6 @@ const insightLink = routes.insight + "/" + insight.slug;
     </TypographyAstro>
   </article>
   <a href={insightLink}>
-    <ButtonAstro iconOnly iconClass="-rotate-45" class="ml-auto mt-auto" />
+    <ButtonIcon class="ml-auto mt-auto" iconClass="-rotate-45" />
   </a>
 </article>
