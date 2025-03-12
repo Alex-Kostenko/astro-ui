@@ -15,20 +15,13 @@ import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
 import serviceService from "@service/service.service";
 
 export const getStaticPaths = (async () => {
-  const projectService = (await serviceService.getServicePreview()).data;
-
   const requestProjects = Object.keys(languages).flatMap((lang) =>
     serviceService
-      .get({
-        pagination: { limit: "max" },
-        locale: languages[lang].lang,
-      })
-      .then((response) => {
-        return {
-          lang: languages[lang] as Language,
-          response,
-        };
-      }),
+      .getServicePreview({ locale: languages[lang].lang })
+      .then((res) => ({
+        lang: languages[lang],
+        res,
+      })),
   );
 
   const responses = await Promise.all(requestProjects);
@@ -39,9 +32,8 @@ export const getStaticPaths = (async () => {
         lang: v.lang.slug,
       },
       props: {
-        meta: v.response.meta,
-        projects: v.response.data,
-        services: projectService,
+        meta: v.res.meta,
+        services: v.res.data,
       },
     };
   });
