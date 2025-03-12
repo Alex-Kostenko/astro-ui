@@ -41,7 +41,7 @@ const { service, index } = Astro.props;
     class="w-fit ml-auto mt-auto"
     withArrow
     asLink
-    href={`${lang && `/${lang}`}/service/${service.slug}`}
+    href={`${lang ? `/${lang}` : ""}/service/${service.slug}`}
     >{t("explore")}</ButtonAstro
   >
 </div>
