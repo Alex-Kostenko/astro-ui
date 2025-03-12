@@ -1,0 +1,171 @@
+---
+import { DownArrow, UpArrow } from "@assets/icon";
+import { languages } from "@i18n/index";
+
+interface Props {
+  class?: string;
+}
+
+const { lang } = Astro.params;
+const { class: className } = Astro.props;
+const { url } = Astro;
+
+const langs = Object.keys(languages)
+  .map((key) => languages[key])
+  .filter((lang) => lang.slug);
+
+function swithLang(newLang: string) {
+  const newPathname = url.pathname.replace(`/${lang}`, "");
+  const newUrl = `${url.origin}/${newLang}${newPathname}${url.search}${url.hash}`;
+  return newUrl;
+}
+---
+
+<custom-select
+  class:list={[
+    "relative",
+    "min-w-16 h-fit",
+    "py-3 px-2",
+    "bg-transparent text-gray-200 outline-0",
+    "uppercase text-16 font-gothic font-normal",
+    className,
+  ]}
+  data-initValue={lang}
+>
+  <section class="flex">
+    <select onchange="switchLang(value)" class:list={["h-0 w-0"]}>
+      {
+        langs.map((language) => (
+          <option value={language.slug} selected={language.slug === lang}>
+            {language.slug}
+          </option>
+        ))
+      }
+    </select>
+  </section>
+
+  <button class:list={["w-full", "flex gap-1 items-center", "cursor-pointer"]}>
+    <span class="value inline-block flex-grow uppercase text-start">{lang}</span
+    >
+    <span
+      class="open hidden"
+      class:list={["flex justify-center items-center", "w-4 aspect-square"]}
+    >
+      <UpArrow />
+    </span>
+    <span
+      class="close"
+      class:list={["flex justify-center items-center", "w-4 aspect-square"]}
+    >
+      <DownArrow />
+    </span>
+  </button>
+
+  <ul
+    class:list={[
+      "absolute bottom-100 inset-x-0 w-full list-none",
+      "flex flex-col",
+      "mt-1 overflow-hidden",
+      "bg-gray-600 hidden rounded",
+    ]}
+  >
+    {
+      langs.map((language) => (
+        <li
+          class:list={["cursor-pointer flex", "hover:bg-gray-500 p-1 px-2"]}
+          value={language.slug}
+        >
+          <a href={swithLang(language.slug!)} class:list={["w-full"]}>
+            {language.slug}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</custom-select>
+
+<script>
+  class SelectCustom extends HTMLElement {
+    private button!: HTMLButtonElement;
+    private list!: HTMLUListElement;
+    private select!: HTMLSelectElement;
+
+    constructor() {
+      super();
+      this.onClick = this.onClick.bind(this);
+      this.onClickMenu = this.onClickMenu.bind(this);
+      this.onClickOutside = this.onClickOutside.bind(this);
+      this.updateValueField = this.updateValueField.bind(this);
+      this.updateArrow = this.updateArrow.bind(this);
+      this.onChangeSelect = this.onChangeSelect.bind(this);
+    }
+
+    connectedCallback() {
+      this.button = this.querySelector("button") as HTMLButtonElement;
+      this.list = this.querySelector("ul") as HTMLUListElement;
+      this.select = this.querySelector("select") as HTMLSelectElement;
+
+      if (this.select) {
+        this.updateValueField(this.select.value);
+      }
+
+      this.button.addEventListener("click", this.onClick);
+      this.list.addEventListener("click", this.onClickMenu);
+      document.addEventListener("click", this.onClickOutside);
+    }
+
+    disconnectedCallback() {
+      this.button.removeEventListener("click", this.onClick);
+      this.list.removeEventListener("click", this.onClickMenu);
+      document.removeEventListener("click", this.onClickOutside);
+    }
+
+    updateValueField(value: string) {
+      const valueText = this.button.querySelector(".value") as HTMLSpanElement;
+      if (valueText) valueText.textContent = value;
+      if (this.select) this.select.value = value;
+    }
+
+    updateArrow(isHidden: boolean) {
+      const iconOpen = this.button.querySelector(".open") as HTMLElement;
+      const iconClose = this.button.querySelector(".close") as HTMLElement;
+      if (!iconOpen || !iconClose) return;
+
+      iconOpen.classList.toggle("hidden", isHidden);
+      iconClose.classList.toggle("hidden", !isHidden);
+    }
+
+    onClickOutside(event: Event) {
+      if (!this.contains(event.target as Node)) {
+        this.list.classList.add("hidden");
+        this.updateArrow(true);
+      }
+    }
+
+    onClick() {
+      this.list.classList.toggle("hidden");
+      const isHidden = this.list.classList.contains("hidden");
+      this.updateArrow(isHidden);
+    }
+
+    onClickMenu(event: Event) {
+      const clickedItem = (event.target as HTMLElement).closest("li");
+      if (!clickedItem) return;
+
+      const selectedValue = clickedItem.getAttribute("value");
+      if (!selectedValue) return;
+
+      this.list.classList.add("hidden");
+      this.updateValueField(selectedValue);
+      this.updateArrow(true);
+    }
+
+    onChangeSelect(event: Event) {
+      this.updateValueField((event.target as HTMLSelectElement).value);
+    }
+  }
+
+  if (!customElements.get("custom-select")) {
+    customElements.define("custom-select", SelectCustom);
+  }
+</script>
