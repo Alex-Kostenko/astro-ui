@@ -1,12 +1,19 @@
 ---
 import { ButtonAstro } from "@components/Button";
 import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
 import type { IServicePreview } from "@interfaces/service";
 
 interface Props {
   service: IServicePreview;
   index: number;
 }
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "service");
+
 const { service, index } = Astro.props;
 ---
 
@@ -27,17 +34,14 @@ const { service, index } = Astro.props;
   />
 
   <TypographyAstro type="body-4" color="black">
-    <!-- {service.description} -->
-    The new Telemetry service enhances Percona's decision-making by collecting client
-    usage data, enabling the prioritization of features and improving product development.
-    This scalable, high-quality solution supports timely releases and efficient software
-    management.
+    {service.description}
   </TypographyAstro>
 
   <ButtonAstro
     class="w-fit ml-auto mt-auto"
     withArrow
     asLink
-    href={`/service/${service.slug}`}>Explore</ButtonAstro
+    href={`${lang && `/${lang}`}/service/${service.slug}`}
+    >{t("explore")}</ButtonAstro
   >
 </div>
