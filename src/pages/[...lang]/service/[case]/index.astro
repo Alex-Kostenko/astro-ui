@@ -68,7 +68,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params;
-const { slug, projects, service } = Astro.props;
+const { projects, service } = Astro.props;
 
 const t = useTranslations(lang as Languages, "service.contactUs");
 
