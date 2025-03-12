@@ -5,15 +5,9 @@ interface Props {
   href?: string;
   type?: ButtonType;
   class?: string;
-  withArrow?: boolean;
 }
 
-const {
-  href,
-  class: className,
-  type = ButtonType.Primary,
-  withArrow = false,
-} = Astro.props;
+const { href, class: className, type = ButtonType.Primary } = Astro.props;
 
 const [hasStartSlot, hasEndSlot] = [Astro.slots["start"], Astro.slots["end"]];
 
@@ -46,22 +40,4 @@ const Tag = href ? "a" : "button";
     <slot />
   </p>
   <slot name="end" />
-  {
-    withArrow && (
-      <svg
-        width="13"
-        height="8"
-        viewBox="0 0 13 8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0.666016 3.99996H11.666M11.666 3.99996L8.33268 0.666626M11.666 3.99996L8.33268 7.33329"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linejoin="round"
-        />
-      </svg>
-    )
-  }
 </Tag>
