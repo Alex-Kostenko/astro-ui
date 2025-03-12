@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { Button } from "@components/Button";
 import { Container } from "@components/Container";
 import ProjectCard from "@components/ProjectCard/ProjectCard.astro";
 import { SectionTitle } from "@components/Typography";
@@ -22,14 +22,7 @@ const t = useTranslations(lang as Languages, "project.more");
   <section class="grid md:grid-cols-2 gap-y-5 gap-x-5 mb-5">
     {projects.map((v) => <ProjectCard project={v} class="project-more" />)}
   </section>
-  <ButtonAstro
-    withArrow
-    asLink
-    href="/todo"
-    variant="contained"
-    color="black"
-    class="w-full">{t("button")}</ButtonAstro
-  >
+  <Button withArrow href="/todo" class="w-full">{t("button")}</Button>
 </Container>
 
 <style is:global>

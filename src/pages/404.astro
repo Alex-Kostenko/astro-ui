@@ -10,7 +10,7 @@ import {
 import type { GetStaticPaths } from "astro";
 import { HeroHeadAstro } from "@components/Hero";
 import { ArrowRight, circleWithHoleToLeft } from "@assets/index";
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonAstro } from "@components/Button";
 import { Container } from "@components/Container";
 import { formatLink } from "@utils/format.link";
 
@@ -54,10 +54,10 @@ const t = useTranslations((lang as Languages) || defaltLang, "404");
       </article>
 
       <a href={formatLink(Astro.url, "/")}>
-        <ButtonAstro>
+        <Button>
           {t("backToHome")}
-          <ArrowRight class="-rotate-45" />
-        </ButtonAstro>
+          <ArrowRight slot="end" class="-rotate-45" />
+        </Button>
       </a>
     </Container>
   </main>

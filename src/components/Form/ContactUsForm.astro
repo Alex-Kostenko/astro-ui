@@ -1,5 +1,5 @@
 ---
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonAstro, ButtonType } from "@components/Button";
 import { TextField } from "@components/TextField";
 import FilePicker from "./FilePicker.astro";
 import CheckBox from "./CheckBox.astro";
@@ -58,14 +58,9 @@ const t = useTranslations(lang as Languages, "formContactUs");
         </a>
       </span>
     </CheckBox>
-    <ButtonAstro
-      slot="toast-trigger"
-      color="biscuit"
-      class="w-full"
-      type="submit"
-    >
+    <Button class="w-full" type={ButtonType.Secondary}>
       {t("submitBtn")}
-    </ButtonAstro>
+    </Button>
   </form>
 </section>
 
