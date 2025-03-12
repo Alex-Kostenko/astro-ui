@@ -4,17 +4,22 @@ import { DownArrow, UpArrow } from "@assets/index";
 import { routes } from "src/routes";
 import { useTranslations, type Languages } from "@i18n/index";
 
+interface Props {
+  hasArrow?: boolean;
+}
+
 const links = [
-  { name: "services", href: routes.service, drop: false },
-  { name: "cases", href: routes.cases, drop: false },
-  { name: "who_we_are", href: routes.whoWeAre, drop: false },
-  { name: "insights", href: routes.allInsights, drop: false },
-  { name: "team", href: routes.team, drop: false },
-  { name: "careers", href: routes.careers, drop: false },
+  { name: "services", href: routes.service },
+  { name: "cases", href: routes.cases },
+  { name: "who_we_are", href: routes.whoWeAre },
+  { name: "insights", href: routes.allInsights },
+  { name: "team", href: routes.team },
+  { name: "careers", href: routes.careers },
 ];
 
 const url = Astro.url;
 const { lang } = Astro.params;
+const { hasArrow } = Astro.props;
 
 const t = useTranslations(lang as Languages, "header.navigation");
 
@@ -31,29 +36,17 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center px-2  font-gothic tracking-[0.8px] text-brand-white",
+        "flex gap-x-1 items-center justify-between",
+        "px-2 font-gothic tracking-[0.8px] text-brand-white",
         {
           "!text-brand-beigeLight border-b": IsCurrentPage(link.href),
         },
       ]}
     >
       {t(link.name)}
-      {link.drop && (
+      {hasArrow && (
         <span class="flex items-center justify-center min-w-4">
-          <DownArrow
-            class:list={[
-              {
-                hidden: IsCurrentPage(link.href),
-              },
-            ]}
-          />
-          <UpArrow
-            class:list={[
-              {
-                hidden: !IsCurrentPage(link.href),
-              },
-            ]}
-          />
+          {IsCurrentPage(link.href) ? <DownArrow /> : <UpArrow />}
         </span>
       )}
     </a>
