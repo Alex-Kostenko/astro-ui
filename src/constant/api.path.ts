@@ -15,4 +15,5 @@ export enum ApiPath {
   insight = "/insights",
   insightCategory = "/insight-categories",
   subscribeNews = "/news-subscribers",
+  whyUs = "/why-us",
 }
