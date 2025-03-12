@@ -5,9 +5,15 @@ interface Props {
   href?: string;
   type?: ButtonType;
   class?: string;
+  withArrow?: boolean;
 }
 
-const { href, class: className, type = ButtonType.Primary } = Astro.props;
+const {
+  href,
+  class: className,
+  type = ButtonType.Primary,
+  withArrow = false,
+} = Astro.props;
 
 const [hasStartSlot, hasEndSlot] = [Astro.slots["start"], Astro.slots["end"]];
 
@@ -15,8 +21,9 @@ const ButtonSetStyle: Record<ButtonType, string> = {
   [ButtonType.Primary]:
     "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500 active:bg-green-500",
   [ButtonType.Secondary]:
-    "bg-brand-white text-text-green hover:bg-greenLight-200 focus:bg-green-300 focus:text-brand-white active:bg-green-300 active:text-brand-white",
-  [ButtonType.PrimaryOutLine]: "",
+    "bg-brand-white text-green hover:bg-greenLight-200 focus:bg-green-300 focus:text-brand-white active:bg-green-300 active:text-brand-white",
+  [ButtonType.OutLine]:
+    "text-green border-2 border-green hover:border-greenLight-400 hover:bg-greenLight-400 focus:border-green-500 active:bg-green-500 active:text-brand-white",
 };
 
 const Tag = href ? "a" : "button";
@@ -25,7 +32,7 @@ const Tag = href ? "a" : "button";
 <Tag
   href={href}
   class:list={[
-    "flex gap-2 items-center   ",
+    "flex gap-2 items-center justify-center ",
     "h-11 min-w-11 rounded px-4",
     "text-center uppercase box-border font-gothic700 font-bold text-base leading-tight cursor-pointer",
     "duration-200",
@@ -39,4 +46,22 @@ const Tag = href ? "a" : "button";
     <slot />
   </p>
   <slot name="end" />
+  {
+    withArrow && (
+      <svg
+        width="13"
+        height="8"
+        viewBox="0 0 13 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0.666016 3.99996H11.666M11.666 3.99996L8.33268 0.666626M11.666 3.99996L8.33268 7.33329"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
 </Tag>
