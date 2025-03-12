@@ -72,7 +72,7 @@ function swithLang(newLang: string) {
     {
       langs.map((language) => (
         <li
-          class:list={["cursor-pointer flex", "hover:bg-gray-500 p-1"]}
+          class:list={["cursor-pointer flex", "hover:bg-gray-500 p-1 px-2"]}
           value={language.slug}
         >
           <a href={swithLang(language.slug!)} class:list={["w-full"]}>
