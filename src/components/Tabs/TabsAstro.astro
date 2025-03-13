@@ -1,0 +1,35 @@
+---
+import { Sizes } from "@constant/index";
+import { TabsType } from "./tabs.style";
+
+interface Props {
+  href?: string;
+  size?: Sizes;
+  typeTabs?: TabsType;
+}
+
+const { href, size = Sizes.large, typeTabs = TabsType.Default } = Astro.props;
+
+const Tag = href ? "a" : "button";
+
+const SizesSet: Partial<Record<Sizes, string>> = {
+  [Sizes.large]: "text-20 h-[52px] py-3 px-5",
+  [Sizes.small]: "text-14 h-10 py-3 px-4",
+};
+
+const TypeTypesSet: Record<TabsType, string> = {
+  [TabsType.Secondary]: "",
+  [TabsType.Default]: "",
+};
+---
+
+<Tag
+  class:list={[
+    "text-center uppercase font-gothic700 font-bold   ",
+    SizesSet[size],
+    TypeTypesSet[typeTabs],
+  ]}
+  href={href}
+>
+  <slot />
+</Tag>
