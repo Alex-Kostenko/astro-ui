@@ -1,5 +1,5 @@
 ---
-import { ServiceLink } from "@components/Link";
+import { Tabs, TabsType } from "@components/Tabs";
 import { useTranslations, type Languages } from "@i18n/index";
 import type { IInsightCategory } from "@interfaces/index";
 import insightService from "@service/insight.service";
@@ -38,26 +38,22 @@ const getNeededLength = (data: IInsightCategory[]) => {
 
 <div class:list={"w-full mb-[120px]"}>
   <div class="bg-brand-green px-2 py-2 rounded-lg flex gap-[30px]">
-    <ServiceLink
-      class="swiper-slide w-fit"
-      variant="none"
-      color="light-green"
-      active={true}
-      >{currentCategory ? currentCategory.name : t("all")}</ServiceLink
-    >
+    <Tabs class="swiper-slide w-fit" typeTabs={TabsType.Secondary}>
+      {currentCategory ? currentCategory.name : t("all")}
+    </Tabs>
     <div class="categories-swiper swiper">
       <section class:list={["swiper-wrapper justify-between"]}>
         {
           category !== "all" && (
-            <ServiceLink
+            <Tabs
               class="swiper-slide w-fit"
-              variant="none"
-              color="light-green"
-              active={category === "all"}
+              typeTabs={
+                category === "all" ? TabsType.Secondary : TabsType.Default
+              }
               href={getHref("all")}
             >
               {t("all")}
-            </ServiceLink>
+            </Tabs>
           )
         }
 
@@ -65,15 +61,15 @@ const getNeededLength = (data: IInsightCategory[]) => {
           getNeededLength(categories.data).map(
             (v) =>
               v.slug !== category && (
-                <ServiceLink
+                <Tabs
                   class="swiper-slide w-fit"
-                  variant="none"
-                  color="light-green"
-                  active={category === v.slug}
+                  typeTabs={
+                    category === v.slug ? TabsType.Secondary : TabsType.Default
+                  }
                   href={getHref(v.slug)}
                 >
                   {v.name}
-                </ServiceLink>
+                </Tabs>
               ),
           )
         }
