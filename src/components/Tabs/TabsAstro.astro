@@ -1,33 +1,43 @@
 ---
-import { Sizes } from "@constant/index";
 import { TabsType } from "./tabs.style";
+import { TabsSize } from "./tabs.size";
 
-interface Props {
+export interface Props {
   href?: string;
-  size?: Sizes;
+  size?: TabsSize;
   typeTabs?: TabsType;
+  class?: string;
 }
 
-const { href, size = Sizes.large, typeTabs = TabsType.Default } = Astro.props;
+const {
+  href,
+  size = TabsSize.SmallToLarge,
+  typeTabs = TabsType.Default,
+  class: className,
+} = Astro.props;
 
 const Tag = href ? "a" : "button";
 
-const SizesSet: Partial<Record<Sizes, string>> = {
-  [Sizes.large]: "text-20 h-[52px] py-3 px-5",
-  [Sizes.small]: "text-14 h-10 py-3 px-4",
+const SizesSet: Partial<Record<TabsSize, string>> = {
+  [TabsSize.SmallToLarge]:
+    "py-3 text-14 h-10 px-4 2xl:text-20 2xl:h-[52px] 2xl:px-5",
+  [TabsSize.LargeToSmall]:
+    "py-3 2xl:text-14 2xl:h-10  2xl:px-4 text-20 h-[52px] px-5",
 };
 
 const TypeTypesSet: Record<TabsType, string> = {
-  [TabsType.Secondary]: "",
-  [TabsType.Default]: "",
+  [TabsType.Secondary]: "bg-brand-white text-brand-black",
+  [TabsType.Default]: "text-brand-white bg-transparent",
 };
 ---
 
 <Tag
   class:list={[
     "text-center uppercase font-gothic700 font-bold   ",
+    "rounded  ",
     SizesSet[size],
     TypeTypesSet[typeTabs],
+    className,
   ]}
   href={href}
 >
