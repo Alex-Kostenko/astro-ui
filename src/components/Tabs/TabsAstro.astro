@@ -7,6 +7,7 @@ export interface Props {
   size?: TabsSize;
   typeTabs?: TabsType;
   class?: string;
+  disabled?: boolean;
 }
 
 const {
@@ -14,6 +15,7 @@ const {
   size = TabsSize.SmallToLarge,
   typeTabs = TabsType.Default,
   class: className,
+  disabled,
 } = Astro.props;
 
 const Tag = href ? "a" : "button";
@@ -27,7 +29,7 @@ const SizesSet: Partial<Record<TabsSize, string>> = {
 
 const TypeTypesSet: Record<TabsType, string> = {
   [TabsType.Secondary]: "bg-brand-white text-brand-black",
-  [TabsType.Default]: "text-brand-white bg-transparent",
+  [TabsType.Default]: "text-brand-white bg-transparent hover:bg-gray-300",
 };
 ---
 
@@ -35,6 +37,7 @@ const TypeTypesSet: Record<TabsType, string> = {
   class:list={[
     "text-center uppercase font-gothic700 font-bold   ",
     "rounded  ",
+    { "pointer-events-none": disabled },
     SizesSet[size],
     TypeTypesSet[typeTabs],
     className,
