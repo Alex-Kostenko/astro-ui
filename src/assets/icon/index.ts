@@ -20,6 +20,9 @@ import linkedInLogo from "./linkedInLogo.svg";
 import telegram from "./telegram.svg";
 import email from "./email.svg";
 
+import ChevronLeft from "./chevronLeft.astro";
+import ChevronRight from "./chevronRight.astro";
+
 export {
   smallLogo,
   logo,
@@ -41,4 +44,6 @@ export {
   telegram,
   email,
   circleWithHoleToLeft,
+  ChevronLeft,
+  ChevronRight,
 };
