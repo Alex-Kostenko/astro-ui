@@ -1,7 +1,8 @@
 ---
-import { Link } from "@components/Link";
 import { formatLink } from "@utils/format.link";
 import type { Page } from "astro";
+import PaginationButton from "./PaginationButton.astro";
+import { ChevronLeft, ChevronRight } from "@assets/icon";
 
 interface Props {
   href: string;
@@ -53,12 +54,13 @@ const formatPageLink = (target: number) => {
 ---
 
 <section class="py-2 flex gap-y-3 flex-wrap justify-between items-center">
-  <Link
+  <PaginationButton
     href={paginate?.url?.prev &&
       paginate?.url?.prev + (toBlock ? `#${toBlock}` : "")}
-    disabled={!paginate?.url?.prev}
-    class="order-1">{"<"}</Link
+    class="order-1"
   >
+    <ChevronLeft />
+  </PaginationButton>
 
   <section
     class="sm:order-2 flex gap-x-4 sm:gap-x-6 w-full sm:w-auto justify-center"
@@ -67,29 +69,31 @@ const formatPageLink = (target: number) => {
       pages.map((v) => {
         if (typeof v === "object") {
           return (
-            <Link href={formatPageLink(v.target)} class="hidden sm:block px-0">
+            <PaginationButton
+              href={formatPageLink(v.target)}
+              class="hidden sm:block px-0"
+            >
               {v.label}
-            </Link>
+            </PaginationButton>
           ); // Пропуск
         }
         return (
-          <Link
-            color="green"
+          <PaginationButton
             href={formatPageLink(v)}
             active={page === v.toString()}
             class="min-w-10 px-0"
           >
             {v}
-          </Link>
+          </PaginationButton>
         );
       })
     }
   </section>
-
-  <Link
+  <PaginationButton
     href={paginate?.url?.next &&
       paginate?.url?.next + (toBlock ? `#${toBlock}` : "")}
-    disabled={!paginate?.url?.next}
-    class="order-3">{">"}</Link
+    class="order-3"
   >
+    <ChevronRight />
+  </PaginationButton>
 </section>
