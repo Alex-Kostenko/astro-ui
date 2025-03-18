@@ -1,6 +1,6 @@
 ---
 import { Container } from "@components/Container";
-import { Link } from "@components/Link";
+import { Tabs, TabsType } from "@components/Tabs";
 import { useTranslations, type Languages } from "@i18n/index";
 import projectService from "@service/project.service";
 import { formatLink } from "@utils/index";
@@ -20,26 +20,25 @@ const t = useTranslations(lang as Languages, "cases.tabSection");
   <div class="bg-brand-green px-2 py-2 rounded-lg">
     <div class="mySwiper swiper">
       <section class:list={["swiper-wrapper justify-between"]}>
-        <Link
+        <Tabs
           class="swiper-slide"
-          variant="none"
-          color="biscuit"
-          active={domain === "all"}
+          typeTabs={domain === "all" ? TabsType.Secondary : TabsType.Default}
           href={formatLink(Astro.url, `cases/all/1#cases`)}
-          >{t("allCases")}</Link
         >
+          {t("allCases")}
+        </Tabs>
 
         {
           domains.data.map((v) => (
-            <Link
+            <Tabs
               class="swiper-slide"
-              variant="none"
-              color="biscuit"
-              active={domain === v.slug}
+              typeTabs={
+                domain === v.slug ? TabsType.Secondary : TabsType.Default
+              }
               href={formatLink(Astro.url, `cases/${v.slug}/1#cases`)}
             >
               {v.name}
-            </Link>
+            </Tabs>
           ))
         }
       </section>
