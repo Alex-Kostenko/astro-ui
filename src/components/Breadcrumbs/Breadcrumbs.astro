@@ -1,7 +1,8 @@
 ---
 import { breadcrumbsHome, UpArrow } from "@assets/index";
 import { Container } from "@components/Container";
-import { isLanguage } from "@i18n/index";
+import { languages } from "@i18n/index";
+import { formatLink } from "@utils/format.link";
 
 interface Props {
   last?: string;
@@ -11,12 +12,9 @@ const { last } = Astro.props;
 
 const paths = Astro.url.pathname
   .split("/")
-  .filter((crumb: string) => !isNumeric(crumb) && !isLanguage(crumb) && crumb);
-
-//  hint -> you can use formatLink that use in header link
-
-const lang =
-  Astro.url.pathname.split("/").find((crumb) => isLanguage(crumb)) || "";
+  .filter(
+    (crumb: string) => !isNumeric(crumb) && !(crumb in languages) && crumb,
+  );
 
 function isNumeric(value: string): boolean {
   return /^[0-9]+$/.test(value);
@@ -34,7 +32,7 @@ function isNumeric(value: string): boolean {
   <nav class="mt-4 py-3">
     <ol class="flex gap-1 items-center font-gothic text-14 text-green-500">
       <li>
-        <a href={`/${lang && lang + "/"}`} aria-label="home page"
+        <a href={formatLink(Astro.url, "/")} aria-label="home page"
           ><img src={breadcrumbsHome.src} alt="" /></a
         >
       </li>
@@ -46,9 +44,12 @@ function isNumeric(value: string): boolean {
             </li>
             <li class="capitalize">
               <a
-                href={paths.reduce(
-                  (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
-                  `/${lang && lang + "/"}`,
+                href={formatLink(
+                  Astro.url,
+                  paths.reduce(
+                    (acc, cur, i) => acc + (i <= index ? cur + "/" : ""),
+                    `/`,
+                  ),
                 )}
               >
                 {index + 1 < paths.length
