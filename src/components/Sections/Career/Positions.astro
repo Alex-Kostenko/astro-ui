@@ -32,7 +32,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
           <div class="flex flex-col gap-3">
             <article class="flex flex-col gap-1">
               <TypographyAstro type="subTitle-sm-4" color="gray">
-                Work type:
+                {t("workType")}
               </TypographyAstro>
               <div class="flex flex-wrap gap-1">
                 {v.workType.map((s) => (
@@ -44,7 +44,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
             </article>
             <article class="flex flex-col gap-1">
               <TypographyAstro type="subTitle-sm-4" color="gray">
-                main skills:
+                {t("mainSkills")}
               </TypographyAstro>
               <p class="text-brand-black text-16 font-gothic">
                 {v.skills.reduce(

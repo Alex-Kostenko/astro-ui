@@ -310,7 +310,9 @@
     },
     "positions": {
       "title": "& Start Your Journey with Us",
-      "type": "OPEN POSITIONS"
+      "type": "OPEN POSITIONS",
+      "workType": "Work type:",
+      "mainSkills": "Main skills:"
     },
     "contactUs": [
       {
