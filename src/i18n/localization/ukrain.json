@@ -447,8 +447,12 @@
       "technologies": "Технології",
       "experience": "Досвід",
       "about": "Про мене",
-      "years": "років",
-      "months": "місяців"
+      "year": "рік",
+      "yearLess": "роки",
+      "yearMore": "років",
+      "month": "місяць",
+      "monthLess": "місяці",
+      "monthMore": "місяців"
     },
     "recruiter": {
       "title": "Ви зацікавлені стати частиною команди та маєте запитання?",

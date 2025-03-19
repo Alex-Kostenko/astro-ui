@@ -13,6 +13,35 @@ interface Props {
 const { lang } = Astro.params;
 const { worker, class: className } = Astro.props;
 
+const experience = (() => {
+  const experience =
+    new Date().getFullYear() - new Date(worker.experience).getFullYear();
+  let exp = undefined;
+  let isMonth = false;
+  let less = undefined;
+  if (experience === 0) {
+    exp = new Date().getMonth() - new Date(worker.experience).getMonth();
+    isMonth = true;
+  } else {
+    exp = experience;
+  }
+
+  if (exp >= 2 && exp <= 4) {
+    less = true;
+  } else if (exp >= 5) {
+    less = false;
+  }
+
+  const path = `${isMonth ? "month" : "year"}${less !== undefined ? (less ? "Less" : "More") : ""}`;
+
+  return {
+    exp,
+    isMonth,
+    less,
+    path,
+  };
+})();
+
 const t = useTranslations(lang as Languages, "team.worker");
 ---
 
@@ -70,9 +99,9 @@ const t = useTranslations(lang as Languages, "team.worker");
         {t("experience")}:
       </TypographyAstro>
       <TypographyAstro color="white" type="body-2" class="!text-14">
-        {new Date().getFullYear() - new Date(worker.experience).getFullYear()}
-        years
-        <!-- TODO: add dynamic time detect -->
+        {experience.exp}
+        {" "}
+        {t(experience.path)}
       </TypographyAstro>
     </div>
 
