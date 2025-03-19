@@ -1,0 +1,47 @@
+---
+import { cubeNear, cubeNear264, cubeNearVP9 } from "@assets/video";
+import { languages } from "@i18n/ui";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((lang) => ({
+    params: { lang: languages[lang].slug },
+  }));
+}) satisfies GetStaticPaths;
+---
+
+<section class="relative min-h-dvh flex items-center justify-center">
+  <video
+    autoplay
+    muted
+    loop
+    preload="auto"
+    onloadeddata="this.classList.add('opacity-anim')"
+    class="opacity-0 absolute -z-10 top-0 inset-x-0 bg-black bg-opacity-45 h-full w-full object-cover transition-opacity duration-1000 ease-out"
+  >
+    <track kind="captions" src="/captions/empty_captions.vtt" />
+    <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+    <source src={cubeNear264} type="video/mp4" />
+    <source src={cubeNearVP9} type="video/mp4" />
+  </video>
+  <div
+    class="grid grid-cols-1 md:grid-cols-[auto,auto] max-w-[1440px] gap-5 text-brand-white text-stroken-green-2 mb-3 text-center uppercase font-asket800 font-extrabold text-24 md:text-32 2xl:text-40 px-4 md:px-8"
+  >
+    <h5 class="my-auto">the site is currently under development</h5>
+  </div>
+</section>
+
+<style>
+  .opacity-anim {
+    opacity: 1;
+  }
+  @font-face {
+    font-family: "Asket800";
+    src: url("/fonts/asket/asketExtrabold.otf") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    font-stretch: expanded;
+    font-stretch: normal;
+  }
+</style>

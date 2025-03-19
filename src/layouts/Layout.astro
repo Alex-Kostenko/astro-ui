@@ -4,6 +4,7 @@ import Header from "./Header/Header.astro";
 import Footer from "./Footer/Footer.astro";
 import { Toast } from "@components/Toast";
 import { pwaInfo } from "virtual:pwa-info";
+const mode = import.meta.env.MODE;
 
 interface IOpenGraph {
   title?: string;
@@ -27,6 +28,9 @@ const gtmToken = import.meta.env.GTM_TOKEN;
 <!doctype html>
 <html lang={lang || "en"}>
   <head>
+    <!-- Redirect in preview mode -->
+    {mode === "preview" && <meta http-equiv="refresh" content="0;url=/dev" />}
+
     <meta charset="UTF-8" />
     <!-- Google tag (gtag.js) -->
     <meta id="tokens" data-ga-token={gaToken} data-gtm-token={gtmToken} />
@@ -135,62 +139,63 @@ const gtmToken = import.meta.env.GTM_TOKEN;
     <slot />
     <Footer />
   </body>
+
+  <style is:global>
+    html {
+      height: 100%;
+    }
+    body {
+      min-height: 100%;
+    }
+
+    @font-face {
+      font-family: "Gothic400";
+      src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Gothic700";
+      src: url("/fonts/centuryGothic/centurygothic_bold.ttf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Asket800Condensed";
+      src: url("/fonts/asket/asketCondensedExtrabold.otf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      font-stretch: condensed;
+    }
+    @font-face {
+      font-family: "Asket300Extended";
+      src: url("/fonts/asket/asketExtendedLight.otf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      font-stretch: expanded;
+    }
+    @font-face {
+      font-family: "Asket800";
+      src: url("/fonts/asket/asketExtrabold.otf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      font-stretch: expanded;
+      font-stretch: normal;
+    }
+    @font-face {
+      font-family: "Asket300";
+      src: url("/fonts/asket/asketNarrowLight.otf") format("woff");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+      font-stretch: expanded;
+      font-stretch: ultra-condensed;
+    }
+  </style>
 </html>
-<style is:global>
-  html {
-    height: 100%;
-  }
-  body {
-    min-height: 100%;
-  }
-
-  @font-face {
-    font-family: "Gothic400";
-    src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Gothic700";
-    src: url("/fonts/centuryGothic/centurygothic_bold.ttf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Asket800Condensed";
-    src: url("/fonts/asket/asketCondensedExtrabold.otf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    font-stretch: condensed;
-  }
-  @font-face {
-    font-family: "Asket300Extended";
-    src: url("/fonts/asket/asketExtendedLight.otf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    font-stretch: expanded;
-  }
-  @font-face {
-    font-family: "Asket800";
-    src: url("/fonts/asket/asketExtrabold.otf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    font-stretch: expanded;
-    font-stretch: normal;
-  }
-  @font-face {
-    font-family: "Asket300";
-    src: url("/fonts/asket/asketNarrowLight.otf") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    font-stretch: expanded;
-    font-stretch: ultra-condensed;
-  }
-</style>
