@@ -100,6 +100,7 @@ export default {
         asket300Extended: "Asket300Extended",
         asket800: "Asket800",
         asket300: "Asket300",
+        lexend: "Lexend",
       },
       letterSpacing: {
         0.8: "0.8px",
