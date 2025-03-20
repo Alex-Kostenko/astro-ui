@@ -1,8 +1,4 @@
-import { ui, defaultLang, languages, type Languages, languagesSet } from "./ui";
-
-export function isLanguage(value: string): value is Languages {
-  return languagesSet.has(value as Languages);
-}
+import { ui, defaultLang, languages, type Languages } from "./ui";
 
 export function getLangFromUrl(url: URL): Languages {
   const [, lang] = url.pathname.split("/");
