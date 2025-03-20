@@ -1,0 +1,118 @@
+---
+import { Menu } from "@assets/icon";
+
+interface Props {
+  class?: string;
+  classContainer?: string;
+}
+
+const { class: className, classContainer } = Astro.props;
+---
+
+<drawer-block class:list={[className]}>
+  <button class:list={["text-brand-white px-2 py-3 focus:outline-0"]}>
+    <Menu />
+  </button>
+  <dialog
+    class:list={[
+      "backdrop:bg-brand-black backdrop:bg-opacity-30 mx-0 ml-auto border-0",
+      "max-w-max max-h-max overscroll-none focus:outline-0",
+    ]}
+  >
+    <section
+      data-content
+      class:list={[
+        "fixed bg-brand-black h-dvh  w-full inset-y-0 right-0",
+        "transition-transform duration-300 ease-in-out", // Додаємо для плавності
+        "dialog-closing",
+        "px-4 pt-10",
+        classContainer || "max-w-[300px]",
+      ]}
+    >
+      <section class:list={[""]}>
+        <slot name="head" />
+      </section>
+
+      <slot />
+    </section>
+  </dialog>
+</drawer-block>
+
+<script>
+  class Drawer extends HTMLElement {
+    connectedCallback() {
+      const content = this.querySelector("[data-content]") as HTMLDivElement;
+      const dialog = this.querySelector("dialog") as HTMLDialogElement;
+      const button = this.querySelector("button") as HTMLButtonElement;
+      const timeAnimation = 300;
+
+      button.addEventListener("click", () => {
+        if (dialog.open) {
+          content.classList.add("dialog-closing"); // Стан для закриття
+          setTimeout(() => {
+            close();
+            dialog.close();
+            content.classList.remove("dialog-closing");
+            content.classList.add("dialog-closing");
+          }, timeAnimation); // Тривалість повинна збігатися з CSS-анімацією
+        } else {
+          show();
+        }
+      });
+
+      dialog.addEventListener("click", (e) => {
+        if (e.target === dialog) {
+          close();
+        }
+      });
+
+      dialog?.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          e.preventDefault();
+
+          close();
+        }
+      });
+
+      function show() {
+        const scrollbarWidth =
+          window.innerWidth - document.documentElement.clientWidth;
+
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        dialog?.showModal();
+        content.classList.remove("dialog-closing");
+        content.classList.add("dialog-opening");
+        setTimeout(
+          () => content.classList.remove("dialog-opening"),
+          timeAnimation,
+        );
+      }
+
+      function close() {
+        content.classList.add("dialog-closing");
+        setTimeout(() => {
+          document.body.style.paddingRight = "0";
+          dialog.close();
+          content.classList.remove("dialog-closing");
+          content.classList.add("dialog-closing");
+        }, timeAnimation);
+      }
+    }
+  }
+
+  customElements.define("drawer-block", Drawer);
+</script>
+
+<style is:global>
+  body:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  .dialog-opening {
+    transform: translateX(0);
+  }
+
+  .dialog-closing {
+    transform: translateX(100%);
+  }
+</style>

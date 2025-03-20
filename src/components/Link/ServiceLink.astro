@@ -1,0 +1,68 @@
+---
+type Colors = "black" | "biscuit" | "green" | "light-green";
+
+interface Props {
+  href?: string;
+  class?: string;
+  active?: boolean;
+  disabled?: boolean;
+  color?: Colors;
+  variant?: "contained" | "none";
+}
+
+const {
+  href,
+  class: className,
+  active,
+  color = "black",
+  variant = "none",
+  disabled = false,
+} = Astro.props;
+
+// const variantsSet: Record<string, string> = {
+//   contained: "",
+//   outlined: "",
+// };
+const colorsSet: Record<Colors, string> = {
+  biscuit: "hover:bg-brand-white hover:!text-brand-green text-brand-black",
+  black: "text-brand-black hover:bg-green-100 hover:text-brand-white",
+  green: "text-brand-green hover:bg-brand-green hover:text-brand-white",
+  "light-green": "text-brand-white hover:bg-brand-white hover:text-brand-green",
+};
+const activeSet: Record<Colors, string> = {
+  biscuit: "bg-brand-green !text-brand-white",
+  black: "bg-brand-black text-brand-white",
+  green: "bg-brand-green !text-brand-white",
+  "light-green": "bg-brand-white !text-brand-green",
+};
+
+const disabledSet: Record<Colors, string> = {
+  biscuit: "text-brand-white text-opacity-50",
+  black: "",
+  green: "",
+  "light-green": "",
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    "min-h-10 min-w-11 px-5 py-3 rounded box-border font-gothic700",
+    "cursor-pointer select-none duration-500",
+    "uppercase text-center font-bold text-base",
+    {
+      "text-brand-white bg-brand-green":
+        variant === "contained" && color === "biscuit" && !disabled,
+    },
+    {
+      "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500":
+        variant === "contained" && color === "black" && !disabled,
+    },
+    colorsSet[color],
+    active && activeSet[color],
+    disabled && disabledSet[color],
+    className,
+  ]}
+>
+  <slot />
+</a>

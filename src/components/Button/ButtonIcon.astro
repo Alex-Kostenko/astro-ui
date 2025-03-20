@@ -1,0 +1,23 @@
+---
+import { ButtonType } from "./button.type";
+import { Button } from ".";
+import { ArrowRight } from "@assets/icon";
+
+interface Props {
+  href?: string;
+  type?: ButtonType;
+  class?: string;
+  iconClass?: string;
+}
+
+const {
+  href,
+  class: className,
+  type = ButtonType.Primary,
+  iconClass,
+} = Astro.props;
+---
+
+<Button href={href} type={type} class:list={["aspect-square", className]}>
+  <ArrowRight class={iconClass} />
+</Button>
