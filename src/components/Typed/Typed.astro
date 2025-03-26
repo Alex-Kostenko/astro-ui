@@ -15,7 +15,7 @@ const wordsList = words;
     wordsList.map((w, i) => (
       <p data-index={i} class="empty absolute inset-x-0 uppercase">
         {w.split("").map((s) => (
-          <span class="invisibles opacity-0 inline-block ">{s}</span>
+          <span class="opacity-0 inline-block ">{s}</span>
         ))}
       </p>
     ))
