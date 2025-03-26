@@ -13,7 +13,7 @@ const wordsList = words;
 >
   {
     wordsList.map((w, i) => (
-      <p data-index={i} class="empty absolute inset-x-0 uppercase">
+      <p data-index={i} class="absolute inset-x-0 uppercase">
         {w.split("").map((s) => (
           <span class="opacity-0 inline-block ">{s}</span>
         ))}
@@ -92,5 +92,6 @@ const wordsList = words;
   .empty::after {
     content: "\00a0";
     visibility: hidden;
+    opacity: 0;
   }
 </style>
