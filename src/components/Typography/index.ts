@@ -1,4 +1,4 @@
 import SectionTitle from "./SectionTitle.astro";
-import TypographyAstro from "./TypographyAstro.astro";
+import TypographyAstro, { ColorType, TextType } from "./TypographyAstro.astro";
 
-export { TypographyAstro, SectionTitle };
+export { TypographyAstro, SectionTitle, ColorType, TextType };
