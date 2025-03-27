@@ -47,12 +47,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
                 {t("mainSkills")}
               </TypographyAstro>
               <p class="text-brand-black text-16 font-gothic">
-                {v.skills.reduce(
-                  (acc, cur, index) =>
-                    (acc +=
-                      cur.name + (index + 1 < v.skills.length ? ", " : "")),
-                  "",
-                )}
+                {v.skills.map((skill) => skill.name).join(", ")}
               </p>
             </article>
           </div>
