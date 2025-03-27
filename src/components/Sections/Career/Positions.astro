@@ -36,6 +36,7 @@ const t = useTranslations(lang as Languages, "careers.positions");
               </TypographyAstro>
               <div class="flex flex-wrap gap-1">
                 {v.workType.map((s) => (
+                  // TODO: create Chip component
                   <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
                     {s.type}
                   </span>

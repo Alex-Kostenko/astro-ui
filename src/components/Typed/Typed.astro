@@ -13,9 +13,9 @@ const wordsList = words;
 >
   {
     wordsList.map((w, i) => (
-      <p data-index={i} class="empty absolute inset-x-0 uppercase">
+      <p data-index={i} class="absolute inset-x-0 uppercase">
         {w.split("").map((s) => (
-          <span class="hidden">{s}</span>
+          <span class="opacity-0 inline-block ">{s}</span>
         ))}
       </p>
     ))
@@ -52,7 +52,7 @@ const wordsList = words;
         const printWord = () => {
           symbols.forEach((s, i) => {
             setTimeout(() => {
-              s.classList.remove("hidden");
+              s.classList.remove("opacity-0");
             }, i * letterPrintTime);
           });
         };
@@ -62,7 +62,7 @@ const wordsList = words;
             symbols.forEach((s, i) => {
               setTimeout(
                 () => {
-                  s.classList.add("hidden");
+                  s.classList.add("opacity-0");
                   if (i === symbols.length - 1) resolve();
                 },
                 removeTime * (symbols.length - i) + removeDelay,
@@ -91,6 +91,9 @@ const wordsList = words;
 <style is:global>
   .empty::after {
     content: "\00a0";
+    position: relative;
+    bottom: 0;
     visibility: hidden;
+    opacity: 0;
   }
 </style>
