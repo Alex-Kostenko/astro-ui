@@ -5,6 +5,7 @@ import { clutch, linkedin, youtube } from "@assets/index";
 import FooterHero from "./FooterHero.astro";
 import { useTranslations, type Languages } from "@i18n/index";
 import { routes } from "src/routes";
+import { formatLink } from "@utils/format.link";
 
 interface Props {
   variant?: "contained" | "outlined";
@@ -94,8 +95,12 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
             ]}
           >
             <p>{t("copyright").replace("$year", new Date().getFullYear())}</p>
-            <a href={routes.privacyPolicy}>{t("privacyPolicy")}</a>
-            <a href={routes.terms}>{t("termsOfService")}</a>
+            <a href={formatLink(Astro.url, routes.privacyPolicy)}
+              >{t("privacyPolicy")}</a
+            >
+            <a href={formatLink(Astro.url, routes.terms)}
+              >{t("termsOfService")}</a
+            >
           </div>
         </div>
       </div>
