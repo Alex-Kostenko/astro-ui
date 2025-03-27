@@ -3,6 +3,8 @@ import { Button, ButtonType } from "@components/Button";
 import { TextField } from "@components/TextField";
 import CheckBox from "./CheckBox.astro";
 import { useTranslations, type Languages } from "@i18n/index";
+import { formatLink } from "@utils/format.link";
+import { routes } from "src/routes";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "subscribeForm");
@@ -32,11 +34,17 @@ const t = useTranslations(lang as Languages, "subscribeForm");
     <CheckBox name="consent">
       <span class="text-14 font-gothic text-brand-white">
         {t("consent.start")}
-        <a href="/todo" class="underline" target="_blank"
-          >{t("consent.terms")}</a
+        <a
+          href={formatLink(Astro.url, routes.terms)}
+          class="underline"
+          target="_blank">{t("consent.terms")}</a
         >
         {t("consent.divider")}
-        <a href="/todo" class="underline" target="_blank">
+        <a
+          href={formatLink(Astro.url, routes.privacyPolicy)}
+          class="underline"
+          target="_blank"
+        >
           {t("consent.privacyPolicy")}
         </a>
       </span>
