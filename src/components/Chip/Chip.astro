@@ -1,0 +1,26 @@
+---
+import { ChipType } from "./chip.types";
+
+interface Props {
+  variant?: ChipType;
+  class?: string;
+}
+const { variant = ChipType.white, class: className = "" } = Astro.props;
+
+const ChipVariantsSet: Record<ChipType, string> = {
+  [ChipType.white]: "bg-brand-white text-brand-black",
+  [ChipType.black]: "bg-brand-black text-brand-white",
+  [ChipType.beige]: "bg-brand-beige text-brand-black",
+  [ChipType.beigeLight]: "bg-brand-beigeLight text-brand-black",
+};
+---
+
+<span
+  class:list={[
+    "py-1 px-3 rounded-3xl text-12 font-gothic",
+    ChipVariantsSet[variant],
+    className,
+  ]}
+>
+  <slot />
+</span>
