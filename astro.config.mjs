@@ -92,20 +92,17 @@ export default defineConfig({
   ],
   output: 'static',
   build: { inlineStylesheets: 'never' },
-
   redirects: {
-    // "/service": "/service/all",
-    // "/[...lang]/cases": "/[...lang]/cases/all/1",
-    // "/[...lang]/cases/[slug]": "/[...lang]/cases/[slug]/1",
-    // "/insights": "/insights/all/1",
-    // "/[...lang]/insights": "/[...lang]/insights/all/1",
-    // "/[...lang]/insights/[slug]": "/[...lang]/insights/[slug]/1",
+    '/[...lang]/*': '/404',
   },
-
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ua'],
+    routing: {
+      prefixDefaultLocale: true,
+      fallbackType: 'rewrite',
+      redirectToDefaultLocale: true,
+    },
   },
-
   adapter,
 });
