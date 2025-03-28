@@ -26,14 +26,14 @@ jobs:
         run: npm ci
 
       - name: Build Astro project
-        run: npm run build:prod
+        run: npm run build:prod:cloudflare
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          #workingDirectory: "subfoldername" #output directory
+          workingDirectory: 'dist' #output directory
         env:
           PUBLIC_CMS_KEY: ${{ secrets.PUBLIC_CMS_KEY }}
           PIRIVATE_CMS_KEY: ${{ secrets.PIRIVATE_CMS_KEY }}
