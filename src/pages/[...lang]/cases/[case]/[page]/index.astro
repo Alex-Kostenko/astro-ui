@@ -103,7 +103,7 @@ const { page, slug } = Astro.props;
         <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
         <source src={cubeNearVP9} type='video/mp4' />
       </video>
-      <Breadcrumbs />
+      <Breadcrumbs isPaginate={page} />
     </div>
 
     <IntroSection />
