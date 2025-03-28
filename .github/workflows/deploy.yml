@@ -29,8 +29,14 @@ jobs:
         run: |
           if [ -z "${{ secrets.PUBLIC_CMS_KEY }}" ] || [ -z "${{ secrets.PIRIVATE_CMS_KEY }}" ] || [ -z "${{ secrets.PUBLIC_API_URL }}" ] || [ -z "${{ secrets.PUBLIC_IMG_URL }}" ]; then
           echo "Missing required environment variables."
+          echo "${{ secrets.PIRIVATE_CMS_KEY }}"
           exit 1
           fi
+        env:
+          PUBLIC_CMS_KEY: ${{ secrets.PUBLIC_CMS_KEY }}
+          PIRIVATE_CMS_KEY: ${{ secrets.PIRIVATE_CMS_KEY }}
+          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
+          PUBLIC_IMG_URL: ${{ secrets.PUBLIC_IMG_URL }}
 
       - name: Build Astro project
         run: npm run build:prod:cloudflare
