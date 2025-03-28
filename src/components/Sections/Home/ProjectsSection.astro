@@ -1,10 +1,12 @@
 ---
-import { ArrowedButton } from "@components/Button";
-import { Container } from "@components/Container";
-import ProjectList from "@components/ProjectCard/ProjectList.astro";
-import { SectionTitle } from "@components/Typography";
-import { useTranslations, type Languages } from "@i18n/index";
-import projectService from "@service/project.service";
+import { ArrowedButton } from '@components/Button';
+import { Container } from '@components/Container';
+import ProjectList from '@components/ProjectCard/ProjectList.astro';
+import { SectionTitle } from '@components/Typography';
+import { useTranslations, type Languages } from '@i18n/index';
+import projectService from '@service/project.service';
+import { formatLink } from '@utils/format.link';
+import { routes } from 'src/routes';
 
 const { lang } = Astro.params;
 const response = await projectService.get({
@@ -12,14 +14,14 @@ const response = await projectService.get({
   locale: lang as Languages,
 });
 
-const t = useTranslations(lang as Languages, "home.project");
+const t = useTranslations(lang as Languages, 'home.project');
 ---
 
 <Container>
-  <SectionTitle title={t("title")} type={t("tag")} />
+  <SectionTitle title={t('title')} type={t('tag')} />
 
   <ProjectList projects={response.data} />
-  <ArrowedButton href="/cases/all/1" class="w-full">
-    {t("btnExplorerMore")}
+  <ArrowedButton href={formatLink(Astro.url, routes.cases)} class='w-full'>
+    {t('btnExplorerMore')}
   </ArrowedButton>
 </Container>
