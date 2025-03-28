@@ -1,26 +1,30 @@
 ---
-import { ChipType } from "./chip.types";
+import { ChipType } from './chip.types';
 
 interface Props {
   variant?: ChipType;
   class?: string;
+  href?: string;
 }
-const { variant = ChipType.white, class: className = "" } = Astro.props;
+const { variant = ChipType.white, class: className, href } = Astro.props;
 
 const ChipVariantsSet: Record<ChipType, string> = {
-  [ChipType.white]: "bg-brand-white text-brand-black",
-  [ChipType.black]: "bg-brand-black text-brand-white",
-  [ChipType.beige]: "bg-brand-beige text-brand-black",
-  [ChipType.beigeLight]: "bg-brand-beigeLight text-brand-black",
+  [ChipType.white]: 'bg-brand-white text-brand-black hover:bg-brand-white/75',
+  [ChipType.black]: 'bg-brand-black text-brand-white hover:bg-brand-black48',
+  [ChipType.beigeLight]:
+    'bg-brand-beigeLight text-brand-black hover:bg-brand-beige',
 };
+
+const Tag = href ? 'a' : 'span';
 ---
 
-<span
+<Tag
   class:list={[
-    "py-1 px-3 rounded-3xl text-12 font-gothic",
+    'py-1 px-3 rounded-3xl text-12 font-gothic no-underline transition-colors',
     ChipVariantsSet[variant],
     className,
   ]}
+  href={href}
 >
   <slot />
-</span>
+</Tag>
