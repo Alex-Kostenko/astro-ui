@@ -37,7 +37,7 @@ const { recruiter, title, type } = Astro.props;
                 target="_blank"
                 aria-label="linkedin"
               >
-                <img src={linkedInLogo.src} alt="" />
+                <img src={linkedInLogo.src} alt="linkedin logo" />
               </a>
             </div>
           )
@@ -50,7 +50,7 @@ const { recruiter, title, type } = Astro.props;
                 target="_blank"
                 aria-label="telegram"
               >
-                <img src={telegram.src} alt="" />
+                <img src={telegram.src} alt="telegram logo" />
               </a>
             </div>
           )
@@ -59,7 +59,7 @@ const { recruiter, title, type } = Astro.props;
           recruiter.email && (
             <div class="flex mt-auto gap-4">
               <a href={`mailto:${recruiter.email}`} aria-label="email">
-                <img src={email.src} alt="" />
+                <img src={email.src} alt="email logo" />
               </a>
             </div>
           )
