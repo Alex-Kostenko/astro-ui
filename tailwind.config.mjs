@@ -7,29 +7,29 @@ export default {
         header: '1010',
         headerMenu: '1000',
       },
-      screens: {
-        xs: '360px',
-        sm: '480px',
-        lg: '960px',
-        '2xl': '1440px',
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: '16px',
-          md: '78px',
-          lg: '78px',
-          '2xl': '130px',
-        },
-        screens: {
-          xs: 'auto',
-          sm: '480px',
-          md: '768px',
-          lg: '960px',
-          xl: '1280px',
-          '2xl': '1440px',
-        },
-      },
+      // screens: {
+      //   xs: '360px',
+      //   sm: '480px',
+      //   lg: '960px',
+      //   '2xl': '1440px',
+      // },
+      // container: {
+      //   center: true,
+      //   padding: {
+      //     DEFAULT: '16px',
+      //     md: '78px',
+      //     lg: '78px',
+      //     '2xl': '130px',
+      //   },
+      //   screens: {
+      //     xs: 'auto',
+      //     sm: '480px',
+      //     md: '768px',
+      //     lg: '960px',
+      //     xl: '1280px',
+      //     '2xl': '1440px',
+      //   },
+      // },
       colors: {
         brand: {
           beige: '#AE896E',

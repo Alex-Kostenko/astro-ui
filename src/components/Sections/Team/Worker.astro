@@ -38,7 +38,7 @@ const path = `${isMonth ? 'month' : 'year'}${less !== undefined ? (less ? 'Less'
 const t = useTranslations(lang as Languages, 'team.worker');
 ---
 
-<div class='group hover:cursor-pointer relative w-[380px] h-[442px]'>
+<div class='group hover:cursor-pointer relative !w-[380px] !h-[442px]'>
   <div
     class:list={[
       'absolute group-hover:rotate-y-180 inset-0 duration-700 backface-hidden transform-3d bg-brand-white rounded-sm border border-brand-black p-4 xl:p-6 flex flex-col justify-between',

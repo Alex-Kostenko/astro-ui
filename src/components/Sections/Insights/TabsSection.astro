@@ -1,9 +1,9 @@
 ---
-import { Tabs, TabsType } from "@components/Tabs";
-import { useTranslations, type Languages } from "@i18n/index";
-import insightService from "@service/insight.service";
-import { extendArray } from "@utils/extendArray";
-import { formatLink } from "@utils/index";
+import { Tabs, TabsType } from '@components/Tabs';
+import { useTranslations, type Languages } from '@i18n/index';
+import insightService from '@service/insight.service';
+import { extendArray } from '@utils/extendArray';
+import { formatLink } from '@utils/index';
 
 interface Props {
   category: string;
@@ -16,7 +16,7 @@ const getHref = (slug: string) =>
 const { category, page } = Astro.props;
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "insights.list");
+const t = useTranslations(lang as Languages, 'insights.list');
 
 const categories = await insightService.getCategory({
   locale: lang as Languages,
@@ -25,38 +25,24 @@ const categories = await insightService.getCategory({
 const currentCategory = categories.data.find((v) => v.slug === category);
 
 const extendedData = extendArray(
-  [...categories.data, { name: "All", slug: "all" }],
+  [...categories.data, { name: 'All', slug: 'all' }],
   20,
 );
 ---
 
-<div class:list={"w-full mb-[120px]"}>
-  <div class="bg-brand-green px-2 py-2 rounded-lg flex gap-[30px]">
-    <Tabs class="swiper-slide w-fit" typeTabs={TabsType.Secondary}>
-      {currentCategory ? currentCategory.name : t("all")}
+<div class:list={'w-full mb-[120px]'}>
+  <div class='bg-brand-green px-2 py-2 rounded-lg flex gap-[30px]'>
+    <Tabs class='swiper-slide !w-fit' typeTabs={TabsType.Secondary}>
+      {currentCategory ? currentCategory.name : t('all')}
     </Tabs>
-    <div class="categories-swiper swiper">
-      <section class:list={["swiper-wrapper justify-between"]}>
-        <!-- {
-          category !== "all" && (
-            <Tabs
-              class="swiper-slide w-fit"
-              typeTabs={
-                category === "all" ? TabsType.Secondary : TabsType.Default
-              }
-              href={getHref("all")}
-            >
-              {t("all")}
-            </Tabs>
-          )
-        } -->
-
+    <div class='categories-swiper swiper'>
+      <section class:list={['swiper-wrapper justify-between']}>
         {
           extendedData.map(
             (v) =>
               v.slug !== category && (
                 <Tabs
-                  class="swiper-slide w-fit"
+                  class='swiper-slide !w-fit'
                   typeTabs={
                     category === v.slug ? TabsType.Secondary : TabsType.Default
                   }
@@ -72,11 +58,11 @@ const extendedData = extendArray(
   </div>
 </div>
 <script>
-  import Swiper from "swiper";
-  import { Autoplay } from "swiper/modules";
+  import Swiper from 'swiper';
+  import { Autoplay } from 'swiper/modules';
 
-  new Swiper(".categories-swiper", {
-    slidesPerView: "auto",
+  new Swiper('.categories-swiper', {
+    slidesPerView: 'auto',
     spaceBetween: 30,
     modules: [Autoplay],
     autoplay: {

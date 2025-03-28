@@ -1,6 +1,6 @@
 ---
-import { TabsType } from "./tabs.style";
-import { TabsSize } from "./tabs.size";
+import { TabsType } from './tabs.style';
+import { TabsSize } from './tabs.size';
 
 export interface Props {
   href?: string;
@@ -18,26 +18,26 @@ const {
   disabled,
 } = Astro.props;
 
-const Tag = href ? "a" : "button";
+const Tag = href ? 'a' : 'button';
 
 const SizesSet: Partial<Record<TabsSize, string>> = {
   [TabsSize.SmallToLarge]:
-    "py-3 text-14 h-10 px-4 2xl:text-20 2xl:h-[52px] 2xl:px-5",
+    'py-3 text-14 h-10 px-4 2xl:text-20 2xl:h-[52px] 2xl:px-5',
   [TabsSize.LargeToSmall]:
-    "py-3 2xl:text-14 2xl:h-10  2xl:px-4 text-20 h-[52px] px-5",
+    'py-3 2xl:text-14 2xl:h-10  2xl:px-4 text-20 h-[52px] px-5',
 };
 
 const TypeTypesSet: Record<TabsType, string> = {
-  [TabsType.Secondary]: "bg-brand-white text-brand-black",
-  [TabsType.Default]: "text-brand-white bg-transparent hover:bg-gray-300",
+  [TabsType.Secondary]: 'bg-brand-white text-brand-black',
+  [TabsType.Default]: 'text-brand-white bg-transparent hover:bg-gray-300',
 };
 ---
 
 <Tag
   class:list={[
-    "text-center uppercase font-gothic700 font-bold   ",
-    "rounded-sm  ",
-    { "pointer-events-none": disabled },
+    'text-center uppercase font-gothic700 font-bold   ',
+    'rounded-sm',
+    { 'pointer-events-none': disabled },
     SizesSet[size],
     TypeTypesSet[typeTabs],
     className,

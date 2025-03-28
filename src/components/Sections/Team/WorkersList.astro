@@ -1,8 +1,8 @@
 ---
-import { Container } from "@components/Container";
-import { SectionTitle } from "@components/Typography";
-import type { IWorker } from "@interfaces/worker";
-import Worker from "./Worker.astro";
+import { Container } from '@components/Container';
+import { SectionTitle } from '@components/Typography';
+import type { IWorker } from '@interfaces/worker';
+import Worker from './Worker.astro';
 
 interface Props {
   list: IWorker[];
@@ -15,14 +15,14 @@ const { list, title, type } = Astro.props;
 
 <Container>
   <SectionTitle title={title} type={type} />
-  <div class="hidden xl:flex flex-wrap gap-5">
+  <div class='hidden xl:flex flex-wrap gap-5'>
     {list.map((worker) => <Worker worker={worker} />)}
   </div>
-  <div class="workers-swiper swiper xl:hidden">
-    <div class="swiper-wrapper">
+  <div class='workers-swiper swiper xl:!hidden'>
+    <div class='swiper-wrapper'>
       {
         list.map((worker) => (
-          <div class="swiper-slide w-fit">
+          <div class='swiper-slide !w-fit'>
             <Worker worker={worker} />
           </div>
         ))
@@ -32,11 +32,11 @@ const { list, title, type } = Astro.props;
 </Container>
 
 <script>
-  import Swiper from "swiper";
-  import { Autoplay } from "swiper/modules";
+  import Swiper from 'swiper';
+  import { Autoplay } from 'swiper/modules';
 
-  new Swiper(".workers-swiper", {
-    slidesPerView: "auto",
+  new Swiper('.workers-swiper', {
+    slidesPerView: 'auto',
     spaceBetween: 20,
     modules: [Autoplay],
     autoplay: {
