@@ -1,0 +1,53 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import {
+  AboutSection,
+  HeroSection,
+  AdvantagesSection,
+  PartnersSections,
+  ProjectsSection,
+  ServicesSection,
+  TestimonialsSection,
+} from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import { languages, useTranslations, type Languages } from "@i18n/index";
+
+export const getStaticPaths = (() => {
+  return Object.keys(languages).map((v) => ({
+    params: { lang: languages[v].slug },
+  }));
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "home.contactUs");
+// console.log("info base: ", Astro.currentLocale);
+const text = t("text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+---
+
+<Layout title="UniCode">
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main>
+    <HeroSection />
+    <div class="flex flex-col gap-y-[120px]">
+      <AboutSection />
+      <ServicesSection />
+      <PartnersSections />
+      <ProjectsSection />
+      <AdvantagesSection />
+      <TestimonialsSection />
+      <ContactUsSection text={text} />
+    </div>
+  </main>
+</Layout>

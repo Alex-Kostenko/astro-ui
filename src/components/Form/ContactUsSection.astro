@@ -1,0 +1,73 @@
+---
+import { Container } from "@components/Container";
+import ContactUsForm from "./ContactUsForm.astro";
+import { logoOutline } from "@assets/index";
+import { Image } from "astro:assets";
+
+interface Props {
+  text: {
+    text: string;
+    alight: "none" | "left" | "right";
+    variant: "contained" | "outlined";
+    className?: string;
+  }[];
+  table?: "contact-us" | "vacancy-replay"; // TODO: для подальшого розширення потрібно створити enum/const Record<string,string>
+  inline?: boolean;
+}
+
+const { text, table = "contact-us", inline = false } = Astro.props;
+---
+
+<div class="relative" id="contact-us-form">
+  <Container class="relative">
+    <figure
+      class="absolute left-0 bottom-0 max-w-[614px] blur-[12px] hidden xl:block z-40 pointer-events-none"
+    >
+      <Image src={logoOutline} alt="logo outline" />
+    </figure>
+
+    <article
+      class="flex flex-col 2xl:gap-y-4 xl:gap-y-3 gap-y-2 mb-16 sm:mb-12"
+    >
+      {
+        inline ? (
+          <h2 class="flex flex-wrap gap-x-8 gap-y-2">
+            {text.map((v) => (
+              <span
+                class:list={[
+                  "font-asket800 tracking-2 uppercase break-words hyphens-auto",
+                  "text-48 md:text-64 lg:text-72 2xl:text-96",
+                  {
+                    "text-green-200": v.variant === "contained",
+                    "text-stroken-green-3 md:text-stroken-green-4":
+                      v.variant === "outlined",
+                  },
+                ]}
+              >
+                {v.text}
+              </span>
+            ))}
+          </h2>
+        ) : (
+          text.map((v) => (
+            <h2
+              class:list={[
+                "font-asket800 tracking-2 uppercase break-words hyphens-auto",
+                "text-48 md:text-64 lg:text-72 2xl:text-96",
+                {
+                  "text-green-200": v.variant === "contained",
+                  "text-stroken-green-3 md:text-stroken-green-4":
+                    v.variant === "outlined",
+                },
+              ]}
+            >
+              {v.text}
+            </h2>
+          ))
+        )
+      }
+    </article>
+
+    <ContactUsForm table={table} />
+  </Container>
+</div>

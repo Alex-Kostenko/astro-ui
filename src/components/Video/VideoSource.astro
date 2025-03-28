@@ -1,0 +1,23 @@
+---
+interface Props {
+  source: { src: string; type?: string }[];
+  captionsSrc?: string;
+  class?: string;
+}
+
+const { source, captionsSrc, class: className } = Astro.props;
+
+const defaultSourceType = "video/mp4; codecs=avc1.42E01E,mp4a.40.2";
+const defaultCaptionSrc = "/captions/empty_captions.vtt";
+---
+
+<video
+  autoplay
+  muted
+  loop
+  class:list={["h-full w-full object-cover", className]}
+>
+  <track kind="captions" src={captionsSrc || defaultCaptionSrc} />
+  {source.map((v) => <source src={v.src} type={v.type || defaultSourceType} />)}
+</video>
+<slot />

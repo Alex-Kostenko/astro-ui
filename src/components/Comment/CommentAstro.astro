@@ -1,0 +1,66 @@
+---
+import type { IComment } from "@interfaces/index";
+import { star } from "@assets/index";
+
+interface Props {
+  comment: IComment;
+  class?: string;
+}
+
+const { comment, class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "flex gap-y-6 gap-x-5",
+    "min-h-[260px] p-3 lg:p-5 bg-green-300 ",
+    className,
+  ]}
+>
+  <div
+    class="flex lg:flex-col justify-between px-3 box-border"
+    class:list={["lg:max-w-[220px] w-full"]}
+  >
+    <article class="text-brand-white">
+      <p
+        class="mb-3"
+        class:list={[
+          "font-gothic700 font-bold uppercase",
+          "text-14 lg:text-18",
+        ]}
+      >
+        {comment.name}
+      </p>
+      <p class:list={["font-gothic", "text-12 lg:text-14"]}>
+        <span>Founder</span>
+        <br />
+        {comment.position}
+      </p>
+    </article>
+
+    <div class="flex gap-1">
+      {
+        Array.from({ length: comment.rating }).map(() => (
+          <div class="max-h-6">
+            <img class="aspect-square" src={star.src} alt="star" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <article class:list={["bg-brand-white flex-[1_1_60%]", "p-3 lg:p-5"]}>
+    <p
+      class:list={[
+        "text-green-200 font-gothic700 ",
+        "mb-4 xl:mb-6",
+        "text-14 lg:text-18",
+      ]}
+    >
+      {comment.title}
+    </p>
+    <p class:list={["font-gothic text-brand-black", "text-12 lg:text-14"]}>
+      {comment.description}
+    </p>
+  </article>
+</section>

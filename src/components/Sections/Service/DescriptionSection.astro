@@ -1,0 +1,54 @@
+---
+import { Container } from "@components/Container";
+import { useTranslations, type Languages } from "@i18n/index";
+import { rareWavesBlack } from "@assets/index";
+import { DescriptionAstro } from "@components/Description";
+import type { IService } from "@interfaces/service";
+
+interface Props {
+  service: IService;
+}
+
+const { service } = Astro.props;
+---
+
+<Container class="mt-7">
+  <h2
+    class:list={[
+      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
+      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
+      "font-asket800 uppercase text-green-200 md:tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96",
+      "mb-5 lg:mb-6 xl:mb-[60px]",
+    ]}
+  >
+    {
+      service.name
+        .split(" ")
+        .map((text, index, array) => (
+          <span
+            class={
+              (index + 1) % 3 === 0 || index === array.length - 1
+                ? ""
+                : "text-stroken-green-2 md:text-stroken-green-4"
+            }
+          >
+            {text}
+          </span>
+        ))
+    }
+    <!-- <span class="text-stroken-green-2 md:text-stroken-green-4">
+      {t("title.line-1-outlined")}
+    </span>
+    <span class="text-stroken-green-2 md:text-stroken-green-4">
+      {t("title.line-2-outlined")}
+    </span>
+    <span>{t("title.line-3-contained")}</span> -->
+  </h2>
+
+  <DescriptionAstro
+    videoSrc={rareWavesBlack}
+    text={service.description}
+    class:list={["xl:grid-cols-[auto,604px]"]}
+  />
+</Container>

@@ -1,0 +1,82 @@
+---
+import { cubeNear, cubeNearVP9 } from '@assets/video';
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs.astro';
+import { Chip } from '@components/Chip';
+import { ChipType } from '@components/Chip/chip.types';
+import { Container } from '@components/Container';
+import { SubscribeSection } from '@components/Form/index';
+import { Content, Share } from '@components/Sections/Article';
+import Title from '@components/Sections/Article/Title.astro';
+import { TypographyAstro } from '@components/Typography';
+import { languages, type Language, type Languages } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import Layout from '@layouts/Layout.astro';
+import insightService from '@service/insight.service';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths = (async () => {
+  const req = Object.keys(languages).map((lang) =>
+    insightService
+      .get({ locale: languages[lang].lang })
+      .then((response) => ({ lang: languages[lang] as Language, response })),
+  );
+
+  const res = await Promise.all(req);
+
+  return res.flatMap((r) =>
+    r.response.data.map((v) => ({
+      params: { article: v.slug, lang: r.lang.slug },
+      props: { insight: v },
+    })),
+  );
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, 'insights');
+
+const { insight } = Astro.props;
+const date = new Date(insight.createdAt)
+  .toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+  .replace(/(\w+) (\d+), (\d+)/, '$1, $2, $3');
+---
+
+<Layout title={insight.title}>
+  <main class='flex flex-col gap-10 lg:gap-[120px]'>
+    <div class='h-[144px] lg:h-[168px] bg-black bg-opacity-45'>
+      <video
+        autoplay
+        muted
+        loop
+        class='relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover'
+      >
+        <track kind='captions' src='/captions/empty_captions.vtt' />
+        <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
+        <source src={cubeNearVP9} type='video/mp4' />
+      </video>
+      <Breadcrumbs last={insight.title} />
+    </div>
+    <Title title={insight.title} />
+    <Container>
+      <div class='flex flex-wrap justify-between'>
+        <TypographyAstro color='black' type='body-2'>
+          {date}
+        </TypographyAstro>
+        <div class='flex flex-wrap gap-3'>
+          {
+            insight.technologies.map((t) => (
+              <Chip variant={ChipType.beigeLight}> {t.name}</Chip>
+            ))
+          }
+        </div>
+      </div>
+    </Container>
+    <Content content={insight.content} />
+    <Share />
+    <SubscribeSection text={t('contactUs')} />
+  </main>
+</Layout>
