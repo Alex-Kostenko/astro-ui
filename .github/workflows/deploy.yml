@@ -25,6 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check env variables
+        run: |
+          if [ -z "${{ secrets.PUBLIC_CMS_KEY }}" ] || [ -z "${{ secrets.PIRIVATE_CMS_KEY }}" ] || [ -z "${{ secrets.PUBLIC_API_URL }}" ] || [ -z "${{ secrets.PUBLIC_IMG_URL }}" ]; then
+          echo "Missing required environment variables."
+          exit 1
+          fi
+
       - name: Build Astro project
         run: npm run build:prod:cloudflare
         env:
