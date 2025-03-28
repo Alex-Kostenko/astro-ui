@@ -1,6 +1,6 @@
 ---
-import { TypographyAstro } from "@components/Typography";
-import { VideoSource } from "@components/Video";
+import { TypographyAstro } from '@components/Typography';
+import { VideoSource } from '@components/Video';
 
 interface Props {
   videoSrc: string;
@@ -14,20 +14,20 @@ const { videoSrc, text, class: className, artcleClass } = Astro.props;
 
 <section
   class:list={[
-    "grid min-h-24 items-center",
-    "gap-3 xl:gap-[48px] 2xl:gap-[96px]",
-    "grid-rows-[164px_auto] xl:grid-rows-none",
-    "xl:grid-cols-[auto_508px]",
+    'grid min-h-24 items-center',
+    'gap-3 xl:gap-[48px] 2xl:gap-[96px]',
+    'grid-rows-[164px_auto] xl:grid-rows-none',
+    'xl:grid-cols-[auto_508px]',
     className,
   ]}
 >
-  <article class:list={["order-1 xl:order-none", artcleClass]}>
+  <article class:list={['order-1 xl:order-none', artcleClass]}>
     {
       text && (
         <TypographyAstro
-          color="black"
-          type="body-4"
-          class="leading-1 whitespace-pre-line"
+          color='black'
+          type='body-4'
+          class='whitespace-pre-line'
         >
           {text}
         </TypographyAstro>
@@ -36,11 +36,11 @@ const { videoSrc, text, class: className, artcleClass } = Astro.props;
     <slot />
   </article>
 
-  <section class="overflow-clip relative h-full">
+  <section class='overflow-clip relative h-full'>
     <!-- aspect-[2.65/1] -->
     <VideoSource
       source={[{ src: videoSrc }]}
-      class="mix-blend-difference absolute"
+      class='mix-blend-difference absolute'
     />
   </section>
 </section>

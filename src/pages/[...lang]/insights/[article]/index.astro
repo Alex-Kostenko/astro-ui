@@ -5,6 +5,7 @@ import { Chip } from '@components/Chip';
 import { ChipType } from '@components/Chip/chip.types';
 import { Container } from '@components/Container';
 import { SubscribeSection } from '@components/Form/index';
+import { HeroHeadAstro } from '@components/Hero';
 import { Content, Share } from '@components/Sections/Article';
 import Title from '@components/Sections/Article/Title.astro';
 import { TypographyAstro } from '@components/Typography';
@@ -47,19 +48,11 @@ const date = new Date(insight.createdAt)
 
 <Layout title={insight.title}>
   <main class='flex flex-col gap-10 lg:gap-[120px]'>
-    <div class='h-[144px] lg:h-[168px] bg-black bg-opacity-45'>
-      <video
-        autoplay
-        muted
-        loop
-        class='relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover'
-      >
-        <track kind='captions' src='/captions/empty_captions.vtt' />
-        <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
-        <source src={cubeNearVP9} type='video/mp4' />
-      </video>
+    <div>
+      <HeroHeadAstro />
       <Breadcrumbs last={insight.title} />
     </div>
+
     <Title title={insight.title} />
     <Container>
       <div class='flex flex-wrap justify-between'>

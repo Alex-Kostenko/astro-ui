@@ -1,27 +1,28 @@
 ---
-import type { GetStaticPaths } from "astro";
-import { cubeNear, cubeNearVP9 } from "@assets/video";
-import Layout from "@layouts/Layout.astro";
-import projectService from "@service/project.service";
+import type { GetStaticPaths } from 'astro';
+import { cubeNear, cubeNearVP9 } from '@assets/video';
+import Layout from '@layouts/Layout.astro';
+import projectService from '@service/project.service';
 import {
   languages,
   type Language,
   type Languages,
   useTranslations,
-} from "@i18n/index";
+} from '@i18n/index';
 import {
   Cover,
   Description,
   ChallengeSection,
   Tracking,
   Technologies,
-} from "@components/Sections";
-import ContactUsSection from "@components/Form/ContactUsSection.astro";
-import type { IProject } from "@interfaces/project";
-import { ArrowedButton } from "@components/Button";
-import { Container } from "@components/Container";
-import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
-import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+} from '@components/Sections';
+import ContactUsSection from '@components/Form/ContactUsSection.astro';
+import type { IProject } from '@interfaces/project';
+import { ArrowedButton } from '@components/Button';
+import { Container } from '@components/Container';
+import ProjectMore from '@components/ProjectCard/ProjectMore.astro';
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs.astro';
+import { HeroHeadAstro } from '@components/Hero';
 
 export const getStaticPaths = (async () => {
   const req = Object.keys(languages).flatMap((lang) =>
@@ -63,12 +64,12 @@ const { lang } = Astro.params;
 const project = await Astro.props.project;
 const { data } = Astro.props;
 
-const t = useTranslations(lang as Languages, "project");
-const text = t("contactUs.text").map((t: string, i: number) => {
+const t = useTranslations(lang as Languages, 'project');
+const text = t('contactUs.text').map((t: string, i: number) => {
   if (i === 2) {
-    return { text: t, alight: "none", variant: "outlined" };
+    return { text: t, alight: 'none', variant: 'outlined' };
   }
-  return { text: t, alight: "none", variant: "contained" };
+  return { text: t, alight: 'none', variant: 'contained' };
 });
 ---
 
@@ -81,34 +82,26 @@ const text = t("contactUs.text").map((t: string, i: number) => {
   }}
 >
   <link
-    slot="head"
-    rel="preload stylesheet"
-    as="style"
-    type="text/css"
-    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    slot='head'
+    rel='preload stylesheet'
+    as='style'
+    type='text/css'
+    href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
   />
-  <main class="flex flex-col gap-[120px]">
-    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
-      <video
-        autoplay
-        muted
-        loop
-        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
-      >
-        <track kind="captions" src="/captions/empty_captions.vtt" />
-        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-        <source src={cubeNearVP9} type="video/mp4" />
-      </video>
+  <main class='flex flex-col gap-[120px]'>
+    <div>
+      <HeroHeadAstro />
       <Breadcrumbs />
     </div>
+
     <Description {...project} />
     <Cover image={project.image.base64} />
     <ChallengeSection {...project} />
     <Tracking tracking={project.tracking} />
     <Technologies stackList={project.stack} />
     <Container>
-      <ArrowedButton href="/todo" class="w-full">
-        {t("button")}
+      <ArrowedButton href='/todo' class='w-full'>
+        {t('button')}
       </ArrowedButton>
     </Container>
     <ProjectMore projects={data.filter((_, index) => index < 2)} />

@@ -17,6 +17,7 @@ import type { IProjectDomain } from '@interfaces/project.domain';
 import { Pagination } from '@components/Pagination';
 import ContactUsSection from '@components/Form/ContactUsSection.astro';
 import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs.astro';
+import { HeroHeadAstro } from '@components/Hero';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const projectDomain: IProjectDomain[] = [
@@ -92,17 +93,8 @@ const { page, slug } = Astro.props;
     href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
   />
   <main class='flex flex-col gap-y-[120px]'>
-    <div class='h-[144px] lg:h-[168px] bg-black bg-opacity-45'>
-      <video
-        autoplay
-        muted
-        loop
-        class='relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover'
-      >
-        <track kind='captions' src='/captions/empty_captions.vtt' />
-        <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
-        <source src={cubeNearVP9} type='video/mp4' />
-      </video>
+    <div>
+      <HeroHeadAstro />
       <Breadcrumbs isPaginate={page} />
     </div>
 

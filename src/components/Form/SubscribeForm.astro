@@ -1,96 +1,96 @@
 ---
-import { Button, ButtonType } from "@components/Button";
-import { TextField } from "@components/TextField";
-import CheckBox from "./CheckBox.astro";
-import { useTranslations, type Languages } from "@i18n/index";
-import { formatLink } from "@utils/format.link";
-import { routes } from "src/routes";
+import { Button, ButtonType } from '@components/Button';
+import { TextField } from '@components/TextField';
+import CheckBox from './CheckBox.astro';
+import { useTranslations, type Languages } from '@i18n/index';
+import { formatLink } from '@utils/format.link';
+import { routes } from 'src/routes';
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "subscribeForm");
+const t = useTranslations(lang as Languages, 'subscribeForm');
 ---
 
 <section
   class:list={[
-    "bg-brand-black bg-opacity-85 px-4 md:px-[60px] 2xl:px-[120px] py-10 xl:py-8",
-    "flex flex-col gap-x-8 gap-y-8 xl:flex-row clip after:hidden md:after:block",
+    'bg-brand-black/85 px-4 md:px-[60px] 2xl:px-[120px] py-10 xl:py-8',
+    'flex flex-col gap-x-8 gap-y-8 xl:flex-row clip after:hidden md:after:block',
   ]}
 >
-  <div class="grow xl:w-1/2 mt-auto md:px-16 lg:px-0">
+  <div class='grow xl:w-1/2 mt-auto md:px-16 lg:px-0'>
     <h3
-      class="text-brand-beigeLight font-gothic uppercase text-20 z-50 relative"
+      class='text-brand-beige-light font-gothic uppercase text-20 z-50 relative'
     >
-      {t("title")}
+      {t('title')}
     </h3>
   </div>
 
   <form
-    id="form-contac-us"
-    class:list={["grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
+    id='form-contac-us'
+    class:list={['grow w-full xl:max-w-[480px]', 'flex flex-col gap-y-5']}
   >
-    <div class="flex flex-col gap-y-4">
-      <TextField placeholder={t("nameLabel")} name="name" />
-      <TextField placeholder={t("emailLabel")} type="email" name="email" />
+    <div class='flex flex-col gap-y-4'>
+      <TextField placeholder={t('nameLabel')} name='name' />
+      <TextField placeholder={t('emailLabel')} type='email' name='email' />
     </div>
 
-    <CheckBox name="consent">
-      <span class="text-14 font-gothic text-brand-white">
-        {t("consent.start")}
+    <CheckBox name='consent'>
+      <span class='text-14 font-gothic text-brand-white'>
+        {t('consent.start')}
         <a
           href={formatLink(Astro.url, routes.terms)}
-          class="underline"
-          target="_blank">{t("consent.terms")}</a
+          class='underline'
+          target='_blank'>{t('consent.terms')}</a
         >
-        {t("consent.divider")}
+        {t('consent.divider')}
         <a
           href={formatLink(Astro.url, routes.privacyPolicy)}
-          class="underline"
-          target="_blank"
+          class='underline'
+          target='_blank'
         >
-          {t("consent.privacyPolicy")}
+          {t('consent.privacyPolicy')}
         </a>
       </span>
     </CheckBox>
-    <Button class="w-full" type={ButtonType.Secondary}>
-      {t("submitBtn")}
+    <Button class='w-full' type={ButtonType.Secondary}>
+      {t('submitBtn')}
     </Button>
   </form>
 </section>
 
 <script>
-  import { actions } from "astro:actions";
-  import { toast } from "@components/Toast";
-  const form = document.querySelector("#form-contac-us") as HTMLFormElement;
-  form?.addEventListener("submit", async (event) => {
+  import { actions } from 'astro:actions';
+  import { toast } from '@components/Toast';
+  const form = document.querySelector('#form-contac-us') as HTMLFormElement;
+  form?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
-    const consent = formData.get("consent");
+    const consent = formData.get('consent');
     const entries = Array.from(formData.entries());
 
     // form validation
     for (const [name, value] of entries) {
-      if (typeof value === "string" && value !== "on") {
+      if (typeof value === 'string' && value !== 'on') {
         const field = form.querySelector(`[name="${name}"]`);
 
         const errorField = field?.nextElementSibling;
         if (!value) {
-          errorField?.classList.remove("hidden");
-          field?.classList.add("border-b-red");
+          errorField?.classList.remove('hidden');
+          field?.classList.add('border-b-red');
         } else {
-          errorField?.classList.add("hidden");
-          field?.classList.remove("border-b-red");
+          errorField?.classList.add('hidden');
+          field?.classList.remove('border-b-red');
         }
-      } else if (typeof value === "object") {
+      } else if (typeof value === 'object') {
         const field = form.querySelector(`[name="${name}"]`)?.parentElement;
 
         const errorField = field?.nextElementSibling;
         if (value.size <= 0) {
-          errorField?.classList.remove("hidden");
-          field?.classList.add("border-b-red");
+          errorField?.classList.remove('hidden');
+          field?.classList.add('border-b-red');
         } else {
-          errorField?.classList.add("hidden");
-          field?.classList.remove("border-b-red");
+          errorField?.classList.add('hidden');
+          field?.classList.remove('border-b-red');
         }
       }
     }
@@ -99,23 +99,23 @@ const t = useTranslations(lang as Languages, "subscribeForm");
 
     const consentErrorField = consentField?.nextElementSibling;
     if (consent === null) {
-      consentErrorField?.classList.remove("hidden");
+      consentErrorField?.classList.remove('hidden');
     } else {
-      consentErrorField?.classList.add("hidden");
+      consentErrorField?.classList.add('hidden');
     }
 
     if (!consent || entries.some((v) => !v[1])) {
-      toast("Fill in all fields and upload only one file", "error");
+      toast('Fill in all fields and upload only one file', 'error');
       return;
     }
 
     const { data } = await actions.subscribeNews(formData);
 
     if (data?.success) {
-      toast("Form submitted", "success");
+      toast('Form submitted', 'success');
       form.reset();
     } else if (data?.error?.message) {
-      toast(data.error.message, "info");
+      toast(data.error.message, 'info');
     }
 
     form.reset();
@@ -128,7 +128,7 @@ const t = useTranslations(lang as Languages, "subscribeForm");
     /* clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%, 0 9%); */
   }
   .clip::after {
-    content: "";
+    content: '';
     position: absolute;
     top: -1px;
     left: -1px;

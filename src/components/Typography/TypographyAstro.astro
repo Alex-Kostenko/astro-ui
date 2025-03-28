@@ -1,27 +1,27 @@
 ---
 export enum TextType {
-  Default = "default",
-  Heading6 = "heading-6",
-  Title1 = "title-1",
-  Title2 = "title-2",
-  Title6 = "title-6",
-  SubTitle1 = "subTitle-1",
-  SubTitleSm1 = "subTitle-sm-1",
-  SubTitleSm4 = "subTitle-sm-4",
-  Body1 = "body-1",
-  Body2 = "body-2",
+  Default = 'default',
+  Heading6 = 'heading-6',
+  Title1 = 'title-1',
+  Title2 = 'title-2',
+  Title6 = 'title-6',
+  SubTitle1 = 'subTitle-1',
+  SubTitleSm1 = 'subTitle-sm-1',
+  SubTitleSm4 = 'subTitle-sm-4',
+  Body1 = 'body-1',
+  Body2 = 'body-2',
   // Body3 = "body-3",
-  Body4 = "body-4",
+  Body4 = 'body-4',
   // Body5 = "body-5",
 }
 
 export enum ColorType {
-  Black = "black",
-  White = "white",
-  Green = "green",
-  Gray = "gray",
-  BrandGray = "brand-gray",
-  Inherit = "inherit",
+  Black = 'black',
+  White = 'white',
+  Green = 'green',
+  Gray = 'gray',
+  BrandGray = 'brand-gray',
+  Inherit = 'inherit',
 }
 
 export interface Props {
@@ -32,34 +32,34 @@ export interface Props {
 }
 
 const {
-  tag: Tag = "p",
+  tag: Tag = 'p',
   type = TextType.Default,
   color = ColorType.Inherit,
   class: className,
 } = Astro.props;
 
 const colorSet: Record<ColorType, string> = {
-  [ColorType.Black]: "text-brand-black",
-  [ColorType.White]: "text-brand-white",
-  [ColorType.Green]: "text-green-200",
-  [ColorType.Gray]: "text-brand-black text-opacity-45",
-  [ColorType.BrandGray]: "text-brand-gray",
-  [ColorType.Inherit]: "text-inherit",
+  [ColorType.Black]: 'text-brand-black',
+  [ColorType.White]: 'text-brand-white',
+  [ColorType.Green]: 'text-green-200',
+  [ColorType.Gray]: 'text-brand-black/45',
+  [ColorType.BrandGray]: 'text-brand-gray',
+  [ColorType.Inherit]: 'text-inherit',
 };
 
 const fontSet: Record<TextType, string> = {
-  [TextType.Default]: "",
-  [TextType.Body1]: "font-normal font-gothic text-14",
-  [TextType.Body2]: "font-normal font-gothic text-base",
-  [TextType.Body4]: "font-normal font-gothic text-20 tracking-1",
-  [TextType.Title1]: "font-extrabold uppercase text-20 font-asket800",
-  [TextType.Title2]: "font-extrabold uppercase text-32 font-asket800",
-  [TextType.Title6]: "font-extrabold uppercase text-40 font-asket800",
-  [TextType.SubTitle1]: "font-bold uppercase text-24 font-gothic700",
-  [TextType.SubTitleSm1]: "font-bold uppercase text-20 font-gothic700",
-  [TextType.SubTitleSm4]: "font-bold uppercase text-14 font-gothic700",
+  [TextType.Default]: '',
+  [TextType.Body1]: 'font-normal font-gothic text-14',
+  [TextType.Body2]: 'font-normal font-gothic text-base',
+  [TextType.Body4]: 'font-normal font-gothic text-20 tracking-1',
+  [TextType.Title1]: 'font-extrabold uppercase text-20 font-asket800',
+  [TextType.Title2]: 'font-extrabold uppercase text-32 font-asket800',
+  [TextType.Title6]: 'font-extrabold uppercase text-40 font-asket800',
+  [TextType.SubTitle1]: 'font-bold uppercase text-24 font-gothic700',
+  [TextType.SubTitleSm1]: 'font-bold uppercase text-20 font-gothic700',
+  [TextType.SubTitleSm4]: 'font-bold uppercase text-14 font-gothic700',
   [TextType.Heading6]:
-    "font-extrabold uppercase text-96 tracking-[2px] leading-[6rem] font-asket800",
+    'font-extrabold uppercase text-96 tracking-[2px] leading-[6rem] font-asket800',
 };
 ---
 

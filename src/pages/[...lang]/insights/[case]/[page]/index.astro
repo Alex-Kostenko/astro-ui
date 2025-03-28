@@ -9,6 +9,7 @@ import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs.astro';
 import { Description, InsightsList } from '@components/Sections/Insights';
 import { useTranslations } from '@i18n/utils';
 import { SubscribeSection } from '@components/Form';
+import { HeroHeadAstro } from '@components/Hero';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const categories: IInsightCategory[] = [
@@ -72,19 +73,11 @@ const t = useTranslations(lang as Languages, 'insights');
     href='https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css'
   />
   <main class='flex flex-col gap-[120px]'>
-    <div class='h-[144px] lg:h-[168px] bg-black bg-opacity-45'>
-      <video
-        autoplay
-        muted
-        loop
-        class='relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover'
-      >
-        <track kind='captions' src='/captions/empty_captions.vtt' />
-        <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
-        <source src={cubeNearVP9} type='video/mp4' />
-      </video>
+    <div>
+      <HeroHeadAstro />
       <Breadcrumbs isPaginate={page} />
     </div>
+
     <Description />
     <InsightsList slug={slug} page={page} />
     <SubscribeSection text={t('contactUs')} />

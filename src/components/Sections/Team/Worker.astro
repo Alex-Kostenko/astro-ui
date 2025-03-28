@@ -1,11 +1,11 @@
 ---
-import { ButtonIcon, ButtonType } from "@components/Button";
-import { Chip } from "@components/Chip";
-import { ChipType } from "@components/Chip/chip.types";
-import { TypographyAstro } from "@components/Typography";
-import type { Languages } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
-import type { IWorker } from "@interfaces/worker";
+import { ButtonIcon, ButtonType } from '@components/Button';
+import { Chip } from '@components/Chip';
+import { ChipType } from '@components/Chip/chip.types';
+import { TypographyAstro } from '@components/Typography';
+import type { Languages } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import type { IWorker } from '@interfaces/worker';
 
 interface Props {
   worker: IWorker;
@@ -33,50 +33,50 @@ if (exp >= 2 && exp <= 4) {
   less = false;
 }
 
-const path = `${isMonth ? "month" : "year"}${less !== undefined ? (less ? "Less" : "More") : ""}`;
+const path = `${isMonth ? 'month' : 'year'}${less !== undefined ? (less ? 'Less' : 'More') : ''}`;
 
-const t = useTranslations(lang as Languages, "team.worker");
+const t = useTranslations(lang as Languages, 'team.worker');
 ---
 
-<div class="group hover:cursor-pointer relative w-[380px] h-[442px]">
+<div class='group hover:cursor-pointer relative w-[380px] h-[442px]'>
   <div
     class:list={[
-      "absolute group-hover:rotate-y-180 inset-0 duration-700 backface-hidden transform-3d bg-brand-white rounded-sm border border-brand-black p-4 xl:p-6 flex flex-col justify-between",
+      'absolute group-hover:rotate-y-180 inset-0 duration-700 backface-hidden transform-3d bg-brand-white rounded-sm border border-brand-black p-4 xl:p-6 flex flex-col justify-between',
       className,
     ]}
   >
     <img
       src={worker.photo.base64}
-      alt=""
-      class="w-full h-[320px] object-cover object-center rounded-sm"
+      alt=''
+      class='w-full h-[320px] object-cover object-center rounded-sm'
     />
-    <div class="flex justify-between">
+    <div class='flex justify-between'>
       <div>
-        <TypographyAstro type="subTitle-1" color="black" class="line-clamp-1">
+        <TypographyAstro type='subTitle-1' color='black' class='line-clamp-1'>
           {worker.name}
         </TypographyAstro>
         <TypographyAstro
-          type="subTitle-sm-4"
-          color="black"
-          class="text-brand-black text-opacity-75 line-clamp-1"
+          type='subTitle-sm-4'
+          color='black'
+          class='text-brand-black/75 line-clamp-1'
         >
           {worker.position}
         </TypographyAstro>
       </div>
-      <ButtonIcon iconClass="-rotate-45" class="mt-auto" />
+      <ButtonIcon iconClass='-rotate-45' class='mt-auto' />
     </div>
   </div>
   <div
-    class="absolute group-hover:rotate-y-360 inset-0 duration-700 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded-sm p-4 xl:p-6 flex flex-col gap-5"
+    class='absolute group-hover:rotate-y-360 inset-0 duration-700 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded-sm p-4 xl:p-6 flex flex-col gap-5'
   >
-    <TypographyAstro type="subTitle-1" color="white">
-      {t("greeting")}
+    <TypographyAstro type='subTitle-1' color='white'>
+      {t('greeting')}
     </TypographyAstro>
-    <div class="flex flex-col gap-1.5">
-      <TypographyAstro type="subTitle-sm-4" color="brand-gray" class="text-14!">
-        {t("technologies")}:
+    <div class='flex flex-col gap-1.5'>
+      <TypographyAstro type='subTitle-sm-4' color='brand-gray' class='text-14!'>
+        {t('technologies')}:
       </TypographyAstro>
-      <p class="flex flex-wrap gap-1">
+      <p class='flex flex-wrap gap-1'>
         {
           worker.stack.map((tech) => (
             <Chip variant={ChipType.white}>{tech.name}</Chip>
@@ -85,32 +85,32 @@ const t = useTranslations(lang as Languages, "team.worker");
       </p>
     </div>
 
-    <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="text-14!">
-        {t("experience")}:
+    <div class='flex flex-col gap-1.5'>
+      <TypographyAstro color='brand-gray' type='subTitle-sm-4' class='text-14!'>
+        {t('experience')}:
       </TypographyAstro>
-      <TypographyAstro color="white" type="body-2" class="text-14!">
+      <TypographyAstro color='white' type='body-2' class='text-14!'>
         {exp}
-        {" "}
+        {' '}
         {t(path)}
       </TypographyAstro>
     </div>
 
-    <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="text-14!">
-        {t("about")}:
+    <div class='flex flex-col gap-1.5'>
+      <TypographyAstro color='brand-gray' type='subTitle-sm-4' class='text-14!'>
+        {t('about')}:
       </TypographyAstro>
       <TypographyAstro
-        color="white"
-        type="body-2"
-        class="line-clamp-4 text-14!"
+        color='white'
+        type='body-2'
+        class='line-clamp-4 text-14!'
       >
         {worker.description}
       </TypographyAstro>
     </div>
     <ButtonIcon
-      class="mt-auto ml-auto"
-      iconClass="rotate-45 text-brand-black"
+      class='mt-auto ml-auto'
+      iconClass='rotate-45 text-brand-black'
       type={ButtonType.Secondary}
     />
   </div>

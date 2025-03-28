@@ -16,7 +16,7 @@ const t = useTranslations(lang, "header");
       "flex items-center justify-between box-border ",
       "max-w-[1680px] mx-auto py-4 2xl:py-5 px-2 2xl:px-8",
       "relative before:absolute before:inset-0 before:-z-10 before:content-['']",
-      "before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
+      "before:bg-brand-black/50 before:shadow-inner before:backdrop-blur-xl",
     ]}
   >
     <a href={formatLink(Astro.url, "/")}>
@@ -95,7 +95,7 @@ const t = useTranslations(lang, "header");
     downMenu?.classList.toggle("inset-0!");
     header?.classList.toggle("border-b");
     const headerBefore =
-      "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl";
+      "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black/50 before:shadow-inner before:backdrop-blur-xl";
     headerBefore.split(" ").map((className) => {
       header?.classList.toggle(className);
     });

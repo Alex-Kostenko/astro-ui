@@ -1,40 +1,40 @@
 ---
-import { ButtonIcon } from "@components/Button";
-import { Container } from "@components/Container";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
-import type { InsightContent } from "@interfaces/insight";
+import { ButtonIcon } from '@components/Button';
+import { Container } from '@components/Container';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import type { InsightContent } from '@interfaces/insight';
 
 interface Props {
   content: InsightContent[];
 }
 
 const { content } = Astro.props;
-const path = Astro.originPathname.replace(/\/$/, "");
+const path = Astro.originPathname.replace(/\/$/, '');
 ---
 
 <Container>
   <article-content
-    class="grid grid-rows-[auto_auto] lg:grid-rows-1 lg:grid-cols-[280px__auto] gap-5"
+    class='grid grid-rows-[auto_auto] lg:grid-rows-1 lg:grid-cols-[280px__auto] gap-5'
   >
-    <aside class="relative">
-      <div class="sticky top-44 flex flex-col gap-3">
+    <aside class='relative'>
+      <div class='sticky top-44 flex flex-col gap-3'>
         {
           content.map((c, i) => (
             <a
-              id={`${c.title.replace(" ", "-")}-${i}-link`}
-              href={`${path}#${c.title.replace(" ", "-")}-${i}`}
-              class="flex group items-center justify-between rounded-sm p-4 bg-greenLight-200 transition-colors duration-150 hover:bg-greenLight-600 data-active:bg-greenLight-600"
+              id={`${c.title.replace(' ', '-')}-${i}-link`}
+              href={`${path}#${c.title.replace(' ', '-')}-${i}`}
+              class='flex group items-center justify-between rounded-sm p-4 bg-green-light-200 transition-colors duration-150 hover:bg-green-light-600 data-active:bg-green-light-600'
             >
               <TypographyAstro
-                class="text-brand-black! group-hover:text-brand-white! transition-colors duration-150 group-data-active:text-brand-white"
-                color="white"
-                type="subTitle-sm-1"
+                class='text-brand-black! group-hover:text-brand-white! transition-colors duration-150 group-data-active:text-brand-white'
+                color='white'
+                type='subTitle-sm-1'
               >
                 {c.title}
               </TypographyAstro>
               <ButtonIcon
-                iconClass="-rotate-45 transition-transform duration-150 group-hover:rotate-45 group-data-active:rotate-45!"
-                class="group-data-active:bg-green-100"
+                iconClass='-rotate-45 transition-transform duration-150 group-hover:rotate-45 group-data-active:rotate-45!'
+                class='group-data-active:bg-green-100'
               />
             </a>
           ))
@@ -46,20 +46,20 @@ const path = Astro.originPathname.replace(/\/$/, "");
         content.map((c, i) => {
           return (
             <article
-              class="scroll-m-[200px] lg:not-last:mb-[120px] not-last:mb-[60px]"
-              id={`${c.title.replace(" ", "-")}-${i}`}
+              class='scroll-m-[200px] lg:not-last:mb-[120px] not-last:mb-[60px]'
+              id={`${c.title.replace(' ', '-')}-${i}`}
             >
               <SectionTitle
                 title={c.title}
-                type={String(i + 1).padStart(2, "0")}
-                classContainer="mb-10"
-                classType="flex-none! mr-[50px]"
+                type={String(i + 1).padStart(2, '0')}
+                classContainer='mb-10'
+                classType='flex-none! mr-[50px]'
               />
               {c.content.map((c) => (
-                <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:not-last:mb-[120px] not-last:mb-[60px]">
+                <div class='flex flex-col gap-[60px] lg:gap-[120px] lg:not-last:mb-[120px] not-last:mb-[60px]'>
                   <>
                     {c.text && (
-                      <TypographyAstro color="black" type="body-4">
+                      <TypographyAstro color='black' type='body-4'>
                         {c.text}
                       </TypographyAstro>
                     )}
@@ -83,31 +83,31 @@ const path = Astro.originPathname.replace(/\/$/, "");
 <script>
   class ArticleContent extends HTMLElement {
     connectedCallback() {
-      const aside = this.querySelector("aside")!;
-      const anchors = aside?.querySelectorAll("div>a")!;
+      const aside = this.querySelector('aside')!;
+      const anchors = aside?.querySelectorAll('div>a')!;
 
-      const content = this.querySelector("section");
-      const headers = content?.querySelectorAll("&>article")!;
+      const content = this.querySelector('section');
+      const headers = content?.querySelectorAll('&>article')!;
 
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            const id = entry.target.getAttribute("id");
+            const id = entry.target.getAttribute('id');
 
             if (entry.isIntersecting) {
-              anchors.forEach((link) => link.removeAttribute("data-active"));
+              anchors.forEach((link) => link.removeAttribute('data-active'));
               const link = aside.querySelector(`div>a[id="${id}-link"]`);
 
-              link?.setAttribute("data-active", "true");
+              link?.setAttribute('data-active', 'true');
             }
           });
         },
-        { rootMargin: "-50% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+        { rootMargin: '-50% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] },
       );
 
       headers.forEach((heading) => observer.observe(heading));
     }
   }
 
-  customElements.define("article-content", ArticleContent);
+  customElements.define('article-content', ArticleContent);
 </script>

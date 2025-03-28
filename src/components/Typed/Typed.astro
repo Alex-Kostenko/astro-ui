@@ -9,13 +9,13 @@ const wordsList = words;
 ---
 
 <typed-astro
-  class="flex empty relative text-24 md:text-32 2xl:text-40 font-extrabold text-brand-black font-commissioner"
+  class='flex empty relative text-24 md:text-32 2xl:text-40 font-extrabold text-brand-black font-commissioner'
 >
   {
     wordsList.map((w, i) => (
-      <p data-index={i} class="absolute inset-x-0 uppercase">
-        {w.split("").map((s) => (
-          <span class="opacity-0 inline-block ">{s}</span>
+      <p data-index={i} class='absolute inset-x-0 uppercase'>
+        {w.split('').map((s) => (
+          <span class='opacity-0 inline-block '>{s}</span>
         ))}
       </p>
     ))
@@ -26,9 +26,9 @@ const wordsList = words;
   class Typed extends HTMLElement {
     connectedCallback() {
       const colors = [
-        "text-brand-beigeLight",
-        "text-brand-beige",
-        "text-brand-gray",
+        ' text-brand-beige-light',
+        'text-brand-beige',
+        'text-brand-gray',
       ];
 
       const letterPrintTime = 200;
@@ -36,13 +36,13 @@ const wordsList = words;
       const removeTime = 50;
       const removeDelay = 100;
 
-      const wordList = Array.from(this.querySelectorAll("p"));
+      const wordList = Array.from(this.querySelectorAll('p'));
 
       const wordCycle = (index = 0) => {
         if (index >= wordList.length) return;
 
         const word = wordList[index];
-        const symbols = word.querySelectorAll("span");
+        const symbols = word.querySelectorAll('span');
 
         word.classList.remove(...colors);
         word.classList.add(colors[index % (wordList.length - 1)]);
@@ -52,7 +52,7 @@ const wordsList = words;
         const printWord = () => {
           symbols.forEach((s, i) => {
             setTimeout(() => {
-              s.classList.remove("opacity-0");
+              s.classList.remove('opacity-0');
             }, i * letterPrintTime);
           });
         };
@@ -62,7 +62,7 @@ const wordsList = words;
             symbols.forEach((s, i) => {
               setTimeout(
                 () => {
-                  s.classList.add("opacity-0");
+                  s.classList.add('opacity-0');
                   if (i === symbols.length - 1) resolve();
                 },
                 removeTime * (symbols.length - i) + removeDelay,
@@ -85,12 +85,12 @@ const wordsList = words;
     }
   }
 
-  customElements.define("typed-astro", Typed);
+  customElements.define('typed-astro', Typed);
 </script>
 
 <style is:global>
   .empty::after {
-    content: "\00a0";
+    content: '\00a0';
     position: relative;
     bottom: 0;
     visibility: hidden;
