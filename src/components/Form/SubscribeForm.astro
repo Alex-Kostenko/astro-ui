@@ -16,7 +16,7 @@ const t = useTranslations(lang as Languages, "subscribeForm");
     "flex flex-col gap-x-8 gap-y-8 xl:flex-row clip after:hidden md:after:block",
   ]}
 >
-  <div class="flex-grow xl:w-1/2 mt-auto md:px-16 lg:px-0">
+  <div class="grow xl:w-1/2 mt-auto md:px-16 lg:px-0">
     <h3
       class="text-brand-beigeLight font-gothic uppercase text-20 z-50 relative"
     >
@@ -26,7 +26,7 @@ const t = useTranslations(lang as Languages, "subscribeForm");
 
   <form
     id="form-contac-us"
-    class:list={["flex-grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
+    class:list={["grow w-full xl:max-w-[480px]", "flex flex-col gap-y-5"]}
   >
     <div class="flex flex-col gap-y-4">
       <TextField placeholder={t("nameLabel")} name="name" />

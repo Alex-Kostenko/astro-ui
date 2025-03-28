@@ -25,7 +25,7 @@ const t = useTranslations(lang as Languages, "project.technologies");
       <div class="tech will-change-transform flex gap-5 pr-5">
         {
           (stackList || []).map((tech) => (
-            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
+            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded-sm">
               <img src={stack[tech.name as keyof typeof stack].src} alt="" />
             </div>
           ))
@@ -35,7 +35,7 @@ const t = useTranslations(lang as Languages, "project.technologies");
       <div aria-hidden class="tech will-change-transform flex gap-5 pr-5">
         {
           (stackList || []).map((tech) => (
-            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
+            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded-sm">
               <img
                 src={stack[tech.name as keyof typeof stack].src}
                 alt=""

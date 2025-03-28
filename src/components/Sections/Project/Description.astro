@@ -11,9 +11,9 @@ const data = Astro.props;
 
 <article class="container flex flex-col gap-10 mt-7">
   <Title {...data} />
-  <section class="grid lg:grid-cols-[280px,auto] gap-5">
+  <section class="grid lg:grid-cols-[280px_auto] gap-5">
     <div
-      class="w-full ls:w-[280px] h-[152px] flex items-center justify-center py-9 p-2.5 mx-auto bg-brand-black rounded"
+      class="w-full ls:w-[280px] h-[152px] flex items-center justify-center py-9 p-2.5 mx-auto bg-brand-black rounded-sm"
     >
       <img
         src={objCompany[data.partner.name as keyof typeof objCompany].src}

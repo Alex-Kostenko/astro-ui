@@ -41,14 +41,14 @@ const t = useTranslations(lang as Languages, "team.worker");
 <div class="group hover:cursor-pointer relative w-[380px] h-[442px]">
   <div
     class:list={[
-      "absolute group-hover:rotate-y-180 inset-0 duration-700 backface-hidden transform-3d bg-brand-white rounded border border-brand-black p-4 xl:p-6 flex flex-col justify-between",
+      "absolute group-hover:rotate-y-180 inset-0 duration-700 backface-hidden transform-3d bg-brand-white rounded-sm border border-brand-black p-4 xl:p-6 flex flex-col justify-between",
       className,
     ]}
   >
     <img
       src={worker.photo.base64}
       alt=""
-      class="w-full h-[320px] object-cover object-center rounded"
+      class="w-full h-[320px] object-cover object-center rounded-sm"
     />
     <div class="flex justify-between">
       <div>
@@ -67,13 +67,13 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
   </div>
   <div
-    class="absolute group-hover:rotate-y-360 inset-0 duration-700 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded p-4 xl:p-6 flex flex-col gap-5"
+    class="absolute group-hover:rotate-y-360 inset-0 duration-700 backface-hidden transform-3d rotate-y-180 bg-brand-black rounded-sm p-4 xl:p-6 flex flex-col gap-5"
   >
     <TypographyAstro type="subTitle-1" color="white">
       {t("greeting")}
     </TypographyAstro>
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro type="subTitle-sm-4" color="brand-gray" class="!text-14">
+      <TypographyAstro type="subTitle-sm-4" color="brand-gray" class="text-14!">
         {t("technologies")}:
       </TypographyAstro>
       <p class="flex flex-wrap gap-1">
@@ -86,10 +86,10 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
 
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="!text-14">
+      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="text-14!">
         {t("experience")}:
       </TypographyAstro>
-      <TypographyAstro color="white" type="body-2" class="!text-14">
+      <TypographyAstro color="white" type="body-2" class="text-14!">
         {exp}
         {" "}
         {t(path)}
@@ -97,13 +97,13 @@ const t = useTranslations(lang as Languages, "team.worker");
     </div>
 
     <div class="flex flex-col gap-1.5">
-      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="!text-14">
+      <TypographyAstro color="brand-gray" type="subTitle-sm-4" class="text-14!">
         {t("about")}:
       </TypographyAstro>
       <TypographyAstro
         color="white"
         type="body-2"
-        class="line-clamp-4 !text-14"
+        class="line-clamp-4 text-14!"
       >
         {worker.description}
       </TypographyAstro>

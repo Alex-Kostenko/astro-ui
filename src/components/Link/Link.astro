@@ -22,7 +22,7 @@ const {
 <a
   href={href}
   class:list={[
-    "min-h-10 min-w-11 px-5 py-3 rounded box-border font-gothic700",
+    "min-h-10 min-w-11 px-5 py-3 rounded-sm box-border font-gothic700",
     "cursor-pointer select-none duration-500",
     "uppercase text-center font-bold text-base",
     {
@@ -30,7 +30,7 @@ const {
         variant === "contained" && color === "biscuit" && !disabled,
       "hover:bg-brand-white hover:text-brand-green text-brand-white":
         color === "biscuit" && !disabled,
-      "bg-brand-white !text-brand-green":
+      "bg-brand-white text-brand-green!":
         color === "biscuit" && active && !disabled,
       "text-brand-green text-opacity-50": disabled,
     },
@@ -45,7 +45,7 @@ const {
     {
       "text-brand-green hover:bg-brand-green hover:text-brand-white":
         color === "green" && !disabled,
-      "bg-brand-green !text-brand-white":
+      "bg-brand-green text-brand-white!":
         color === "green" && active && !disabled,
     },
     className,

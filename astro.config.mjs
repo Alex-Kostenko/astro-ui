@@ -2,7 +2,7 @@
 // import vercelServerless from "@astrojs/vercel";
 import node from '@astrojs/node';
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import AstroPWA from '@vite-pwa/astro';
 
@@ -19,10 +19,10 @@ export default defineConfig({
         // allow: ["../.."],
       },
     },
+    plugins: [tailwindcss()],
     publicDir: 'public',
   },
   integrations: [
-    tailwind(),
     AstroPWA({
       strategies: 'generateSW',
       registerType: 'autoUpdate',

@@ -3,13 +3,13 @@ const styles = {
     "text-white",
     "px-6",
     "py-2",
-    "rounded",
+    "rounded-sm",
     "cursor-pointer",
     "w-[325px]",
   ],
   info: ["bg-blue-400", "hover:bg-blue-500"],
   success: ["bg-green-100", "hover:bg-green-200"],
-  error: ["bg-[#d32f2f]", "!text-black"],
+  error: ["bg-[#d32f2f]", "text-black!"],
 };
 
 export function toast(msg: string, type?: keyof typeof styles) {

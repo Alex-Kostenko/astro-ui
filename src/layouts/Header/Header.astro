@@ -48,13 +48,13 @@ const t = useTranslations(lang, "header");
       >
         <div class="relative h-full menuWrapper">
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-full"
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-full"
           ></span>
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-1/2"
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-1/2"
           ></span>
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-0"
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-0"
           ></span>
         </div>
       </button>
@@ -92,7 +92,7 @@ const t = useTranslations(lang, "header");
 
   menu?.addEventListener("click", function () {
     menuWraper?.classList.toggle("active");
-    downMenu?.classList.toggle("!inset-0");
+    downMenu?.classList.toggle("inset-0!");
     header?.classList.toggle("border-b");
     const headerBefore =
       "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl";

@@ -14,7 +14,7 @@ const path = Astro.originPathname.replace(/\/$/, "");
 
 <Container>
   <article-content
-    class="grid grid-rows-[auto,auto] lg:grid-rows-1 lg:grid-cols-[280px,_auto] gap-5"
+    class="grid grid-rows-[auto_auto] lg:grid-rows-1 lg:grid-cols-[280px__auto] gap-5"
   >
     <aside class="relative">
       <div class="sticky top-44 flex flex-col gap-3">
@@ -23,18 +23,18 @@ const path = Astro.originPathname.replace(/\/$/, "");
             <a
               id={`${c.title.replace(" ", "-")}-${i}-link`}
               href={`${path}#${c.title.replace(" ", "-")}-${i}`}
-              class="flex group items-center justify-between rounded p-4 bg-greenLight-200 transition-colors duration-150 hover:bg-greenLight-600 data-[active]:bg-greenLight-600"
+              class="flex group items-center justify-between rounded-sm p-4 bg-greenLight-200 transition-colors duration-150 hover:bg-greenLight-600 data-active:bg-greenLight-600"
             >
               <TypographyAstro
-                class="!text-brand-black group-hover:!text-brand-white transition-colors duration-150 group-data-[active]:text-brand-white"
+                class="text-brand-black! group-hover:text-brand-white! transition-colors duration-150 group-data-active:text-brand-white"
                 color="white"
                 type="subTitle-sm-1"
               >
                 {c.title}
               </TypographyAstro>
               <ButtonIcon
-                iconClass="-rotate-45 transition-transform duration-150 group-hover:rotate-45 group-data-[active]:!rotate-45"
-                class="group-data-[active]:bg-green-100"
+                iconClass="-rotate-45 transition-transform duration-150 group-hover:rotate-45 group-data-active:rotate-45!"
+                class="group-data-active:bg-green-100"
               />
             </a>
           ))
@@ -46,17 +46,17 @@ const path = Astro.originPathname.replace(/\/$/, "");
         content.map((c, i) => {
           return (
             <article
-              class="scroll-m-[200px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]"
+              class="scroll-m-[200px] lg:not-last:mb-[120px] not-last:mb-[60px]"
               id={`${c.title.replace(" ", "-")}-${i}`}
             >
               <SectionTitle
                 title={c.title}
                 type={String(i + 1).padStart(2, "0")}
                 classContainer="mb-10"
-                classType="!flex-none mr-[50px]"
+                classType="flex-none! mr-[50px]"
               />
               {c.content.map((c) => (
-                <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:[&:not(:last-child)]:mb-[120px] [&:not(:last-child)]:mb-[60px]">
+                <div class="flex flex-col gap-[60px] lg:gap-[120px] lg:not-last:mb-[120px] not-last:mb-[60px]">
                   <>
                     {c.text && (
                       <TypographyAstro color="black" type="body-4">

@@ -1,9 +1,9 @@
 ---
-import "@style/main.css";
-import Header from "./Header/Header.astro";
-import Footer from "./Footer/Footer.astro";
-import { Toast } from "@components/Toast";
-import { pwaInfo } from "virtual:pwa-info";
+import '@style/global.css';
+import Header from './Header/Header.astro';
+import Footer from './Footer/Footer.astro';
+import { Toast } from '@components/Toast';
+import { pwaInfo } from 'virtual:pwa-info';
 
 interface IOpenGraph {
   title?: string;
@@ -25,15 +25,15 @@ const gtmToken = import.meta.env.GTM_TOKEN;
 ---
 
 <!doctype html>
-<html lang={lang || "en"}>
+<html lang={lang || 'en'}>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset='UTF-8' />
     <link
-      href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap"
-      rel="stylesheet"
+      href='https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap'
+      rel='stylesheet'
     />
     <!-- Google tag (gtag.js) -->
-    <meta id="tokens" data-ga-token={gaToken} data-gtm-token={gtmToken} />
+    <meta id='tokens' data-ga-token={gaToken} data-gtm-token={gtmToken} />
     <script
       async
       is:inline
@@ -44,28 +44,28 @@ const gtmToken = import.meta.env.GTM_TOKEN;
         dataLayer.push(arguments);
       }
 
-      const tokens = document.querySelector("#tokens");
-      const gaToken = tokens.getAttribute("data-ga-token");
+      const tokens = document.querySelector('#tokens');
+      const gaToken = tokens.getAttribute('data-ga-token');
 
-      gtag("js", new Date());
+      gtag('js', new Date());
 
-      gtag("config", gaToken);
+      gtag('config', gaToken);
     </script>
 
     <!-- Google Tag Manager -->
     <script is:inline>
-      const metaTokens = document.querySelector("#tokens");
-      const gtmToken = metaTokens.getAttribute("data-gtm-token");
+      const metaTokens = document.querySelector('#tokens');
+      const gtmToken = metaTokens.getAttribute('data-gtm-token');
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
         var f = d.getElementsByTagName(s)[0],
           j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
+          dl = l != 'dataLayer' ? '&l=' + l : '';
         j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", gtmToken);
+      })(window, document, 'script', 'dataLayer', gtmToken);
     </script>
     <!-- End Google Tag Manager -->
 
@@ -73,67 +73,67 @@ const gtmToken = import.meta.env.GTM_TOKEN;
     <noscript
       ><iframe
         src={`https://www.googletagmanager.com/ns.html?id=${gtmToken}`}
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"></iframe></noscript
+        height='0'
+        width='0'
+        style='display:none;visibility:hidden'></iframe></noscript
     >
     <!-- End Google Tag Manager (noscript) -->
 
-    <meta charset="UTF-8" />
-    <meta name="description" content="We make your business UNIQUE" />
-    <meta name="viewport" content="width=device-width" />
+    <meta charset='UTF-8' />
+    <meta name='description' content='We make your business UNIQUE' />
+    <meta name='viewport' content='width=device-width' />
     <!-- Remove next line for allow robots on site (allow indexing) -->
     <!-- <meta name="”robots”" content="”none”" /> -->
 
     <!-- Open graph -->
     <meta
-      property="og:title"
-      content={openGraph?.title || "UniCode Software"}
+      property='og:title'
+      content={openGraph?.title || 'UniCode Software'}
     />
     <meta
-      property="og:description"
-      content={openGraph?.description || "We make your business UNIQUE"}
+      property='og:description'
+      content={openGraph?.description || 'We make your business UNIQUE'}
     />
     <meta
-      property="og:image"
-      content={openGraph?.image || "/open-graph-preview.jpg"}
+      property='og:image'
+      content={openGraph?.image || '/open-graph-preview.jpg'}
     />
     <!-- <meta property="og:image:type" content="image/png" /> -->
-    <meta property="og:url" content={`https://${domain}`} />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="UniCode Software" />
+    <meta property='og:url' content={`https://${domain}`} />
+    <meta property='og:type' content='website' />
+    <meta property='og:site_name' content='UniCode Software' />
 
     <!-- Twitter open graph -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content={domain} />
-    <meta property="twitter:url" content={`https://${domain}`} />
+    <meta name='twitter:card' content='summary_large_image' />
+    <meta property='twitter:domain' content={domain} />
+    <meta property='twitter:url' content={`https://${domain}`} />
     <meta
-      property="twitter:title"
-      content={openGraph?.title || "UniCode Software"}
+      property='twitter:title'
+      content={openGraph?.title || 'UniCode Software'}
     />
     <meta
-      property="twitter:description"
-      content={openGraph?.description || "We make your business UNIQUE"}
+      property='twitter:description'
+      content={openGraph?.description || 'We make your business UNIQUE'}
     />
     <meta
-      property="twitter:image"
-      content={openGraph?.image || "/open-graph-preview.jpg"}
+      property='twitter:image'
+      content={openGraph?.image || '/open-graph-preview.jpg'}
     />
     <!-- <meta name="twitter:site" content="@YourTwitterHandle" /> -->
 
-    <link rel="icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="UniCode" />
+    <link rel='icon' href='/favicon.ico' />
+    <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
+    <meta name='apple-mobile-web-app-title' content='UniCode' />
 
-    <meta name="generator" content={Astro.generator} />
+    <meta name='generator' content={Astro.generator} />
 
-    <script src="/src/pwa.ts"></script>
+    <script src='/src/pwa.ts'></script>
     {pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
 
-    <slot name="head" />
+    <slot name='head' />
     <title>{title}</title>
   </head>
-  <body class="bg-brand-white">
+  <body class='bg-brand-white'>
     <Toast />
     <Header />
     <slot />
@@ -149,39 +149,39 @@ const gtmToken = import.meta.env.GTM_TOKEN;
   }
 
   @font-face {
-    font-family: "Gothic400";
-    src: url("/fonts/centuryGothic/centurygothic.ttf") format("woff");
+    font-family: 'Gothic400';
+    src: url('/fonts/centuryGothic/centurygothic.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Gothic700";
-    src: url("/fonts/centuryGothic/centurygothic_bold.ttf") format("woff");
+    font-family: 'Gothic700';
+    src: url('/fonts/centuryGothic/centurygothic_bold.ttf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
   @font-face {
-    font-family: "Asket800Condensed";
-    src: url("/fonts/asket/asketCondensedExtrabold.otf") format("woff");
+    font-family: 'Asket800Condensed';
+    src: url('/fonts/asket/asketCondensedExtrabold.otf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
     font-stretch: condensed;
   }
   @font-face {
-    font-family: "Asket300Extended";
-    src: url("/fonts/asket/asketExtendedLight.otf") format("woff");
+    font-family: 'Asket300Extended';
+    src: url('/fonts/asket/asketExtendedLight.otf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
     font-stretch: expanded;
   }
   @font-face {
-    font-family: "Asket800";
-    src: url("/fonts/asket/asketExtrabold.otf") format("woff");
+    font-family: 'Asket800';
+    src: url('/fonts/asket/asketExtrabold.otf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -189,8 +189,8 @@ const gtmToken = import.meta.env.GTM_TOKEN;
     font-stretch: normal;
   }
   @font-face {
-    font-family: "Asket300";
-    src: url("/fonts/asket/asketNarrowLight.otf") format("woff");
+    font-family: 'Asket300';
+    src: url('/fonts/asket/asketNarrowLight.otf') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
