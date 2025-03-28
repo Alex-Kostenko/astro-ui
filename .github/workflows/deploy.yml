@@ -1,0 +1,32 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Astro project
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/pages/projects/YOUR_PROJECT_ID/deployments" \
+          -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
+          -F "file=@./dist" \
+          -F "name=production"
