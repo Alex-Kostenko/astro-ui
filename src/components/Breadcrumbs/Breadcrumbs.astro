@@ -32,10 +32,10 @@ function getLink(paths: string[], index: number): string {
       return copy.slice(0, index + 1).join('/') + '/1';
     }
 
-    return copy.slice(index + 1).join('/');
+    return copy.slice(0, index + 1).join('/');
   }
 
-  return copy.slice(index + 1).join('/');
+  return copy.slice(0, index + 1).join('/');
 }
 ---
 
