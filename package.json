@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "build:prod": "astro check && dotenv -e .env.prod -- astro build",
     "preview": "astro preview",
+    "preview-cloudflare": "wrangler pages dev ./dist",
     "astro": "astro"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "dotenv": "^16.4.7",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "wrangler": "^4.5.1"
   }
 }
