@@ -16,6 +16,7 @@ export enum TextType {
 }
 
 export enum ColorType {
+  Default = 'default',
   Black = 'black',
   White = 'white',
   Green = 'green',
@@ -34,11 +35,12 @@ export interface Props {
 const {
   tag: Tag = 'p',
   type = TextType.Default,
-  color = ColorType.Inherit,
+  color = ColorType.Default,
   class: className,
 } = Astro.props;
 
 const colorSet: Record<ColorType, string> = {
+  [ColorType.Default]: '',
   [ColorType.Black]: 'text-brand-black',
   [ColorType.White]: 'text-brand-white',
   [ColorType.Green]: 'text-green-200',
