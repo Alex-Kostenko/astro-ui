@@ -1,5 +1,7 @@
 ---
 import { ButtonIcon, ButtonType } from "@components/Button";
+import { Chip } from "@components/Chip";
+import { ChipType } from "@components/Chip/chip.types";
 import { TypographyAstro } from "@components/Typography";
 import type { Languages } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
@@ -12,6 +14,26 @@ interface Props {
 
 const { lang } = Astro.params;
 const { worker, class: className } = Astro.props;
+
+const experience =
+  new Date().getFullYear() - new Date(worker.experience).getFullYear();
+let exp = undefined;
+let isMonth = false;
+let less = undefined;
+if (experience === 0) {
+  exp = new Date().getMonth() - new Date(worker.experience).getMonth();
+  isMonth = true;
+} else {
+  exp = experience;
+}
+
+if (exp >= 2 && exp <= 4) {
+  less = true;
+} else if (exp >= 5) {
+  less = false;
+}
+
+const path = `${isMonth ? "month" : "year"}${less !== undefined ? (less ? "Less" : "More") : ""}`;
 
 const t = useTranslations(lang as Languages, "team.worker");
 ---
@@ -30,13 +52,13 @@ const t = useTranslations(lang as Languages, "team.worker");
     />
     <div class="flex justify-between">
       <div>
-        <TypographyAstro type="subTitle-1" color="black">
+        <TypographyAstro type="subTitle-1" color="black" class="line-clamp-1">
           {worker.name}
         </TypographyAstro>
         <TypographyAstro
           type="subTitle-sm-4"
           color="black"
-          class="text-brand-black text-opacity-75"
+          class="text-brand-black text-opacity-75 line-clamp-1"
         >
           {worker.position}
         </TypographyAstro>
@@ -57,10 +79,7 @@ const t = useTranslations(lang as Languages, "team.worker");
       <p class="flex flex-wrap gap-1">
         {
           worker.stack.map((tech) => (
-            // TODO: remove and create component Chip
-            <span class="py-1 px-3 bg-white rounded-3xl text-brand-black text-12 font-gothic">
-              {tech.name}
-            </span>
+            <Chip variant={ChipType.white}>{tech.name}</Chip>
           ))
         }
       </p>
@@ -71,9 +90,9 @@ const t = useTranslations(lang as Languages, "team.worker");
         {t("experience")}:
       </TypographyAstro>
       <TypographyAstro color="white" type="body-2" class="!text-14">
-        {new Date().getFullYear() - new Date(worker.experience).getFullYear()}
-        years
-        <!-- TODO: add dynamic time detect -->
+        {exp}
+        {" "}
+        {t(path)}
       </TypographyAstro>
     </div>
 

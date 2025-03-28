@@ -1,6 +1,8 @@
 ---
-import { TypographyAstro } from "@components/Typography";
-import type { IProject } from "@interfaces/project";
+import { Chip } from '@components/Chip';
+import { ChipType } from '@components/Chip/chip.types';
+import { TypographyAstro } from '@components/Typography';
+import type { IProject } from '@interfaces/project';
 
 interface Props {
   project: IProject;
@@ -12,67 +14,68 @@ const { class: className, project } = Astro.props;
 
 <section
   class:list={[
-    "flex justify-between gap-y-3 pt-6 relative border-project",
+    'flex justify-between gap-y-3 pt-6 relative border-project',
     "before:content-[''] before:absolute before:top-0 before:right-0 before:left-0 before:h-px",
-    "before:min-w-5 before:bg-brand-black before:bg-opacity-[48%]",
+    'before:min-w-5 before:bg-brand-black before:bg-opacity-[48%]',
     className,
   ]}
 >
-  <section class="flex flex-col justify-between flex-1">
-    <article class="mb-5">
-      <TypographyAstro type="subTitle-1" class="text-green mb-2">
+  <section class='flex flex-col justify-between flex-1'>
+    <article class='mb-5'>
+      <TypographyAstro type='subTitle-1' class='text-green mb-2'>
         {project.title}
       </TypographyAstro>
-      <TypographyAstro type="subTitle-sm-1" color="gray">
+      <TypographyAstro type='subTitle-sm-1' color='gray'>
         {project.subTitle}
       </TypographyAstro>
     </article>
-    <div class="flex flex-col gap-y-3">
+    <div class='flex flex-col gap-y-3'>
       <article>
-        <TypographyAstro type="subTitle-sm-4" color="gray">
+        <TypographyAstro type='subTitle-sm-4' color='gray'>
           TECHNOLOGIES:
         </TypographyAstro>
-        <div class="flex flex-wrap gap-2 mt-1">
+        <div class='flex flex-wrap gap-2 mt-1'>
           {
             project.technologies.map((v) => (
-              <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
-                {v.name}
-              </span>
+              // <span class="py-1 px-3 bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic">
+              //   {v.name}
+              // </span>
+              <Chip variant={ChipType.beigeLight}>{v.name}</Chip>
             ))
           }
         </div>
       </article>
       <article>
-        <TypographyAstro type="subTitle-sm-4" color="gray">
+        <TypographyAstro type='subTitle-sm-4' color='gray'>
           Industry:
         </TypographyAstro>
-        <TypographyAstro type="body-2">{project.industry}</TypographyAstro>
+        <TypographyAstro type='body-2'>{project.industry}</TypographyAstro>
       </article>
       <article>
-        <TypographyAstro type="subTitle-sm-4" color="gray">
+        <TypographyAstro type='subTitle-sm-4' color='gray'>
           CLIENT since:
         </TypographyAstro>
-        <TypographyAstro type="body-2">
+        <TypographyAstro type='body-2'>
           {new Date(project.clientSinceYear).getFullYear()}
         </TypographyAstro>
       </article>
       <article>
-        <TypographyAstro type="subTitle-sm-4" color="gray">
+        <TypographyAstro type='subTitle-sm-4' color='gray'>
           REGION:
         </TypographyAstro>
-        <TypographyAstro type="body-2" class="uppercase">
+        <TypographyAstro type='body-2' class='uppercase'>
           {project.region}
         </TypographyAstro>
       </article>
     </div>
   </section>
 
-  <div class="h-[352px] flex-1">
+  <div class='h-[352px] flex-1'>
     <img
-      class="h-full w-full object-cover object-center"
+      class='h-full w-full object-cover object-center'
       src={project.image.base64}
-      alt={project.image.name || "project preview"}
-      loading="lazy"
+      alt={project.image.name || 'project preview'}
+      loading='lazy'
     />
   </div>
 </section>

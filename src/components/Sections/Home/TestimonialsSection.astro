@@ -5,11 +5,14 @@ import { SectionTitle } from "@components/Typography";
 import { useTranslations, type Languages } from "@i18n/index";
 import commentService from "@service/comment.service";
 import { ArrowRight, ArrowLeft } from "@assets/index";
+import { extendArray } from "@utils/extendArray";
 
 const { lang } = Astro.params;
 const t = useTranslations(lang as Languages, "home.testimonials");
 
 const comments = await commentService.get({ locale: lang as Languages });
+
+const extendedComment = extendArray(comments.data, 5);
 ---
 
 <Container class="overflow-hidden">
@@ -18,7 +21,7 @@ const comments = await commentService.get({ locale: lang as Languages });
   <section class="swiper comment-swiper">
     <div class="swiper-wrapper">
       {
-        comments.data.map((v) => (
+        extendedComment.map((v) => (
           <div class="swiper-slide md:w-[332px] lg:w-[730px] duration-300">
             <CommentAstro comment={v} class="flex-col lg:flex-row" />
           </div>

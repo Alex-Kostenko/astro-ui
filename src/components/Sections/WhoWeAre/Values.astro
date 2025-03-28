@@ -66,7 +66,7 @@ const values = [
                   "text-xl leading-6 w-full h-full p-4",
                 ]}
               >
-                <Image src={steps[index % 6]} alt="" />
+                <Image src={steps[index % steps.length]} alt="step icon" />
                 <h4 class="uppercase">{v.title}</h4>
                 <p class="font-gothic">{v.description}</p>
               </div>

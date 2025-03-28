@@ -310,7 +310,9 @@
     },
     "positions": {
       "title": "& Start Your Journey with Us",
-      "type": "OPEN POSITIONS"
+      "type": "OPEN POSITIONS",
+      "workType": "Work type:",
+      "mainSkills": "Main skills:"
     },
     "contactUs": [
       {
@@ -429,8 +431,12 @@
       "technologies": "technologies",
       "experience": "experience",
       "about": "about",
-      "years": "years",
-      "months": "months"
+      "year": "year",
+      "yearLess": "years",
+      "yearMore": "years",
+      "month": "month",
+      "monthLess": "months",
+      "monthMore": "months"
     },
     "recruiter": {
       "title": "Are you interested in becoming part of the team & have any questions?",

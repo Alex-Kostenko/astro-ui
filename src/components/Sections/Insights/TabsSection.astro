@@ -1,8 +1,8 @@
 ---
 import { Tabs, TabsType } from "@components/Tabs";
 import { useTranslations, type Languages } from "@i18n/index";
-import type { IInsightCategory } from "@interfaces/index";
 import insightService from "@service/insight.service";
+import { extendArray } from "@utils/extendArray";
 import { formatLink } from "@utils/index";
 
 interface Props {
@@ -24,16 +24,10 @@ const categories = await insightService.getCategory({
 
 const currentCategory = categories.data.find((v) => v.slug === category);
 
-const getNeededLength = (data: IInsightCategory[]) => {
-  const neededLength = 10;
-  if (data.length >= neededLength || data.length === 0) return data;
-
-  while (data.length < neededLength) {
-    data.push(...data);
-  }
-
-  return data;
-};
+const extendedData = extendArray(
+  [...categories.data, { name: "All", slug: "all" }],
+  20,
+);
 ---
 
 <div class:list={"w-full mb-[120px]"}>
@@ -43,7 +37,7 @@ const getNeededLength = (data: IInsightCategory[]) => {
     </Tabs>
     <div class="categories-swiper swiper">
       <section class:list={["swiper-wrapper justify-between"]}>
-        {
+        <!-- {
           category !== "all" && (
             <Tabs
               class="swiper-slide w-fit"
@@ -55,10 +49,10 @@ const getNeededLength = (data: IInsightCategory[]) => {
               {t("all")}
             </Tabs>
           )
-        }
+        } -->
 
         {
-          getNeededLength(categories.data).map(
+          extendedData.map(
             (v) =>
               v.slug !== category && (
                 <Tabs
