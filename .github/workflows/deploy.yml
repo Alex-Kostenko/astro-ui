@@ -4,10 +4,20 @@ on:
   push:
     branches:
       - production
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy to Cloudflare Pages
     timeout-minutes: 60
     steps:
       - name: Checkout repository
@@ -19,14 +29,16 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Astro project
-        run: npm run build
+        run: npm run build:prod
 
-      - name: Deploy to Cloudflare Pages
-        run: |
-          curl -X POST "https://api.cloudflare.com/client/v4/pages/projects/YOUR_PROJECT_ID/deployments" \
-          -H "Authorization: Bearer ${{ secrets.CF_API_TOKEN }}" \
-          -F "file=@./dist" \
-          -F "name=production"
+      - name: Publish
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: Unicode # e.g. 'my-project'
+          directory: dist # e.g. 'dist'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
