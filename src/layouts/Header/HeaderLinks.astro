@@ -1,33 +1,33 @@
 ---
-import { formatLink } from "@utils/index";
-import { DownArrow, UpArrow } from "@assets/index";
-import { routes } from "src/routes";
-import { useTranslations, type Languages } from "@i18n/index";
+import { formatLink } from '@utils/index';
+import { DownArrow, UpArrow } from '@assets/index';
+import { routes } from 'src/routes';
+import { useTranslations, type Languages } from '@i18n/index';
 
 interface Props {
   hasArrow?: boolean;
 }
 
 const links = [
-  { name: "services", href: routes.service },
-  { name: "cases", href: routes.cases },
-  { name: "who_we_are", href: routes.whoWeAre },
-  { name: "insights", href: routes.allInsights },
-  { name: "team", href: routes.team },
-  { name: "careers", href: routes.careers },
+  { name: 'services', href: routes.service },
+  { name: 'cases', href: routes.casesAll },
+  { name: 'who_we_are', href: routes.whoWeAre },
+  { name: 'insights', href: routes.allInsights },
+  { name: 'team', href: routes.team },
+  { name: 'careers', href: routes.careers },
 ];
 
 const url = Astro.url;
 const { lang } = Astro.params;
 const { hasArrow } = Astro.props;
 
-const t = useTranslations(lang as Languages, "header.navigation");
+const t = useTranslations(lang as Languages, 'header.navigation');
 
 function IsCurrentPage(page: string): boolean {
   return url.pathname
-    .split("/")
+    .split('/')
     .filter((v) => v !== lang)
-    .includes(page.split("/")[1]);
+    .includes(page.split('/')[1]);
 }
 ---
 
@@ -36,16 +36,16 @@ function IsCurrentPage(page: string): boolean {
     <a
       href={formatLink(url, link.href)}
       class:list={[
-        "flex gap-x-1 items-center justify-between",
-        "px-2 font-gothic tracking-[0.8px] text-brand-white",
+        'flex gap-x-1 items-center justify-between',
+        'px-2 font-gothic tracking-[0.8px] text-brand-white',
         {
-          "!text-brand-beigeLight border-b": IsCurrentPage(link.href),
+          '!text-brand-beigeLight border-b': IsCurrentPage(link.href),
         },
       ]}
     >
       {t(link.name)}
       {hasArrow && (
-        <span class="flex items-center justify-center min-w-4">
+        <span class='flex items-center justify-center min-w-4'>
           {IsCurrentPage(link.href) ? <DownArrow /> : <UpArrow />}
         </span>
       )}

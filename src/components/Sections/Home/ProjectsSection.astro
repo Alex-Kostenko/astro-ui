@@ -21,7 +21,7 @@ const t = useTranslations(lang as Languages, 'home.project');
   <SectionTitle title={t('title')} type={t('tag')} />
 
   <ProjectList projects={response.data} />
-  <ArrowedButton href={formatLink(Astro.url, routes.cases)} class='w-full'>
+  <ArrowedButton href={formatLink(Astro.url, routes.casesAll)} class='w-full'>
     {t('btnExplorerMore')}
   </ArrowedButton>
 </Container>
