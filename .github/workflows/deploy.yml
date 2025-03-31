@@ -33,11 +33,6 @@ jobs:
           echo "${{ secrets.PIRIVATE_CMS_KEY }}"
           exit 1
           fi
-        env:
-          PUBLIC_CMS_KEY: ${{ secrets.PUBLIC_CMS_KEY }}
-          PIRIVATE_CMS_KEY: ${{ secrets.PIRIVATE_CMS_KEY }}
-          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
-          PUBLIC_IMG_URL: ${{ secrets.PUBLIC_IMG_URL }}
 
       - name: Build Astro project
         run: npm run build:prod:cloudflare
@@ -53,8 +48,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: 'dist' #output directory
-        env:
-          PUBLIC_CMS_KEY: ${{ secrets.PUBLIC_CMS_KEY }}
-          PIRIVATE_CMS_KEY: ${{ secrets.PIRIVATE_CMS_KEY }}
-          PUBLIC_API_URL: ${{ secrets.PUBLIC_API_URL }}
-          PUBLIC_IMG_URL: ${{ secrets.PUBLIC_IMG_URL }}
