@@ -51,41 +51,13 @@
     ]
   },
   "footer": {
-    "menu": [
-      {
-        "title": "SERVICES",
-        "list": [
-          "Project Management Consulting",
-          "Top-Tier Expert Engagement",
-          "Application Engineering",
-          "Managed Team",
-          "Mobile Development",
-          "Web Development",
-          "UI/UX Design"
-        ]
-      },
-      {
-        "title": "CASES",
-        "list": ["Scale-Up", "Start-Up"]
-      },
-      {
-        "title": "ABOUT US",
-        "list": [
-          "Sustainable Technologies",
-          "Our story and values",
-          "How we work",
-          "Testimonials"
-        ]
-      },
-      {
-        "title": "INSIGHTS",
-        "list": ["All articles"]
-      },
-      {
-        "title": "CAREERS",
-        "list": ["Start your way with Us"]
-      }
-    ],
+    "menu": {
+      "services": "SERVICES",
+      "cases": "CASES",
+      "about": "ABOUT US",
+      "insights": "INSIGHTS",
+      "careers": "CAREERS"
+    },
     "privacyPolicy": "Privacy Policy.",
     "termsOfService": "Terms of Service.",
     "copyright": "Copyright © $year UniCode Software. All rights reserved."

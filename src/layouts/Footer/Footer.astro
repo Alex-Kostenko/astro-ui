@@ -38,21 +38,21 @@ const { data: vacancies } = await vacancyService.get({
 
 const data = [
   {
-    header: 'SERVICES',
+    header: t('menu.services'),
     items: services.map((item) => ({
       label: item.name,
       link: formatLink(Astro.url, routes.service + '/' + item.slug),
     })),
   },
   {
-    header: 'CASES',
+    header: t('menu.cases'),
     items: cases.map((item) => ({
       label: item.name,
       link: formatLink(Astro.url, routes.cases + '/' + item.slug + '/1'),
     })),
   },
   {
-    header: 'ABOUT US',
+    header: t('menu.about'),
     items: [
       {
         label: 'Sustainable Technologies',
@@ -73,14 +73,14 @@ const data = [
     ],
   },
   {
-    header: 'INSIGHTS',
+    header: t('menu.insights'),
     items: insights.map((item) => ({
       label: item.name,
       link: formatLink(Astro.url, routes.insight + '/' + item.slug + '/1'),
     })),
   },
   {
-    header: 'CAREERS',
+    header: t('menu.careers'),
     items: vacancies.map((item) => ({
       label: item.title,
       link: formatLink(Astro.url, routes.careers + '/' + item.slug),
