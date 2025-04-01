@@ -74,10 +74,16 @@ const data = [
   },
   {
     header: t('menu.insights'),
-    items: insights.map((item) => ({
-      label: item.name,
-      link: formatLink(Astro.url, routes.insight + '/' + item.slug + '/1'),
-    })),
+    items: [
+      {
+        label: t('menu.allInsights'),
+        link: formatLink(Astro.url, routes.allInsights),
+      },
+      ...insights.map((item) => ({
+        label: item.name,
+        link: formatLink(Astro.url, routes.insight + '/' + item.slug + '/1'),
+      })),
+    ],
   },
   {
     header: t('menu.careers'),
