@@ -12,10 +12,12 @@
 */
 
 @theme {
-  --breakpoint-xs: 22.5rem;
-  --breakpoint-sm: 30rem;
-  --breakpoint-lg: 60rem;
-  --breakpoint-2xl: 90rem;
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 960px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
 }
 
 @utility container {
