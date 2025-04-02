@@ -1,10 +1,9 @@
 ---
-import { Container } from "@components/Container";
-import { StepAstro, FirstStep } from "@components/Step";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
-import { type Languages, useTranslations } from "@i18n/index";
-import type { IStepList } from "@interfaces/service";
-import stepsService from "@service/steps.service";
+import { Container } from '@components/Container';
+import { StepAstro, FirstStep } from '@components/Step';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import { type Languages, useTranslations } from '@i18n/index';
+import type { IStepList } from '@interfaces/service';
 
 interface Props {
   steps: IStepList;
@@ -13,26 +12,24 @@ interface Props {
 const { lang } = Astro.params;
 const { steps } = Astro.props;
 
-const t = useTranslations(lang as Languages, "service.steps");
-
-// const steps = await stepsService.get({ locale: lang as Languages });
+const t = useTranslations(lang as Languages, 'service.steps');
 ---
 
-<Container class="overflow-hidden">
-  <SectionTitle title={steps.title} type={t("tag")} />
-  <article class="flex flex-col gap-10">
-    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
+<Container class='overflow-hidden'>
+  <SectionTitle title={steps.title} type={t('tag')} />
+  <article class='flex flex-col gap-10'>
+    <TypographyAstro type='title-1' color='black' class={'xl:w-3/4 ml-auto'}>
       {steps.subTitle}
     </TypographyAstro>
   </article>
-  <div class="swiper step-swiper mt-10">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+  <div class='swiper step-swiper mt-10'>
+    <div class='swiper-wrapper'>
+      <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
         <FirstStep />
       </div>
       {
         steps.items.map((step, index) => (
-          <div class="swiper-slide duration-300 w-[280px] h-[578px]">
+          <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
             <StepAstro step={step} />
           </div>
         ))
@@ -42,10 +39,10 @@ const t = useTranslations(lang as Languages, "service.steps");
 </Container>
 
 <script>
-  import Swiper from "swiper";
+  import Swiper from 'swiper';
 
-  new Swiper(".step-swiper", {
-    slidesPerView: "auto",
+  new Swiper('.step-swiper', {
+    slidesPerView: 'auto',
     centeredSlides: false,
     loop: true,
     speed: 400,
