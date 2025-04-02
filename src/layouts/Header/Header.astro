@@ -1,26 +1,245 @@
 ---
-import { smallLogo } from "src/assets";
+import { smallLogo } from "@assets/index";
 import HeaderLinks from "./HeaderLinks.astro";
-import { ButtonAstro } from "@components/Button";
+import { Button, ButtonType } from "@components/Button";
 import { getFromLocale, useTranslations } from "@i18n/index";
+import { formatLink } from "@utils/index";
+import LanguageSwitchAstro from "./LanguageSwitchAstro.astro";
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang, "header");
 ---
 
-<header class="fixed right-0 left-0 top-8 z-50">
-  <section
+<div class="sticky h-0 inset-x-0 top-8 z-header box-border mx-4 md:mx-8">
+  <header
     class:list={[
-      "flex",
-      "container py-5 px-8 box-border bg-coal bg-opacity-[48%] shadow-inner backdrop-blur-xl",
+      "flex items-center justify-between box-border ",
+      "max-w-[1680px] mx-auto py-4 2xl:py-5 px-2 2xl:px-8",
+      "relative before:absolute before:inset-0 before:-z-10 before:content-['']",
+      "before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
     ]}
   >
-    <img src={smallLogo.src} alt="logo" />
-    <nav class="ml-auto flex items-center gap-x-10">
+    <a href={formatLink(Astro.url, "/")}>
+      <img
+        src={smallLogo.src}
+        class="max-h-12 lg:max-h-16 object-contain"
+        alt="logo"
+      />
+    </a>
+    <nav class="ml-auto hidden 2xl:flex items-center gap-x-10">
       <HeaderLinks />
-      <ButtonAstro color="biscuit" variant="contained"
-        >{t("contactUs")}</ButtonAstro
-      >
     </nav>
-  </section>
-</header>
+
+    <section class="flex gap-x-3">
+      <Button
+        href="#contact-us-form"
+        class="2xl:ml-10"
+        type={ButtonType.Secondary}
+      >
+        {t("contactUs")}
+      </Button>
+
+      <div class:list={["hidden 2xl:flex"]}><LanguageSwitchAstro /></div>
+
+      <button
+        id="menu"
+        class:list={["relative h-10 w-10 py-3 px-2 2xl:hidden"]}
+        aria-label="drop down menu"
+      >
+        <div class="relative h-full menuWrapper">
+          <span
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-full"
+          ></span>
+          <span
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-1/2"
+          ></span>
+          <span
+            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-0"
+          ></span>
+        </div>
+      </button>
+    </section>
+    <section
+      id="header-down-menu"
+      class:list={[
+        "fixed duration-700 -z-headerMenu bg-black-100 -top-full left-0 w-full h-full transition-[top] ease-out",
+      ]}
+    >
+      <div
+        class:list={[
+          "flex flex-col max-w-[1680px] mx-auto",
+          "pt-44 px-6 md:px-10 2xl:pt-56",
+          "gap-4 text-20",
+        ]}
+      >
+        <HeaderLinks hasArrow />
+        <div class:list={["flex justify-between pl-2"]}>
+          <p class:list={["font-gothic tracking-[0.8px] text-brand-white"]}>
+            {t("language")}
+          </p>
+          <LanguageSwitchAstro />
+        </div>
+      </div>
+    </section>
+  </header>
+</div>
+
+<script>
+  const header = document.querySelector("header");
+  const menu = document.querySelector("#menu");
+  const menuWraper = document.querySelector(".menuWrapper");
+  const downMenu = document.querySelector("#header-down-menu");
+
+  menu?.addEventListener("click", function () {
+    menuWraper?.classList.toggle("active");
+    downMenu?.classList.toggle("!inset-0");
+    header?.classList.toggle("border-b");
+    const headerBefore =
+      "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl";
+    headerBefore.split(" ").map((className) => {
+      header?.classList.toggle(className);
+    });
+
+    if (menuWraper?.classList.contains("active")) {
+      // Save current padding-right before applying scroll blocking
+      const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
+
+      // Disable scrolling and add padding to the right to compensate for the scrollbar width
+      document.body.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    } else {
+      // Re-enable scrolling and reset padding
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+  });
+</script>
+
+<style>
+  .line-transition {
+    transition:
+      bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .active .line-transition:nth-child(1) {
+    animation:
+      top-to-middle 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      rotate-line 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+  .active .line-transition:nth-child(2) {
+    opacity: 0;
+  }
+  .line-transition:nth-child(2):not(.active) {
+    opacity: 1;
+  }
+
+  .active .line-transition:nth-child(3) {
+    animation:
+      bottom-to-middle 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      rotate 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .line-transition:nth-child(1):not(.active) {
+    animation:
+      rotate-line-reverse 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      top-to-middle-reverse 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .line-transition:nth-child(3):not(.active) {
+    animation:
+      rotate-reverse 300ms cubic-bezier(0.23, 1, 0.32, 1),
+      bottom-to-middle-reverse 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes top-to-middle {
+    from {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+
+    to {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  @keyframes rotate-line {
+    from {
+      transform: translateY(50%) rotate(0deg);
+    }
+
+    to {
+      transform: translateY(50%) rotate(-45deg);
+    }
+  }
+
+  @keyframes bottom-to-middle {
+    from {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+
+    to {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+  }
+
+  @keyframes rotate {
+    from {
+      transform: translateY(50%) rotate(0deg);
+    }
+
+    to {
+      transform: translateY(50%) rotate(45deg);
+    }
+  }
+
+  @keyframes top-to-middle-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    to {
+      bottom: 100%;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes rotate-line-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%) rotate(-45deg);
+    }
+    to {
+      bottom: 50%;
+      transform: translateY(50%) rotate(0deg);
+    }
+  }
+
+  @keyframes bottom-to-middle-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%);
+    }
+    to {
+      bottom: 0;
+      transform: translateY(0%);
+    }
+  }
+
+  @keyframes rotate-reverse {
+    from {
+      bottom: 50%;
+      transform: translateY(50%) rotate(45deg);
+    }
+    to {
+      bottom: 50%;
+      transform: translateY(50%) rotate(0deg);
+    }
+  }
+</style>

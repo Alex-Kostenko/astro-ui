@@ -1,0 +1,74 @@
+---
+interface Props {
+  name?: string;
+}
+
+const { name } = Astro.props;
+---
+
+<div>
+  <label class="custom-checkbox">
+    <slot />
+    <input type="checkbox" name={name} />
+    <span class="checkmark"></span>
+  </label>
+  <p class="hidden text-red px-4">Required field</p>
+</div>
+
+<style>
+  /* Основний контейнер */
+  .custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 16px;
+    user-select: none;
+  }
+
+  /* Сховати стандартний чекбокс */
+  .custom-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Кастомний чекбокс */
+  .checkmark {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    border: 2px solid #f3f3ef;
+    background-color: transparent;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+    box-sizing: border-box;
+  }
+
+  /* Ховер ефект */
+  .custom-checkbox:hover .checkmark {
+    border-color: #666;
+    background-color: #f3f3ef;
+  }
+
+  /* Стан "вибрано" */
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+    background-color: transparent;
+  }
+
+  /* Внутрішнє заповнення (псевдоелемент) */
+  .custom-checkbox input[type="checkbox"]:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background-color: #f3f3ef;
+    transition:
+      background-color 0.3s,
+      transform 0.3s;
+  }
+</style>

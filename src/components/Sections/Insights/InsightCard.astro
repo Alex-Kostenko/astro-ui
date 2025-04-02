@@ -1,0 +1,51 @@
+---
+import { ButtonIcon } from '@components/Button';
+import { Chip } from '@components/Chip';
+import { ChipType } from '@components/Chip/chip.types';
+import { TypographyAstro } from '@components/Typography';
+import type { IInsight } from '@interfaces/insight';
+import { routes } from 'src/routes';
+
+interface Props {
+  insight: IInsight;
+}
+
+const { insight } = Astro.props;
+
+const date = new Date(insight.createdAt)
+  .toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+  .replace(/(\w+) (\d+), (\d+)/, '$1, $2, $3');
+
+const insightLink = routes.insight + '/' + insight.slug;
+---
+
+<article class='flex flex-col gap-5 p-4 rounded border border-brand-black'>
+  <div class='flex justify-between'>
+    <TypographyAstro color='black' type='body-2'>
+      {date}
+    </TypographyAstro>
+    <Chip variant={ChipType.beigeLight}>{insight.technologies[0].name}</Chip>
+  </div>
+  <a href={insightLink}>
+    <img
+      src={insight.image.base64}
+      alt=''
+      class='object-cover object-center h-[184px] w-full'
+    />
+  </a>
+  <article class='flex flex-col gap-3'>
+    <TypographyAstro type='subTitle-1' color='green' tag='h3'>
+      <a href={insightLink}>{insight.title}</a>
+    </TypographyAstro>
+    <TypographyAstro color='black' type='body-2'>
+      {insight.description}
+    </TypographyAstro>
+  </article>
+  <a href={insightLink}>
+    <ButtonIcon class='ml-auto mt-auto' iconClass='-rotate-45' />
+  </a>
+</article>

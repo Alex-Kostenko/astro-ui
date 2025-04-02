@@ -1,0 +1,47 @@
+---
+import { ButtonAstro } from "@components/Button";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import type { Languages } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+import type { IServicePreview } from "@interfaces/service";
+
+interface Props {
+  service: IServicePreview;
+  index: number;
+}
+
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "service");
+
+const { service, index } = Astro.props;
+---
+
+<div
+  class="w-full h-full bg-brand-white rounded-lg p-6 flex flex-col gap-6 border border-brand-black"
+>
+  <img
+    src={service.preview.base64}
+    alt="Project Preview"
+    class="w-full xl:h-[186px] h-[112px] object-cover object-center"
+  />
+
+  <SectionTitle
+    title={service.name}
+    type={index.toString().padStart(2, "0")}
+    classContainer="!mb-0 !flex-col"
+    colorTitle="brand-black"
+  />
+
+  <TypographyAstro type="body-4" color="black">
+    {service.description}
+  </TypographyAstro>
+
+  <ButtonAstro
+    class="w-fit ml-auto mt-auto"
+    withArrow
+    asLink
+    href={`${lang ? `/${lang}` : ""}/service/${service.slug}`}
+    >{t("explore")}</ButtonAstro
+  >
+</div>

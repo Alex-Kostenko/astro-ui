@@ -1,0 +1,68 @@
+---
+import { breadcrumbsHome, UpArrow } from '@assets/index';
+import { Container } from '@components/Container';
+import { languages } from '@i18n/index';
+import { formatLink } from '@utils/format.link';
+import type { Page } from 'astro';
+
+interface Props {
+  last?: string;
+  isPaginate?: Page<unknown>;
+}
+
+const { last, isPaginate } = Astro.props;
+
+const paths = Astro.url.pathname
+  .split('/')
+  .filter(
+    (crumb: string) => !isNumeric(crumb) && !(crumb in languages) && crumb,
+  );
+
+function isNumeric(value: string): boolean {
+  return /^[0-9]+$/.test(value);
+}
+
+function getLink(paths: string[], index: number): string {
+  const copy = [...paths];
+
+  if (isPaginate) {
+    if (index === 0) {
+      return copy.slice(0, index + 1).join('/') + '/all/1';
+    } else if (index === 1) {
+      return copy.slice(0, index + 1).join('/') + '/1';
+    }
+
+    return copy.slice(0, index + 1).join('/');
+  }
+
+  return copy.slice(0, index + 1).join('/');
+}
+---
+
+<Container>
+  <nav class='mt-4 py-3'>
+    <ol class='flex gap-1 items-center font-gothic text-14 text-green-500'>
+      <li>
+        <a href={formatLink(Astro.url, '/')} aria-label='home page'>
+          <img src={breadcrumbsHome.src} alt='' />
+        </a>
+      </li>
+      {
+        paths.map((p, index) => (
+          <>
+            <li class='w-4 h-4 flex items-center fill-green-500 justify-center'>
+              <UpArrow class='rotate-90' />
+            </li>
+            <li class='capitalize'>
+              <a href={formatLink(Astro.url, getLink(paths, index))}>
+                {index + 1 < paths.length
+                  ? p.replaceAll('-', ' ')
+                  : last || p.replaceAll('-', ' ')}
+              </a>
+            </li>
+          </>
+        ))
+      }
+    </ol>
+  </nav>
+</Container>

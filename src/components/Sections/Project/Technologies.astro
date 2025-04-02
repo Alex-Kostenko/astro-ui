@@ -1,0 +1,64 @@
+---
+import { Container } from "@components/Container";
+import { SectionTitle } from "@components/Typography";
+import { stack } from "@assets/index";
+import { useTranslations } from "@i18n/utils";
+import type { Languages } from "@i18n/ui";
+
+interface Props {
+  stackList: { name: string }[];
+}
+
+const { stackList } = Astro.props;
+const { lang } = Astro.params;
+
+const t = useTranslations(lang as Languages, "project.technologies");
+---
+
+<div>
+  <Container>
+    <SectionTitle title={t("title")} type={t("type")} />
+  </Container>
+
+  <section class="lg:container">
+    <div class="carousel overflow-hidden flex">
+      <div class="tech will-change-transform flex gap-5 pr-5">
+        {
+          (stackList || []).map((tech) => (
+            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
+              <img src={stack[tech.name as keyof typeof stack].src} alt="" />
+            </div>
+          ))
+        }
+      </div>
+
+      <div aria-hidden class="tech will-change-transform flex gap-5 pr-5">
+        {
+          (stackList || []).map((tech) => (
+            <div class="flex items-center w-[220px] h-32 justify-center px-3 py-6 bg-green rounded">
+              <img
+                src={stack[tech.name as keyof typeof stack].src}
+                alt=""
+                class="w-[196px] h-20"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</div>
+<style>
+  .tech {
+    animation: horizontalSlide 40s linear infinite;
+  }
+
+  @keyframes horizontalSlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>

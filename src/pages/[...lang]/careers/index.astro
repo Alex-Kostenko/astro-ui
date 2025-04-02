@@ -1,0 +1,76 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "@layouts/Layout.astro";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+import {
+  languages,
+  useTranslations,
+  type Language,
+  type Languages,
+} from "@i18n/index";
+import vacancyService from "@service/vacancy.service";
+import {
+  Advantages,
+  Positions,
+  CareerTitle,
+} from "@components/Sections/Career";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+
+export const getStaticPaths = (async () => {
+  const req = Object.keys(languages).flatMap((lang) =>
+    vacancyService
+      .get({
+        locale: languages[lang].lang,
+      })
+      .then((res) => {
+        return {
+          lang: languages[lang] as Language,
+          res,
+        };
+      }),
+  );
+
+  const resArr = await Promise.all(req);
+
+  return resArr.flatMap((v) => {
+    return {
+      params: { lang: v.lang.slug },
+      props: {
+        meta: v.res.meta,
+        // TODO: duplication?
+        data: v.res.data,
+        vacancyList: v.res.data,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const { vacancyList } = Astro.props;
+
+const t = useTranslations(lang as Languages, "careers");
+---
+
+<Layout title="Careers" openGraph={{ title: "UniCode Careers" }}>
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <!-- // TODO: use HeroHeadAstro -->
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+      <Breadcrumbs />
+    </div>
+    <CareerTitle />
+    <Advantages />
+    <Positions vacancyList={vacancyList} />
+    <ContactUsSection inline text={t("contactUs")} table="vacancy-replay" />
+  </main>
+</Layout>

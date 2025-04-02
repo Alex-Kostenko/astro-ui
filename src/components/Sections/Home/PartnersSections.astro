@@ -1,0 +1,75 @@
+---
+import { Container } from '@components/Container';
+import { SectionTitle } from '@components/Typography';
+import { useTranslations, type Languages } from '@i18n/index';
+import partnerService from '@service/partner.service';
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, 'home.parthners');
+const { data } = await partnerService.get({
+  locale: lang as Languages,
+});
+---
+
+<section class='py-8'>
+  <Container>
+    <SectionTitle title={t('title')} type={t('tag')} />
+  </Container>
+  <div class='carousel overflow-hidden flex'>
+    <div class='group will-change-transform flex gap-5 pr-5'>
+      {
+        data.map((v) => (
+          <div
+            class:list={[
+              'flex justify-center items-center',
+              'w-[220px] h-32 text-white p-5 bg-green rounded',
+            ]}
+          >
+            <img
+              src={v.image.url}
+              alt={v.image.alternativeText || 'partner logo'}
+            />
+          </div>
+        ))
+      }
+    </div>
+    <div aria-hidden class='group will-change-transform flex gap-5 pr-5'>
+      {
+        data.map((v) => (
+          <div
+            class:list={[
+              'flex justify-center items-center',
+              'w-[220px] h-32 text-white p-5 bg-green rounded',
+            ]}
+          >
+            <img
+              src={v.image.url}
+              alt={v.image.alternativeText || 'partner logo'}
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style is:global>
+  /* .carousel {
+    > * {
+      flex: 0 0 100%;
+    }
+  } */
+
+  .group {
+    animation: horizontalSlide 120s linear infinite;
+  }
+
+  @keyframes horizontalSlide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>

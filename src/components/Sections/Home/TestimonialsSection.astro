@@ -1,0 +1,90 @@
+---
+import { CommentAstro } from '@components/Comment';
+import { Container } from '@components/Container';
+import { SectionTitle } from '@components/Typography';
+import { useTranslations, type Languages } from '@i18n/index';
+import commentService from '@service/comment.service';
+import { ArrowRight, ArrowLeft } from '@assets/index';
+import { extendArray } from '@utils/extendArray';
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, 'home.testimonials');
+
+const comments = await commentService.get({ locale: lang as Languages });
+
+const extendedComment = extendArray(comments.data, 5);
+---
+
+<Container class='overflow-hidden' id='testimonials'>
+  <SectionTitle title={t('title')} type={t('tag')} />
+
+  <section class='swiper comment-swiper'>
+    <div class='swiper-wrapper'>
+      {
+        extendedComment.map((v) => (
+          <div class='swiper-slide md:w-[332px] lg:w-[730px] duration-300'>
+            <CommentAstro comment={v} class='flex-col lg:flex-row' />
+          </div>
+        ))
+      }
+    </div>
+
+    <section class='flex justify-center gap-x-3 mt-5 lg:mt-10'>
+      <button
+        id='testimonials-previous'
+        class='text-brand-black bg-gray-100 p-1 rounded previous-swipe'
+        aria-label='previous slide'
+      >
+        <ArrowLeft />
+      </button>
+      <button
+        id='testimonials-next'
+        class='text-brand-black bg-gray-100 p-1 rounded next-swipe'
+        aria-label='next slide'
+      >
+        <ArrowRight />
+      </button>
+    </section>
+  </section>
+</Container>
+
+<script>
+  import Swiper from 'swiper';
+
+  const swiper = new Swiper('.comment-swiper', {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    speed: 400,
+    // spaceBetween: 20,
+    grabCursor: true,
+    navigation: {
+      prevEl: '.previous-swipe',
+      nextEl: '.next-swipe',
+    },
+  });
+
+  document
+    .querySelector('#testimonials-previous')
+    ?.addEventListener('click', () => {
+      swiper.slidePrev();
+    });
+
+  document
+    .querySelector('#testimonials-next')
+    ?.addEventListener('click', () => {
+      swiper.slideNext();
+    });
+</script>
+
+<style>
+  .swiper-slide {
+    transform: scale(0.9);
+    filter: blur(2px);
+  }
+
+  .swiper-slide-active {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+</style>

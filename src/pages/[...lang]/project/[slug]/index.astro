@@ -1,0 +1,117 @@
+---
+import type { GetStaticPaths } from "astro";
+import { cubeNear, cubeNearVP9 } from "@assets/video";
+import Layout from "@layouts/Layout.astro";
+import projectService from "@service/project.service";
+import {
+  languages,
+  type Language,
+  type Languages,
+  useTranslations,
+} from "@i18n/index";
+import {
+  Cover,
+  Description,
+  ChallengeSection,
+  Tracking,
+  Technologies,
+} from "@components/Sections";
+import ContactUsSection from "@components/Form/ContactUsSection.astro";
+import type { IProject } from "@interfaces/project";
+import { ArrowedButton } from "@components/Button";
+import { Container } from "@components/Container";
+import ProjectMore from "@components/ProjectCard/ProjectMore.astro";
+import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
+
+export const getStaticPaths = (async () => {
+  const req = Object.keys(languages).flatMap((lang) =>
+    projectService
+      .get({
+        locale: languages[lang].lang,
+      })
+      .then((res) => {
+        return {
+          lang: languages[lang] as Language,
+          res,
+        };
+      }),
+  );
+  const currentProject = async (
+    slug: string,
+    lang: string,
+  ): Promise<IProject> =>
+    (await projectService.getOneBySlug(slug, { locale: languages[lang].lang }))
+      .data[0];
+
+  const resArr = await Promise.all(req);
+
+  return resArr.flatMap((v) => {
+    return v.res.data.map((project) => {
+      return {
+        params: { lang: v.lang.slug, slug: project.slug },
+        props: {
+          meta: v.res.meta,
+          project: currentProject(project.slug, v.lang.lang),
+          data: v.res.data,
+        },
+      };
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { lang } = Astro.params;
+const project = await Astro.props.project;
+const { data } = Astro.props;
+
+const t = useTranslations(lang as Languages, "project");
+const text = t("contactUs.text").map((t: string, i: number) => {
+  if (i === 2) {
+    return { text: t, alight: "none", variant: "outlined" };
+  }
+  return { text: t, alight: "none", variant: "contained" };
+});
+---
+
+<Layout
+  title={project.title}
+  openGraph={{
+    title: project.title,
+    description: project.description,
+    image: project.image.base64,
+  }}
+>
+  <link
+    slot="head"
+    rel="preload stylesheet"
+    as="style"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <main class="flex flex-col gap-[120px]">
+    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
+      <video
+        autoplay
+        muted
+        loop
+        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
+      >
+        <track kind="captions" src="/captions/empty_captions.vtt" />
+        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+        <source src={cubeNearVP9} type="video/mp4" />
+      </video>
+      <Breadcrumbs />
+    </div>
+    <Description {...project} />
+    <Cover image={project.image.base64} />
+    <ChallengeSection {...project} />
+    <Tracking tracking={project.tracking} />
+    <Technologies stackList={project.stack} />
+    <Container>
+      <ArrowedButton href="/todo" class="w-full">
+        {t("button")}
+      </ArrowedButton>
+    </Container>
+    <ProjectMore projects={data.filter((_, index) => index < 2)} />
+    <ContactUsSection text={text} />
+  </main>
+</Layout>

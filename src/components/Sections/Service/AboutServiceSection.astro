@@ -1,0 +1,40 @@
+---
+import { Container } from "@components/Container";
+import List from "@components/List";
+import { SectionTitle, TypographyAstro } from "@components/Typography";
+import { type Languages, useTranslations } from "@i18n/index";
+import { whiteWavesIdle } from "@assets/index";
+import { VideoSource } from "@components/Video";
+import type { IService } from "@interfaces/service";
+
+interface Props {
+  features: IService["features"];
+}
+
+const { lang } = Astro.params;
+const { features } = Astro.props;
+
+const t = useTranslations(lang as Languages, "service.about");
+---
+
+<Container>
+  <SectionTitle title={features.title} type={t("tag")} />
+  <article class="flex flex-col gap-10">
+    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
+      {features.subTitle}
+    </TypographyAstro>
+    <div class="grid gap-5 lg:grid-cols-[1fr_3fr]">
+      <VideoSource
+        source={[{ src: whiteWavesIdle }]}
+        class="hidden lg:block mix-blend-difference"
+      />
+      <List items={features.items} />
+    </div>
+  </article>
+</Container>
+
+<style is:global>
+  .header-shadow {
+    box-shadow: 0 4px 4px #00000040;
+  }
+</style>

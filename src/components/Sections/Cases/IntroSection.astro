@@ -1,0 +1,52 @@
+---
+import { Container } from "@components/Container";
+import { useTranslations, type Languages } from "@i18n/index";
+import { twistedTunel } from "@assets/index";
+import { VideoSource } from "@components/Video";
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as Languages, "cases.intro");
+---
+
+<Container class="mt-7">
+  <h2
+    class="md:flex flex-col gap-y-4"
+    class:list={[
+      "text-green-200 uppercase inline tracking-2",
+      "text-36 md:text-64 lg:text-72 2xl:text-96 font-bold font-asket800",
+    ]}
+  >
+    <span>{t("title.line-1")}</span>
+
+    <span class:list={["text-transparent text-stroken-green-2"]}>
+      {t("title.line-2")}
+    </span>
+
+    <span>{t("title.line-3")}</span>
+  </h2>
+  <section
+    class:list={[
+      "font-gothic",
+      "flex flex-col-reverse 2xl:flex-row gap-x-24 justify-between",
+      "gap-y-4 md:gap-y-6",
+      "mt-4 md:mt-10",
+    ]}
+  >
+    <p
+      class:list={[
+        "font-gothic tracking-1  shrink-0",
+        "2xl:w-[480px]",
+        "text-20",
+      ]}
+    >
+      {t("description")}
+    </p>
+
+    <div class="object-cover w-full" class:list={["h-[164px] md:h-[280px]"]}>
+      <VideoSource
+        source={[{ src: twistedTunel }]}
+        class="mix-blend-difference"
+      />
+    </div>
+  </section>
+</Container>

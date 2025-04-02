@@ -1,0 +1,58 @@
+---
+import { Container } from '@components/Container';
+import { StepAstro, FirstStep } from '@components/Step';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import { type Languages, useTranslations } from '@i18n/index';
+import type { IStepList } from '@interfaces/service';
+
+interface Props {
+  steps: IStepList;
+}
+
+const { lang } = Astro.params;
+const { steps } = Astro.props;
+
+const t = useTranslations(lang as Languages, 'service.steps');
+---
+
+<Container class='overflow-hidden'>
+  <SectionTitle title={steps.title} type={t('tag')} />
+  <article class='flex flex-col gap-10'>
+    <TypographyAstro type='title-1' color='black' class={'xl:w-3/4 ml-auto'}>
+      {steps.subTitle}
+    </TypographyAstro>
+  </article>
+  <div class='swiper step-swiper mt-10'>
+    <div class='swiper-wrapper'>
+      <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
+        <FirstStep />
+      </div>
+      {
+        steps.items.map((step, index) => (
+          <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
+            <StepAstro step={step} />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Container>
+
+<script>
+  import Swiper from 'swiper';
+
+  new Swiper('.step-swiper', {
+    slidesPerView: 'auto',
+    centeredSlides: false,
+    loop: true,
+    speed: 400,
+    spaceBetween: 20,
+    grabCursor: true,
+    breakpoints: {
+      1440: { slidesPerView: 4 },
+      1280: { slidesPerView: 3 },
+      768: { slidesPerView: 2 },
+      0: { centeredSlides: false, spaceBetween: 0, slidesPerView: 1 },
+    },
+  });
+</script>
