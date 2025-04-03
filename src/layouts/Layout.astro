@@ -4,6 +4,7 @@ import Header from './Header/Header.astro';
 import Footer from './Footer/Footer.astro';
 import { Toast } from '@components/Toast';
 import { pwaInfo } from 'virtual:pwa-info';
+import { getFromLocale } from '@i18n/index';
 
 interface IOpenGraph {
   title?: string;
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const { title, openGraph } = Astro.props;
-const { lang } = Astro.params;
+const lang = getFromLocale(Astro.currentLocale);
 
 const domain = import.meta.env.DOMAIN;
 const gaToken = import.meta.env.GA_TOKEN;

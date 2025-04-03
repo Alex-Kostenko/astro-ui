@@ -85,24 +85,17 @@ export default defineConfig({
         navigateFallback: 'index.html',
         type: 'classic',
       },
-      experimental: {
-        directoryAndTrailingSlashHandler: false,
-      },
+      experimental: { directoryAndTrailingSlashHandler: false },
     }),
   ],
   output: 'static',
   build: { inlineStylesheets: 'never' },
   redirects: {
-    '/[...lang]/*': '/404',
+    // '/[...lang]/*': '/404',
   },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ua'],
-    routing: {
-      prefixDefaultLocale: true,
-      fallbackType: 'rewrite',
-      redirectToDefaultLocale: true,
-    },
   },
   adapter,
 });

@@ -2,7 +2,7 @@
 import { formatLink } from '@utils/index';
 import { DownArrow, UpArrow } from '@assets/index';
 import { routes } from 'src/routes';
-import { useTranslations, type Languages } from '@i18n/index';
+import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
 
 interface Props {
   hasArrow?: boolean;
@@ -18,7 +18,7 @@ const links = [
 ];
 
 const url = Astro.url;
-const { lang } = Astro.params;
+const lang = getFromLocale(Astro.currentLocale);
 const { hasArrow } = Astro.props;
 
 const t = useTranslations(lang as Languages, 'header.navigation');
