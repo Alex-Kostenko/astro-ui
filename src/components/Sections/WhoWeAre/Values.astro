@@ -5,43 +5,17 @@ import { SectionTitle } from '@components/Typography';
 import { type Languages, useTranslations } from '@i18n/index';
 import { Image } from 'astro:assets';
 import { steps } from '@assets/index';
+import type { IValue } from '@interfaces/whoWeAre';
+import { extendArray } from '@utils/extendArray';
+
+interface Props {
+  values: IValue[];
+}
 
 const { lang } = Astro.params;
+const { values } = Astro.props;
 
 const t = useTranslations(lang as Languages, 'whoWeAre.values');
-
-const values = [
-  {
-    title: 'innovation',
-    description:
-      'We constantly explore new technologies and develop cutting-edge software solutions, helping businesses stay ahead of the curve.',
-  },
-  {
-    title: 'transparency & trust',
-    description:
-      'Openness and trust are at the heart of our work. We build long-term relationships with our clients and within our team through honest and clear communication.',
-  },
-  {
-    title: 'Quality & Excellence',
-    description:
-      'High standards of quality are our priority. We strive for excellence in every project, delivering reliable, scalable, and efficient IT solutions.',
-  },
-  {
-    title: 'innovation',
-    description:
-      'We constantly explore new technologies and develop cutting-edge software solutions, helping businesses stay ahead of the curve.',
-  },
-  {
-    title: 'transparency & trust',
-    description:
-      'Openness and trust are at the heart of our work. We build long-term relationships with our clients and within our team through honest and clear communication.',
-  },
-  {
-    title: 'Quality & Excellence',
-    description:
-      'High standards of quality are our priority. We strive for excellence in every project, delivering reliable, scalable, and efficient IT solutions.',
-  },
-];
 ---
 
 <Container class='overflow-hidden'>
@@ -49,7 +23,7 @@ const values = [
   <div class='swiper step-swiper mt-10'>
     <div class='swiper-wrapper'>
       {
-        values.map((v, index) => (
+        extendArray(values, 6).map((v, index) => (
           <>
             {index == 2 && (
               <div class='swiper-slide duration-300 !w-[280px] !h-[578px]'>

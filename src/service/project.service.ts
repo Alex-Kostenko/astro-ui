@@ -5,10 +5,10 @@ import type {
   IProjectDomain,
   IResponseApi,
   MetaPagination,
-} from "@interfaces/index";
-import apiService from "./api.service";
-import { ApiPath } from "@constant/api.path";
-import type { Languages } from "@i18n/index";
+} from '@interfaces/index';
+import apiService from './api.service';
+import { ApiPath } from '@constant/api.path';
+import type { Languages } from '@i18n/index';
 
 class ProjectService {
   async get({
@@ -23,8 +23,8 @@ class ProjectService {
     return apiService.get(ApiPath.project, {
       query: {
         populate: [
-          { field: "image", insideFields: ["id", "formats", "url"] },
-          "technologies",
+          { field: 'image', insideFields: ['id', 'formats', 'url'] },
+          'technologies',
         ],
         filter,
         pagination,
@@ -42,7 +42,7 @@ class ProjectService {
     return apiService.get(ApiPath.projectDomain, {
       query: {
         pagination: {
-          limit: "max",
+          limit: 'max',
         },
         filter,
         locale,
@@ -63,14 +63,14 @@ class ProjectService {
     return apiService.get(ApiPath.project, {
       query: {
         populate: [
-          { field: "image", insideFields: ["id", "formats", "url"] },
-          { field: "technologies", insideFields: ["*"] },
-          { field: "stack", insideFields: ["*"] },
-          { field: "partner", insideFields: ["*"] },
+          { field: 'image', insideFields: ['id', 'formats', 'url'] },
+          { field: 'technologies', insideFields: ['*'] },
+          { field: 'stack', insideFields: ['*'] },
+          'partner:image',
         ],
         filter: [
           {
-            fields: ["slug"],
+            fields: ['slug'],
             value: slug,
           },
           ...(filter || []),

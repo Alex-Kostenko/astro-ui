@@ -1,32 +1,32 @@
 ---
-import { Container } from "@components/Container";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
-import type { Languages } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
-import { rareWavesBlack } from "@assets/index";
-import { VideoSource } from "@components/Video";
+import { Container } from '@components/Container';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import type { Languages } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import { rareWavesBlack } from '@assets/index';
+import { VideoSource } from '@components/Video';
 
 const { lang } = Astro.params;
 
-const t = useTranslations(lang as Languages, "whoWeAre.mission");
+const t = useTranslations(lang as Languages, 'whoWeAre.mission');
 ---
 
-<Container>
-  <SectionTitle title={t("title")} type={t("type")} />
+<Container id='mission'>
+  <SectionTitle title={t('title')} type={t('type')} />
 
   <!-- broken design from 960 - 1280 (to 1440 ) -->
   <article
-    class="grid lg:grid-cols-[275px_auto] 3xl:grid-cols-[395px,auto] gap-y-6 gap-x-5"
+    class='grid lg:grid-cols-[275px_auto] 3xl:grid-cols-[395px,auto] gap-y-6 gap-x-5'
   >
     <VideoSource
       source={[{ src: rareWavesBlack }]}
-      class="h-[193px] lg:h-full xl:h-[193px] row-span-2 mix-blend-difference"
+      class='h-[193px] lg:h-full xl:h-[193px] row-span-2 mix-blend-difference'
     />
-    <TypographyAstro type="subTitle-sm-1" color="black">
-      {t("subTitle")}
+    <TypographyAstro type='subTitle-sm-1' color='black'>
+      {t('subTitle')}
     </TypographyAstro>
-    <TypographyAstro type="body-4" color="black">
-      {t("description")}
+    <TypographyAstro type='body-4' color='black'>
+      {t('description')}
     </TypographyAstro>
   </article>
 </Container>

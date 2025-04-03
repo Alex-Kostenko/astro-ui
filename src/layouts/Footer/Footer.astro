@@ -6,6 +6,10 @@ import FooterHero from './FooterHero.astro';
 import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
 import { routes } from 'src/routes';
 import { formatLink } from '@utils/format.link';
+import serviceService from '@service/service.service';
+import projectService from '@service/project.service';
+import insightService from '@service/insight.service';
+import vacancyService from '@service/vacancy.service';
 
 interface Props {
   variant?: 'contained' | 'outlined';
@@ -15,7 +19,80 @@ interface Props {
 
 const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang as Languages, 'footer');
-const blockFooter = t('menu') as { title: string; list: string[] }[];
+
+const { data: services } = await serviceService.getServicePreview({
+  locale: lang as Languages,
+});
+
+const { data: cases } = await projectService.getDomains({
+  locale: lang as Languages,
+});
+
+const { data: insights } = await insightService.getCategory({
+  locale: lang as Languages,
+});
+
+const { data: vacancies } = await vacancyService.get({
+  locale: lang as Languages,
+});
+
+const data = [
+  {
+    header: t('menu.services'),
+    items: services.map((item) => ({
+      label: item.name,
+      link: formatLink(Astro.url, routes.service + '/' + item.slug),
+    })),
+  },
+  {
+    header: t('menu.cases'),
+    items: cases.map((item) => ({
+      label: item.name,
+      link: formatLink(Astro.url, routes.cases + '/' + item.slug + '/1'),
+    })),
+  },
+  {
+    header: t('menu.about'),
+    items: [
+      {
+        label: 'Sustainable Technologies',
+        link: formatLink(Astro.url, routes.whoWeAre + '#mission'),
+      },
+      {
+        label: 'Our story and values',
+        link: formatLink(Astro.url, routes.whoWeAre + '#values'),
+      },
+      {
+        label: 'How we work',
+        link: formatLink(Astro.url, routes.whoWeAre + '#services'),
+      },
+      {
+        label: 'Testimonials',
+        link: formatLink(Astro.url, routes.whoWeAre + '#testimonials'),
+      },
+    ],
+  },
+  {
+    header: t('menu.insights'),
+    items: [
+      {
+        label: t('menu.allInsights'),
+        link: formatLink(Astro.url, routes.allInsights),
+      },
+      ...insights.map((item) => ({
+        label: item.name,
+        link: formatLink(Astro.url, routes.insight + '/' + item.slug + '/1'),
+      })),
+    ],
+  },
+  {
+    header: t('menu.careers'),
+    items: vacancies.map((item) => ({
+      label: item.title,
+      link: formatLink(Astro.url, routes.careers + '/' + item.slug),
+    })),
+  },
+];
 ---
 
 <footer class='pt-[120px]'>
@@ -32,7 +109,7 @@ const blockFooter = t('menu') as { title: string; list: string[] }[];
       >
         <div class='hidden 2xl:flex justify-between mb-[60px]'>
           {
-            blockFooter.map((textBlock) => {
+            data.map((textBlock) => {
               return (
                 <div>
                   <TypographyAstro
@@ -40,12 +117,12 @@ const blockFooter = t('menu') as { title: string; list: string[] }[];
                     color='white'
                     class='font-gothic mb-5 tracking-0.8'
                   >
-                    {textBlock.title}
+                    {textBlock.header}
                   </TypographyAstro>
                   <div class='flex flex-col gap-y-2'>
-                    {textBlock.list.map((item) => (
+                    {textBlock.items.map((item) => (
                       <p class='text-gray-200 font-gothic text-12 cursor-pointer'>
-                        {item}
+                        <a href={item.link}>{item.label}</a>
                       </p>
                     ))}
                   </div>
@@ -56,20 +133,20 @@ const blockFooter = t('menu') as { title: string; list: string[] }[];
         </div>
         <div class='2xl:hidden mb-6'>
           {
-            blockFooter.map((textBlock) => {
+            data.map((textBlock) => {
               return (
                 <AccordionAstro arrowStyle>
                   <p
                     class='text-brand-white font-gothic tracking-0.8'
                     slot='title'
                   >
-                    {textBlock.title}
+                    {textBlock.header}
                   </p>
                   <ul class='ist-inside text-12 list-none space-y-2 mb-2'>
-                    {textBlock.list.map((itemList) => {
+                    {textBlock.items.map((item) => {
                       return (
                         <li class='text-gray-200 font-gothic text-16 tracking-0.8 uppercase'>
-                          {itemList}
+                          <a href={item.link}>{item.label}</a>
                         </li>
                       );
                     })}
