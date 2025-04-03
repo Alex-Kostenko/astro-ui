@@ -1,10 +1,10 @@
-import type { ApiPath } from "@constant/index";
+import type { ApiPath } from '@constant/index';
 import type {
   IFilter,
   IPaginationQuery,
   Popylate,
   QueryApi,
-} from "@interfaces/index";
+} from '@interfaces/index';
 
 class ApiService {
   apiUrl = import.meta.env.PUBLIC_API_URL;
@@ -12,7 +12,7 @@ class ApiService {
 
   async requst(
     path: string,
-    method: "POST" | "GET" | "PUT" | "DELETE",
+    method: 'POST' | 'GET' | 'PUT' | 'DELETE',
     init: {
       body?: any;
       headers?: any;
@@ -46,10 +46,10 @@ class ApiService {
       headers?: any;
     },
   ): Promise<T> {
-    const res = await this.requst(path, "POST", {
+    const res = await this.requst(path, 'POST', {
       ...init,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         ...init.headers,
       },
       body: JSON.stringify(init.body),
@@ -65,7 +65,7 @@ class ApiService {
       headers?: any;
     },
   ): Promise<T> {
-    const res = await this.requst(path, "POST", {
+    const res = await this.requst(path, 'POST', {
       ...init,
       headers: {
         // "Content-Type": "multipart/form-data",
@@ -84,7 +84,7 @@ class ApiService {
     } = {},
   ): Promise<T> {
     const query = convertToQueryString(init.query);
-    const res = await this.requst(path + query, "GET", init);
+    const res = await this.requst(path + query, 'GET', init);
 
     return await res.json();
   }
@@ -95,7 +95,7 @@ class ApiService {
       headers?: any;
     } = {},
   ): Promise<T> {
-    const res = await this.requst(path, "DELETE", {
+    const res = await this.requst(path, 'DELETE', {
       ...init,
     });
 
@@ -104,55 +104,58 @@ class ApiService {
 }
 
 function convertToQueryString(params?: QueryApi): string {
-  if (!params) return "";
+  if (!params) return '';
 
   const popylate = convertPopylate(params.populate);
   const pagination = convertPagination(params.pagination);
   const filter = convertFilter(params.filter);
-  const locale = params.locale ? `locale=${params.locale}` : "";
+  const locale = params.locale ? `locale=${params.locale}` : '';
 
-  const query = [popylate, pagination, filter, locale].join("&");
-  return query ? `?${query}` : "";
+  const query = [popylate, pagination, filter, locale]
+    .filter(Boolean)
+    .join('&');
+
+  return query ? `?${query}` : '';
 }
 
 function convertPopylate(
   popylate?: (Popylate | string | `${string}:${string}`)[],
 ) {
-  if (!popylate) return "";
+  if (!popylate) return '';
 
   return popylate
     .map((v) => {
-      if (typeof v === "string") {
-        if (v.includes(":")) {
-          const [field, populate] = v.split(":");
+      if (typeof v === 'string') {
+        if (v.includes(':')) {
+          const [field, populate] = v.split(':');
           return `populate[${field}][populate]=${populate}`;
         } else {
           return `populate=${v}`;
         }
       }
-      if (typeof v === "object")
-        return `populate[${v.field}][fields]=${v.insideFields.join(",")}`;
+      if (typeof v === 'object')
+        return `populate[${v.field}][fields]=${v.insideFields.join(',')}`;
     })
-    .join("&");
+    .join('&');
 }
 
 function convertPagination(pagination?: IPaginationQuery) {
-  if (!pagination) return "";
+  if (!pagination) return '';
 
   return Object.keys(pagination)
     .map((v) => `pagination[${v}]=${pagination[v as keyof IPaginationQuery]}`)
-    .join("&");
+    .join('&');
 }
 
 function convertFilter(filters?: IFilter[]) {
-  if (!filters) return "";
+  if (!filters) return '';
 
   return filters
     .map((filter) => {
-      const fields = filter.fields.map((v) => `[${v}]`).join("");
+      const fields = filter.fields.map((v) => `[${v}]`).join('');
       return `filters${fields}=${filter.value}`;
     })
-    .join("&");
+    .join('&');
 }
 
 export default new ApiService();
