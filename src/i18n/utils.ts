@@ -1,13 +1,13 @@
-import { ui, defaultLang, languages, type Languages } from "./ui";
+import { ui, defaultLang, languages, type Languages } from './ui';
 
 export function getLangFromUrl(url: URL): Languages {
-  const [, lang] = url.pathname.split("/");
+  const [, lang] = url.pathname.split('/');
   if (lang in languages) return lang as Languages;
   return defaultLang;
 }
 
-export function getFromLocale(lang?: string) {
-  if (lang && lang in ui) return lang as keyof typeof languages;
+export function getFromLocale(lang?: string): string {
+  if (lang && lang in ui) return lang as Languages;
   return defaultLang;
 }
 
@@ -16,7 +16,7 @@ export function useTranslations(
   ns?: string,
 ): any {
   const getNestedTranslation = (obj: any, path: string): string | undefined => {
-    return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
   };
 
   if (ns) {

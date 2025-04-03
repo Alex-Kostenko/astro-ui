@@ -26,11 +26,11 @@ const t = useTranslations(lang as Languages, 'whoWeAre.values');
         extendArray(values, 6).map((v, index) => (
           <>
             {index == 2 && (
-              <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
+              <div class='swiper-slide duration-300 !w-[280px] !h-[578px]'>
                 <FirstStep />
               </div>
             )}
-            <div class='swiper-slide duration-300 w-[280px] h-[578px]'>
+            <div class='swiper-slide duration-300 !w-[280px] !h-[578px]'>
               <div
                 class:list={[
                   'flex flex-col gap-6 bg-brand-black text-brand-white font-gothic700',

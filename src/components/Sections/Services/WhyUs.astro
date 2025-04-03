@@ -1,40 +1,40 @@
 ---
-import { Container } from "@components/Container";
-import { FirstStep, StepAstro } from "@components/Step";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
-import type { Languages } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
-import whyUsService from "@service/whyUs.service";
+import { Container } from '@components/Container';
+import { FirstStep, StepAstro } from '@components/Step';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import type { Languages } from '@i18n/ui';
+import { useTranslations } from '@i18n/utils';
+import whyUsService from '@service/whyUs.service';
 
 const { lang } = Astro.params;
 
-const t = useTranslations(lang as Languages, "service.whyUs");
+const t = useTranslations(lang as Languages, 'service.whyUs');
 
 const { data } = await whyUsService.get({});
 ---
 
 <Container>
-  <SectionTitle title={t("title")} type={t("type")} />
-  <article class="flex flex-col gap-10">
-    <TypographyAstro type="title-1" color="black" class={"xl:w-3/4 ml-auto"}>
-      {t("subTitle")}
+  <SectionTitle title={t('title')} type={t('type')} />
+  <article class='flex flex-col gap-10'>
+    <TypographyAstro type='title-1' color='black' class={'xl:w-3/4 ml-auto'}>
+      {t('subTitle')}
     </TypographyAstro>
   </article>
 
-  <div class="swiper why-us-swiper mt-10">
-    <div class="swiper-wrapper">
+  <div class='swiper why-us-swiper mt-10'>
+    <div class='swiper-wrapper'>
       {
         data.items.map((step, index) =>
           index !== 1 ? (
-            <div class="swiper-slide duration-300 w-[280px] h-[360px]">
+            <div class='swiper-slide duration-300 !w-[280px] !h-[360px]'>
               <StepAstro step={step} />
             </div>
           ) : (
             <>
-              <div class="swiper-slide duration-300 w-[280px] h-[360px]">
+              <div class='swiper-slide duration-300 !w-[280px] !h-[360px]'>
                 <FirstStep />
               </div>
-              <div class="swiper-slide duration-300 w-[280px] h-[360px]">
+              <div class='swiper-slide duration-300 !w-[280px] !h-[360px]'>
                 <StepAstro step={step} />
               </div>
             </>
@@ -46,10 +46,10 @@ const { data } = await whyUsService.get({});
 </Container>
 
 <script>
-  import Swiper from "swiper";
+  import Swiper from 'swiper';
 
-  new Swiper(".why-us-swiper", {
-    slidesPerView: "auto",
+  new Swiper('.why-us-swiper', {
+    slidesPerView: 'auto',
     centeredSlides: false,
     loop: true,
     speed: 400,

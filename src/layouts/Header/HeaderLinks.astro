@@ -2,7 +2,7 @@
 import { formatLink } from '@utils/index';
 import { DownArrow, UpArrow } from '@assets/index';
 import { routes } from 'src/routes';
-import { useTranslations, type Languages } from '@i18n/index';
+import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
 
 interface Props {
   hasArrow?: boolean;
@@ -10,7 +10,7 @@ interface Props {
 
 const links = [
   { name: 'services', href: routes.service },
-  { name: 'cases', href: routes.casesAll },
+  { name: 'cases', href: routes.cases },
   { name: 'who_we_are', href: routes.whoWeAre },
   { name: 'insights', href: routes.allInsights },
   { name: 'team', href: routes.team },
@@ -18,7 +18,7 @@ const links = [
 ];
 
 const url = Astro.url;
-const { lang } = Astro.params;
+const lang = getFromLocale(Astro.currentLocale);
 const { hasArrow } = Astro.props;
 
 const t = useTranslations(lang as Languages, 'header.navigation');
@@ -39,7 +39,7 @@ function IsCurrentPage(page: string): boolean {
         'flex gap-x-1 items-center justify-between',
         'px-2 font-gothic tracking-[0.8px] text-brand-white',
         {
-          '!text-brand-beigeLight border-b': IsCurrentPage(link.href),
+          ' text-brand-beige-light! border-b': IsCurrentPage(link.href),
         },
       ]}
     >

@@ -1,81 +1,81 @@
 ---
-import { smallLogo } from "@assets/index";
-import HeaderLinks from "./HeaderLinks.astro";
-import { Button, ButtonType } from "@components/Button";
-import { getFromLocale, useTranslations } from "@i18n/index";
-import { formatLink } from "@utils/index";
-import LanguageSwitchAstro from "./LanguageSwitchAstro.astro";
+import { smallLogo } from '@assets/index';
+import HeaderLinks from './HeaderLinks.astro';
+import { Button, ButtonType } from '@components/Button';
+import { getFromLocale, useTranslations } from '@i18n/index';
+import { formatLink } from '@utils/index';
+import LanguageSwitchAstro from './LanguageSwitchAstro.astro';
 
 const lang = getFromLocale(Astro.currentLocale);
-const t = useTranslations(lang, "header");
+const t = useTranslations(lang, 'header');
 ---
 
-<div class="sticky h-0 inset-x-0 top-8 z-header box-border mx-4 md:mx-8">
+<div class='sticky h-0 inset-x-0 top-8 z-header box-border mx-4 md:mx-8'>
   <header
     class:list={[
-      "flex items-center justify-between box-border ",
-      "max-w-[1680px] mx-auto py-4 2xl:py-5 px-2 2xl:px-8",
+      'flex items-center justify-between box-border ',
+      'max-w-[1680px] mx-auto py-4 2xl:py-5 px-2 2xl:px-8',
       "relative before:absolute before:inset-0 before:-z-10 before:content-['']",
-      "before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl",
+      'before:bg-brand-black/50 before:shadow-inner before:backdrop-blur-xl',
     ]}
   >
-    <a href={formatLink(Astro.url, "/")}>
+    <a href={formatLink(Astro.url, '/')}>
       <img
         src={smallLogo.src}
-        class="max-h-12 lg:max-h-16 object-contain"
-        alt="logo"
+        class='max-h-12 lg:max-h-16 object-contain'
+        alt='logo'
       />
     </a>
-    <nav class="ml-auto hidden 2xl:flex items-center gap-x-10">
+    <nav class='ml-auto hidden 2xl:flex items-center gap-x-10'>
       <HeaderLinks />
     </nav>
 
-    <section class="flex gap-x-3">
+    <section class='flex gap-x-3'>
       <Button
-        href="#contact-us-form"
-        class="2xl:ml-10"
+        href='#contact-us-form'
+        class='2xl:ml-10'
         type={ButtonType.Secondary}
       >
-        {t("contactUs")}
+        {t('contactUs')}
       </Button>
 
-      <div class:list={["hidden 2xl:flex"]}><LanguageSwitchAstro /></div>
+      <div class:list={['hidden 2xl:flex']}><LanguageSwitchAstro /></div>
 
       <button
-        id="menu"
-        class:list={["relative h-10 w-10 py-3 px-2 2xl:hidden"]}
-        aria-label="drop down menu"
+        id='menu'
+        class:list={['relative h-10 w-10 py-3 px-2 2xl:hidden']}
+        aria-label='drop down menu'
       >
-        <div class="relative h-full menuWrapper">
+        <div class='relative h-full menuWrapper'>
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-full"
+            class='line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-full'
           ></span>
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-1/2"
+            class='line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-1/2'
           ></span>
           <span
-            class="line-transition absolute block w-full h-0.5 bg-brand-white rounded bottom-0"
+            class='line-transition absolute block w-full h-0.5 bg-brand-white rounded-sm bottom-0'
           ></span>
         </div>
       </button>
     </section>
     <section
-      id="header-down-menu"
+      id='header-down-menu'
       class:list={[
-        "fixed duration-700 -z-headerMenu bg-black-100 -top-full left-0 w-full h-full transition-[top] ease-out",
+        'fixed duration-700 -z-header-menu bg-black-100 -top-full left-0 w-full h-full transition-[top] ease-out',
       ]}
     >
       <div
         class:list={[
-          "flex flex-col max-w-[1680px] mx-auto",
-          "pt-44 px-6 md:px-10 2xl:pt-56",
-          "gap-4 text-20",
+          'flex flex-col max-w-[1680px] mx-auto',
+          'pt-44 px-6 md:px-10 2xl:pt-56',
+          'gap-4 text-20',
         ]}
       >
         <HeaderLinks hasArrow />
-        <div class:list={["flex justify-between pl-2"]}>
-          <p class:list={["font-gothic tracking-[0.8px] text-brand-white"]}>
-            {t("language")}
+        <div class:list={['flex justify-between pl-2']}>
+          <p class:list={['font-gothic tracking-[0.8px] text-brand-white']}>
+            {t('language')}
           </p>
           <LanguageSwitchAstro />
         </div>
@@ -85,32 +85,32 @@ const t = useTranslations(lang, "header");
 </div>
 
 <script>
-  const header = document.querySelector("header");
-  const menu = document.querySelector("#menu");
-  const menuWraper = document.querySelector(".menuWrapper");
-  const downMenu = document.querySelector("#header-down-menu");
+  const header = document.querySelector('header');
+  const menu = document.querySelector('#menu');
+  const menuWraper = document.querySelector('.menuWrapper');
+  const downMenu = document.querySelector('#header-down-menu');
 
-  menu?.addEventListener("click", function () {
-    menuWraper?.classList.toggle("active");
-    downMenu?.classList.toggle("!inset-0");
-    header?.classList.toggle("border-b");
+  menu?.addEventListener('click', function () {
+    menuWraper?.classList.toggle('active');
+    downMenu?.classList.toggle('inset-0!');
+    header?.classList.toggle('border-b');
     const headerBefore =
-      "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black before:bg-opacity-[48%] before:shadow-inner before:backdrop-blur-xl";
-    headerBefore.split(" ").map((className) => {
+      "before:absolute before:inset-0 before:-z-10 before:content-[''] before:bg-brand-black/50 before:shadow-inner before:backdrop-blur-xl";
+    headerBefore.split(' ').map((className) => {
       header?.classList.toggle(className);
     });
 
-    if (menuWraper?.classList.contains("active")) {
+    if (menuWraper?.classList.contains('active')) {
       // Save current padding-right before applying scroll blocking
       const scrollBarWidth = window.innerWidth - document.body.offsetWidth;
 
       // Disable scrolling and add padding to the right to compensate for the scrollbar width
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
       document.body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
       // Re-enable scrolling and reset padding
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
     }
   });
 </script>

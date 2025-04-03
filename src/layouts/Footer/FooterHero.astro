@@ -1,48 +1,48 @@
 ---
-import { Typed } from "@components/Typed";
-import { useTranslations, type Languages } from "@i18n/index";
-import { cubeNear, cubeNear264, cubeNearVP9, logo } from "@assets/index";
+import { Typed } from '@components/Typed';
+import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
+import { cubeNear, cubeNear264, cubeNearVP9, logo } from '@assets/index';
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "hero");
+const lang = getFromLocale(Astro.currentLocale);
+const t = useTranslations(lang as Languages, 'hero');
 ---
 
-<section class="relative flex items-center py-7">
+<section class='relative flex items-center py-7'>
   <video
     autoplay
     muted
     loop
-    class="absolute top-0 inset-x-0 -z-[1] bg-black bg-opacity-45 h-full w-full object-cover"
+    class='absolute top-0 inset-x-0 -z-1 bg-black/45 h-full w-full object-cover'
   >
-    <track kind="captions" src="/captions/empty_captions.vtt" />
-    <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-    <source src={cubeNear264} type="video/mp4" />
-    <source src={cubeNearVP9} type="video/mp4" />
+    <track kind='captions' src='/captions/empty_captions.vtt' />
+    <source src={cubeNear} type='video/mp4; codecs=avc1.42E01E,mp4a.40.2' />
+    <source src={cubeNear264} type='video/mp4' />
+    <source src={cubeNearVP9} type='video/mp4' />
   </video>
 
-  <div class="mx-auto my-auto 2xl:px-[112px]">
+  <div class='mx-auto my-auto 2xl:px-[112px]'>
     <div
-      class="flex flex-col 2xl:flex-row-reverse 2xl:justify-between gap-x-6 h-full w-full"
-      class:list={["gap-y-16 md:gap-y-8"]}
+      class='flex flex-col 2xl:flex-row-reverse 2xl:justify-between gap-x-6 h-full w-full'
+      class:list={['gap-y-16 md:gap-y-8']}
     >
       <figure
         class:list={[
-          "h-[112px] lg:h-[180px] 2xl:h-[240px]",
-          "mx-auto 2xl:mx-0",
+          'h-[112px] lg:h-[180px] 2xl:h-[240px]',
+          'mx-auto 2xl:mx-0',
         ]}
       >
-        <img class="h-full object-contain" src={logo.src} alt="logo" />
+        <img class='h-full object-contain' src={logo.src} alt='logo' />
       </figure>
 
       <article
-        class="2xl:max-w-[520px] w-full flex flex-col 2xl:gap-y-3 gap-y-10 justify-center"
+        class='2xl:max-w-[520px] w-full flex flex-col 2xl:gap-y-3 gap-y-10 justify-center'
       >
         <div
-          class="text-24 md:text-32 2xl:text-40 font-extrabold text-center 2xl:text-start"
+          class='text-24 md:text-32 2xl:text-40 font-extrabold text-center 2xl:text-start'
         >
-          <p class="text-brand-white mb-3">{t("title")}</p>
-          <span class="text-brand-beigeLight">
-            <Typed words={t("subTitleRange")} />
+          <p class='text-brand-white mb-3'>{t('title')}</p>
+          <span class='text-brand-beige-light'>
+            <Typed words={t('subTitleRange')} />
           </span>
         </div>
       </article>

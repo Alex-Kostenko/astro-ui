@@ -2,7 +2,7 @@
 // import vercelServerless from "@astrojs/vercel";
 import node from '@astrojs/node';
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import AstroPWA from '@vite-pwa/astro';
 // process.env.MODE === 'dev'
@@ -25,10 +25,10 @@ export default defineConfig({
         // allow: ["../.."],
       },
     },
+    plugins: [tailwindcss()],
     publicDir: 'public',
   },
   integrations: [
-    tailwind(),
     AstroPWA({
       strategies: 'generateSW',
       registerType: 'autoUpdate',
@@ -91,27 +91,17 @@ export default defineConfig({
         navigateFallback: 'index.html',
         type: 'classic',
       },
-      experimental: {
-        directoryAndTrailingSlashHandler: false,
-      },
+      experimental: { directoryAndTrailingSlashHandler: false },
     }),
   ],
   output: 'static',
   build: { inlineStylesheets: 'never' },
-
   redirects: {
-    // "/service": "/service/all",
-    // "/[...lang]/cases": "/[...lang]/cases/all/1",
-    // "/[...lang]/cases/[slug]": "/[...lang]/cases/[slug]/1",
-    // "/insights": "/insights/all/1",
-    // "/[...lang]/insights": "/[...lang]/insights/all/1",
-    // "/[...lang]/insights/[slug]": "/[...lang]/insights/[slug]/1",
+    // '/[...lang]/*': '/404',
   },
-
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'ua'],
   },
-
   adapter,
 });

@@ -15,14 +15,14 @@ const comments = await commentService.get({ locale: lang as Languages });
 const extendedComment = extendArray(comments.data, 5);
 ---
 
-<Container class='overflow-hidden' id='testimonials'>
+<Container class='overflow-hidden'>
   <SectionTitle title={t('title')} type={t('tag')} />
 
   <section class='swiper comment-swiper'>
     <div class='swiper-wrapper'>
       {
         extendedComment.map((v) => (
-          <div class='swiper-slide md:w-[332px] lg:w-[730px] duration-300'>
+          <div class='swiper-slide md:!w-[332px] lg:!w-[730px] duration-300'>
             <CommentAstro comment={v} class='flex-col lg:flex-row' />
           </div>
         ))
@@ -32,14 +32,14 @@ const extendedComment = extendArray(comments.data, 5);
     <section class='flex justify-center gap-x-3 mt-5 lg:mt-10'>
       <button
         id='testimonials-previous'
-        class='text-brand-black bg-gray-100 p-1 rounded previous-swipe'
+        class='text-brand-black bg-gray-100 p-1 rounded-sm previous-swipe'
         aria-label='previous slide'
       >
         <ArrowLeft />
       </button>
       <button
         id='testimonials-next'
-        class='text-brand-black bg-gray-100 p-1 rounded next-swipe'
+        class='text-brand-black bg-gray-100 p-1 rounded-sm next-swipe'
         aria-label='next slide'
       >
         <ArrowRight />

@@ -1,64 +1,64 @@
 ---
-import { Button } from "@components/Button";
-import { Container } from "@components/Container";
-import { TypographyAstro } from "@components/Typography";
-import { useTranslations, type Languages } from "@i18n/index";
-import { ArrowRight, lotOfWavesBlack } from "@assets/index";
-import { VideoSource } from "@components/Video";
-import { ButtonType } from "@components/Button";
+import { Button } from '@components/Button';
+import { Container } from '@components/Container';
+import { TypographyAstro } from '@components/Typography';
+import { useTranslations, type Languages } from '@i18n/index';
+import { ArrowRight, lotOfWavesBlack } from '@assets/index';
+import { VideoSource } from '@components/Video';
+import { ButtonType } from '@components/Button';
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "home.about");
+const t = useTranslations(lang as Languages, 'home.about');
 ---
 
-<Container class="mt-14">
+<Container class='mt-14'>
   <h2
     class:list={[
-      "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
-      "gap-y-1 md:gap-y-2 2xl:gap-y-4",
-      "font-asket800 uppercase text-green-200 md:tracking-2",
-      "text-36 md:text-64 lg:text-72 2xl:text-96",
+      'flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8',
+      'gap-y-1 md:gap-y-2 2xl:gap-y-4',
+      'font-asket800 uppercase text-green-200 md:tracking-2',
+      'text-36 md:text-64 lg:text-72 2xl:text-96',
     ]}
   >
-    <span>{t("title.line-1-contained")}</span>
+    <span>{t('title.line-1-contained')}</span>
     <span
-      class="text-stroken-green-2 md:text-stroken-green-4 md:flex-[1_1_30%]"
+      class='text-stroken-green-2 md:text-stroken-green-4 md:flex-[1_1_30%]'
     >
-      {t("title.line-1-outlined")}
+      {t('title.line-1-outlined')}
     </span>
-    <span class="text-stroken-green-2 md:text-stroken-green-4">counted</span>
+    <span class='text-stroken-green-2 md:text-stroken-green-4'>counted</span>
     <span> of a single</span>
-    <span class="flex flex-wrap uppercase w-full">
+    <span class='flex flex-wrap uppercase w-full'>
       <span> mis </span>
-      <span class="flex-grow h-1 bg-green-200 my-auto mx-2"></span>
+      <span class='grow h-1 bg-green-200 my-auto mx-2'></span>
       <span> hire? </span>
     </span>
   </h2>
 
   <section
-    class="gap-y-4 mt-10 font-gothic"
+    class='gap-y-4 mt-10 font-gothic'
     class:list={[
-      "flex flex-col xl:flex-row-reverse justify-between",
-      "gap-y-3 md:gap-y-6",
+      'flex flex-col xl:flex-row-reverse justify-between',
+      'gap-y-3 md:gap-y-6',
     ]}
   >
-    <div class="xl:max-w-[604px] object-cover w-full">
+    <div class='xl:max-w-[604px] object-cover w-full'>
       <VideoSource
         source={[{ src: lotOfWavesBlack }]}
-        class="mix-blend-difference"
+        class='mix-blend-difference'
       />
     </div>
 
-    <div class:list={["flex flex-col"]}>
-      <TypographyAstro type="body-4" class="xl:w-[480px] leading-1 flex-grow">
-        {t("description")}
+    <div class:list={['flex flex-col']}>
+      <TypographyAstro type='body-4' class='xl:w-[480px] grow'>
+        {t('description')}
       </TypographyAstro>
 
       <div>
-        <Button type={ButtonType.Primary} class="mt-5">
-          {t("aboutUs")}
+        <Button type={ButtonType.Primary} class='mt-5'>
+          {t('aboutUs')}
 
-          <span slot="end" class="w-5 h-5 flex items-center justify-center">
+          <span slot='end' class='w-5 h-5 flex items-center justify-center'>
             <ArrowRight />
           </span>
         </Button>

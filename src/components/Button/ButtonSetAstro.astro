@@ -1,5 +1,5 @@
 ---
-import { ButtonType } from "./button.type";
+import { ButtonType } from './button.type';
 
 interface Props {
   href?: string;
@@ -9,35 +9,35 @@ interface Props {
 
 const { href, class: className, type = ButtonType.Primary } = Astro.props;
 
-const [hasStartSlot, hasEndSlot] = [Astro.slots["start"], Astro.slots["end"]];
+const [hasStartSlot, hasEndSlot] = [Astro.slots['start'], Astro.slots['end']];
 
 const ButtonSetStyle: Record<ButtonType, string> = {
   [ButtonType.Primary]:
-    "bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500 active:bg-green-500",
+    'bg-brand-black text-brand-white hover:bg-green-100 focus:bg-green-500 active:bg-green-500',
   [ButtonType.Secondary]:
-    "bg-brand-white text-green hover:bg-greenLight-200 focus:bg-green-300 focus:text-brand-white active:bg-green-300 active:text-brand-white",
+    'bg-brand-white text-green hover:bg-green-light-200 focus:bg-green-300 focus:text-brand-white active:bg-green-300 active:text-brand-white',
   [ButtonType.OutLine]:
-    "text-green border-2 border-green hover:border-greenLight-400 hover:bg-greenLight-400 focus:border-green-500 active:bg-green-500 active:text-brand-white",
+    'text-green border-2 border-green hover:border-green-light-400 hover:bg-green-light-400 focus:border-green-500 active:bg-green-500 active:text-brand-white',
 };
 
-const Tag = href ? "a" : "button";
+const Tag = href ? 'a' : 'button';
 ---
 
 <Tag
   href={href}
   class:list={[
-    "flex gap-2 items-center justify-center ",
-    "h-11 min-w-11 rounded px-4",
-    "text-center uppercase box-border font-gothic700 font-bold text-base leading-tight cursor-pointer",
-    "duration-200",
-    { "pl-3": hasStartSlot, "pr-3": hasEndSlot },
+    'flex gap-2 items-center justify-center ',
+    'h-11 min-w-11 rounded-sm px-4',
+    'text-center uppercase box-border font-gothic700 font-bold text-base leading-tight cursor-pointer',
+    'duration-200',
+    { 'pl-3': hasStartSlot, 'pr-3': hasEndSlot },
     ButtonSetStyle[type],
     className,
   ]}
 >
-  <slot name="start" />
-  <p class:list={["m-0"]}>
+  <slot name='start' />
+  <p class:list={['m-0']}>
     <slot />
   </p>
-  <slot name="end" />
+  <slot name='end' />
 </Tag>

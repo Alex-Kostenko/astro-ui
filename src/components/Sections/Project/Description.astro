@@ -2,6 +2,7 @@
 import type { IProject } from '@interfaces/project';
 import Title from './Title.astro';
 import { TypographyAstro } from '@components/Typography';
+import { objCompany } from '@assets/icon/company';
 
 type Props = IProject;
 
@@ -10,12 +11,12 @@ const data = Astro.props;
 
 <article class='container flex flex-col gap-10 mt-7'>
   <Title {...data} />
-  <section class='grid lg:grid-cols-[280px,auto] gap-5'>
+  <section class='grid lg:grid-cols-[280px_auto] gap-5'>
     <div
-      class='w-full ls:w-[280px] h-[152px] flex items-center justify-center py-9 p-2.5 mx-auto bg-brand-black rounded'
+      class='w-full ls:w-[280px] h-[152px] flex items-center justify-center py-9 p-2.5 mx-auto bg-brand-black rounded-sm'
     >
       <img
-        src={data.partner.image?.url || data.partner.image.base64}
+        src={objCompany[data.partner.name as keyof typeof objCompany].src}
         alt=''
         class=''
       />
@@ -57,8 +58,9 @@ const data = Astro.props;
       </TypographyAstro>
       <div class='flex flex-wrap gap-1'>
         {
+          // TODO: Chip
           data.technologies.map((v) => (
-            <span class='py-1 px-3 whitespace-nowrap bg-brand-beigeLight rounded-3xl text-brand-black text-12 font-gothic'>
+            <span class='py-1 px-3 whitespace-nowrap bg-brand-beige-light rounded-3xl text-brand-black text-12 font-gothic'>
               {v.name}
             </span>
           ))

@@ -1,12 +1,13 @@
 ---
-import type { GetStaticPaths } from "astro";
-import Layout from "@layouts/Layout.astro";
-import { languages, type Languages } from "@i18n/ui";
-import { SectionTitle, TypographyAstro } from "@components/Typography";
-import { Container } from "@components/Container";
-import { cubeNear, cubeNearVP9 } from "@assets/video";
-import Breadcrumbs from "@components/Breadcrumbs/Breadcrumbs.astro";
-import { useTranslations } from "@i18n/utils";
+import type { GetStaticPaths } from 'astro';
+import Layout from '@layouts/Layout.astro';
+import { languages, type Languages } from '@i18n/ui';
+import { SectionTitle, TypographyAstro } from '@components/Typography';
+import { Container } from '@components/Container';
+import { cubeNear, cubeNearVP9 } from '@assets/video';
+import Breadcrumbs from '@components/Breadcrumbs/Breadcrumbs.astro';
+import { useTranslations } from '@i18n/utils';
+import { HeroHeadAstro } from '@components/Hero';
 
 export const getStaticPaths = (() => {
   return Object.keys(languages).map((lang) => ({
@@ -15,56 +16,48 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "terms");
+const t = useTranslations(lang as Languages, 'terms');
 
 const privacy = Array.from({ length: 30 }).map((_, index) => ({
   id: index,
-  title: "title",
-  text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa.",
+  title: 'title',
+  text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa. Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem a nesciunt ipsum eius exercitationem esse obcaecati sed aut. Veritatis distinctio ad aut culpa. Dolorem quidem accusantium, ratione excepturi exercitationem ipsa.',
 }));
 ---
 
-<Layout title="Terms & Conditions">
-  <main class="flex flex-col gap-[120px]">
-    <div class="h-[144px] lg:h-[168px] bg-black bg-opacity-45">
-      <video
-        autoplay
-        muted
-        loop
-        class="relative -z-10 bg-black bg-opacity-45 h-full w-full object-cover"
-      >
-        <track kind="captions" src="/captions/empty_captions.vtt" />
-        <source src={cubeNear} type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
-        <source src={cubeNearVP9} type="video/mp4" />
-      </video>
+<Layout title='Terms & Conditions'>
+  <main class='flex flex-col gap-[120px]'>
+    <div>
+      <HeroHeadAstro />
       <Breadcrumbs />
     </div>
+
     <Container>
       <h2
         class:list={[
-          "flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8",
-          "gap-y-1 md:gap-y-2 2xl:gap-y-4",
-          "font-asket800 uppercase text-green-200 md:tracking-2",
-          "text-36 md:text-64 lg:text-72 2xl:text-96 lg:mt-0 mt-20",
+          'flex flex-wrap gap-x-2 md:gap-x-5 2xl:gap-x-8',
+          'gap-y-1 md:gap-y-2 2xl:gap-y-4',
+          'font-asket800 uppercase text-green-200 md:tracking-2',
+          'text-36 md:text-64 lg:text-72 2xl:text-96 lg:mt-0 mt-20',
         ]}
       >
         {
-          t("title").map(
-            (t: { text: string; variant: "contained" | "outlined" }) => (
+          t('title').map(
+            (t: { text: string; variant: 'contained' | 'outlined' }) => (
               <span
                 class:list={[
-                  "font-asket800 tracking-2 uppercase break-words hyphens-auto",
-                  "text-48 md:text-64 lg:text-72 2xl:text-96",
+                  'font-asket800 tracking-2 uppercase break-words hyphens-auto',
+                  'text-48 md:text-64 lg:text-72 2xl:text-96',
                   {
-                    "text-green-200": t.variant === "contained",
-                    "text-stroken-green-3 md:text-stroken-green-4":
-                      t.variant === "outlined",
+                    'text-green-200': t.variant === 'contained',
+                    'text-stroken-green-3 md:text-stroken-green-4':
+                      t.variant === 'outlined',
                   },
                 ]}
               >
                 {t.text}
               </span>
-            )
+            ),
           )
         }
       </h2>
@@ -74,10 +67,10 @@ const privacy = Array.from({ length: 30 }).map((_, index) => ({
         <Container>
           <SectionTitle
             title={p.title}
-            type={String(p.id + 1).padStart(2, "0")}
-            classType="flex-none mr-14"
+            type={String(p.id + 1).padStart(2, '0')}
+            classType='flex-none mr-14'
           />
-          <TypographyAstro type="body-2" color="black">
+          <TypographyAstro type='body-2' color='black'>
             {p.text}
           </TypographyAstro>
         </Container>
