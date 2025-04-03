@@ -1,50 +1,50 @@
 ---
-import { AccordionAstro } from "@components/Accordion";
-import { TypographyAstro } from "@components/Typography";
-import { clutch, linkedin, youtube } from "@assets/index";
-import FooterHero from "./FooterHero.astro";
-import { useTranslations, type Languages } from "@i18n/index";
-import { routes } from "src/routes";
-import { formatLink } from "@utils/format.link";
+import { AccordionAstro } from '@components/Accordion';
+import { TypographyAstro } from '@components/Typography';
+import { clutch, linkedin, youtube } from '@assets/index';
+import FooterHero from './FooterHero.astro';
+import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
+import { routes } from 'src/routes';
+import { formatLink } from '@utils/format.link';
 
 interface Props {
-  variant?: "contained" | "outlined";
-  color?: "black" | "biscuit";
+  variant?: 'contained' | 'outlined';
+  color?: 'black' | 'biscuit';
   class?: string;
 }
 
-const { lang } = Astro.params;
-const t = useTranslations(lang as Languages, "footer");
-const blockFooter = t("menu") as { title: string; list: string[] }[];
+const lang = getFromLocale(Astro.currentLocale);
+const t = useTranslations(lang as Languages, 'footer');
+const blockFooter = t('menu') as { title: string; list: string[] }[];
 ---
 
-<footer class="pt-[120px]">
-  <section class:list={["min-h-dvh", "grid grid-rows-[1fr_auto]"]}>
+<footer class='pt-[120px]'>
+  <section class:list={['min-h-dvh', 'grid grid-rows-[1fr_auto]']}>
     <FooterHero />
 
-    <div class="bg-brand-black">
+    <div class='bg-brand-black'>
       <div
         class:list={[
-          "w-full",
-          "py-10 px-6 2xl:pb-16 2xl:px-0",
-          "mx-auto 2xl:max-w-[1216px]",
+          'w-full',
+          'py-10 px-6 2xl:pb-16 2xl:px-0',
+          'mx-auto 2xl:max-w-[1216px]',
         ]}
       >
-        <div class="hidden 2xl:flex justify-between mb-[60px]">
+        <div class='hidden 2xl:flex justify-between mb-[60px]'>
           {
             blockFooter.map((textBlock) => {
               return (
                 <div>
                   <TypographyAstro
-                    type="body-2"
-                    color="white"
-                    class="font-gothic mb-5 tracking-0.8"
+                    type='body-2'
+                    color='white'
+                    class='font-gothic mb-5 tracking-0.8'
                   >
                     {textBlock.title}
                   </TypographyAstro>
-                  <div class="flex flex-col gap-y-2">
+                  <div class='flex flex-col gap-y-2'>
                     {textBlock.list.map((item) => (
-                      <p class="text-gray-200 font-gothic text-12 cursor-pointer">
+                      <p class='text-gray-200 font-gothic text-12 cursor-pointer'>
                         {item}
                       </p>
                     ))}
@@ -54,21 +54,21 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
             })
           }
         </div>
-        <div class="2xl:hidden mb-6">
+        <div class='2xl:hidden mb-6'>
           {
             blockFooter.map((textBlock) => {
               return (
                 <AccordionAstro arrowStyle>
                   <p
-                    class="text-brand-white font-gothic tracking-0.8"
-                    slot="title"
+                    class='text-brand-white font-gothic tracking-0.8'
+                    slot='title'
                   >
                     {textBlock.title}
                   </p>
-                  <ul class="ist-inside text-12 list-none space-y-2 mb-2">
+                  <ul class='ist-inside text-12 list-none space-y-2 mb-2'>
                     {textBlock.list.map((itemList) => {
                       return (
-                        <li class="text-gray-200 font-gothic text-16 tracking-0.8 uppercase">
+                        <li class='text-gray-200 font-gothic text-16 tracking-0.8 uppercase'>
                           {itemList}
                         </li>
                       );
@@ -80,26 +80,26 @@ const blockFooter = t("menu") as { title: string; list: string[] }[];
           }
         </div>
         <div
-          class:list={["flex flex-col justify-between gap-y-4", "2xl:flex-row"]}
+          class:list={['flex flex-col justify-between gap-y-4', '2xl:flex-row']}
         >
-          <div class="flex sm2:mb-0 gap-x-4 2xl:gap-x-3">
-            <img src={clutch.src} alt="clutch" />
-            <img src={linkedin.src} alt="linkedin" />
-            <img src={youtube.src} alt="youtube" />
+          <div class='flex sm2:mb-0 gap-x-4 2xl:gap-x-3'>
+            <img src={clutch.src} alt='clutch' />
+            <img src={linkedin.src} alt='linkedin' />
+            <img src={youtube.src} alt='youtube' />
           </div>
           <div
             class:list={[
-              "flex gap-y-2 flex-col",
-              "2xl:gap-x-6 2xl:flex-row",
-              "text-gray font-gothic text-10 leading-3",
+              'flex gap-y-2 flex-col',
+              '2xl:gap-x-6 2xl:flex-row',
+              'text-gray font-gothic text-10 leading-3',
             ]}
           >
-            <p>{t("copyright").replace("$year", new Date().getFullYear())}</p>
+            <p>{t('copyright').replace('$year', new Date().getFullYear())}</p>
             <a href={formatLink(Astro.url, routes.privacyPolicy)}
-              >{t("privacyPolicy")}</a
+              >{t('privacyPolicy')}</a
             >
             <a href={formatLink(Astro.url, routes.terms)}
-              >{t("termsOfService")}</a
+              >{t('termsOfService')}</a
             >
           </div>
         </div>

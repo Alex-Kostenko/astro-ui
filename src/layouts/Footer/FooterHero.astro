@@ -1,9 +1,9 @@
 ---
 import { Typed } from '@components/Typed';
-import { useTranslations, type Languages } from '@i18n/index';
+import { getFromLocale, useTranslations, type Languages } from '@i18n/index';
 import { cubeNear, cubeNear264, cubeNearVP9, logo } from '@assets/index';
 
-const { lang } = Astro.params;
+const lang = getFromLocale(Astro.currentLocale);
 const t = useTranslations(lang as Languages, 'hero');
 ---
 

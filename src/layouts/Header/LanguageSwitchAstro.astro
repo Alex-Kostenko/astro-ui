@@ -1,12 +1,12 @@
 ---
 import { DownArrow, UpArrow } from '@assets/icon';
-import { languages } from '@i18n/index';
+import { getFromLocale, languages } from '@i18n/index';
 
 interface Props {
   class?: string;
 }
 
-const { lang } = Astro.params;
+const lang = getFromLocale(Astro.currentLocale);
 const { class: className } = Astro.props;
 const { url } = Astro;
 
