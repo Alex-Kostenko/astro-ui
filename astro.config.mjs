@@ -5,9 +5,15 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import cloudflare from '@astrojs/cloudflare';
 import AstroPWA from '@vite-pwa/astro';
+// process.env.MODE === 'dev'
+//     ? node({ mode: 'standalone' })
+//     :
 
-const adapter =
-  process.env.MODE === 'dev' ? node({ mode: 'standalone' }) : cloudflare();
+const adapter = cloudflare({
+  platformProxy: {
+    enabled: true,
+  },
+});
 
 // https://astro.build/config
 export default defineConfig({
